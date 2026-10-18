@@ -1,0 +1,25 @@
+import "./vendor";
+import "./helpers";
+import { ieFix } from "./vendor/ie-fix";
+import { vhFix } from "./vendor/vh-fix";
+import checkboxInit from "./components/checkbox";
+import headerInit from "./components/header";
+import heroSliderInit from "./components/hero-slider";
+import clientsSliderInit from "./components/clients-slider";
+import projectsSliderInit from "./components/projects-slider";
+import reviewsSliderInit from "./components/reviews-slider";
+import phoneInputInit from "./components/phone-input";
+import feedbackFormInit from "./components/feedback-form";
+import modalInit from "./components/modal";
+
+ieFix();
+vhFix();
+checkboxInit();
+headerInit();
+heroSliderInit();
+clientsSliderInit();
+projectsSliderInit();
+reviewsSliderInit();
+phoneInputInit();
+feedbackFormInit();
+modalInit();

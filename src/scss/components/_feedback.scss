@@ -1,0 +1,268 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Форма заявки на фото с затемнением 70%.
+// Моб. (и < 1280): текст → форма → соцсети в колонку;
+// десктоп: слева текст (сверху) и соцсети (снизу) — колонка 680×656, справа форма 844 по центру по вертикали.
+.feedback {
+	margin-top: 100px;
+	padding: 40px 0;
+	color: var(--color-white);
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/home/form-bg@2x.jpg") center / cover no-repeat;
+
+	&__container {
+		display: grid;
+		grid-template-areas:
+			"intro"
+			"form"
+			"social";
+		row-gap: 30px;
+	}
+
+	&__intro {
+		display: flex;
+		flex-direction: column;
+		grid-area: intro;
+		gap: 20px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		grid-area: form;
+		gap: 35px;
+	}
+
+	&__fields {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	// в форме поля без белой линии снизу (в макете обводка цвета фона)
+	&__input {
+		padding: 20px;
+		height: auto;
+		box-shadow: none;
+
+		.input__field {
+			height: 18px;
+			line-height: 18px;
+		}
+	}
+
+	&__input--textarea {
+		height: 159px;
+	}
+
+	// телефон: плагин intl-tel-input оборачивает поле в .iti на всю ширину
+	&__input--phone {
+		padding: 0;
+
+		.iti {
+			--iti-pad: 20px;
+		}
+
+		.input__field {
+			padding: 20px 20px 20px 0;
+			height: 58px;
+			box-sizing: border-box;
+		}
+	}
+
+	&__file {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 1px dashed var(--color-light-grey);
+		padding: 10px;
+		height: 56px;
+		font-size: 15px;
+		line-height: 18px;
+		transition: background-color $duration-normal;
+		cursor: pointer;
+		gap: 3px;
+
+		@include state-hover {
+			background-color: rgba(255, 255, 255, 0.1);
+		}
+
+		&:focus-within {
+			outline: 2px solid var(--color-white);
+			outline-offset: -2px;
+		}
+	}
+
+	&__file-input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__file-icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__file-text {
+		overflow: hidden;
+		min-width: 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	&__agreements {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	&__checkbox:last-child {
+		max-width: 353px;
+	}
+
+	&__submit {
+		width: 100%;
+	}
+
+	&__social {
+		display: flex;
+		flex-direction: column;
+		grid-area: social;
+		margin-top: 10px;
+		gap: 22px;
+	}
+
+	&__social-title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+	}
+
+	&__social-list {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 14px;
+	}
+
+	&__social-link {
+		display: block;
+		color: var(--color-white);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-accent);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-white);
+			outline-offset: 2px;
+		}
+	}
+
+	&__social-icon {
+		display: block;
+		width: 24px;
+		height: 24px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__input {
+			padding: 10px 30px;
+			height: 70px;
+		}
+
+		&__input--textarea {
+			padding: 30px;
+			height: 125px;
+		}
+
+		&__input--phone {
+			padding: 0;
+
+			.iti {
+				--iti-pad: 30px;
+			}
+
+			.input__field {
+				padding: 10px 30px 10px 0;
+				height: 70px;
+			}
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		padding: 80px 0;
+
+		&__container {
+			column-gap: 40px;
+			justify-content: space-between;
+			grid-template:
+				"intro form" auto
+				"social form" 1fr
+				/ minmax(0, 680px) minmax(0, 844px);
+			min-height: 656px;
+			row-gap: 0;
+		}
+
+		&__intro {
+			gap: 36px;
+		}
+
+		&__title {
+			font-size: 48px;
+			line-height: 67px;
+		}
+
+		&__text {
+			font-size: 20px;
+			line-height: 28px;
+		}
+
+		&__form {
+			align-self: center;
+		}
+
+		&__checkbox:last-child {
+			max-width: none;
+		}
+
+		&__social {
+			align-self: end;
+			margin-top: 0;
+		}
+
+		&__social-title {
+			font-size: 24px;
+			line-height: 29px;
+		}
+
+		&__social-icon {
+			width: 40px;
+			height: 40px;
+		}
+	}
+}

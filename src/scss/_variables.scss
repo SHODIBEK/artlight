@@ -1,0 +1,86 @@
+// stylelint-disable scss/dollar-variable-empty-line-before
+
+@import "mixins";
+
+// COLORS
+$color-black: #000;
+$color-white: #fff;
+$color-gray: #eee;
+
+// FONTS
+// stylelint-disable-next-line
+$font-primary: "Ubuntu", sans-serif;
+
+$html-font-size: 16px;
+
+// EASING TRANSITIONS
+$duration-normal: 0.3s;
+$easing-back-out: cubic-bezier(
+	0.25,
+	0.74,
+	0.22,
+	1.1
+); // http://cubic-bezier.com/#.25,.74,.22,1.1
+$easing-back-in: cubic-bezier(
+	0.47,
+	-0.1,
+	0.5,
+	-0.06
+); // http://cubic-bezier.com/#.47,-0.1,.5,-.06
+$easing-out: ease-out;
+$easing-in: ease-in;
+
+// Settings
+$desktop: 1192;
+$desktop-xl: 1600;
+$laptop: 1024;
+$tablet: 768;
+$mobile: 380;
+$desktop-vh: 750;
+$header-desktop: 1280; // десктопная шапка (без телефонов, логотип слева)
+$header-full: 1600; // шапка как в макете 1728: логотип по центру, телефоны
+
+// Figma ui-kit: https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-35861
+:root {
+	--font-family: "LT Superior", sans-serif;
+	--font-family-accent: "Vela Sans", var(--font-family);
+
+	// палитра ui-kit
+	--color-accent: #7bde00;
+	--color-black: #1e1e1e;
+	--color-light-grey: #f2f2f2;
+	--color-stroke: #d8d8d8;
+	--color-black-60: rgba(30, 30, 30, 0.6);
+	--color-red: #ec1c24;
+	--color-white: #fff;
+	--color-divider: #e2e2e2;
+
+	// сетка: сайт до 1728px, поля 20px (на мобильных 16px — по макету 402)
+	--container-width: 1728px;
+	--gutter: 16px;
+	--header-height: 54px;
+
+	@media (min-width: #{$tablet}px) {
+		--gutter: 20px;
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		--header-height: 86px;
+	}
+
+	// состояния (в ui-kit без имён переменных)
+	--color-accent-hover: #a3e635;
+	--color-accent-pressed: #78c300;
+	--color-accent-disabled: #dcebc9;
+	--color-grey-hover: #e8e8e8;
+	--color-text-disabled: #6b7280;
+	--color-link: #07f;
+	--color-link-hover: #005fcc;
+	--color-link-pressed: #004799;
+
+	--primary-color: var(--color-accent);
+	--text-color: var(--color-black);
+	--body-color: var(--color-white);
+	--error-color: var(--color-red);
+	--swiper-theme-color: var(--primary-color);
+}

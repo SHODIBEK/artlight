@@ -1,0 +1,3 @@
+mixin svg(name)
+	svg(aria-hidden="true" focusable="false")&attributes(attributes)
+		use(xlink:href=`${baseDir}images/sprites.svg#${name}`)

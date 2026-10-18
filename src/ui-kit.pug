@@ -1,0 +1,121 @@
+extends pug/base
+
+append vars
+	- title = 'Artlight | UI-kit'
+	- meta.viewport = 'width=device-width, initial-scale=1.0'
+	- meta.formatDetection = 'telephone=no'
+	-
+		var states = ['default', 'hover', 'pressed', 'focus', 'disabled']
+		var fieldStates = ['default', 'hover', 'focus', 'filled', 'error', 'disabled', 'readonly']
+		var sidebarItems = [
+			{ label: 'Главная', icon: 'cube' },
+			{ label: 'Заказы', icon: 'list-check', active: true },
+			{ label: 'Профиль', icon: 'user' },
+			{ label: 'Избранное', icon: 'heart' },
+			{ label: 'Прайс-лист', icon: 'table' },
+			{ label: 'Обратная связь', icon: 'message' },
+			{ label: 'Сервисная служба', icon: 'message' },
+			{ label: 'Акты сверки и УПД', icon: 'message' },
+			{ label: 'Материалы для скачивания', icon: 'download' },
+			{ label: 'Выйти', icon: 'logout' },
+		]
+		var st = function (s) { return s === 'default' ? null : s }
+
+block content
+	main.ui-kit
+		section.ui-kit__section.ui-kit__section--light
+			h2.ui-kit__heading Типографика
+			.ui-kit__stack
+				p.title.title--h1 h1
+				p.title.title--h2 h2
+				p.title.title--h3 H3
+				p.title.title--h4 H4
+				p.text.text--m Поле ввода
+				p.title.title--h4 Кнопка
+				p.text.text--menu Меню
+				p.text.text--l Текст - L
+				p.text.text--m Текст - M
+				p.text.text--s Текст - S
+
+		section.ui-kit__section
+			h2.ui-kit__heading Кнопки
+			.ui-kit__frames
+				.ui-kit__frame
+					each s in states
+						+button({ view: 'main', label: 'все проекты (34)', state: st(s) })
+				.ui-kit__frame
+					each s in states
+						+button({ view: 'secondary', label: 'Войти', state: st(s) })(style="width: 494px")
+				.ui-kit__frame
+					each s in states
+						+button({ view: 'tertiary', label: 'Регистрация', state: st(s) })(style="width: 300.5px")
+				.ui-kit__frame
+					each s in states
+						+button({ view: 'stroke', label: 'IES/LDT файлы', state: st(s) })
+				.ui-kit__frame
+					each s in states
+						+button({ view: 'arrow', ariaLabel: 'Далее', state: st(s) })
+
+		section.ui-kit__section
+			h2.ui-kit__heading Табы, ссылка, чекбоксы
+			.ui-kit__frames
+				.ui-kit__frame.ui-kit__frame--row
+					.ui-kit__column
+						each s in states
+							+tab('35W', { state: st(s) })
+					.ui-kit__column
+						each s in states
+							+tab('35W', { active: true, state: st(s) })
+				.ui-kit__frame
+					each s in states
+						+linkBack('Вернуться в каталог', '#', { state: st(s) })
+				.ui-kit__frame.ui-kit__frame--row.ui-kit__frame--checkbox
+					each checked in [false, true, 'indeterminate']
+						.ui-kit__column
+							each s in ['default', 'hover', 'pressed', 'focus', 'error', 'disabled']
+								+checkbox({ checked: checked, state: st(s), ariaLabel: 'Чекбокс' })
+
+		section.ui-kit__section
+			h2.ui-kit__heading Поля ввода
+			.ui-kit__frames
+				.ui-kit__frame
+					each s in fieldStates
+						+input({
+							placeholder: 'Имя',
+							value: (s === 'filled' || s === 'readonly') ? 'Алексей' : null,
+							state: st(s),
+						})(style="width: 844px")
+				.ui-kit__frame
+					each s in fieldStates
+						+input({
+							type: 'email',
+							placeholder: 'Почта',
+							value: (s === 'filled' || s === 'readonly') ? 'alexey@example.com' : null,
+							action: true,
+							white: true,
+							state: st(s),
+						})(style="width: 424px")
+				.ui-kit__frame
+					each s in ['default', 'hover', 'focus', 'filled', 'error', 'disabled']
+						+search({
+							placeholder: 'Поиск по Artlight',
+							value: s === 'filled' ? 'Светильники' : null,
+							state: st(s),
+						})(style="width: 254px")
+
+		section.ui-kit__section
+			h2.ui-kit__heading Пагинация
+			.ui-kit__frames
+				.ui-kit__frame.ui-kit__frame--row
+					each page in [1, 2, 3]
+						.ui-kit__column
+							each s in states
+								+pagination(page, 3, { state: st(s) })
+
+		section.ui-kit__section
+			h2.ui-kit__heading Сайдбар
+			.ui-kit__frames
+				+sidebar(sidebarItems)(style="width: 407px")
+				.ui-kit__frame(style="width: 455px")
+					each s in ['default', 'hover', 'pressed', 'active', 'focus', 'disabled']
+						+sidebar([{ label: 'Главная', icon: 'cube', active: s === 'active', state: (s === 'default' || s === 'active') ? null : s }])(class="ui-kit__sidebar-item")

@@ -1,0 +1,75 @@
+// Демо-страница ui-kit.html — раскладка как во фреймах Figma (padding 24, gap 24)
+.ui-kit {
+	padding: 40px;
+	min-height: 100vh;
+	background-color: #353535;
+
+	&__section {
+		&:not(:last-child) {
+			margin-bottom: 60px;
+		}
+
+		&--light {
+			padding: 40px;
+			background-color: var(--color-white);
+		}
+	}
+
+	&__heading {
+		margin: 0 0 24px;
+		font-weight: 600;
+		font-size: 16px;
+		color: var(--color-white);
+
+		.ui-kit__section--light & {
+			color: var(--color-black);
+		}
+	}
+
+	&__stack {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 40px;
+	}
+
+	&__frames {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 48px;
+	}
+
+	&__frame {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		outline: 1px dashed rgba(151, 71, 255, 0.6);
+		padding: 24px;
+		gap: 24px;
+
+		&--row {
+			flex-direction: row;
+		}
+
+		&--checkbox {
+			gap: 36px;
+
+			.ui-kit__column {
+				gap: 28px;
+			}
+		}
+	}
+
+	&__column {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__sidebar-item {
+		align-self: stretch;
+		padding: 0;
+		background-color: transparent;
+	}
+}

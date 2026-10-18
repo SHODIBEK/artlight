@@ -1,0 +1,146 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Услуги на главной. Мобильный макет — колонка карточек (картинка 370×380),
+// десктоп 1728 — верхний ряд [968: проектирование / 474 + 474] + 700 (серийное, картинка 998),
+// нижний ряд 470.5 + 1191 (justify-between).
+.services {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 100px;
+	gap: 40px;
+
+	&__row {
+		display: grid;
+		width: 100%;
+		gap: 40px;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		outline: none;
+		color: var(--color-black);
+		gap: 24px;
+
+		@include photo-hover(".services__image", ".services__picture");
+
+		@include state-focus {
+			.services__picture {
+				outline: 2px solid var(--color-black);
+				outline-offset: -2px;
+			}
+		}
+	}
+
+	&__picture {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		width: 100%;
+		height: 380px;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+		line-height: 1.2;
+		gap: 16px;
+	}
+
+	// мобильный макет: шаг строк 22px (Figma округляет 18 × 1.2)
+	&__title {
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 22px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		font-size: 15px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__row {
+			column-gap: 20px;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__item--lighting-design,
+		&__item--serial {
+			grid-column: span 2;
+		}
+
+		&__picture {
+			height: 420px;
+		}
+
+		&__body {
+			gap: 20px;
+		}
+
+		// Figma ставит строки 22 × 1.2 с шагом 26px
+		&__title {
+			font-size: 22px;
+			line-height: 26px;
+		}
+
+		&__item--low-voltage &__title,
+		&__item--low-voltage &__text,
+		&__item--service-department &__text,
+		&__item--custom &__text,
+		&__item--stock &__text {
+			max-width: 415px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		margin-top: 150px;
+
+		&__row--top {
+			grid-template-areas:
+				"lighting lighting serial"
+				"low-voltage service serial";
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 700px;
+		}
+
+		&__row--bottom {
+			column-gap: 26.5px;
+			grid-template-columns: minmax(0, 470.5fr) minmax(0, 1191fr);
+		}
+
+		&__item--lighting-design {
+			grid-area: lighting;
+		}
+
+		&__item--low-voltage {
+			grid-area: low-voltage;
+		}
+
+		&__item--service-department {
+			grid-area: service;
+		}
+
+		&__item--serial {
+			grid-area: serial;
+		}
+
+		&__item--lighting-design &__picture {
+			height: 432px;
+		}
+
+		// до низа картинок второго ряда: 538 + 40 + 420
+		&__item--serial &__picture {
+			height: 998px;
+		}
+	}
+}

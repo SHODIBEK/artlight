@@ -1,0 +1,126 @@
+.is-hidden {
+	// stylelint-disable-next-line declaration-no-important
+	display: none !important;
+}
+
+.is-hide {
+	// stylelint-disable-next-line declaration-no-important
+	opacity: 0;
+}
+
+.for-desktop {
+	@include mobile {
+		// stylelint-disable-next-line declaration-no-important
+		display: none !important;
+	}
+}
+
+.for-tablet {
+	@include desktop {
+		// stylelint-disable-next-line declaration-no-important
+		display: none !important;
+	}
+
+	@include mobile {
+		// stylelint-disable-next-line declaration-no-important
+		display: none !important;
+	}
+}
+
+.for-mobile {
+	@include desktop {
+		// stylelint-disable-next-line declaration-no-important
+		display: none !important;
+	}
+}
+
+.for-devices {
+	@include mwdesktop {
+		// stylelint-disable-next-line declaration-no-important
+		display: none !important;
+	}
+}
+
+.clearfix {
+	overflow: auto;
+
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	margin: -1px;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+}
+
+.relative {
+	position: relative;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.primary-text {
+	color: var(--primary-color) !important;
+}
+
+.font-medium {
+	font-weight: 500 !important;
+}
+
+.text-red {
+	color: #ea0000 !important;
+}
+
+.text-grey {
+	color: var(--grey-color);
+}
+
+/* stylelint-disable */
+.dont-break-out {
+	// Технически это одно и то же, но используйте и то, и другое
+	overflow-wrap: break-word;
+	word-wrap: break-word;
+	// Это самое опасное в WebKit, так как оно ломает вещи везде, где бы они ни были
+	word-break: break-all;
+	// Вместо этого используйте этот нестандартный:
+	word-break: break-word;
+	// Добавляет дефис там, где слово ломается, если поддерживается
+	hyphens: auto;
+}
+
+.md-t {
+	margin-top: rem(10);
+
+	@media (min-width: 992px) {
+		margin-top: rem(20);
+	}
+}
+
+.md-b {
+	margin-bottom: rem(10);
+
+	@media (min-width: 992px) {
+		margin-bottom: rem(20);
+	}
+}
+
+.p-0 {
+	padding: 0 !important;
+}

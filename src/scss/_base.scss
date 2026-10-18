@@ -1,0 +1,289 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	position: relative;
+	min-height: 100vh;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+
+	&.has-cursor,
+	&.has-cursor * {
+		// stylelint-disable-next-line
+		cursor: none !important;
+	}
+
+	&.is-lock-scroll,
+	&.is-lock-scroll body {
+		overflow: hidden;
+	}
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	text-decoration-skip: objects;
+	text-rendering: optimizeLegibility;
+	text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+	font-family: var(--font-family);
+	color: var(--text-color);
+	background-color: var(--body-color);
+
+	&.mobile-menu-open {
+		touch-action: none;
+		-webkit-overflow-scrolling: none;
+		overflow: hidden;
+		overscroll-behavior: none;
+	}
+}
+
+.site {
+	overflow-x: hidden;
+}
+
+main {
+	flex: 1;
+}
+
+p {
+	margin: 0;
+}
+
+a,
+button {
+	outline: none;
+	transition: $duration-normal;
+	cursor: pointer;
+}
+
+button {
+	padding: 0;
+	border: none;
+	background: transparent;
+}
+
+a {
+	text-decoration: none;
+	color: currentColor;
+}
+
+figure,
+picture {
+	display: inline-block;
+	margin: 0;
+	line-height: 0;
+
+	img {
+		width: 100%;
+	}
+}
+
+img {
+	vertical-align: top;
+	max-width: 100%;
+	user-select: none;
+}
+
+fieldset {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+video {
+	outline: none;
+	width: 100%;
+	height: 100%;
+}
+
+iframe {
+	display: block;
+}
+
+.site {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; // fallback
+	// stylelint-disable-next-line
+	min-height: var(--vh);
+	padding-top: var(--header-height); // компенсация фиксированной шапки
+}
+
+.container {
+	margin: 0 auto;
+	padding: 0 var(--gutter);
+	width: 100%;
+	max-width: var(--container-width);
+}
+
+.swiper {
+	&-buttons {
+		position: absolute;
+		right: 11px;
+		bottom: 11px;
+		display: flex;
+		align-items: center;
+		gap: 7px;
+
+		@include laptop {
+			gap: 10px;
+			right: 25px;
+			bottom: 25px;
+		}
+	}
+
+	&-button {
+		&-prev,
+		&-next {
+			position: unset;
+			width: 35px;
+			height: 35px;
+			flex-shrink: 0;
+			border-radius: 50%;
+			background-color: var(--body-color);
+
+			@include laptop {
+				width: 43px;
+				height: 43px;
+			}
+
+			&::after {
+				display: none;
+			}
+
+			svg {
+				width: 14px;
+				height: 10px;
+				fill: rgba($color: #575757, $alpha: 0.5);
+				transition: 0.3s ease-in-out;
+
+				@include laptop {
+					width: 16px;
+					height: 12px;
+				}
+			}
+
+			@include hover {
+				svg {
+					fill: var(--primary-color);
+					transition: 0.3s ease-in-out;
+				}
+			}
+
+			&.disabled {
+				pointer-events: none;
+				fill: rgba($color: #575757, $alpha: 0.5);
+			}
+		}
+	}
+}
+
+.visually-hidden {
+	position: absolute;
+	overflow: hidden;
+	margin: -1px;
+	width: 1px;
+	height: 1px;
+	clip: rect(0 0 0 0);
+}
+
+.text-right {
+	text-align: right !important;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+.border-top {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form {
+	&-label {
+		display: block;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 130%;
+		color: rgba(255, 255, 255, 0.5);
+
+		&:not(:last-child) {
+			margin-bottom: 16px;
+		}
+
+		@include tablet {
+			font-size: 40px;
+
+			&:not(:last-child) {
+				margin-bottom: 40px;
+			}
+		}
+
+		@include laptop {
+			font-size: 16px;
+			&:not(:last-child) {
+				margin-bottom: 16px;
+			}
+		}
+	}
+
+	&-input {
+		padding: 0 16px;
+		display: block;
+		width: 100%;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 48px;
+		color: rgba(255, 255, 255, 0.5);
+		border: none;
+		border-radius: 8px;
+		background: #575757;
+		outline: none;
+
+		@include tablet {
+			padding: 36px 40px;
+			font-size: 40px;
+		}
+
+		@include laptop {
+			padding: 19px 16px;
+			font-size: 16px;
+			line-height: 1;
+		}
+	}
+}
+
+.error-message {
+	position: absolute;
+	top: calc(100% + 5px);
+	left: 0;
+	color: var(--error-color);
+	font-size: 11px;
+}
+
+.hidden {
+	opacity: 0 !important;
+}
+
+.appear {
+	opacity: 1;
+	transform: translateY(0);
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}

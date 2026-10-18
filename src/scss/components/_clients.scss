@@ -1,0 +1,40 @@
+// Наши клиенты: заголовок + бесконечная лента логотипов (шаг 56, ряд 66).
+// В макете лента сдвинута на 60px левее поля контейнера и уходит за правый край экрана.
+.clients {
+	overflow: hidden;
+	margin-top: 100px;
+
+	&__title {
+		font-size: 30px;
+		line-height: 36px;
+	}
+
+	&__slider {
+		overflow: visible;
+		margin-top: 56px;
+		margin-left: -60px;
+	}
+
+	&__slide {
+		display: flex;
+		align-items: center;
+		width: auto;
+		height: 66px;
+	}
+
+	&__logo {
+		display: block;
+		max-width: none;
+		user-select: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		// Figma: 46 × 1.2 с шагом 55px
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+	}
+}

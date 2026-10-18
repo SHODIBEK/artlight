@@ -1,0 +1,13 @@
+//- Плавающие кнопки связи (в правом нижнем углу экрана)
+.float-actions
+	a.float-actions__item(href=`tel:${data.header.phones[0].tel}`)
+		+svg('float-phone').float-actions__icon.float-actions__icon--phone
+		+svg('float-phone-sm').float-actions__icon.float-actions__icon--phone-sm
+		span.float-actions__text Позвонить
+	a.float-actions__item(href="#" data-modal="message")
+		+svg('float-message').float-actions__icon.float-actions__icon--message
+		+svg('float-message-sm').float-actions__icon.float-actions__icon--message-sm
+		span.float-actions__text Написать
+	a.float-actions__item(href="#" data-modal="callback")
+		+svg('pencil').float-actions__icon.float-actions__icon--pencil
+		span.float-actions__text Оставить заявку

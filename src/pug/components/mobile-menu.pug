@@ -1,0 +1,44 @@
+.mobile-menu.js-mobile-menu#mobile-menu(aria-hidden="true")
+	.mobile-menu__overlay.js-mobile-menu-close
+	.mobile-menu__body
+		//- основная панель
+		.mobile-menu__panel.mobile-menu__panel--main.js-mobile-menu-panel(data-panel="main")
+			button.mobile-menu__icon-button.js-mobile-menu-close(type="button" aria-label="Закрыть меню")
+				+svg('close').mobile-menu__icon
+
+			nav.mobile-menu__nav(aria-label="Мобильное меню")
+				ul.mobile-menu__list
+					each item in data.mobileMenu.menu
+						li.mobile-menu__item
+							if item.submenu
+								button.mobile-menu__link.js-mobile-menu-next(type="button" data-target=item.submenu)
+									span= item.name
+									+svg('chevron-right').mobile-menu__chevron
+							else
+								a.mobile-menu__link(href=item.url)
+									span= item.name
+									+svg('chevron-right').mobile-menu__chevron
+
+			.mobile-menu__contacts
+				each contact in data.mobileMenu.contacts
+					.mobile-menu__contact
+						a.mobile-menu__phone(href=`tel:${contact.tel}`)= contact.number
+						p.mobile-menu__note= contact.note
+
+			ul.mobile-menu__socials
+				each social in data.socials
+					li
+						a.mobile-menu__social(href=social.url target="_blank" rel="noopener" aria-label=social.name)
+							+svg(social.icon).mobile-menu__social-icon
+
+			+button({ view: 'main', label: 'Заказать звонок' }).mobile-menu__button(data-modal="callback")
+
+		//- подменю
+		each items, key in data.mobileMenu.submenus
+			.mobile-menu__panel.mobile-menu__panel--sub.js-mobile-menu-panel(data-panel=key aria-hidden="true")
+				button.mobile-menu__icon-button.js-mobile-menu-back(type="button" aria-label="Назад")
+					+svg('back').mobile-menu__icon
+				ul.mobile-menu__sublist
+					each item in items
+						li.mobile-menu__subitem
+							a.mobile-menu__sublink(href=item.url)= item.name

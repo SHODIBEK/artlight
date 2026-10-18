@@ -1,0 +1,25 @@
+section.reviews
+	.container
+		h2.reviews__title.title.title--h2= data.home.reviews.title
+
+		.reviews__slider.swiper.js-reviews-slider
+			.swiper-wrapper
+				each item in data.home.reviews.items
+					article.reviews__item.swiper-slide
+						.reviews__head
+							span.reviews__rating
+								+svg('star').reviews__star
+								| #{item.rating}
+							time.reviews__date(datetime=item.date)= item.dateLabel
+						p.reviews__text= typo(item.text)
+						.reviews__author
+							img.reviews__avatar(src=`${baseDir}images/home/review-avatar-${item.avatar}@2x.png` width="30" height="30" alt="" loading="lazy" draggable="false")
+							span.reviews__name= item.name
+
+		.reviews__sources
+			each source in data.home.reviews.sources
+				a.reviews__source(href=source.url target="_blank" rel="noopener")
+					span.reviews__source-name= source.name
+					+svg('star').reviews__star
+					| #{source.rating}
+					+svg('arrow-up-right-sm').reviews__source-arrow

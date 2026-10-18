@@ -1,0 +1,179 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Категории каталога на главной. Мобильный макет — колонка карточек 370×370,
+// десктоп 1728 — две строки по 342: [342 | 964 | 342] и [964 | 342 | 342].
+// Картинки — экспорт видимой части из Figma (2x), на фоне карточки через mix-blend-mode: darken.
+.categories {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding-top: 16px;
+	gap: 20px;
+
+	&__grid {
+		display: grid;
+		width: 100%;
+		gap: 20px;
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		overflow: hidden;
+		padding: 20px;
+		height: 370px;
+		background-color: var(--color-light-grey);
+
+		&--desktop {
+			display: none;
+		}
+
+		// рамка фото — сама карточка (overflow: hidden), заголовок над затемнением
+		@include photo-hover(".categories__image");
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: -2px;
+		}
+	}
+
+	// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+	&__title {
+		position: relative;
+		top: 1px;
+		z-index: 1;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 1.2;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__picture {
+		position: absolute;
+		display: block;
+		mix-blend-mode: darken;
+		pointer-events: none;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: auto;
+		user-select: none;
+	}
+
+	// позиции картинок, мобильный макет (карточка 370×370)
+	&__item--recessed-lights &__picture {
+		left: calc(50% - 185px);
+		top: 67px;
+		width: 370px;
+	}
+
+	&__item--track-lights &__picture {
+		left: calc(50% - 168px);
+		top: 19.36px;
+		width: 335px;
+	}
+
+	&__item--busbar-trunking-and-accessories &__picture {
+		right: 0;
+		top: 0;
+		width: 323px;
+	}
+
+	&__item--custom-made &__picture {
+		left: calc(50% - 185px);
+		top: 0;
+		width: 370px;
+	}
+
+	&__item--pendant-lights &__picture {
+		left: calc(50% - 170.5px);
+		top: 0;
+		width: 342px;
+	}
+
+	&__item--modular-lighting-systems &__picture {
+		right: 0;
+		top: 0;
+		width: 252px;
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding-top: 20px;
+
+		&__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__item {
+			padding: 30px 30px 40px;
+			height: 342px;
+
+			&--desktop {
+				display: flex;
+			}
+
+			&--mobile {
+				display: none;
+			}
+		}
+
+		// позиции картинок, десктопный макет (карточки 342 в высоту)
+		&__item--recessed-lights &__picture {
+			left: calc(50% - 146px);
+			top: 67px;
+			width: 292px;
+		}
+
+		&__item--track-lights &__picture {
+			left: calc(50% - 251px);
+			top: 0;
+			width: 504px;
+		}
+
+		&__item--busbar-trunking-and-accessories &__picture {
+			width: 295px;
+		}
+
+		&__item--custom-made &__picture {
+			left: auto;
+			right: 0;
+			width: 427px;
+		}
+
+		// фото во всю ширину карточки (в макете 342), на 768–1279 карточки шире — без видимых краёв
+		&__item--magnetic-system &__picture {
+			left: 0;
+			top: 0;
+			width: 100%;
+		}
+
+		&__item--profile-lighting-system &__picture {
+			left: 0;
+			bottom: 0;
+			width: 100%;
+		}
+
+		&__button {
+			width: auto;
+		}
+	}
+
+	// колонки 342 | 1fr | 342 | 342: первая строка 342 · 964 · 342, вторая 964 · 342 · 342
+	@media (min-width: #{$header-desktop}px) {
+		&__grid {
+			grid-template-columns: 342px minmax(0, 1fr) 342px 342px;
+		}
+
+		&__item--track-lights,
+		&__item--custom-made {
+			grid-column: span 2;
+		}
+	}
+}

@@ -1,0 +1,83 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Попап: затемнение 90% на весь экран, окно прокручивается вместе с подложкой.
+// Моб.: окно 370 (поля 16), сверху 70px; с 768 — по центру экрана, ширина 704.
+.modal {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 300;
+	display: flex;
+	flex-direction: column;
+	overflow-y: auto;
+	padding: 70px 16px 40px;
+	background-color: rgba(30, 30, 30, 0.9);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity $duration-normal, visibility $duration-normal;
+	overscroll-behavior: contain;
+
+	&.is-open {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__dialog {
+		position: relative;
+		flex-shrink: 0;
+		margin: 0 auto;
+		padding: 20px 16px;
+		width: 100%;
+		max-width: 370px;
+		background-color: var(--color-white);
+		transform: translateY(20px);
+		transition: transform $duration-normal;
+
+		.modal.is-open & {
+			transform: none;
+		}
+	}
+
+	&__close {
+		position: absolute;
+		right: 14px;
+		top: 14px;
+		z-index: 1;
+		display: block;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__close-icon {
+		display: block;
+		width: 20px;
+		height: 20px;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		&,
+		&__dialog {
+			transition: none;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 40px 20px;
+
+		&__dialog {
+			margin: auto; // по центру по вертикали, если окно ниже экрана
+			padding: 30px;
+			max-width: 704px;
+		}
+
+		&__close {
+			right: 20px;
+			top: 20px;
+		}
+	}
+}

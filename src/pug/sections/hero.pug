@@ -1,0 +1,26 @@
+section.hero
+	.hero__slider.swiper.js-hero-slider
+		.swiper-wrapper
+			each slide, index in data.home.hero.slides
+				.hero__slide.swiper-slide
+					picture.hero__picture
+						//- на мобильных — исходник целиком (object-fit: cover), как в макете 402×820
+						source(media="(max-width: 767px)" srcset=`${baseDir}images/home/${slide.image}-mobile.jpg`)
+						img.hero__image(
+							src=`${baseDir}images/home/${slide.image}.jpg`
+							srcset=`${baseDir}images/home/${slide.image}@2x.jpg 2x`
+							alt=""
+							fetchpriority=(index === 0 ? 'high' : null)
+							loading=(index === 0 ? null : 'lazy')
+							draggable="false"
+						)
+
+	.hero__content.container
+		//- строки заголовка — переносы мобильного макета, на десктопе текст переносится сам
+		h1.hero__title
+			each line, index in data.home.hero.titleLines
+				if index
+					br.hero__br
+					= ' '
+				= line
+		+button({ view: 'main', label: data.home.hero.button.label, href: data.home.hero.button.url }).hero__button

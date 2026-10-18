@@ -1,0 +1,94 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.search {
+	$b: &;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	overflow: hidden;
+	padding: 0 16px;
+	height: 40px;
+	background-color: transparent;
+	transition: background-color $duration-normal, box-shadow $duration-normal;
+	gap: 8px;
+
+	@include stroke(2px, var(--color-black));
+
+	&__field {
+		appearance: none;
+		flex: 1;
+		outline: none;
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+		height: 100%;
+		min-width: 0;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 15px;
+		line-height: normal;
+		color: var(--color-black);
+		background: transparent;
+
+		&::placeholder {
+			color: var(--color-black-60);
+			opacity: 1;
+		}
+
+		&::-webkit-search-cancel-button,
+		&::-webkit-search-decoration {
+			appearance: none;
+		}
+	}
+
+	&__button {
+		display: flex;
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+		color: var(--color-black-60);
+	}
+
+	&__icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	// Filled
+	&:has(#{$b}__field:not(:placeholder-shown)),
+	&.is-filled {
+		background-color: var(--color-white);
+	}
+
+	@include state-hover {
+		background-color: var(--color-grey-hover);
+	}
+
+	&:not(.is-disabled):focus-within,
+	&.is-focus {
+		background-color: var(--color-white);
+
+		@include stroke(3px, var(--color-accent));
+	}
+
+	&.is-error:not(.is-disabled) {
+		background-color: var(--color-white);
+
+		@include stroke(2px, var(--color-red));
+	}
+
+	&.is-disabled {
+		background-color: var(--color-stroke);
+
+		@include stroke(2px, var(--color-stroke));
+
+		#{$b}__field::placeholder {
+			opacity: 0.55;
+		}
+
+		#{$b}__button {
+			opacity: 0.45;
+		}
+	}
+}

@@ -1,0 +1,42 @@
+import Swiper from 'swiper';
+import {Autoplay} from 'swiper/modules';
+
+/**
+* Слайдер «Отзывы»: бесконечный, автопрокрутка раз в 5 с (пауза при наведении), свайп (навигации в макете нет),
+* карточки фиксированной ширины.
+* Для loop со slidesPerView: 'auto' недостающие слайды добавляем копиями всего набора.
+*/
+const MIN_SLIDES = 12;
+
+export default function reviewsSliderInit() {
+	document.querySelectorAll('.js-reviews-slider').forEach((element) => {
+		const wrapper = element.querySelector('.swiper-wrapper');
+		const slides = [...wrapper.children];
+
+		if (slides.length) {
+			while (wrapper.children.length < MIN_SLIDES) {
+				slides.forEach((slide) => wrapper.append(slide.cloneNode(true)));
+			}
+		}
+
+		// eslint-disable-next-line no-new
+		new Swiper(element, {
+			modules: [Autoplay],
+			slidesPerView: 'auto',
+			spaceBetween: 16,
+			loop: true,
+			speed: 600,
+			grabCursor: true,
+			autoplay: {
+				delay: 5000,
+				disableOnInteraction: false,
+				pauseOnMouseEnter: true,
+			},
+			breakpoints: {
+				768: {
+					spaceBetween: 6,
+				},
+			},
+		});
+	});
+}

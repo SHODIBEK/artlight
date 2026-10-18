@@ -1,0 +1,18 @@
+section.projects
+	.container
+		h2.projects__title.title.title--h2= data.home.projects.title
+
+		.projects__slider.swiper.js-projects-slider
+			.swiper-wrapper
+				each item in data.home.projects.items
+					a.projects__item.swiper-slide(href=item.url)
+						img.projects__image(src=`${baseDir}images/home/project-${item.image}@2x.jpg` alt="" loading="lazy" draggable="false")
+						span.projects__tags
+							each tag in item.tags
+								span.projects__tag= tag
+						span.projects__body
+							span.projects__name= item.title
+							span.projects__reveal
+								span.projects__text= typo(item.text)
+
+		+button({ view: 'main', label: data.home.projects.button.label, href: data.home.projects.button.url }).projects__button

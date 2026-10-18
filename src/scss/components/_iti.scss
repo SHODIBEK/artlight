@@ -1,0 +1,102 @@
+// intl-tel-input (поле телефона с выбором страны) внутри .input: флаг 16 + стрелка 16 (gap 6), до номера 10px.
+// Ширину отступа номера плагин считает сам: ширина кнопки страны + 6px, поэтому у кнопки справа 4px.
+// --iti-pad — левый отступ кнопки = паддинг поля (20 моб. / 30 десктоп).
+.iti {
+	--iti-pad: 30px;
+	--iti-flag-width: 16px;
+	--iti-path-flags-1x: url("../images/vendor/flags.webp");
+	--iti-path-flags-2x: url("../images/vendor/flags@2x.webp");
+	--iti-hover-color: var(--color-grey-hover);
+	--iti-border-color: var(--color-stroke);
+	--iti-icon-color: var(--color-black-60);
+	--iti-spacer-horizontal: 16px;
+
+	display: flex;
+	flex: 1;
+	align-self: stretch;
+	min-width: 0;
+
+	&__country-container {
+		padding: 0;
+	}
+
+	&__selected-country {
+		outline: none;
+		cursor: pointer;
+
+		&:focus-visible .iti__selected-country-primary {
+			text-decoration: underline;
+		}
+	}
+
+	// Плагин заливает кнопку страны var(--iti-hover-color) на ховере и при открытом списке — заливка перекрывала
+	// обводку .input (inset box-shadow) на участке флага. Переменная на самой кнопке гасит заливку
+	// при любой специфичности правила плагина; ховер/фокус показывает всё поле целиком.
+	&__selected-country-primary {
+		--iti-hover-color: transparent;
+
+		padding: 0 4px 0 var(--iti-pad);
+		gap: 6px;
+	}
+
+	&__flag {
+		box-shadow: none;
+	}
+
+	&__arrow {
+		margin: 0;
+		border: 0;
+		width: 16px;
+		height: 16px;
+		background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M8 8.783 4.7 5.483l-.942.942L8 10.668l4.243-4.243-.943-.942L8 8.783Z' fill='%231E1E1E' opacity='.5'/%3E%3C/svg%3E") center / 16px no-repeat;
+		transform: none;
+		transition: transform $duration-normal;
+
+		&--up {
+			margin: 0;
+			transform: rotate(180deg);
+		}
+	}
+
+	// выпадающий список стран
+	&__country-selector {
+		border-radius: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	&__search-input {
+		outline: none;
+		border-radius: 0;
+		padding-top: 12px;
+		padding-bottom: 12px;
+		font-family: var(--font-family);
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	&__country {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+
+	&__dial-code {
+		color: var(--color-black-60);
+	}
+
+	// без подсветки кнопки на ховере — её нет в макете
+	&--has-country-selector &__country-container &__selected-country-primary:hover,
+	&--has-country-selector &__country-container &__selected-country[aria-expanded="true"] &__selected-country-primary {
+		background-color: transparent;
+	}
+
+	&--inline-country-selector &__country-selector {
+		border: 0;
+		box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+	}
+
+	&--inline-country-selector &__country-list {
+		max-height: 260px;
+	}
+}

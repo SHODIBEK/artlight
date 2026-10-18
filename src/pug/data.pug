@@ -1,0 +1,301 @@
+-
+	const data = {
+		header: {
+			catalogLink: 'catalog.html',
+
+			menu: [
+				{ url: 'sale.html', name: 'Распродажа' },
+				{ url: 'design.html', name: 'Проектирование' },
+				{ url: 'services.html', name: 'Услуги' },
+				{ url: 'projects.html', name: 'Проекты' },
+				{ url: 'contacts.html', name: 'Контакты' },
+			],
+
+			more: [
+				{ url: 'cooperation.html', name: 'Сотрудничество' },
+				{ url: 'services.html', name: 'Услуги' },
+				{ url: 'warranty.html', name: 'Гарантия' },
+				{ url: 'delivery.html', name: 'Доставка' },
+				{ url: 'reviews.html', name: 'Отзывы' },
+				{ url: 'order.html', name: 'Оформление заказа' },
+				{ url: 'projects.html', name: 'Реализованные проекты' },
+				{ url: 'blog.html', name: 'Блог' },
+				{ url: 'education.html', name: 'Обучение' },
+				{ url: 'vacancies.html', name: 'Вакансии' },
+			],
+
+			phones: [
+				{ number: '8 800 500 33 36', tel: '+78005003336', label: 'бесплатно по РФ' },
+				{ number: '8 812 740 70 30', tel: '+78127407030', label: 'СПБ' },
+				{ number: '8 495 640 50 20', tel: '+74956405020', label: 'МСК' },
+			],
+
+			cartCount: 3,
+		},
+
+		home: {
+			hero: {
+				titleLines: ['Проектируем', 'и производим', 'светильники', 'для бизнеса'],
+				button: { label: 'смотреть проекты (22)', url: 'projects.html' },
+				// images/home/<image>.jpg и <image>@2x.jpg
+				slides: [
+					{ image: 'slider-1' },
+					{ image: 'slider-2' },
+				],
+			},
+
+			// images/home/cat-<image>-desktop.png и -mobile.png (2x). only — карточка только в одной из версий макета
+			categories: {
+				items: [
+					{ image: 'recessed-lights', lines: ['Встраиваемые светильники'], url: 'catalog.html' },
+					{ image: 'track-lights', lines: ['Трековые светильники'], url: 'catalog.html' },
+					{ image: 'busbar-trunking-and-accessories', lines: ['Шинопровод', 'и комплектующие'], url: 'catalog.html' },
+					{ image: 'custom-made', lines: ['Индивидуального', 'изготовления'], url: 'catalog.html' },
+					{ image: 'magnetic-system', lines: ['Магнитная система'], url: 'catalog.html', only: 'desktop' },
+					{ image: 'profile-lighting-system', lines: ['Профильная система', 'освещения'], url: 'catalog.html', only: 'desktop' },
+					{ image: 'pendant-lights', lines: ['Подвесные светильники'], url: 'catalog.html', only: 'mobile' },
+					{ image: 'modular-lighting-systems', lines: ['Модульные системы', 'освещения'], url: 'catalog.html', only: 'mobile' },
+				],
+				button: { label: 'весь каталог', url: 'catalog.html' },
+			},
+
+			// images/home/service-<image>@2x.jpg (десктоп, desktopSuffix — service-<image>-desktop@2x.jpg) и service-<image>-mobile@2x.jpg
+			// порядок — как в мобильном макете; на десктопе первые 4 — верхний ряд, последние 2 — нижний
+			services: {
+				items: [
+					{ mod: 'lighting-design', image: 'lighting-design', title: 'Светотехническое проектирование', text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование вы закупаете.', url: 'services.html' },
+					{ mod: 'low-voltage', image: 'design-and-supply-of-low-voltage-systems', title: 'Проектирование и поставка слаботочных систем', text: 'Проектирование и поставка слаботочных систем для вашего бизнеса', url: 'services.html' },
+					{ mod: 'service-department', image: 'artight-service-department', title: 'Сервисная служба ARTLIGHT', text: 'Профессиональная сервисная поддержка от нашей команды', url: 'services.html' },
+					{ mod: 'serial', image: 'serial-production', title: 'серийное производство', text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование', url: 'services.html' },
+					{ mod: 'custom', image: 'custom-production', title: 'Индивидуальное изготовление', text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование', url: 'services.html' },
+					{ mod: 'stock', image: 'supply-of-equipment-from-stock', desktopSuffix: true, title: 'Поставка оборудования со склада', text: 'Быстрая и надёжная поставка оборудования со склада', url: 'services.html' },
+				],
+				button: { label: 'все услуги', url: 'services.html' },
+			},
+			// images/home/logo_NN.svg — вырезаны из ленты макета (высота ряда 66, логотипы уже центрированы по вертикали, opacity 0.3 внутри svg);
+			// slide — ширина слайда по шагу ленты в макете, где svg округлён вверх на 1px
+			clients: {
+				title: 'наши клиенты',
+				logos: [
+					{ image: 'logo_01', width: 83, height: 30 },
+					{ image: 'logo_02', width: 128, height: 20 },
+					{ image: 'logo_03', width: 84, height: 26 },
+					{ image: 'logo_04', width: 49, height: 54 },
+					{ image: 'logo_05', width: 81, height: 32, slide: 80 },
+					{ image: 'logo_06', width: 141, height: 38 },
+					{ image: 'logo_07', width: 81, height: 60 },
+					{ image: 'logo_08', width: 135, height: 24, slide: 134 },
+					{ image: 'logo_09', width: 58, height: 66 },
+					{ image: 'logo_10', width: 67, height: 58 },
+					{ image: 'logo_11', width: 137, height: 50 },
+					{ image: 'logo_12', width: 143, height: 26 },
+					{ image: 'logo_13', width: 134, height: 64 },
+					{ image: 'logo_14', width: 137, height: 28 },
+					{ image: 'logo_15', width: 93, height: 62 },
+					{ image: 'logo_16', width: 101, height: 30, slide: 100 },
+					{ image: 'logo_17', width: 119, height: 26, slide: 118 },
+					{ image: 'logo_18', width: 144, height: 26, slide: 143 },
+					{ image: 'logo_19', width: 98, height: 40 },
+				],
+			},
+
+			// images/home/project-<image>@2x.jpg (731×1008); text — показывается при ховере (моб. — у активного слайда)
+			projects: {
+				title: 'реализованные проекты',
+				items: [
+					{ image: 'come-mode-clinic', title: 'Клиника Come Mode', tags: ['Horeca', 'Рестораны'], text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту', url: 'projects.html' },
+					{ image: 'restaurant-organic', title: 'Ресторан Органик', tags: ['Торговые центры'], text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту', url: 'projects.html' },
+					{ image: 'zoological-museum', title: 'Зоологический музей', tags: ['Торговые центры'], text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту', url: 'projects.html' },
+					{ image: 'oceania-shopping-mall', title: 'ТРЦ Океания', tags: ['Музеи'], text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту', url: 'projects.html' },
+					{ image: 'zoological-museum', title: 'Зоологический музей', tags: ['Торговые центры'], text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту', url: 'projects.html' },
+				],
+				button: { label: 'все проекты (34)', url: 'projects.html' },
+			},
+
+			// images/home/about-company@2x.jpg (760×476) и about-company-mobile@2x.jpg (370×363) — кадры одного исходника из Figma
+			about: {
+				title: 'о компании',
+				text: 'Компания ARTLIGHT сегодня — это путь, равный тридцати годам. Наша история началась в 1996 году с небольшой фирмы по поставке металлогалогенных светильников. За это время команда из нескольких энтузиастов превратилась в сплочённый коллектив из 100 профессионалов. Инженерный, производственный отдел, специалисты по продажам и логистике работают вместе, объединённые единой целью — развитием компании и качеством продукта.',
+				// mod — ширины колонок из макета; icon — спрайт (iconMobile — отдельный вариант для мобильного макета)
+				stats: [
+					{ mod: 'years', value: '30+', text: 'лет опыта' },
+					{ mod: 'dialux', icon: 'about-dialux', iconMobile: 'about-dialux-mobile', text: 'Авторизированный партнёр DIALux' },
+					{ mod: 'gisp', icon: 'about-gisp', text: 'Государственная информационная система промышленности' },
+					{ mod: 'award', icon: 'about-star', text: 'Лучшее предприятие отрасли 2024' },
+				],
+			},
+
+			// images/home/review-avatar-<avatar>@2x.png (60×60, экспорт аватара из Figma)
+			reviews: {
+				title: 'отзывы',
+				items: [
+					{ rating: '5.0', date: '2026-08-08', dateLabel: '8 августа', avatar: 1, name: 'Алла В', text: 'Отличные светильники, идеально вписались в проект лофта. Качество сборки на высоте, свет ровный и без мерцания' },
+					{ rating: '5.0', date: '2026-08-08', dateLabel: '8 августа', avatar: 2, name: 'Мария С.', text: 'Удобно, что можно быстро выбрать нужную температуру света и цвет корпуса прямо при заказе. Доставили вовремя, всё работает без нареканий' },
+					{ rating: '5.0', date: '2026-08-08', dateLabel: '8 августа', avatar: 3, name: 'Олег', text: 'Искал минималистичный дизайн для акцентной подсветки витрин. Эта модель подошла идеально. Монтаж на шинопровод занял минимум времени' },
+					{ rating: '5.0', date: '2026-08-08', dateLabel: '8 августа', avatar: 4, name: 'Елена', text: 'Стильный матовый корпус, смотрятся очень дорого. Заказываю здесь освещение уже не в первый раз — всегда отличный сервис' },
+					{ rating: '5.0', date: '2026-08-08', dateLabel: '8 августа', avatar: 5, name: 'Дмитрий', text: 'Стильный матовый корпус, смотрятся очень дорого. Заказываю здесь освещение уже не в первый раз — всегда отличный сервис' },
+				],
+				sources: [
+					{ name: '2ГИС', rating: '5.0', url: 'https://2gis.ru/' },
+					{ name: 'Яндекс.Карты', rating: '5.0', url: 'https://yandex.ru/maps/' },
+				],
+			},
+
+			// Форма заявки (фон images/home/form-bg@2x.jpg)
+			feedback: {
+				title: 'Вам требуются светильники для проекта?',
+				text: 'Начните с простого — напишите нам и расскажите о нем! Наши специалисты разработают проект освещения — индивидуальное решение, которое подчеркнёт все преимущества вашего объекта',
+				action: '#',
+				agreements: [
+					{ name: 'agree_terms', text: 'Я принимаю условия пользовательского соглашения и политики конфиденциальности' },
+					{ name: 'agree_personal', text: 'Даю согласие на обработку персональных данных' },
+				],
+				socialTitle: 'Приглашаем в наши социальные сети:',
+			},
+		},
+
+		mobileMenu: {
+			// submenu — id подменю из submenus
+			menu: [
+				{ url: 'catalog.html', name: 'Каталог', submenu: 'catalog' },
+				{ url: 'design.html', name: 'Проектирование' },
+				{ url: 'projects.html', name: 'Проекты' },
+				{ url: 'services.html', name: 'Услуги' },
+				{ url: 'sale.html', name: 'Распродажа' },
+				{ url: '#', name: 'Для покупателя', submenu: 'buyer' },
+				{ url: 'contacts.html', name: 'Контакты' },
+				{ url: '#', name: 'Скачать', submenu: 'download' },
+			],
+
+			submenus: {
+				catalog: [
+					{ url: '#', name: 'Трековые светильники' },
+					{ url: '#', name: 'Встраиваемые светильники' },
+					{ url: '#', name: 'Шинопровод и комплектующие' },
+					{ url: '#', name: 'Магнитная система' },
+					{ url: '#', name: 'Индивидуальные' },
+					{ url: '#', name: 'Профильная система освещения' },
+					{ url: '#', name: 'Подвесные светильники' },
+					{ url: '#', name: 'Декоративные светильники' },
+					{ url: '#', name: 'Декоративные светильники' },
+					{ url: '#', name: 'Модульные системы освещения' },
+					{ url: '#', name: 'Настенные светильники' },
+					{ url: '#', name: 'Напольные светильники' },
+					{ url: '#', name: 'Карданные светильники' },
+					{ url: '#', name: 'Гипсовые светильники' },
+					{ url: '#', name: 'Экспозиционные светильники' },
+					{ url: '#', name: 'Светодиодные ленты и комплектующие' },
+					{ url: '#', name: 'Источники питания и системы управления' },
+					{ url: '#', name: 'Источники света' },
+					{ url: '#', name: 'Комплексные системы безопасности' },
+					{ url: '#', name: 'Распродажи' },
+				],
+				buyer: [
+					{ url: 'about.html', name: 'О компании' },
+					{ url: 'cooperation.html', name: 'Сотрудничество' },
+					{ url: 'services.html', name: 'Услуги' },
+					{ url: 'warranty.html', name: 'Гарантия' },
+					{ url: 'delivery.html', name: 'Доставка' },
+					{ url: 'reviews.html', name: 'Отзывы' },
+					{ url: 'order.html', name: 'Оформление заказа' },
+					{ url: 'projects.html', name: 'Реализованные проекты' },
+					{ url: 'blog.html', name: 'Блог' },
+					{ url: 'education.html', name: 'Обучение' },
+					{ url: 'vacancies.html', name: 'Вакансии' },
+					{ url: 'contacts.html', name: 'Контакты' },
+				],
+				download: [
+					{ url: '#', name: 'IES/LDT файлы' },
+					{ url: '#', name: 'Монтажные инструкции' },
+					{ url: '#', name: 'BIM файлы (Revit)' },
+					{ url: '#', name: 'Каталог №11 - pdf' },
+					{ url: '#', name: '3D файлы' },
+					{ url: '#', name: 'Катало 2023 - pdf' },
+					{ url: '#', name: 'Сертификаты' },
+				],
+			},
+
+			contacts: [
+				{ number: '8 (800) 500-33-36', tel: '+78005003336', note: 'Бесплатный звонок по России' },
+				{ number: '8 (812) 740 70 30', tel: '+78127407030', note: '197101, Санкт-Петербург, метро "Петроградская", ул. Ленина, д. 12/36 (вход с ул. Ленина)' },
+				{ number: '8 (495) 640 50 20', tel: '+74956405020', note: '105005, Москва, метро "Бауманская", ул. Бауманская, 33/2, стр. 1, подъезд 2, 2 этаж' },
+			],
+		},
+
+		// buyer / download — как в мобильном меню (data.mobileMenu.submenus); каталог на десктопе — 2 колонки по catalogSplit
+		footer: {
+			catalogTitle: 'Каталог',
+			catalogSplit: 12,
+			catalog: [
+				{ url: '#', name: 'Встраиваемые светильники' },
+				{ url: '#', name: 'Трековые светильники' },
+				{ url: '#', name: 'Шинопровод и комплектующие' },
+				{ url: '#', name: 'Магнитная система' },
+				{ url: '#', name: 'Индивидуальные' },
+				{ url: '#', name: 'Профильная система освещения' },
+				{ url: '#', name: 'Подвесные светильники' },
+				{ url: '#', name: 'Декоративные светильники' },
+				{ url: '#', name: 'Декоративные светильники' },
+				{ url: '#', name: 'Модульные системы освещения' },
+				{ url: '#', name: 'Настенные светильники' },
+				{ url: '#', name: 'Напольные светильники' },
+				{ url: '#', name: 'Карданные светильники' },
+				{ url: '#', name: 'Гипсовые светильники' },
+				{ url: '#', name: 'Экспозиционные светильники' },
+				{ url: '#', name: 'Светодиодные ленты и комплектующие' },
+				{ url: '#', name: 'Источники питания и системы управления' },
+				{ url: '#', name: 'Источники света' },
+				{ url: '#', name: 'Комплексные системы безопасности' },
+				{ url: '#', name: 'Распродажи' },
+			],
+			buyerTitle: 'Для покупателя',
+			downloadTitle: 'Скачать',
+
+			// number — десктоп, numberMobile — мобильный макет; noteLines — переносы строк как в макете
+			contacts: [
+				{ number: '8 (800) 500-33-36', numberMobile: '8 800 500-33-36', tel: '+78005003336', noteLines: ['Бесплатный звонок по России'] },
+				{ number: '8 (812) 740-70-30', numberMobile: '+7 812 740-70-30', tel: '+78127407030', noteLines: ['197101, Санкт-Петербург, метро «Петроградская»,', 'ул. Ленина, д. 12/36 (вход с ул. Ленина)'] },
+				{ number: '8 (495) 640-50-20', numberMobile: '+7 495 640-50-20', tel: '+74956405020', noteLines: ['105005, Москва, метро «Бауманская», ул. Бауманская,', '33/2, стр. 1, подъезд 2, 2 этаж'] },
+			],
+
+			subscribe: {
+				title: 'Будьте в курсе всех новых событий!',
+				action: '#',
+				agreementAds: 'Даю Согласие на получение рекламных и информационных рассылок',
+				agreementPersonal: 'Даю Согласие на ',
+				agreementPersonalLink: { url: 'https://artlight.ru/static/soglasie_polzovatela/', name: 'обработку персональных данных' },
+			},
+
+			// icon — спрайт (iconMobile — вариант для мобильного макета)
+			awards: [
+				{ mod: 'gisp', icon: 'footer-gisp', lines: ['Государственная информационная система промышленности'] },
+				{ mod: 'star', icon: 'footer-star', iconMobile: 'footer-star-sm', lines: ['Лучшее предприятие отрасли 2024'] },
+				{ mod: 'trophy', icon: 'footer-trophy', lines: ['Победитель', 'Евразийская Премия «Золотой Фотон»'] },
+			],
+
+			copyright: '© ООО «Компания Артлайт» 1996-2026, все права защищены',
+			legal: { url: '#', name: 'Юридическая информация' },
+		},
+
+		// попап «Обратный звонок» (data-modal="callback"); согласия и заголовок соцсетей — как в форме заявки (data.home.feedback)
+		callback: {
+			title: 'Обратный звонок',
+			text: 'Оставьте свой номер телефона, и наш менеджер свяжется с Вами в ближайшее* время!',
+			notePrefix: '* согласно ',
+			noteLink: { url: 'contacts.html', name: 'режиму работы компании' },
+			action: '#',
+			topicPlaceholder: 'Тема обращения',
+			// темы обращения в макете не заданы — временный список
+			topics: ['Консультация по продукции', 'Светотехническое проектирование', 'Оформление заказа', 'Доставка', 'Гарантия и сервис', 'Сотрудничество', 'Другое'],
+			messagePlaceholder: 'Ваше сообщение',
+			submit: 'Заказать звонок',
+		},
+
+		// соцсети — мобильное меню, форма, подвал
+		socials: [
+			{ url: '#', icon: 'vk', name: 'ВКонтакте' },
+			{ url: '#', icon: 'telegram', name: 'Telegram' },
+			{ url: '#', icon: 'pinterest', name: 'Pinterest' },
+			{ url: '#', icon: 'yandex', name: 'Яндекс' },
+		],
+	};

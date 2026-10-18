@@ -1,0 +1,9 @@
+section.clients
+	.container
+		h2.clients__title.title.title--h2= data.home.clients.title
+
+		.clients__slider.swiper.js-clients-slider
+			.swiper-wrapper
+				each logo in data.home.clients.logos
+					.clients__slide.swiper-slide(style=logo.slide ? `width: ${logo.slide}px` : null)
+						img.clients__logo(src=`${baseDir}images/home/${logo.image}.svg` width=logo.width height=logo.height alt="" loading="lazy" draggable="false")

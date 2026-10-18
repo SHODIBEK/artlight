@@ -1,0 +1,352 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Шапка: мобильная < $header-desktop, десктоп без телефонов до $header-full, полная — как в макете 1728
+.header {
+	$b: &;
+
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 100;
+	background-color: var(--color-white);
+
+	&__container {
+		position: relative;
+		display: flex;
+		align-items: center;
+		height: var(--header-height);
+	}
+
+	// --- мобильные элементы ---
+	&__burger {
+		display: flex;
+		flex-shrink: 0;
+		align-self: flex-start;
+		margin-top: 17px;
+		color: var(--color-black);
+	}
+
+	&__burger-icon {
+		width: 32px;
+		height: 18px;
+	}
+
+	&__search-toggle {
+		display: flex;
+		flex-shrink: 0;
+		margin-left: 19px;
+		color: var(--color-black);
+	}
+
+	&__search-toggle-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	// --- каталог ---
+	&__catalog {
+		display: none;
+		flex-shrink: 0;
+		align-items: center;
+		padding: 0 18px;
+		height: 40px;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: normal;
+		color: var(--color-black);
+		background-color: var(--color-accent);
+		transition: background-color $duration-normal;
+		gap: 8px;
+
+		@include state-hover {
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-accent-pressed);
+		}
+	}
+
+	&__catalog-icon {
+		flex-shrink: 0;
+		width: 20.5px;
+		height: 6px;
+	}
+
+	// --- навигация ---
+	&__nav {
+		display: none;
+		margin-left: 12px;
+	}
+
+	// в Figma gap 12, но её текстовые блоки шире, чем в Chrome (~0.5px на пункт) — 12.5 совпадает с макетом
+	&__menu {
+		display: flex;
+		gap: 12.5px;
+	}
+
+	&__menu-item {
+		position: relative;
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		font-family: var(--font-family);
+		font-weight: 500;
+		font-size: 15px;
+		line-height: normal;
+		white-space: nowrap;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__more {
+		gap: 4px;
+	}
+
+	&__more-icon {
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+		color: var(--color-black);
+		opacity: 0.5;
+		transition: transform $duration-normal;
+	}
+
+	&__dropdown {
+		position: absolute;
+		left: 14px;
+		top: calc(100% + 14px);
+		z-index: 1;
+		padding: 14px;
+		width: 211px;
+		background-color: var(--color-light-grey);
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity $duration-normal, visibility $duration-normal;
+
+		// мост через зазор, чтобы ховер не терялся
+		&::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 100%;
+			height: 14px;
+		}
+	}
+
+	&__menu-item--more:hover &__dropdown,
+	&__menu-item--more:focus-within &__dropdown,
+	&__menu-item--more.is-open &__dropdown {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	&__menu-item--more:hover &__more-icon,
+	&__menu-item--more.is-open &__more-icon {
+		transform: rotate(180deg);
+	}
+
+	&__dropdown-list {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	&__dropdown-link {
+		display: block;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	// --- логотип ---
+	&__logo {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		display: flex;
+		transform: translate(-50%, -50%);
+	}
+
+	&__logo-img {
+		width: 120px;
+		height: 17.67px;
+	}
+
+	// --- телефоны ---
+	&__phones {
+		display: none;
+		flex-direction: column;
+		margin-left: auto;
+		gap: 4px;
+	}
+
+	&__phone {
+		font-weight: 500;
+		font-size: 15px;
+		line-height: normal;
+		white-space: nowrap;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			#{$b}__phone-number {
+				color: var(--color-black-60);
+			}
+		}
+	}
+
+	&__phone-label {
+		color: var(--color-black-60);
+	}
+
+	// --- поиск ---
+	&__search {
+		display: none;
+		flex-shrink: 0;
+		padding: 0 18px 0 19px; // по экспорту макета: текст на 3px правее, иконка на 2px правее, чем в компоненте
+		width: 254px;
+
+		.search__field {
+			font-weight: 500;
+		}
+	}
+
+	// --- действия ---
+	&__actions {
+		display: flex;
+		flex-shrink: 0;
+		margin-left: auto;
+		gap: 12px;
+	}
+
+	&__action {
+		position: relative;
+		display: flex;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__action-icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	&__badge {
+		position: absolute;
+		left: 14px;
+		top: -2px;
+		overflow: hidden;
+		border-radius: 50%;
+		width: 12px;
+		height: 12px;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: normal;
+		text-align: center;
+		color: var(--color-black);
+		background-color: var(--color-accent);
+	}
+
+	// мобильный поиск — выпадает под шапкой (не в макете)
+	&.is-search-open::after {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 100%;
+		height: 56px;
+		background-color: var(--color-white);
+	}
+
+	&.is-search-open &__search {
+		position: absolute;
+		left: var(--gutter);
+		right: var(--gutter);
+		top: calc(100% + 8px);
+		z-index: 1;
+		display: flex;
+		width: auto;
+		background-color: var(--color-white);
+	}
+
+	// --- десктоп без телефонов: логотип слева ---
+	@media (min-width: #{$header-desktop}px) {
+		&__burger,
+		&__search-toggle {
+			display: none;
+		}
+
+		&__catalog,
+		&__nav {
+			display: flex;
+		}
+
+		&__logo {
+			position: static;
+			order: -1;
+			margin-right: 32px;
+			transform: none;
+		}
+
+		&__logo-img {
+			width: 163px;
+			height: 24px;
+		}
+
+		&.is-search-open::after {
+			display: none;
+		}
+
+		&__search,
+		&.is-search-open &__search {
+			position: static;
+			display: flex;
+			margin-left: auto;
+			width: 254px;
+		}
+
+		&__actions {
+			margin-left: 32px;
+		}
+	}
+
+	// --- как в макете: логотип по центру, телефоны ---
+	@media (min-width: #{$header-full}px) {
+		&__logo {
+			position: absolute;
+			order: 0;
+			margin-right: 0;
+
+			// +0.5px — логотип на целом пикселе, как в макете (ширина 163 нечётная)
+			transform: translate(calc(-50% + 0.5px), -50%);
+		}
+
+		&__phones {
+			display: flex;
+		}
+
+		&__search,
+		&.is-search-open &__search {
+			margin-left: 32px;
+		}
+	}
+}

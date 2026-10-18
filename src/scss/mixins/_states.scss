@@ -1,0 +1,70 @@
+// stylelint-disable order/order -- @media hover и .is-hover должны идти в этом порядке
+// Состояния интерактивных элементов.
+// Классы is-hover / is-pressed / is-focus — для демонстрации состояний (страница ui-kit).
+// Порядок подключения в блоке: hover → pressed → focus → disabled.
+
+@mixin state-hover {
+	@media (hover: hover) {
+		&:not(:disabled):not(.is-disabled):hover {
+			@content;
+		}
+	}
+
+	&.is-hover {
+		@content;
+	}
+}
+
+@mixin state-pressed {
+	&:not(:disabled):not(.is-disabled):active,
+	&.is-pressed {
+		@content;
+	}
+}
+
+@mixin state-focus {
+	&:not(:disabled):not(.is-disabled):focus-visible,
+	&.is-focus {
+		@content;
+	}
+}
+
+// обводка внутрь, как stroke inside в Figma (не сдвигает содержимое)
+@mixin stroke($width, $color) {
+	box-shadow: inset 0 0 0 $width $color;
+}
+
+// ховер на фото — зум внутри рамки фото + затемнение рамки.
+// Рамке нужны position: relative и overflow: hidden. Подключать на ссылке-карточке:
+// @include photo-hover(".block__image", ".block__picture"); рамка — сама карточка: без второго аргумента.
+// Текст поверх затемнения (если он внутри рамки) — position: relative + z-index: 1.
+@mixin photo-hover($image, $frame: null) {
+	$overlay: if($frame, "#{$frame}::after", "&::after");
+
+	#{$image} {
+		transition: transform 0.6s $easing-out;
+	}
+
+	#{$overlay} {
+		content: "";
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.2);
+		opacity: 0;
+		transition: opacity 0.6s $easing-out;
+		pointer-events: none;
+	}
+
+	@include state-hover {
+		#{$image} {
+			transform: scale(1.05);
+		}
+
+		#{$overlay} {
+			opacity: 1;
+		}
+	}
+}

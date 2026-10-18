@@ -1,0 +1,45 @@
+//- Попап «Обратный звонок»: открывается кнопками с data-modal="callback"
+- var callback = data.callback
+- var feedback = data.home.feedback
+
+.modal.js-modal(data-modal-id="callback" role="dialog" aria-modal="true" aria-labelledby="callback-title" aria-hidden="true")
+	.modal__dialog
+		button.modal__close.js-modal-close(type="button" aria-label="Закрыть")
+			+svg('popup-close').modal__close-icon
+
+		.callback
+			.callback__main
+				.callback__intro
+					h2.callback__title.title.title--h2#callback-title= callback.title
+					.callback__description
+						p.callback__text= typo(callback.text)
+						p.callback__text
+							| #{callback.notePrefix}
+							a.callback__link(href=callback.noteLink.url target="_blank")= callback.noteLink.name
+
+				form.callback__form.js-feedback-form(action=callback.action method="post" enctype="multipart/form-data" novalidate)
+					.callback__fields
+						+input({ name: 'name', placeholder: 'Имя', required: true, line: true, attrs: { autocomplete: 'name' } }).callback__input
+						+input({ name: 'phone', type: 'tel', required: true, line: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).callback__input.callback__input--phone
+						+input({ name: 'topic', placeholder: callback.topicPlaceholder, options: callback.topics, line: true }).callback__input.callback__input--select
+						+input({ name: 'message', placeholder: callback.messagePlaceholder, textarea: true, line: true }).callback__input.callback__input--textarea
+						label.callback__file
+							input.callback__file-input.js-feedback-file(type="file" name="files[]" multiple)
+							+svg('attach').callback__file-icon
+							span.callback__file-text.js-feedback-file-text(data-empty="Прикрепить файл") Прикрепить файл
+
+					.callback__agreements
+						each item in feedback.agreements
+							+checkbox({ name: item.name, value: 'y' }).checkbox--light.callback__checkbox
+								span.checkbox__label= typo(item.text)
+
+					+button({ view: 'main', type: 'submit', label: callback.submit }).callback__submit
+
+			//- соцсети — только в мобильном макете
+			.callback__social
+				p.callback__social-title= feedback.socialTitle
+				ul.callback__social-list
+					each item in data.socials
+						li
+							a.callback__social-link(href=item.url target="_blank" rel="noopener" aria-label=item.name)
+								+svg(item.icon).callback__social-icon

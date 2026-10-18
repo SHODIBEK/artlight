@@ -1,0 +1,55 @@
+mixin callback(grey)
+  section.callback(
+    class=(grey) ? 'callback--grey' : ''
+    class=(cases) ? 'callback--cases' : ''
+  )
+    .container
+      .callback__header
+        h2.callback__title.title(data-aos="fade-left" data-aos-delay=`100`)
+          | быстрый старт
+        p.callback__subtitle(data-aos="fade-right" data-aos-delay=`300`)
+          span.primary-text
+            | заполните короткую форму, 
+          | и мы вас проконсультируем
+
+      form.callback-form(action="/" method="POST")
+        .callback-form__top
+          .callback-form__group(data-aos="fade-up" data-aos-delay=`400`)
+            label.callback-form__label(for="name")
+              | здравствуйте, я
+              span.primary-text *
+            input.callback-form__input#name(type="text" name="name" placeholder="введите ваше имя" required)
+          .callback-form__group(data-aos="fade-up" data-aos-delay=`500`)
+            label.callback-form__label(for="company")
+              | из компании
+            input.callback-form__input#company(type="text" name="company" placeholder="название продукта/компании")
+          .callback-form__group.callback-form--full(data-aos="fade-up" data-aos-delay=`600`)
+            label.callback-form__label(for="task")
+              | задача
+            textarea.callback-form__textarea#task(name="task" placeholder="опишите задачу и ожидаемый бюджет")
+          .callback-form__group(data-aos="fade-up" data-aos-delay=`700`)
+            label.callback-form__label(for="email")
+              | мой емаил
+            input.callback-form__input#company(type="email" name="email" placeholder="укажите электронную почту")
+          .callback-form__group(data-aos="fade-up" data-aos-delay=`800`)
+            label.callback-form__label(for="number")
+              | и телефон
+              span.primary-text *
+            input.callback-form__input#number(type="tel" name="number" placeholder="номер телефона или месседжер" required)
+        .callback-form__bottom
+          .callback-form__buttons
+            button.callback-form__button(type="submit" data-aos="fade-up" data-aos-delay=`300`)
+              .callback-form__button-text
+                | заказать проект
+              .callback-form__button-rounded
+                +svg('arrow-45')
+            .callback-form__upload(data-aos="fade-up" data-aos-delay=`500`)
+              label.callback-form__upload-button(for='file-input')
+                | прикрепить файл
+              input#file-input.visually-hidden(type='file')
+          .callback-form__footer
+            .callback-form__text(data-aos="fade-up" data-aos-delay=`600`)
+              | нажимая кнопку «отправить», вы даете согласие на обработку персональных данных
+            a.callback-form__briff(href="#" data-cursor-text="Скачать" data-aos="fade-up" data-aos-delay=`700`)
+              +svg('download')
+              | скачать бриф

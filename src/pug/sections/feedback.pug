@@ -1,0 +1,32 @@
+section.feedback
+	- var feedback = data.home.feedback
+	.container.feedback__container
+		.feedback__intro
+			h2.feedback__title= typo(feedback.title)
+			p.feedback__text= typo(feedback.text)
+
+		form.feedback__form.js-feedback-form(action=feedback.action method="post" enctype="multipart/form-data" novalidate)
+			.feedback__fields
+				+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'name' } }).feedback__input
+				+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).feedback__input.feedback__input--phone
+				+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).feedback__input
+				+input({ name: 'comment', placeholder: 'Дополнительная информация', textarea: true }).feedback__input.feedback__input--textarea
+				label.feedback__file
+					input.feedback__file-input.js-feedback-file(type="file" name="files[]" multiple)
+					+svg('attach').feedback__file-icon
+					span.feedback__file-text.js-feedback-file-text(data-empty="Прикрепить файл") Прикрепить файл
+
+			.feedback__agreements
+				each item in feedback.agreements
+					+checkbox({ name: item.name, value: 'y' }).checkbox--dark.feedback__checkbox
+						span.checkbox__label= typo(item.text)
+
+			+button({ view: 'main', type: 'submit', label: 'Отправить заявку' }).feedback__submit
+
+		.feedback__social
+			p.feedback__social-title= feedback.socialTitle
+			ul.feedback__social-list
+				each item in data.socials
+					li
+						a.feedback__social-link(href=item.url target="_blank" rel="noopener" aria-label=item.name)
+							+svg(item.icon).feedback__social-icon

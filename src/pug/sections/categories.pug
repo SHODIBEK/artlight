@@ -1,0 +1,19 @@
+section.categories.container
+	.categories__grid
+		each item in data.home.categories.items
+			a.categories__item(class=[`categories__item--${item.image}`, item.only ? `categories__item--${item.only}` : null] href=item.url)
+				span.categories__title
+					each line, index in item.lines
+						if index
+							br
+						= line
+				picture.categories__picture
+					if item.only === 'mobile'
+						img.categories__image(src=`${baseDir}images/home/cat-${item.image}-mobile.png` alt="" loading="lazy")
+					else if item.only === 'desktop'
+						img.categories__image(src=`${baseDir}images/home/cat-${item.image}-desktop.png` alt="" loading="lazy")
+					else
+						source(media="(max-width: 767px)" srcset=`${baseDir}images/home/cat-${item.image}-mobile.png`)
+						img.categories__image(src=`${baseDir}images/home/cat-${item.image}-desktop.png` alt="" loading="lazy")
+
+	+button({ view: 'main', label: data.home.categories.button.label, href: data.home.categories.button.url }).categories__button

@@ -1,0 +1,56 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	padding: 8px 0;
+	background-color: var(--color-light-grey);
+
+	&__item {
+		display: flex;
+		align-items: center;
+		outline: none;
+		padding: 10px 15px;
+		height: 40px;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 15px;
+		line-height: normal;
+		white-space: nowrap;
+		text-decoration: none;
+		color: var(--color-black);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+		gap: 6px;
+
+		// hover / pressed / focus / disabled — состояния не сняты из Figma (лимит MCP), по скриншоту
+		@include state-hover {
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-accent-pressed);
+		}
+
+		&.is-active {
+			background-color: var(--color-accent);
+		}
+
+		@include state-focus {
+			background-color: var(--color-accent);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		&.is-disabled {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+			pointer-events: none;
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+}

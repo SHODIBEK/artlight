@@ -1,0 +1,57 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.link-back {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	outline: none;
+	height: 18px;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 18px;
+	letter-spacing: 0.3px;
+	text-decoration: none;
+	text-underline-position: from-font;
+	color: var(--color-link);
+	transition: color $duration-normal;
+	gap: 8px;
+
+	&__icon {
+		position: relative;
+		flex-shrink: 0;
+		width: 11px;
+		height: 9px;
+	}
+
+	// стрелка рисуется с учётом толщины линии за пределами 11×9, как в Figma
+	&__svg {
+		position: absolute;
+		left: -1.09px;
+		top: -0.75px;
+		width: 12.84px;
+		height: 10.5px;
+	}
+
+	@include state-hover {
+		text-decoration: underline;
+		color: var(--color-link-hover);
+	}
+
+	@include state-pressed {
+		text-decoration: underline;
+		color: var(--color-link-pressed);
+	}
+
+	@include state-focus {
+		outline: 2px solid var(--color-black);
+		outline-offset: 2px;
+		text-decoration: none;
+		color: var(--color-link);
+	}
+
+	&.is-disabled {
+		color: var(--color-black-60);
+		opacity: 0.6;
+		pointer-events: none;
+	}
+}

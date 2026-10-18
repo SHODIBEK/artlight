@@ -1,0 +1,66 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.tab {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	vertical-align: top;
+	outline: none;
+	padding: 10px 16px;
+	height: 40px;
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 15px;
+	line-height: normal;
+	white-space: nowrap;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	transition: background-color $duration-normal, box-shadow $duration-normal;
+
+	&__label {
+		padding-top: 2px;
+	}
+
+	@include state-hover {
+		background-color: var(--color-grey-hover);
+	}
+
+	@include state-pressed {
+		background-color: var(--color-stroke);
+	}
+
+	@include state-focus {
+		background-color: var(--color-light-grey);
+
+		@include stroke(2px, var(--color-black));
+	}
+
+	&:disabled,
+	&.is-disabled {
+		color: var(--color-black-60);
+		background-color: var(--color-stroke);
+		opacity: 0.6;
+		cursor: default;
+	}
+
+	&.is-active {
+		background-color: var(--color-accent);
+
+		@include state-hover {
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-accent-pressed);
+		}
+
+		@include state-focus {
+			background-color: var(--color-accent);
+		}
+
+		&:disabled,
+		&.is-disabled {
+			background-color: var(--color-accent-disabled);
+		}
+	}
+}

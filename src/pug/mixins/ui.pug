@@ -1,0 +1,174 @@
+//- Компоненты ui-kit. Опция state — демонстрационное состояние:
+//- hover | pressed | focus | disabled | error | filled | readonly
+
+//- @demo +button({ view: 'main', label: 'все проекты (34)', href: '#' })
+//- view: main | secondary | tertiary | stroke | arrow
+mixin button(opts)
+	-
+		var o = opts || {}
+		var view = o.view || 'main'
+		var isLink = !!o.href
+		var isDisabled = o.disabled || o.state === 'disabled'
+		var cls = ['button--' + view]
+		if (o.state) cls.push('is-' + o.state)
+	if isLink
+		a.button(class=cls href=(isDisabled ? null : o.href) aria-disabled=(isDisabled ? 'true' : null) aria-label=o.ariaLabel)&attributes(attributes)
+			+buttonContent(view, o.label)
+	else
+		button.button(class=cls type=(o.type || 'button') disabled=isDisabled aria-label=o.ariaLabel)&attributes(attributes)
+			+buttonContent(view, o.label)
+
+mixin buttonContent(view, label)
+	if view === 'arrow'
+		+svg('arrow-right').button__icon
+	else
+		span.button__text= label
+		if view === 'main' || view === 'secondary'
+			span.button__circle
+				+svg('arrow-up-right').button__icon
+		if view === 'stroke'
+			+svg('chevron-right').button__chevron
+
+//- @demo +tab('35W', { active: true })
+mixin tab(label, opts)
+	-
+		var o = opts || {}
+		var cls = []
+		if (o.active) cls.push('is-active')
+		if (o.state) cls.push('is-' + o.state)
+	button.tab(class=cls type="button" disabled=(o.state === 'disabled') aria-pressed=(o.active ? 'true' : 'false'))&attributes(attributes)
+		span.tab__label= label
+
+//- @demo +linkBack('Вернуться в каталог', 'catalog.html')
+mixin linkBack(label, href, opts)
+	-
+		var o = opts || {}
+		var isDisabled = o.state === 'disabled'
+	a.link-back(class=(o.state ? 'is-' + o.state : null) href=(isDisabled ? null : href) aria-disabled=(isDisabled ? 'true' : null))&attributes(attributes)
+		span.link-back__icon
+			+svg('arrow-left').link-back__svg
+		span.link-back__text= label
+
+//- @demo +checkbox({ name: 'agree', checked: true })
+//- checked: true | false | 'indeterminate'
+mixin checkbox(opts)
+	-
+		var o = opts || {}
+		var isDisabled = o.state === 'disabled'
+		var cls = []
+		if (o.state) cls.push('is-' + o.state)
+	label.checkbox(class=cls)&attributes(attributes)
+		input.checkbox__input(
+			type="checkbox"
+			name=o.name
+			value=o.value
+			checked=(o.checked === true)
+			disabled=isDisabled
+			data-indeterminate=(o.checked === 'indeterminate' ? '' : null)
+			aria-label=o.ariaLabel
+		)
+		span.checkbox__box
+			+svg('check').checkbox__check
+			span.checkbox__dash
+		if block
+			block
+
+//- @demo +input({ name: 'name', placeholder: 'Имя' })
+//- @demo +input({ name: 'email', type: 'email', placeholder: 'Почта', action: true, white: true })
+//- @demo +input({ name: 'comment', placeholder: 'Дополнительная информация', textarea: true })
+//- @demo +input({ name: 'topic', placeholder: 'Тема обращения', options: ['Консультация', 'Другое'], line: true })
+//- textarea — многострочное поле; options — выпадающий список (placeholder — пустой пункт);
+//- line — белое поле с серой линией снизу (попапы); attrs — доп. атрибуты самого поля (autocomplete, class для JS…)
+mixin input(opts)
+	-
+		var o = opts || {}
+		var cls = []
+		if (o.white) cls.push('input--white')
+		if (o.line) cls.push('input--line')
+		if (o.textarea) cls.push('input--textarea')
+		if (o.options) cls.push('input--select')
+		if (o.state) cls.push('is-' + o.state)
+	.input(class=cls)&attributes(attributes)
+		if o.options
+			select.input__field(
+				name=o.name
+				id=o.id
+				disabled=(o.state === 'disabled')
+				required=o.required
+				aria-label=o.ariaLabel || o.placeholder
+			)&attributes(o.attrs || {})
+				option(value="" selected disabled hidden)= o.placeholder
+				each option in o.options
+					option(value=option)= option
+			+svg('select-chevron').input__chevron
+		else if o.textarea
+			textarea.input__field(
+				name=o.name
+				id=o.id
+				placeholder=o.placeholder
+				disabled=(o.state === 'disabled')
+				readonly=(o.state === 'readonly')
+				required=o.required
+				aria-label=o.ariaLabel || o.placeholder
+			)&attributes(o.attrs || {})= o.value
+		else
+			input.input__field(
+				type=(o.type || 'text')
+				name=o.name
+				id=o.id
+				placeholder=o.placeholder
+				value=o.value
+				disabled=(o.state === 'disabled')
+				readonly=(o.state === 'readonly')
+				required=o.required
+				aria-label=o.ariaLabel || o.placeholder
+			)&attributes(o.attrs || {})
+		if o.action
+			button.input__action(type="submit" aria-label=(o.actionLabel || 'Отправить') disabled=(o.state === 'disabled' || o.state === 'readonly'))
+				+svg('arrow-right').input__icon
+
+//- @demo +search({ placeholder: 'Поиск по Artlight', action: 'search.html' })
+mixin search(opts)
+	-
+		var o = opts || {}
+		var isDisabled = o.state === 'disabled'
+	form.search(class=(o.state ? 'is-' + o.state : null) action=o.action method="get" role="search")&attributes(attributes)
+		input.search__field(
+			type="search"
+			name=(o.name || 'q')
+			placeholder=o.placeholder
+			value=o.value
+			disabled=isDisabled
+			aria-label=o.placeholder
+		)
+		button.search__button(type="submit" aria-label="Найти" disabled=isDisabled)
+			+svg(o.icon || 'search').search__icon
+
+//- @demo +pagination(1, 3)
+//- state применяется к активной стрелке (hover | pressed | focus) или ко всему блоку (disabled)
+mixin pagination(current, total, opts)
+	-
+		var o = opts || {}
+		var isDisabled = o.state === 'disabled'
+		var arrowState = (o.state && !isDisabled) ? 'is-' + o.state : null
+		var nextState = current < total ? arrowState : null
+		var prevState = current >= total ? arrowState : null
+	nav.pagination(class=(isDisabled ? 'is-disabled' : null) aria-label="Пагинация")&attributes(attributes)
+		button.pagination__arrow.pagination__arrow--prev(class=prevState type="button" aria-label="Предыдущая страница" disabled=(current <= 1))
+			+svg('chevron-right').pagination__icon
+		- for (var i = 1; i <= total; i++)
+			a.pagination__page(class=(i === current ? 'is-active' : null) href=(o.href ? o.href + i : '#') aria-current=(i === current ? 'page' : null))= i
+		button.pagination__arrow.pagination__arrow--next(class=nextState type="button" aria-label="Следующая страница" disabled=(current >= total))
+			+svg('chevron-right').pagination__icon
+
+//- @demo +sidebar(items) — items: [{ label, icon, href, active, state }]
+mixin sidebar(items)
+	nav.sidebar&attributes(attributes)
+		each item in items
+			-
+				var cls = []
+				if (item.active) cls.push('is-active')
+				if (item.state) cls.push('is-' + item.state)
+			a.sidebar__item(class=cls href=(item.href || '#') aria-current=(item.active ? 'page' : null))
+				+svg(item.icon).sidebar__icon
+				span.sidebar__text= item.label

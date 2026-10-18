@@ -1,0 +1,50 @@
+header.header.js-header
+	.header__container.container
+		button.header__burger.js-mobile-menu-open(type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false")
+			+svg('burger').header__burger-icon
+
+		button.header__search-toggle.js-header-search-toggle(type="button" aria-label="Поиск" aria-expanded="false")
+			+svg('loupe').header__search-toggle-icon
+
+		a.header__catalog(href=data.header.catalogLink)
+			+svg('burger-catalog').header__catalog-icon
+			span.header__catalog-text Каталог
+
+		nav.header__nav(aria-label="Основное меню")
+			ul.header__menu
+				each item in data.header.menu
+					li.header__menu-item
+						a.header__link(href=item.url)= item.name
+				li.header__menu-item.header__menu-item--more
+					button.header__link.header__more(type="button" aria-haspopup="true" aria-expanded="false")
+						| Еще
+						+svg('chevron-more').header__more-icon
+					.header__dropdown
+						ul.header__dropdown-list
+							each item in data.header.more
+								li.header__dropdown-item
+									a.header__dropdown-link(href=item.url)= item.name
+
+		a.header__logo(href="index.html" aria-label="ARTLIGHT — на главную")
+			+svg('logo').header__logo-img
+
+		.header__phones
+			each phone in data.header.phones
+				a.header__phone(href=`tel:${phone.tel}`)
+					span.header__phone-number= phone.number
+					= ' '
+					span.header__phone-label= phone.label
+
+		+search({ placeholder: 'Поиск по ARTLIGHT', action: 'search.html' }).header__search.js-header-search
+
+		.header__actions
+			a.header__action(href="profile.html" aria-label="Личный кабинет")
+				+svg('heroicons-outline_user').header__action-icon
+			a.header__action(href="favorites.html" aria-label="Избранное")
+				+svg('heart').header__action-icon
+			a.header__action.header__action--cart(href="cart.html" aria-label=`Корзина, товаров: ${data.header.cartCount}`)
+				+svg('bytesize_bag').header__action-icon
+				if data.header.cartCount
+					span.header__badge= data.header.cartCount
+
+include mobile-menu

@@ -1,0 +1,269 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.button {
+	position: relative;
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	vertical-align: top;
+	outline: none;
+	padding: 0 56px;
+	height: 70px;
+	font-family: var(--font-family);
+	font-weight: 700;
+	font-size: 15px;
+	line-height: 1.2;
+	white-space: nowrap;
+	text-transform: uppercase;
+	color: var(--color-black);
+	transition: background-color $duration-normal, box-shadow $duration-normal, color $duration-normal;
+	gap: 12px;
+
+	&:disabled,
+	&.is-disabled {
+		cursor: default;
+		pointer-events: none;
+	}
+
+	// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+	&__text {
+		position: relative;
+		top: 1px;
+	}
+
+	&--stroke &__text {
+		top: 0;
+	}
+
+	&__circle {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		background-color: var(--color-white);
+		transition: background-color $duration-normal;
+	}
+
+	// --nudge-x/y — куда ходит стрелка на ховере (по направлению иконки)
+	&__icon {
+		--nudge-x: 3px;
+		--nudge-y: -3px;
+
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+	}
+
+	&--arrow &__icon {
+		--nudge-x: 4px;
+		--nudge-y: 0;
+	}
+
+	&__chevron {
+		--nudge-x: 3px;
+		--nudge-y: 0;
+
+		flex-shrink: 0;
+		width: 5px;
+		height: 8px;
+		color: var(--color-black-60);
+	}
+
+	// ховер: стрелка ходит вперёд-назад, пока курсор на кнопке
+	@include state-hover {
+		.button__icon,
+		.button__chevron {
+			animation: button-nudge 0.8s ease-in-out infinite;
+
+			@media (prefers-reduced-motion: reduce) {
+				animation: none;
+			}
+		}
+	}
+
+	// Button / Main
+	&--main {
+		background-color: var(--color-accent);
+
+		@include state-hover {
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			box-shadow: none;
+			background-color: var(--color-accent-pressed);
+		}
+
+		@include state-focus {
+			background-color: var(--color-accent);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		&:disabled,
+		&.is-disabled {
+			color: var(--color-text-disabled);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+		}
+	}
+
+	// Button / Secondary
+	&--secondary {
+		background-color: var(--color-white);
+
+		@include stroke(1px, var(--color-stroke));
+
+		.button__circle {
+			background-color: var(--color-light-grey);
+		}
+
+		@include state-hover {
+			background-color: var(--color-light-grey);
+
+			@include stroke(1px, var(--color-black-60));
+
+			.button__circle {
+				background-color: var(--color-grey-hover);
+			}
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+
+			@include stroke(1px, var(--color-black-60));
+
+			.button__circle {
+				background-color: var(--color-white);
+			}
+		}
+
+		@include state-focus {
+			background-color: var(--color-white);
+
+			@include stroke(2px, var(--color-black));
+
+			.button__circle {
+				background-color: var(--color-light-grey);
+			}
+		}
+
+		&:disabled,
+		&.is-disabled {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+		}
+	}
+
+	// Button / Tertiary
+	&--tertiary {
+		padding: 10px;
+		background-color: var(--color-light-grey);
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-focus {
+			background-color: var(--color-light-grey);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		&:disabled,
+		&.is-disabled {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+		}
+	}
+
+	// Button / Stroke
+	&--stroke {
+		padding: 0 14px;
+		height: 48px;
+		font-weight: 400;
+		line-height: normal;
+		text-transform: none;
+		background-color: var(--color-light-grey);
+		gap: 10px;
+
+		@include stroke(1px, var(--color-accent));
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-focus {
+			background-color: var(--color-light-grey);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		&:disabled,
+		&.is-disabled {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+
+			@include stroke(1px, var(--color-stroke));
+
+			.button__text {
+				opacity: 0.55;
+			}
+		}
+	}
+
+	// Button / Arrow — состояния не сняты из Figma (лимит MCP), по скриншоту
+	&--arrow {
+		border-radius: 50%;
+		padding: 0;
+		width: 64px;
+		height: 64px;
+		background-color: var(--color-white);
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-focus {
+			background-color: var(--color-white);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		&:disabled,
+		&.is-disabled {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+		}
+	}
+}
+
+@keyframes button-nudge {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+
+	50% {
+		transform: translate(var(--nudge-x), var(--nudge-y));
+	}
+}

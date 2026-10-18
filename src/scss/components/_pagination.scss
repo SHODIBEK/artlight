@@ -1,0 +1,102 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.pagination {
+	$b: &;
+
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	&__arrow {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		width: 40px;
+		height: 40px;
+		color: var(--color-black-60);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-focus {
+			background-color: var(--color-light-grey);
+
+			@include stroke(2px, var(--color-black));
+		}
+
+		// крайняя страница — стрелка неактивна
+		&:disabled,
+		&.is-disabled {
+			color: rgba(30, 30, 30, 0.1);
+			cursor: default;
+		}
+
+		&--prev #{$b}__icon {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__icon {
+		width: 5px;
+		height: 8px;
+	}
+
+	&__page {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		padding: 10px 16px;
+		width: 41px;
+		height: 40px;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 15px;
+		line-height: normal;
+		text-decoration: none;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&.is-active {
+			background-color: var(--color-accent);
+			pointer-events: none;
+		}
+	}
+
+	&.is-disabled {
+		pointer-events: none;
+
+		#{$b}__arrow {
+			color: rgba(30, 30, 30, 0.1);
+			background-color: var(--color-stroke);
+		}
+
+		#{$b}__page {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+			opacity: 0.6;
+
+			&.is-active {
+				background-color: var(--color-accent-disabled);
+			}
+		}
+	}
+}

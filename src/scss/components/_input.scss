@@ -1,0 +1,223 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+// Input / Name (по умолчанию) и Input / Email (модификатор --white + кнопка __action)
+.input {
+	$b: &;
+
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 10px 30px;
+	height: 70px;
+	box-shadow: inset 0 -1px 0 var(--color-white);
+	background-color: var(--color-light-grey);
+	transition: background-color $duration-normal, box-shadow $duration-normal;
+	gap: 16px;
+
+	&__field {
+		appearance: none;
+		flex: 1;
+		outline: none;
+		border: 0;
+		border-radius: 0;
+		padding: 0;
+		height: 100%;
+		min-width: 0;
+		font-family: var(--font-family);
+		font-weight: 400;
+		font-size: 15px;
+		line-height: 1.2;
+		color: var(--color-black);
+		background: transparent;
+
+		&::placeholder {
+			color: var(--color-black-60);
+			opacity: 1;
+		}
+	}
+
+	&__action {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		color: var(--color-black);
+		background-color: var(--color-accent);
+		transition: background-color $duration-normal;
+
+		// ховер: стрелка ходит вперёд-назад, как у кнопок (keyframes button-nudge в _button.scss)
+		@include state-hover {
+			#{$b}__icon {
+				// stylelint-disable-next-line no-unknown-animations -- keyframes в _button.scss
+				animation: button-nudge 0.8s ease-in-out infinite;
+
+				@media (prefers-reduced-motion: reduce) {
+					animation: none;
+				}
+			}
+		}
+	}
+
+	&__icon {
+		--nudge-x: 4px;
+		--nudge-y: 0;
+
+		width: 16px;
+		height: 16px;
+	}
+
+	// Filled
+	&:has(#{$b}__field:not(:placeholder-shown)),
+	&.is-filled {
+		box-shadow: none;
+	}
+
+	@include state-hover {
+		background-color: var(--color-grey-hover);
+
+		@include stroke(1px, var(--color-stroke));
+	}
+
+	&:not(.is-disabled):not(.is-readonly):focus-within,
+	&.is-focus {
+		background-color: var(--color-light-grey);
+
+		@include stroke(3px, var(--color-accent));
+	}
+
+	&.is-error:not(.is-disabled):not(.is-readonly) {
+		background-color: var(--color-light-grey);
+
+		@include stroke(2px, var(--color-red));
+	}
+
+	// :not() поднимает специфичность выше правила Filled (у readonly всегда есть значение)
+	&.is-readonly:not(.is-disabled) {
+		background-color: var(--color-light-grey);
+
+		@include stroke(1px, var(--color-stroke));
+
+		#{$b}__action {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+		}
+	}
+
+	&.is-disabled {
+		box-shadow: none;
+		background-color: var(--color-stroke);
+
+		#{$b}__field::placeholder {
+			opacity: 0.6;
+		}
+
+		#{$b}__action {
+			color: var(--color-black-60);
+			background-color: var(--color-light-grey);
+		}
+	}
+
+	// многострочное поле: текст сверху, высоту задаёт место использования
+	&--textarea {
+		align-items: flex-start;
+		padding: 30px;
+		height: 125px;
+
+		#{$b}__field {
+			overflow: auto;
+			height: 100%;
+			resize: none;
+		}
+	}
+
+	// выпадающий список: select на всё поле (кликабельна вся площадь), шеврон поверх справа;
+	// --input-pad-x — горизонтальный паддинг поля (30 по умолчанию, 20 в мобильных формах)
+	&--select {
+		padding: 0;
+
+		#{$b}__field {
+			padding: 0 calc(var(--input-pad-x, 30px) + 25px) 0 var(--input-pad-x, 30px);
+			cursor: pointer;
+
+			// пустой пункт выбран — серый «плейсхолдер»
+			&:has(option[value=""]:checked) {
+				color: var(--color-black-60);
+			}
+
+			option {
+				color: var(--color-black);
+			}
+		}
+	}
+
+	&__chevron {
+		position: absolute;
+		right: var(--input-pad-x, 30px);
+		top: 50%;
+		width: 9px;
+		height: 6px;
+		color: var(--color-black);
+		transform: translateY(-50%);
+		pointer-events: none;
+	}
+
+	// попапы: белое поле с серой линией снизу (в т. ч. заполненное)
+	&--line {
+		background-color: var(--color-white);
+
+		&,
+		&:has(#{$b}__field:not(:placeholder-shown)),
+		&.is-filled {
+			box-shadow: inset 0 -1px 0 var(--color-light-grey);
+		}
+
+		&:not(.is-disabled):not(.is-readonly):focus-within,
+		&.is-focus {
+			background-color: var(--color-white);
+
+			@include stroke(3px, var(--color-accent));
+		}
+
+		&.is-error:not(.is-disabled):not(.is-readonly) {
+			background-color: var(--color-white);
+
+			@include stroke(2px, var(--color-red));
+		}
+	}
+
+	// Input / Email: белый фон; плейсхолдер в макете чёрный
+	&--white {
+		box-shadow: none;
+		background-color: var(--color-white);
+
+		#{$b}__field::placeholder {
+			color: var(--color-black);
+		}
+
+		@include state-hover {
+			background-color: var(--color-light-grey);
+
+			@include stroke(1px, var(--color-stroke));
+		}
+
+		&:not(.is-disabled):not(.is-readonly):focus-within,
+		&.is-focus {
+			background-color: var(--color-white);
+
+			@include stroke(3px, var(--color-accent));
+		}
+
+		&.is-error:not(.is-disabled):not(.is-readonly) {
+			background-color: var(--color-white);
+
+			@include stroke(2px, var(--color-red));
+		}
+
+		&.is-disabled #{$b}__field::placeholder {
+			color: var(--color-black-60);
+		}
+	}
+}

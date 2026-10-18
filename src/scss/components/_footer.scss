@@ -1,0 +1,331 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Подвал: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-331, моб. node-id=2-13330
+.footer {
+	$b: &;
+
+	--gutter: 20px; // в мобильном макете поля подвала 20px
+
+	margin-top: 100px; // отступ от предыдущей секции (форма): 100 / 150
+	padding: 40px 0 20px;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__top {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__nav {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 36px 30px;
+	}
+
+	&__col {
+		flex: 1 1 0;
+		min-width: 0;
+
+		&--catalog {
+			flex-basis: 100%;
+		}
+
+		&--download {
+			white-space: nowrap;
+		}
+	}
+
+	&__title {
+		margin: 0 0 14px;
+		font-weight: 700;
+		text-transform: uppercase;
+	}
+
+	&__catalog,
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__link,
+	&__phone,
+	&__agreement-link,
+	&__legal-link {
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__aside {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+
+	&__phone {
+		display: inline-block;
+		vertical-align: top;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+	}
+
+	&__phone-number--desktop {
+		display: none;
+	}
+
+	&__note {
+		margin: 10px 0 0;
+		color: var(--color-black-60);
+	}
+
+	&__subscribe {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+
+		#{$b}__title {
+			margin: 0;
+		}
+	}
+
+	&__checkbox {
+		display: flex;
+
+		.checkbox__label {
+			font-size: 12px;
+			line-height: 14px;
+		}
+	}
+
+	&__agreement-link {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+
+	&__socials {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 14px;
+	}
+
+	&__social {
+		display: block;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__social-icon {
+		display: block;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__bottom {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__awards {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 14px;
+	}
+
+	&__award {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+
+		&--gisp,
+		&--star {
+			width: 280px;
+		}
+	}
+
+	&__award-icon {
+		flex-shrink: 0;
+		width: 35px;
+		height: 35px;
+
+		#{$b}__award--gisp & {
+			height: 36px;
+		}
+
+		&--desktop {
+			display: none;
+		}
+	}
+
+	// в макете 35 + 8 + 245 > 280 — текст выходит за ширину блока, не сжимать
+	&__award-text {
+		flex-shrink: 0;
+		margin: 0;
+		width: 245px;
+
+		#{$b}__award--star & {
+			line-height: 21px;
+		}
+
+		#{$b}__award--trophy & {
+			width: 273px;
+		}
+	}
+
+	&__legal {
+		display: flex;
+		flex-direction: column;
+		color: var(--color-black-60);
+		gap: 12px;
+	}
+
+	&__copyright {
+		margin: 0;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+		padding: 80px 0 20px;
+
+		&__container {
+			gap: 72px;
+		}
+
+		&__top {
+			flex-flow: row wrap;
+			justify-content: space-between;
+			gap: 60px 40px;
+		}
+
+		&__nav {
+			flex-wrap: wrap;
+			gap: 40px clamp(40px, calc((100vw - 1476px) / 2), 126px);
+		}
+
+		&__col {
+			flex: none;
+
+			&--catalog {
+				flex-basis: auto;
+			}
+		}
+
+		&__catalog {
+			flex-direction: row;
+			align-items: flex-start;
+			gap: 0;
+
+			#{$b}__list:first-child {
+				width: 302px;
+			}
+
+			#{$b}__list:last-child {
+				width: 275px;
+			}
+		}
+
+		// до 1600 колонка контактов уходит под меню: контакты | подписка + соцсети
+		&__aside {
+			display: grid;
+			align-items: start;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 424px);
+			width: 100%;
+			gap: 25px 40px;
+		}
+
+		&__contacts {
+			grid-row: span 2;
+			gap: 25px;
+		}
+
+		&__phone {
+			font-size: 26px;
+			line-height: 31px;
+		}
+
+		&__phone-number--desktop {
+			display: inline;
+		}
+
+		&__phone-number--mobile {
+			display: none;
+		}
+
+		&__bottom {
+			flex-flow: row wrap;
+			align-items: flex-end;
+			justify-content: space-between;
+			gap: 40px;
+		}
+
+		&__awards {
+			flex-flow: row wrap;
+			align-items: center;
+			gap: 20px 54px;
+		}
+
+		&__award-icon {
+			width: 36px;
+			height: 36px;
+
+			#{$b}__award--gisp & {
+				width: 35px;
+			}
+
+			&--desktop {
+				display: block;
+			}
+
+			&--mobile {
+				display: none;
+			}
+		}
+
+		&__legal {
+			flex-flow: row wrap;
+			gap: 12px 24px;
+		}
+	}
+
+	// как в макете 1728: колонка контактов справа от меню
+	@media (min-width: #{$header-full}px) {
+		&__aside {
+			display: flex;
+			flex-direction: column;
+			width: 424px;
+		}
+	}
+}

@@ -1,0 +1,162 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
+.checkbox {
+	$b: &;
+
+	position: relative;
+	display: inline-flex;
+	flex-shrink: 0;
+	vertical-align: top;
+	cursor: pointer;
+
+	// текст рядом с квадратом (содержимое блока +checkbox)
+	&__label {
+		align-self: center;
+		margin-left: 12px;
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	&__input {
+		position: absolute;
+		left: 0;
+		top: 0;
+		margin: 0;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+	}
+
+	&__box {
+		position: relative;
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+
+		@include stroke(1px, var(--color-stroke));
+
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+	}
+
+	&__check {
+		display: none;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__dash {
+		display: none;
+		width: 12px;
+		height: 2px;
+		background-color: currentColor;
+	}
+
+	&__input:checked + #{$b}__box,
+	&__input:indeterminate + #{$b}__box,
+	&.is-indeterminate #{$b}__box {
+		box-shadow: none;
+		background-color: var(--color-accent);
+	}
+
+	&__input:checked + #{$b}__box #{$b}__check {
+		display: block;
+	}
+
+	&__input:indeterminate + #{$b}__box #{$b}__dash,
+	&.is-indeterminate #{$b}__dash {
+		display: block;
+	}
+
+	@include state-hover {
+		#{$b}__box {
+			background-color: var(--color-grey-hover);
+
+			@include stroke(1px, var(--color-black-60));
+		}
+
+		#{$b}__input:checked + #{$b}__box,
+		#{$b}__input:indeterminate + #{$b}__box,
+		&.is-indeterminate #{$b}__box {
+			box-shadow: none;
+			background-color: var(--color-accent-hover);
+		}
+	}
+
+	@include state-pressed {
+		#{$b}__box {
+			background-color: var(--color-stroke);
+
+			@include stroke(1px, var(--color-stroke));
+		}
+
+		#{$b}__input:checked + #{$b}__box,
+		#{$b}__input:indeterminate + #{$b}__box,
+		&.is-indeterminate #{$b}__box {
+			box-shadow: none;
+			background-color: var(--color-accent-pressed);
+		}
+	}
+
+	&__input:focus-visible + #{$b}__box,
+	&.is-focus #{$b}__box {
+		@include stroke(2px, var(--color-black));
+	}
+
+	&.is-error #{$b}__box {
+		@include stroke(2px, var(--color-red));
+	}
+
+	&.is-disabled {
+		cursor: default;
+		pointer-events: none;
+
+		#{$b}__box {
+			color: var(--color-black-60);
+			background-color: var(--color-stroke);
+
+			@include stroke(1px, var(--color-stroke));
+		}
+
+		#{$b}__input:checked + #{$b}__box,
+		#{$b}__input:indeterminate + #{$b}__box,
+		&.is-indeterminate #{$b}__box {
+			box-shadow: none;
+			background-color: var(--color-stroke);
+		}
+	}
+
+	// на белом фоне (попапы): пустой квадрат без заливки с обводкой light-grey
+	&--light #{$b}__box {
+		background-color: transparent;
+
+		@include stroke(1px, var(--color-light-grey));
+	}
+
+	// на тёмном фоне (форма заявки): пустой квадрат прозрачный с обводкой light-grey, текст белый
+	&--dark {
+		color: var(--color-white);
+
+		#{$b}__box {
+			background-color: transparent;
+
+			@include stroke(1px, var(--color-light-grey));
+		}
+
+		@include state-hover {
+			#{$b}__box {
+				background-color: rgba(255, 255, 255, 0.1);
+
+				@include stroke(1px, var(--color-white));
+			}
+		}
+
+		#{$b}__input:focus-visible + #{$b}__box,
+		&.is-focus #{$b}__box {
+			@include stroke(2px, var(--color-white));
+		}
+	}
+}

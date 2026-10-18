@@ -1,0 +1,140 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Отзывы: слайдер карточек 340 (моб., шаг 16) / 364.4 (десктоп, 5 карточек на 1846 с шагом 6) и ссылки на рейтинги.
+// Лента уходит за правый край экрана. Карточки ряда одной высоты (242 в макете), автор прижат к низу.
+.reviews {
+	overflow: hidden;
+	margin-top: 100px;
+
+	&__title {
+		font-size: 30px;
+		line-height: 36px;
+	}
+
+	// справа — до края экрана, слева режем по полю контейнера
+	&__slider {
+		clip-path: inset(0 -100vw 0 0);
+		overflow: visible;
+		margin-top: 20px;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		padding: 20px;
+		width: 340px;
+		height: auto;
+		font-size: 15px;
+		line-height: 18px;
+		background-color: var(--color-light-grey);
+		user-select: none;
+	}
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+	}
+
+	&__rating {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__star {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__date {
+		color: var(--color-black-60);
+	}
+
+	&__text {
+		margin: 40px 0;
+	}
+
+	&__author {
+		display: flex;
+		align-items: center;
+		margin-top: auto;
+		gap: 8px;
+	}
+
+	&__avatar {
+		display: block;
+		flex-shrink: 0;
+		border-radius: 50%;
+		width: 30px;
+		height: 30px;
+	}
+
+	&__name {
+		color: var(--color-black-60);
+	}
+
+	&__sources {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 20px;
+		gap: 10px;
+	}
+
+	&__source {
+		display: flex;
+		align-items: center;
+		outline: none;
+		padding: 20px;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		background-color: var(--color-accent);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+		gap: 8px;
+
+		@include state-hover {
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			box-shadow: none;
+			background-color: var(--color-accent-pressed);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	// иконка 8×8 со штрихом за пределами бокса — как в Figma
+	&__source-arrow {
+		flex-shrink: 0;
+		margin: -0.75px -0.75px -0.53px -0.53px;
+		width: 9.28px;
+		height: 9.28px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__slider {
+			margin-top: 37px;
+		}
+
+		&__item {
+			width: 364.4px;
+		}
+
+		&__sources {
+			margin-top: 37px;
+		}
+	}
+}

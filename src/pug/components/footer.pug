@@ -1,0 +1,69 @@
+- var footer = data.footer
+- var submenus = data.mobileMenu.submenus
+
+footer.footer
+	.container.footer__container
+		.footer__top
+			nav.footer__nav(aria-label="Меню в подвале")
+				.footer__col.footer__col--catalog
+					p.footer__title= footer.catalogTitle
+					.footer__catalog
+						each part in [footer.catalog.slice(0, footer.catalogSplit), footer.catalog.slice(footer.catalogSplit)]
+							ul.footer__list
+								each item in part
+									li
+										a.footer__link(href=item.url)= item.name
+
+				.footer__col
+					p.footer__title= footer.buyerTitle
+					ul.footer__list
+						each item in submenus.buyer
+							li
+								a.footer__link(href=item.url)= item.name
+
+				.footer__col.footer__col--download
+					p.footer__title= footer.downloadTitle
+					ul.footer__list
+						each item in submenus.download
+							li
+								a.footer__link(href=item.url)= item.name
+
+			.footer__aside
+				.footer__contacts
+					each contact in footer.contacts
+						.footer__contact
+							a.footer__phone(href=`tel:${contact.tel}`)
+								span.footer__phone-number.footer__phone-number--desktop= contact.number
+								span.footer__phone-number.footer__phone-number--mobile= contact.numberMobile
+							p.footer__note!= contact.noteLines.map(typo).join('<br>')
+
+				form.footer__subscribe(action=footer.subscribe.action method="post" novalidate)
+					p.footer__title= typo(footer.subscribe.title)
+					+input({ name: 'email', type: 'email', placeholder: 'Почта', action: true, actionLabel: 'Подписаться', white: true, required: true, attrs: { autocomplete: 'email' } }).footer__input
+					+checkbox({ name: 'agree_ads', value: 'y' }).footer__checkbox
+						span.checkbox__label= typo(footer.subscribe.agreementAds)
+					+checkbox({ name: 'agree_personal', value: 'y' }).footer__checkbox
+						span.checkbox__label
+							| #{typo(footer.subscribe.agreementPersonal)}
+							a.footer__agreement-link(href=footer.subscribe.agreementPersonalLink.url target="_blank" rel="noopener")= footer.subscribe.agreementPersonalLink.name
+
+				ul.footer__socials
+					each social in data.socials
+						li
+							a.footer__social(href=social.url target="_blank" rel="noopener" aria-label=social.name)
+								+svg(social.icon).footer__social-icon
+
+		.footer__bottom
+			ul.footer__awards
+				each award in footer.awards
+					li.footer__award(class=`footer__award--${award.mod}`)
+						if award.iconMobile
+							+svg(award.icon).footer__award-icon.footer__award-icon--desktop
+							+svg(award.iconMobile).footer__award-icon.footer__award-icon--mobile
+						else
+							+svg(award.icon).footer__award-icon
+						p.footer__award-text!= award.lines.map(typo).join('<br>')
+
+			.footer__legal
+				p.footer__copyright= footer.copyright
+				a.footer__legal-link(href=footer.legal.url)= footer.legal.name

@@ -1,0 +1,19 @@
+mixin serviceItem(item)
+	a.services__item(class=`services__item--${item.mod}` href=item.url)
+		picture.services__picture
+			source(media="(max-width: 767px)" srcset=`${baseDir}images/home/service-${item.image}-mobile@2x.jpg`)
+			img.services__image(src=`${baseDir}images/home/service-${item.image}${item.desktopSuffix ? '-desktop' : ''}@2x.jpg` alt="" loading="lazy")
+		span.services__body
+			span.services__title= typo(item.title)
+			span.services__text= typo(item.text)
+
+section.services.container
+	- var items = data.home.services.items
+	.services__row.services__row--top
+		each item in items.slice(0, 4)
+			+serviceItem(item)
+	.services__row.services__row--bottom
+		each item in items.slice(4)
+			+serviceItem(item)
+
+	+button({ view: 'main', label: data.home.services.button.label, href: data.home.services.button.url }).services__button

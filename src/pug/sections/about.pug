@@ -1,0 +1,22 @@
+section.about.container
+	- var about = data.home.about
+	picture.about__picture
+		source(media="(max-width: 767px)" srcset=`${baseDir}images/home/about-company-mobile@2x.jpg`)
+		img.about__image(src=`${baseDir}images/home/about-company@2x.jpg` alt="" loading="lazy")
+
+	.about__content
+		.about__intro
+			h2.about__title.title.title--h2= about.title
+			p.about__text= typo(about.text)
+
+		ul.about__stats
+			each item in about.stats
+				li.about__stat(class=`about__stat--${item.mod}`)
+					if item.value
+						span.about__value= item.value
+					else if item.iconMobile
+						+svg(item.icon).about__icon.about__icon--desktop
+						+svg(item.iconMobile).about__icon.about__icon--mobile
+					else
+						+svg(item.icon).about__icon
+					span.about__label= typo(item.text)
