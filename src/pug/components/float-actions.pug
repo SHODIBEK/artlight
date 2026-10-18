@@ -1,12 +1,19 @@
-//- Плавающие кнопки связи (в правом нижнем углу экрана)
-.float-actions
+//- Плавающие кнопки связи (в правом нижнем углу экрана).
+//- «Написать» раскрывает над колонкой кнопки мессенджеров и сама становится крестиком (float-actions.js)
+.float-actions.js-float-actions
+	.float-actions__messengers#float-messengers(aria-hidden="true")
+		each item in data.floatActions.messengers
+			a.float-actions__item.float-actions__item--messenger(href=item.url target="_blank" rel="noopener" tabindex="-1" aria-label=item.name)
+				+svg(item.icon).float-actions__icon.float-actions__icon--messenger
+				span.float-actions__text= item.name
 	a.float-actions__item(href=`tel:${data.header.phones[0].tel}`)
 		+svg('float-phone').float-actions__icon.float-actions__icon--phone
 		+svg('float-phone-sm').float-actions__icon.float-actions__icon--phone-sm
 		span.float-actions__text Позвонить
-	a.float-actions__item(href="#" data-modal="message")
+	button.float-actions__item.float-actions__toggle.js-float-actions-toggle(type="button" aria-expanded="false" aria-controls="float-messengers" aria-label="Написать")
 		+svg('float-message').float-actions__icon.float-actions__icon--message
 		+svg('float-message-sm').float-actions__icon.float-actions__icon--message-sm
+		+svg('float-close').float-actions__icon.float-actions__icon--close
 		span.float-actions__text Написать
 	a.float-actions__item(href="#" data-modal="callback")
 		+svg('pencil').float-actions__icon.float-actions__icon--pencil

@@ -8,6 +8,11 @@
 	color: var(--color-white);
 	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/home/form-bg@2x.jpg") center / cover no-repeat;
 
+	// каталог: между секциями 60 на моб.
+	&--compact {
+		margin-top: 60px;
+	}
+
 	&__container {
 		display: grid;
 		grid-template-areas:

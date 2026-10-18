@@ -127,8 +127,55 @@ function headerMoreInit() {
 	});
 }
 
+/**
+* Меню десктопной шапки: логотип по центру; пункты, которые не помещаются до него,
+* уходят в начало «Еще» (начиная с правого)
+*/
+const NAV_GAP = 32; // минимальный зазор от меню до логотипа
+
+function headerNavInit() {
+	const header = document.querySelector('.js-header');
+	const nav = document.querySelector('.js-header-nav');
+
+	if (!header || !nav) {
+		return;
+	}
+
+	const logo = header.querySelector('.header__logo');
+	const items = [...nav.querySelectorAll('.js-header-menu-item')];
+	const copies = [...nav.querySelectorAll('.js-header-overflow')];
+
+	const setHidden = (index, state) => {
+		items[index].classList.toggle('is-hidden', state);
+		copies[index].hidden = !state;
+	};
+
+	const fit = () => {
+		items.forEach((item, index) => setHidden(index, false));
+
+		// меню скрыто (моб. шапка)
+		if (!nav.offsetWidth) {
+			return;
+		}
+
+		const limit = logo.getBoundingClientRect().left - NAV_GAP;
+
+		for (let index = items.length - 1; index >= 0 && nav.getBoundingClientRect().right > limit; index--) {
+			setHidden(index, true);
+		}
+	};
+
+	fit();
+	window.addEventListener('resize', fit);
+
+	if (document.fonts) {
+		document.fonts.ready.then(fit);
+	}
+}
+
 export default function headerInit() {
 	mobileMenuInit();
 	headerSearchInit();
 	headerMoreInit();
+	headerNavInit();
 }

@@ -1,4 +1,4 @@
-// Наши клиенты: заголовок + бесконечная лента логотипов (шаг 56, ряд 66).
+// Наши клиенты: заголовок + бегущая строка логотипов (шаг 56, ряд 66, движение — clients-slider.js).
 // В макете лента сдвинута на 60px левее поля контейнера и уходит за правый край экрана.
 .clients {
 	overflow: hidden;
@@ -10,15 +10,28 @@
 	}
 
 	&__slider {
-		overflow: visible;
 		margin-top: 56px;
 		margin-left: -60px;
+		cursor: grab;
+		touch-action: pan-y;
+		user-select: none;
+
+		&.is-dragging {
+			cursor: grabbing;
+		}
+	}
+
+	&__track {
+		display: flex;
+		width: max-content;
+		will-change: transform;
 	}
 
 	&__slide {
 		display: flex;
+		flex-shrink: 0;
 		align-items: center;
-		width: auto;
+		margin-right: 56px;
 		height: 66px;
 	}
 

@@ -37,8 +37,8 @@ $laptop: 1024;
 $tablet: 768;
 $mobile: 380;
 $desktop-vh: 750;
-$header-desktop: 1280; // десктопная шапка (без телефонов, логотип слева)
-$header-full: 1600; // шапка как в макете 1728: логотип по центру, телефоны
+$header-desktop: 1280; // десктопная шапка (логотип по центру, телефоны, поиск — лупой)
+$header-full: 1600; // шапка как в макете 1728: поле поиска в строке
 
 // Figma ui-kit: https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-35861
 :root {

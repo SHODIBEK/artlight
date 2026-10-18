@@ -10,10 +10,11 @@ header.header.js-header
 			+svg('burger-catalog').header__catalog-icon
 			span.header__catalog-text Каталог
 
-		nav.header__nav(aria-label="Основное меню")
+		//- пункты, которые не помещаются до логотипа, уходят в «Еще» (копии в начале списка — js-header-overflow)
+		nav.header__nav.js-header-nav(aria-label="Основное меню")
 			ul.header__menu
 				each item in data.header.menu
-					li.header__menu-item
+					li.header__menu-item.js-header-menu-item
 						a.header__link(href=item.url)= item.name
 				li.header__menu-item.header__menu-item--more
 					button.header__link.header__more(type="button" aria-haspopup="true" aria-expanded="false")
@@ -21,6 +22,9 @@ header.header.js-header
 						+svg('chevron-more').header__more-icon
 					.header__dropdown
 						ul.header__dropdown-list
+							each item in data.header.menu
+								li.header__dropdown-item.js-header-overflow(hidden)
+									a.header__dropdown-link(href=item.url)= item.name
 							each item in data.header.more
 								li.header__dropdown-item
 									a.header__dropdown-link(href=item.url)= item.name

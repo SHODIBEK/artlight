@@ -1,8 +1,14 @@
-// Первый экран-слайдер. Мобильный макет 402×820, десктоп 1728×812 (вместе с областью под шапкой)
+// Первый экран-слайдер на высоту экрана (в макете моб. 402×820, десктоп 1728×812 вместе с областью под шапкой):
+// заголовок и кнопка всегда на первом экране. svh — без прыжков при скрытии адресной строки на телефонах
 .hero {
 	position: relative;
 	overflow: hidden;
-	height: 820px;
+
+	// 100vh — для браузеров без svh
+	height: calc(100vh - var(--header-height));
+	// stylelint-disable-next-line declaration-block-no-duplicate-properties, unit-no-unknown
+	height: calc(100svh - var(--header-height));
+	min-height: 480px;
 	color: var(--color-white);
 	background-color: var(--color-black);
 
@@ -66,8 +72,6 @@
 	}
 
 	@media (min-width: #{$tablet}px) {
-		height: 726px;
-
 		&__content {
 			display: flex;
 			flex-direction: column;
@@ -99,7 +103,11 @@
 	// под фиксированной шапкой: картинка 1728×812 начинается от верха страницы
 	@media (min-width: #{$header-desktop}px) {
 		margin-top: calc(var(--header-height) * -1);
-		height: 812px;
+
+		// 100vh — для браузеров без svh
+		height: 100vh;
+		// stylelint-disable-next-line declaration-block-no-duplicate-properties, unit-no-unknown
+		height: 100svh;
 
 		&::before {
 			content: "";

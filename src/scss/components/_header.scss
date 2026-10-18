@@ -1,5 +1,7 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
-// Шапка: мобильная < $header-desktop, десктоп без телефонов до $header-full, полная — как в макете 1728
+// Шапка: мобильная < $header-desktop, десктоп без телефонов до $header-full, полная — как в макете 1728.
+// Логотип на десктопе всегда по центру; пункты меню, которые до него не помещаются, уходят в «Еще» (header.js).
+// Телефоны — с $header-desktop; поле поиска до $header-full свёрнуто в лупу (выпадает под шапкой справа)
 .header {
 	$b: &;
 
@@ -87,6 +89,10 @@
 
 	&__menu-item {
 		position: relative;
+
+		&.is-hidden {
+			display: none;
+		}
 	}
 
 	&__link {
@@ -185,6 +191,7 @@
 	&__logo-img {
 		width: 120px;
 		height: 17.67px;
+		color: var(--color-black); // буквы логотипа — currentColor
 	}
 
 	// --- телефоны ---
@@ -288,11 +295,15 @@
 		background-color: var(--color-white);
 	}
 
-	// --- десктоп без телефонов: логотип слева ---
+	// --- десктоп: телефоны, поиск — лупой ---
 	@media (min-width: #{$header-desktop}px) {
-		&__burger,
-		&__search-toggle {
+		&__burger {
 			display: none;
+		}
+
+		&__search-toggle {
+			order: 1;
+			margin-left: 32px;
 		}
 
 		&__catalog,
@@ -300,11 +311,9 @@
 			display: flex;
 		}
 
+		// +0.5px — логотип на целом пикселе, как в макете (ширина 163 нечётная)
 		&__logo {
-			position: static;
-			order: -1;
-			margin-right: 32px;
-			transform: none;
+			transform: translate(calc(-50% + 0.5px), -50%);
 		}
 
 		&__logo-img {
@@ -312,7 +321,28 @@
 			height: 24px;
 		}
 
+		&__phones {
+			display: flex;
+		}
+
 		&.is-search-open::after {
+			display: none;
+		}
+
+		&.is-search-open &__search {
+			left: auto;
+			width: 254px;
+		}
+
+		&__actions {
+			order: 2;
+			margin-left: 32px;
+		}
+	}
+
+	// --- как в макете: поле поиска в строке ---
+	@media (min-width: #{$header-full}px) {
+		&__search-toggle {
 			display: none;
 		}
 
@@ -320,33 +350,9 @@
 		&.is-search-open &__search {
 			position: static;
 			display: flex;
-			margin-left: auto;
+			order: 1;
+			margin-left: 32px;
 			width: 254px;
-		}
-
-		&__actions {
-			margin-left: 32px;
-		}
-	}
-
-	// --- как в макете: логотип по центру, телефоны ---
-	@media (min-width: #{$header-full}px) {
-		&__logo {
-			position: absolute;
-			order: 0;
-			margin-right: 0;
-
-			// +0.5px — логотип на целом пикселе, как в макете (ширина 163 нечётная)
-			transform: translate(calc(-50% + 0.5px), -50%);
-		}
-
-		&__phones {
-			display: flex;
-		}
-
-		&__search,
-		&.is-search-open &__search {
-			margin-left: 32px;
 		}
 	}
 }

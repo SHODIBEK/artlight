@@ -1,0 +1,131 @@
+-
+	var catalog = data.catalog
+
+	function catalogPx(value) {
+		return Math.round(value * 100) / 100 + 'px'
+	}
+
+	// рамка картинки карточки (CSS-переменные), px от центра карточки: моб. — у нас карточка 370 и на 362-х макетах,
+	// ≥ 768 — карточки уже макета (2 колонки или сжатый ряд < 1728), картинка остаётся по центру со своим сдвигом
+	function catalogImageStyle(img) {
+		var d = img.d
+		var m = img.m
+		var vars = [
+			'--d-left: calc(50% + ' + catalogPx(d[0] - d[4] / 2) + ')',
+			'--d-top: ' + catalogPx(d[1]),
+			'--d-width: ' + catalogPx(d[2]),
+			'--d-height: ' + catalogPx(d[3]),
+		]
+
+		if (m) {
+			vars.push('--m-left: calc(50% + ' + catalogPx(m[0] - m[4] / 2) + ')', '--m-top: ' + catalogPx(m[1]), '--m-width: ' + catalogPx(m[2]), '--m-height: ' + catalogPx(m[3]))
+		}
+
+		return vars.join('; ')
+	}
+
+	// фон плашки цвета: картинка images/catalog/color-<name>.png, градиент или цвет.
+	// Задаётся в style, не CSS-переменной: url() в переменной браузер считает от css/main.css
+	var catalogSwatches = {
+		'chrome-gradient': 'linear-gradient(#2e2e2e, #949494 48.558%, #2e2e2e)',
+		champagne: 'linear-gradient(#8f6f51, #d9c5b1 48.558%, #dec8b0)',
+	}
+
+	function catalogSwatch(value) {
+		if (value.charAt(0) === '#') return value
+		if (catalogSwatches[value]) return catalogSwatches[value]
+		return 'url(' + baseDir + 'images/catalog/color-' + value + '.png) center / cover'
+	}
+
+
+mixin catalogLines(item)
+	if item.lines
+		each line, index in item.lines
+			if index
+				br
+			= line
+	else
+		= item.name
+
+mixin catalogCard(item, proportional)
+	-
+		var cls = []
+		if (proportional) cls.push('catalog-card--tall')
+		if (item.only) cls.push('catalog-card--' + item.only)
+		var grow = proportional ? (item.img ? item.img.d[4] : item.w) : null // ширина карточки в макете 1728
+	a.catalog-card(class=cls href=(item.url || '#') style=(grow ? '--basis: ' + grow + 'px' : null))
+		span.catalog-card__title
+			+catalogLines(item)
+		if item.img
+			-
+				var pictureCls = []
+				if (item.img.flip) pictureCls.push('catalog-card__picture--flip')
+				if (item.img.normal) pictureCls.push('catalog-card__picture--normal')
+				if (item.img.overlay) pictureCls.push('catalog-card__picture--' + item.img.overlay)
+			span.catalog-card__picture(class=pictureCls style=catalogImageStyle(item.img))
+				img.catalog-card__image(src=`${baseDir}images/catalog/${item.img.name}.png` alt="" loading="lazy" draggable="false")
+
+mixin catalogStatus(item)
+	a.catalog-status(href=(item.url || '#'))
+		span.catalog-status__title= item.name
+		span.catalog-status__circle
+			+svg('arrow-up-right').catalog-status__icon
+
+mixin catalogPurpose(item, text)
+	a.catalog-purpose(href=(item.url || '#'))
+		span.catalog-purpose__picture
+			img.catalog-purpose__image(src=`${baseDir}images/catalog/purpose-${item.image}.jpg` alt="" loading="lazy" draggable="false")
+		span.catalog-purpose__shade
+		span.catalog-purpose__content
+			span.catalog-purpose__title
+				+catalogLines(item)
+			span.catalog-purpose__text= typo(text)
+
+mixin catalogColor(item)
+	a.catalog-color(class=(item.light ? 'catalog-color--light' : null) href=(item.url || '#'))
+		span.catalog-color__swatch(style=(item.fill ? 'background: ' + catalogSwatch(item.fill) : null))
+			if item.top
+				span.catalog-color__half.catalog-color__half--top(style='background: ' + catalogSwatch(item.top))
+			if item.bottom
+				span.catalog-color__half.catalog-color__half--bottom(style='background: ' + catalogSwatch(item.bottom))
+		span.catalog-color__name= item.name
+
+section.catalog-head.container
+	.catalog-head__top
+		h1.catalog-head__title= catalog.title
+		.catalog-head__files
+			each file in catalog.files
+				+button({ view: 'stroke', label: file.name, href: file.url })
+		+button({ view: 'stroke', label: catalog.downloadLabel, href: '#catalog-files' }).catalog-head__download
+
+	nav.catalog-head__tabs.js-catalog-nav(aria-label="Разделы каталога")
+		each section, index in catalog.sections
+			if section.tab
+				+tab(section.tab, { active: index === 0 }).js-catalog-nav-tab(data-target=`catalog-${section.id}`)
+
+each section in catalog.sections
+	section.catalog-section.container(class=`catalog-section--${section.id}` id=`catalog-${section.id}`)
+		h2.catalog-section__title= section.title
+
+		.catalog-section__grid
+			if section.view === 'color'
+				each item in section.items
+					+catalogColor(item)
+			else
+				each row in section.rows
+					.catalog-section__row
+						each item in row
+							if section.view === 'status'
+								+catalogStatus(item)
+							else if section.view === 'purpose'
+								+catalogPurpose(item, section.text)
+							else
+								+catalogCard(item, section.id === 'type')
+
+//- моб. макет: файлы под каталогом (наверху — кнопка «Скачать» со ссылкой сюда)
+.catalog-files.container#catalog-files
+	each file in catalog.files
+		+button({ view: 'stroke', label: file.name, href: file.url }).catalog-files__button
+
+include ../sections/reviews
+include ../sections/feedback

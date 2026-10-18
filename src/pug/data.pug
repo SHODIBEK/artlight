@@ -154,6 +154,156 @@
 			},
 		},
 
+		// Каталог: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-2262, моб. node-id=2-15285
+		// Картинки карточек — images/catalog/<image>.png (исходники из Figma; CROP-кадры уже обрезаны).
+		// d / m — рамка картинки в карточке по макету: [x, y, ширина, высота, ширина карточки] (десктоп / моб.);
+		// flip — отражена по горизонтали; normal — без mix-blend-mode: darken; overlay — градиент поверх (white | wall | grey).
+		// rows — ряды десктопа (≥ 1280): в «По типу» ряд делится пропорционально ширинам карточек макета (d[4], без картинки — w),
+		// в остальных разделах поровну; only — карточка только в одной версии макета
+		catalog: {
+			title: 'Каталог',
+			downloadLabel: 'Скачать',
+			files: [
+				{ name: 'IES/LDT файлы', url: 'ies-ldt.html' },
+				{ name: 'BIM (Revit)', url: '#' },
+				{ name: '3D файлы', url: '#' },
+				{ name: 'Скачать каталог', url: '#' },
+			],
+
+			sections: [
+				{
+					id: 'type', view: 'card', title: 'По типу', tab: 'По типу',
+					rows: [
+						[
+							{ lines: ['Встраиваемые светильники'], img: { name: 'type-recessed-lights', d: [3, 72, 336, 250, 342], m: [0, 67, 370, 276, 370] } },
+							{ lines: ['Трековые светильники'], img: { name: 'type-track-lights', d: [231, -194, 504, 504, 964], m: [17, 19.36, 335, 335, 370] } },
+							{ lines: ['Шинопровод', 'и комплектующие'], img: { name: 'type-busbar-trunking', flip: true, d: [47, -11, 363, 363, 342], m: [47, -11, 363, 363, 370] } },
+						],
+						[
+							{ lines: ['Индивидуального', 'изготовления'], img: { name: 'type-custom-made', flip: true, d: [537, -110, 427, 427, 964], m: [-8, -8, 386, 386, 370] } },
+							{ only: 'desktop', lines: ['Магнитная система'], img: { name: 'type-magnetic-system', d: [-64, 0, 471, 471, 342] } },
+							{ only: 'desktop', lines: ['Профильная система', 'освещения'], img: { name: 'type-profile-lighting-system', d: [-20, 63, 385, 385, 342] } },
+						],
+						[
+							{ lines: ['Подвесные светильники'], img: { name: 'type-pendant-lights', overlay: 'white', d: [0, -15, 342, 342, 342], m: [14.5, 0, 342, 342, 370] } },
+							{ lines: ['Декоративные', 'светильники'], img: { name: 'type-decorative-lights', flip: true, d: [377, -134, 551, 551, 964], m: [55, -67, 551, 551, 370] } },
+							{ lines: ['Модульные системы', 'освещения'], img: { name: 'type-modular-lighting-systems', d: [171, 0, 385, 385, 342], m: [118, -15, 385, 385, 370] } },
+						],
+						[
+							{ lines: ['Настенные', 'светильники'], img: { name: 'type-wall-lights', overlay: 'wall', d: [-38, 0, 460, 342, 342], m: [-26, 0, 498, 370, 370] } },
+							{ lines: ['Напольные', 'светильники'], img: { name: 'type-floor-lights', flip: true, d: [0, -54, 410, 410, 342], m: [0, -20, 410, 410, 370] } },
+							{ lines: ['Карданные светильники'], img: { name: 'type-gimbal-lights', d: [-20, 0, 362, 362, 342], m: [-3, 0, 377, 377, 370] } },
+							{ lines: ['Карданные светильники'], img: { name: 'type-gimbal-recessed-lights', overlay: 'white', d: [-2, 0, 608, 342, 602], m: [-119, 0, 608, 370, 370] } },
+						],
+						[
+							{ lines: ['Экспозиционная', 'магнитная система', 'и витринные споты'], img: { name: 'type-exposition-systems', d: [465, -43, 499, 499, 964], m: [-3, 0, 550, 550, 370] } },
+							{ lines: ['Светодиодные ленты', 'и комплектующие'], img: { name: 'type-led-strips', normal: true, d: [144, -32, 396, 455, 342], m: [75, -19, 396, 455, 370] } },
+							{ lines: ['Комплектующие', 'источники питания', 'и системы управления'], img: { name: 'type-power-supplies', d: [95, 89, 444, 444, 342], m: [33, 79, 444, 444, 370] } },
+						],
+						[
+							{ lines: ['Источники света'], img: { name: 'type-light-sources', d: [271, 25, 293, 293, 834], m: [39, 59, 293, 293, 370] } },
+							{ w: 834, lines: ['Комплексные системы', 'безопасности'] },
+						],
+					],
+				},
+				{
+					id: 'status', view: 'status', title: 'По статусу',
+					rows: [[
+						{ name: 'Новинки' },
+						{ name: 'Хиты продаж' },
+						{ name: 'Распродажа' },
+						{ name: 'Под заказ' },
+					]],
+				},
+				{
+					id: 'purpose', view: 'purpose', title: 'По назначению', tab: 'По назначению',
+					// images/catalog/purpose-<image>.jpg; text — на десктопе при наведении, на моб. всегда
+					text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование',
+					rows: [
+						[
+							{ name: 'Аварийные', image: 'emergency' },
+							{ name: 'Интерьерные', image: 'interior' },
+							{ name: 'Промышленные', image: 'industrial' },
+							{ name: 'Офисные', image: 'office' },
+						],
+						[
+							{ name: 'Торговые', image: 'retail' },
+							{ name: 'Для агропромышленности', image: 'agro' },
+							{ name: 'Архитектурные', image: 'architectural' },
+							{ lines: ['Для детских', 'и медицинских', 'учреждений'], image: 'medical' },
+						],
+						[
+							{ name: 'Для мяса', image: 'meat' },
+							{ name: 'Для рыбы', image: 'fish' },
+							{ name: 'Для хлеба', image: 'bread' },
+						],
+					],
+				},
+				{
+					id: 'light', view: 'card', title: 'По источнику света', tab: 'По источнику света',
+					rows: [[
+						{ lines: ['Светодиодные'], img: { name: 'light-led', d: [61, -66, 436, 325, 407], m: [38, -66, 436, 325, 362] } },
+						{ lines: ['Мультиламповые'], img: { name: 'light-multi-lamp', normal: true, d: [0, 49, 349, 293, 407], m: [-23, 49, 349, 293, 362] } },
+						{ lines: ['Металлогалогенные'], img: { name: 'light-metal-halide', normal: true, d: [-93, -125, 630, 630, 407], m: [-93, -125, 630, 630, 362] } },
+						{ lines: ['Люминесцентные'], img: { name: 'light-fluorescent', overlay: 'grey', d: [0, 0, 407, 407, 407], m: [0, 0, 407, 407, 362] } },
+					]],
+				},
+				{
+					id: 'shape', view: 'card', title: 'По форме', tab: 'По форме',
+					rows: [
+						[
+							{ lines: ['Квадратные'], img: { name: 'shape-square', d: [-57, -74, 436, 325, 321.6], m: [-37, -74, 436, 325, 362] } },
+							{ lines: ['Крестообразные'], img: { name: 'shape-cross', d: [-50.6, 0, 422, 314, 321.6], m: [-30.6, 0, 422, 314, 362] } },
+							{ lines: ['Круглые'], img: { name: 'type-pendant-lights', overlay: 'white', d: [-20.2, 0, 342, 342, 321.6], m: [-0.2, 0, 342, 342, 362] } },
+							{ lines: ['Куполообразные'], img: { name: 'shape-dome', d: [43.2, -55, 370, 370, 321.6], m: [43.2, -55, 370, 370, 362] } },
+							{ lines: ['Линейные'], img: { name: 'shape-linear', d: [29.6, -35, 500, 500, 321.6], m: [29.6, -35, 500, 500, 362] } },
+						],
+						[
+							{ lines: ['Многоугольные'], img: { name: 'shape-polygonal', d: [61, 0, 436, 325, 321.6], m: [29.6, -35, 436, 325, 362] } },
+							{ lines: ['Овальные'], img: { name: 'shape-oval', d: [-12.6, 85, 346, 257, 321.6], m: [0, 79, 362, 269, 362] } },
+							{ lines: ['П — и Г-образные'], img: { name: 'shape-p-shaped', d: [-29.2, 0, 407, 342, 321.6], m: [-6, 0, 407, 342, 362] } },
+							{ lines: ['Прямоугольные'], img: { name: 'shape-rectangular', d: [0.2, 0, 382, 382, 321.6], m: [0, 0, 382, 382, 362] } },
+							{ lines: ['Сложные формы', '(спец.заказ)'], img: { name: 'shape-complex', d: [-3.4, -62, 500, 500, 321.6], m: [30, -79, 500, 500, 362] } },
+						],
+						[
+							{ lines: ['Треугольные'], img: { name: 'shape-triangular', d: [0, -106, 568, 422, 549.33], m: [0, 97, 362, 269, 362] } },
+							{ lines: ['Цилиндрические'], img: { name: 'light-led', d: [132, -66, 436, 325, 549.33], m: [19, -63, 436, 325, 362] } },
+							{ lines: ['Шарообразные'], img: { name: 'shape-spherical', normal: true, d: [192.33, -35, 223, 286, 549.33], m: [128, -35, 223, 286, 362] } },
+						],
+					],
+				},
+				{
+					id: 'color', view: 'color', title: 'По цвету', tab: 'По цвету',
+					// fill — фон всей плашки, top / bottom — верхняя и нижняя половины (значения CSS background);
+					// light — светлый текст на десктопной плашке
+					items: [
+						{ name: 'Белые' },
+						{ name: 'Белые с золотым', bottom: 'gold' },
+						{ name: 'Белые с серым', bottom: '#f2f2f2' },
+						{ name: 'Белые с чёрным', bottom: '#1e1e1e' },
+						{ name: 'Белые/хром', bottom: 'chrome-gradient' },
+						{ name: 'Белые/шампань', bottom: 'champagne' },
+						{ name: 'Белый/покраска по RAL' },
+						{ name: 'Золотые', fill: 'gold' },
+						{ name: 'Лакированная латунь', fill: 'brass' },
+						{ name: 'Покраска по RAL', fill: 'ral', light: true },
+						{ name: 'Покраска по RAL/хром', top: 'chrome-gradient', bottom: 'ral' },
+						{ name: 'Покраска по RAL/чёрный', fill: '#1e1e1e', light: true },
+						{ name: 'Серые', fill: '#c2c2c2' },
+						{ name: 'Серые (анодированные)', fill: 'anodized', light: true },
+						{ name: 'Сублимация под дерево', fill: 'wood', light: true },
+						{ name: 'Хром', fill: 'chrome' },
+						{ name: 'Чёрные', fill: '#1e1e1e', light: true },
+						{ name: 'Чёрные с золотым', top: '#1e1e1e', bottom: 'gold', light: true },
+						{ name: 'Чёрные с серым', top: '#1e1e1e', bottom: '#c2c2c2', light: true },
+						{ name: 'Чёрные/покраска по RAL', top: '#1e1e1e', bottom: 'ral', light: true },
+						{ name: 'Чёрные/хром', top: '#1e1e1e', bottom: 'chrome', light: true },
+						{ name: 'Чёрные/шампань', top: '#1e1e1e', bottom: 'champagne', light: true },
+					],
+				},
+			],
+		},
+
 		mobileMenu: {
 			// submenu — id подменю из submenus
 			menu: [
@@ -289,6 +439,15 @@
 			topics: ['Консультация по продукции', 'Светотехническое проектирование', 'Оформление заказа', 'Доставка', 'Гарантия и сервис', 'Сотрудничество', 'Другое'],
 			messagePlaceholder: 'Ваше сообщение',
 			submit: 'Заказать звонок',
+		},
+
+		// плавающие кнопки: «Написать» раскрывает мессенджеры (макет моб. node-id=56-11070); ссылки — временные, ждём от заказчика
+		floatActions: {
+			messengers: [
+				{ icon: 'float-whatsapp', name: 'Написать по WhatsApp', url: '#' },
+				{ icon: 'float-max', name: 'Написать по Max', url: '#' },
+				{ icon: 'float-telegram', name: 'Написать по Telegram', url: '#' },
+			],
 		},
 
 		// соцсети — мобильное меню, форма, подвал

@@ -1,0 +1,599 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Каталог: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-2262, моб. node-id=2-15285
+// Моб. — карточки в колонку; 768–1279 — сетка в 2 колонки; ≥ 1280 — ряды из макета 1728
+// (ширина карточки — --basis из data.catalog: ширина в макете, при сжатии ряда — пропорционально; иначе поровну).
+
+// заголовок, файлы и табы-якоря
+.catalog-head {
+	margin-top: 16px;
+
+	&__top {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 34px;
+		line-height: 41px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__files {
+		display: none;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 8px;
+	}
+
+	&__download {
+		width: 157px;
+	}
+
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 16px;
+		gap: 8px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__top {
+			align-items: flex-start;
+		}
+
+		&__title {
+			font-size: 64px;
+			line-height: 77px;
+		}
+
+		&__files {
+			display: flex;
+			margin-top: 10px;
+		}
+
+		&__download {
+			display: none;
+		}
+
+		&__tabs {
+			margin-top: 20px;
+		}
+	}
+}
+
+// раздел каталога: заголовок + сетка
+.catalog-section {
+	margin-top: 60px;
+	scroll-margin-top: calc(var(--header-height) + 20px);
+
+	&--type {
+		margin-top: 30px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 26px;
+		line-height: 31px;
+		color: var(--color-black);
+	}
+
+	&__grid {
+		display: grid;
+		margin-top: 20px;
+		gap: 20px;
+	}
+
+	&--color &__grid {
+		margin-top: 14px;
+		gap: 14px;
+	}
+
+	// ряды макета 1728 — только на ≥ 1280, ниже карточки уходят в общую сетку
+	&__row {
+		display: contents;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&--type {
+			margin-top: 20px;
+		}
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			margin-top: 30px;
+		}
+
+		&--purpose &__grid {
+			margin-top: 20px;
+		}
+
+		&--color &__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			margin-top: 40px;
+			gap: 20px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__grid {
+			display: flex;
+			flex-direction: column;
+		}
+
+		&__row {
+			display: flex;
+			gap: 20px;
+
+			> * {
+				flex: 1 1 var(--basis, 0);
+				min-width: 0;
+			}
+		}
+
+		&--color &__grid {
+			display: grid;
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+	}
+}
+
+// карточка с фото на сером фоне (по типу, источнику света, форме).
+// Фото — исходники из Figma на фоне карточки через mix-blend-mode: darken, рамка задаётся переменными из data.catalog
+.catalog-card {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	overflow: hidden;
+	outline: none;
+	padding: 20px;
+	height: 342px;
+	background-color: var(--color-light-grey);
+
+	&--tall {
+		height: 370px;
+	}
+
+	&--desktop {
+		display: none;
+	}
+
+	// рамка фото — сама карточка, заголовок над затемнением
+	@include photo-hover(".catalog-card__image");
+
+	@include state-focus {
+		outline: 2px solid var(--color-black);
+		outline-offset: -2px;
+	}
+
+	// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+	&__title {
+		position: relative;
+		top: 1px;
+		z-index: 1;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__picture {
+		position: absolute;
+		left: var(--m-left);
+		top: var(--m-top);
+		display: block;
+		overflow: hidden;
+		width: var(--m-width);
+		height: var(--m-height);
+		mix-blend-mode: darken;
+		pointer-events: none;
+
+		&--flip {
+			transform: scaleX(-1);
+		}
+
+		&--normal {
+			mix-blend-mode: normal;
+		}
+
+		&--white::after,
+		&--wall::after,
+		&--grey::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		&--white::after {
+			background: linear-gradient(#fff, rgba(255, 255, 255, 0) 36.842%);
+		}
+
+		&--wall::after {
+			background:
+				linear-gradient(
+					-90deg,
+					rgba(255, 255, 255, 0) 41.63%,
+					#fff 63.696%
+				);
+		}
+
+		&--grey::after {
+			background:
+				linear-gradient(
+					#efefef,
+					rgba(239, 239, 239, 0) 36.842%
+				);
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 30px 30px 40px;
+		height: 342px;
+
+		&--desktop {
+			display: flex;
+		}
+
+		&--mobile {
+			display: none;
+		}
+
+		&__picture {
+			left: var(--d-left);
+			top: var(--d-top);
+			width: var(--d-width);
+			height: var(--d-height);
+		}
+	}
+}
+
+// по статусу: заголовок со стрелкой по центру, на ховере — акцентный фон
+.catalog-status {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+	padding: 30px;
+	height: 136px;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	transition:
+		background-color $duration-normal,
+		box-shadow $duration-normal;
+	gap: 10px;
+
+	&__title {
+		font-weight: 700;
+		font-size: 22px;
+		line-height: 26px;
+		white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	&__circle {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 40px;
+		height: 40px;
+		background-color: var(--color-white);
+	}
+
+	&__icon {
+		--nudge-x: 3px;
+		--nudge-y: -3px;
+
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+	}
+
+	@include state-hover {
+		background-color: var(--color-accent);
+
+		// анимация стрелки — как у кнопок (_button.scss)
+		.catalog-status__icon {
+			// stylelint-disable-next-line no-unknown-animations
+			animation: button-nudge 0.8s ease-in-out infinite;
+
+			@media (prefers-reduced-motion: reduce) {
+				animation: none;
+			}
+		}
+	}
+
+	@include state-pressed {
+		background-color: var(--color-accent-pressed);
+	}
+
+	@include state-focus {
+		@include stroke(2px, var(--color-black));
+	}
+}
+
+// по назначению: фото с градиентом, белый текст; описание — на моб. всегда, на десктопе при наведении
+.catalog-purpose {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	outline: none;
+	padding: 20px;
+	height: 330px;
+	color: var(--color-white);
+	background-color: var(--color-black);
+
+	&__picture {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		display: block;
+		overflow: hidden;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	// градиент под текстом: моб. — один, десктоп — спокойный и более плотный (при наведении, под описание)
+	&__shade {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		background: linear-gradient(#000, rgba(0, 0, 0, 0) 81.364%);
+		pointer-events: none;
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background:
+				linear-gradient(
+					rgba(0, 0, 0, 0.8) 37.273%,
+					rgba(0, 0, 0, 0) 74.848%
+				);
+			opacity: 0;
+			transition: opacity 0.6s $easing-out;
+		}
+	}
+
+	&__content {
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__title {
+		overflow-wrap: break-word;
+		font-weight: 700;
+		font-size: 22px;
+		line-height: 26px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	@include photo-hover(
+		".catalog-purpose__image",
+		".catalog-purpose__picture"
+	);
+
+	@include state-focus {
+		outline: 2px solid var(--color-white);
+		outline-offset: -4px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 30px;
+
+		&__shade {
+			background:
+				linear-gradient(
+					rgba(0, 0, 0, 0.6),
+					rgba(0, 0, 0, 0) 42.165%
+				);
+		}
+
+		&__content {
+			gap: 12px;
+		}
+
+		&__text {
+			opacity: 0;
+			transform: translateY(8px);
+			transition:
+				opacity 0.6s $easing-out,
+				transform 0.6s $easing-out;
+		}
+
+		@include state-hover {
+			.catalog-purpose__shade::after {
+				opacity: 1;
+			}
+
+			.catalog-purpose__text {
+				opacity: 1;
+				transform: none;
+			}
+		}
+
+		@include state-focus {
+			.catalog-purpose__shade::after {
+				opacity: 1;
+			}
+
+			.catalog-purpose__text {
+				opacity: 1;
+				transform: none;
+			}
+		}
+	}
+}
+
+// по цвету: моб. — строка с плашкой 24×24, ≥ 768 — карточка-плашка 218 с обводкой.
+// Плашка — фон целиком или две половины (фон в style из data.catalog)
+.catalog-color {
+	position: relative;
+	display: flex;
+	align-items: center;
+	outline: none;
+	height: 40px;
+	font-size: 16px;
+	line-height: normal;
+	color: var(--color-black);
+	gap: 10px;
+
+	&__swatch {
+		position: relative;
+		flex-shrink: 0;
+		overflow: hidden;
+		outline: 1px solid var(--color-light-grey); // обводка поверх половин плашки
+		outline-offset: -1px;
+		width: 24px;
+		height: 24px;
+	}
+
+	// половины плашки (фон — в style из data.catalog)
+	&__half {
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 50%;
+
+		&--top {
+			top: 0;
+		}
+
+		&--bottom {
+			bottom: 0;
+		}
+	}
+
+	&__name {
+		position: relative;
+		z-index: 1;
+	}
+
+	@include state-focus {
+		outline: 2px solid var(--color-black);
+		outline-offset: 2px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		align-items: flex-start;
+		padding: 30px;
+		height: 218px;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		transition: box-shadow $duration-normal;
+
+		&--light {
+			color: var(--color-white);
+		}
+
+		&__swatch {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			outline: none;
+			width: auto;
+			height: auto;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			box-shadow: inset 0 0 0 1px var(--color-stroke);
+			transition: box-shadow $duration-normal;
+			pointer-events: none;
+		}
+
+		// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+		&__name {
+			top: 1px;
+		}
+
+		@include state-hover {
+			&::after {
+				box-shadow: inset 0 0 0 1px var(--color-black-60);
+			}
+		}
+
+		@include state-focus {
+			outline: none;
+
+			&::after {
+				box-shadow: inset 0 0 0 2px var(--color-black);
+			}
+		}
+	}
+}
+
+// моб.: кнопки файлов под каталогом
+.catalog-files {
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	gap: 8px;
+	scroll-margin-top: calc(var(--header-height) + 20px);
+
+	&__button {
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		display: none;
+	}
+}

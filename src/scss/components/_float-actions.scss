@@ -1,6 +1,10 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
-// Плавающие кнопки связи: мобильные — иконки 54×40, с 768 — «таблетки» 158×50 с подписью
+// Плавающие кнопки связи: мобильные — иконки 54×40, с 768 — «таблетки» 158×50 с подписью.
+// «Написать» (is-open) раскрывает над колонкой мессенджеры и меняется на крестик — макет моб. node-id=56-11070;
+// на десктопе открытого состояния в макете нет — мессенджеры «таблетками» с подписью по правому краю
 .float-actions {
+	$b: &;
+
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
@@ -10,20 +14,32 @@
 	align-items: stretch;
 	gap: 10px;
 
+	&__messengers {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		pointer-events: none;
+		gap: inherit;
+	}
+
 	&__item {
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		outline: none;
+		border: 0;
 		border-radius: 100px;
 		padding: 0 20px;
 		height: 40px;
+		font-family: var(--font-family);
 		font-weight: 600;
 		font-size: 15px;
 		line-height: normal;
 		white-space: nowrap;
 		color: var(--color-black);
 		background-color: var(--color-accent);
-		transition: background-color $duration-normal;
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+		cursor: pointer;
 		gap: 10px;
 
 		@include state-hover {
@@ -33,6 +49,41 @@
 		@include state-pressed {
 			background-color: var(--color-accent-pressed);
 		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		// мессенджеры появляются снизу вверх (ближний к «Написать» — первым)
+		&--messenger {
+			opacity: 0;
+			visibility: hidden;
+			transform: translateY(10px);
+			transition:
+				background-color $duration-normal,
+				box-shadow $duration-normal,
+				opacity $duration-normal,
+				transform $duration-normal,
+				visibility $duration-normal;
+
+			&:nth-child(1) {
+				transition-delay: 0s, 0s, 0.1s, 0.1s, 0.1s;
+			}
+
+			&:nth-child(2) {
+				transition-delay: 0s, 0s, 0.05s, 0.05s, 0.05s;
+			}
+		}
+	}
+
+	&.is-open &__messengers {
+		pointer-events: auto;
+	}
+
+	&.is-open &__item--messenger {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
 	}
 
 	// иконки выгружены с запасом под толщину линии — отрицательные поля возвращают размер слоя из Figma
@@ -61,6 +112,30 @@
 			width: 13.5px;
 			height: 13.5px;
 		}
+
+		&--messenger {
+			width: 18px;
+			height: 18px;
+		}
+
+		&--close {
+			display: none;
+			margin: -0.75px;
+			width: 13.5px;
+			height: 13.5px;
+		}
+	}
+
+	// «Написать» → крестик
+	&.is-open &__toggle {
+		#{$b}__icon--message,
+		#{$b}__icon--message-sm {
+			display: none;
+		}
+
+		#{$b}__icon--close {
+			display: block;
+		}
 	}
 
 	&__text {
@@ -73,12 +148,23 @@
 	}
 
 	@media (min-width: #{$tablet}px) {
+		align-items: flex-end;
 		gap: 12px;
+
+		&__messengers {
+			align-items: flex-end;
+		}
 
 		&__item {
 			padding: 0 10px;
 			width: 158px;
 			height: 50px;
+
+			&--messenger {
+				padding: 0 20px;
+				width: auto;
+				min-width: 158px;
+			}
 		}
 
 		&__icon {
@@ -101,6 +187,22 @@
 			&--pencil {
 				display: none;
 			}
+
+			&--messenger {
+				width: 20px;
+				height: 20px;
+			}
+
+			&--close {
+				margin: 0.25px;
+				width: 15.5px;
+				height: 15.5px;
+			}
+		}
+
+		// открыто: на кнопке только крестик
+		&.is-open &__toggle #{$b}__text {
+			display: none;
 		}
 
 		&__text {
