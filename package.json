@@ -5,7 +5,9 @@
 	"repository": "ninelines-team/ninelines-template",
 	"scripts": {
 		"prepare": "husky install || exit 0",
-		"pre-commit": "lint-staged"
+		"pre-commit": "lint-staged",
+		"deploy": "npm run build && gh-pages -d build",
+		"build": "webpack --mode production"
 	},
 	"author": "Ninelines Agency <info@ninelines.agency>",
 	"license": "ISC",
@@ -24,6 +26,7 @@
 		"del": "6.0.0",
 		"emitty": "1.4.0",
 		"eslint": "8.56.0",
+		"gh-pages": "6.3.0",
 		"gulp": "4.0.2",
 		"gulp-append-prepend": "1.0.9",
 		"gulp-debug": "4.0.0",

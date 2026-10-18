@@ -2,7 +2,7 @@ import Swiper from 'swiper';
 import {Autoplay} from 'swiper/modules';
 
 /**
-* Слайдер «Отзывы»: бесконечный, автопрокрутка раз в 5 с (пауза при наведении), свайп (навигации в макете нет),
+* Слайдер «Отзывы»: бесконечный, автопрокрутка раз в 3 с (пауза при наведении), свайп (навигации в макете нет),
 * карточки фиксированной ширины.
 * Для loop со slidesPerView: 'auto' недостающие слайды добавляем копиями всего набора.
 */
@@ -28,7 +28,7 @@ export default function reviewsSliderInit() {
 			speed: 600,
 			grabCursor: true,
 			autoplay: {
-				delay: 5000,
+				delay: 3000,
 				disableOnInteraction: false,
 				pauseOnMouseEnter: true,
 			},

@@ -20,7 +20,7 @@ export default function heroSliderInit() {
 			rewind: true,
 			grabCursor: true,
 			autoplay: slidesCount > 1 ? {
-				delay: 6000,
+				delay: 3000,
 				disableOnInteraction: false,
 				pauseOnMouseEnter: true,
 			} : false,

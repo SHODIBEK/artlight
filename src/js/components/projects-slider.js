@@ -1,7 +1,9 @@
 import Swiper from 'swiper';
+import {Autoplay} from 'swiper/modules';
 
 /**
-* Слайдер «Реализованные проекты»: бесконечный, свайп (навигации в макете нет), карточки фиксированной ширины.
+* Слайдер «Реализованные проекты»: бесконечный, автопрокрутка раз в 3 с (пауза при наведении),
+* свайп (навигации в макете нет), карточки фиксированной ширины.
 * Для loop со slidesPerView: 'auto' Swiper нужно слайдов заметно больше, чем видно на экране
 * (на 1728 видно ~4.5 из 5) — недостающие добавляем копиями всего набора.
 */
@@ -20,11 +22,17 @@ export default function projectsSliderInit() {
 
 		// eslint-disable-next-line no-new
 		new Swiper(element, {
+			modules: [Autoplay],
 			slidesPerView: 'auto',
 			spaceBetween: 16,
 			loop: true,
 			speed: 600,
 			grabCursor: true,
+			autoplay: {
+				delay: 3000,
+				disableOnInteraction: false,
+				pauseOnMouseEnter: true,
+			},
 			breakpoints: {
 				768: {
 					spaceBetween: 20,
