@@ -151,8 +151,10 @@
 		align-items: flex-end;
 		gap: 12px;
 
+		// мессенджеры одной ширины — по самой длинной подписи (колонка сжимается по содержимому,
+		// кнопки растягиваются), не уже 158; иконки в столбик — содержимое от левого края
 		&__messengers {
-			align-items: flex-end;
+			align-items: stretch;
 		}
 
 		&__item {
@@ -161,6 +163,7 @@
 			height: 50px;
 
 			&--messenger {
+				justify-content: flex-start;
 				padding: 0 20px;
 				width: auto;
 				min-width: 158px;

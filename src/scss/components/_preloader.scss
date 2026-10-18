@@ -3,19 +3,22 @@
 .preloader {
 	position: fixed;
 	left: 0;
-	right: 0;
 	top: 0;
 	bottom: 0;
 	z-index: 1000;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	// ширина экрана вместе с полосой прокрутки: логотип не прыгает, когда полоса появляется/исчезает
+	width: 100vw;
 	background-color: #000;
 	transition: opacity 1.2s ease, visibility 1.2s ease;
 
 	&__logo {
 		width: clamp(150px, 20vw, 360px);
 		color: var(--color-white); // буквы логотипа — currentColor
+		animation: preloader-logo-in 1.2s ease-out both;
 
 		svg {
 			display: block;
@@ -32,5 +35,27 @@
 
 	@media (prefers-reduced-motion: reduce) {
 		transition-duration: 0.01s;
+
+		&__logo {
+			animation: none;
+		}
 	}
+}
+
+// логотип медленно проявляется
+@keyframes preloader-logo-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+// пока виден прелоадер — страница не прокручивается; место под полосу прокрутки сохраняется,
+// чтобы содержимое не сдвигалось при снятии блокировки
+html.is-preloading {
+	overflow: hidden;
+	scrollbar-gutter: stable;
 }

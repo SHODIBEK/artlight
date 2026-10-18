@@ -10,7 +10,6 @@ function mobileMenuInit() {
 		return;
 	}
 
-	const body = menu.querySelector('.mobile-menu__body');
 	const openButtons = document.querySelectorAll('.js-mobile-menu-open');
 	const panels = menu.querySelectorAll('.js-mobile-menu-panel');
 
@@ -27,14 +26,16 @@ function mobileMenuInit() {
 		menu.classList.add('is-open');
 		menu.setAttribute('aria-hidden', 'false');
 		openButtons.forEach((button) => button.setAttribute('aria-expanded', 'true'));
-		disableBodyScroll(body, {reserveScrollBarGap: true});
+		// цель блокировки — панели (они прокручиваются): на iOS body-scroll-lock гасит свайпы внутри
+		// нескроллящейся цели, поэтому с .mobile-menu__body подменю в Safari не прокручивались
+		panels.forEach((panel) => disableBodyScroll(panel, {reserveScrollBarGap: true}));
 	};
 
 	const close = () => {
 		menu.classList.remove('is-open');
 		menu.setAttribute('aria-hidden', 'true');
 		openButtons.forEach((button) => button.setAttribute('aria-expanded', 'false'));
-		enableBodyScroll(body);
+		panels.forEach((panel) => enableBodyScroll(panel));
 		setTimeout(resetPanels, 300);
 	};
 
