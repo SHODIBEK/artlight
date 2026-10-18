@@ -98,10 +98,13 @@ section.catalog-head.container
 				+button({ view: 'stroke', label: file.name, href: file.url })
 		+button({ view: 'stroke', label: catalog.downloadLabel, href: '#catalog-files' }).catalog-head__download
 
-	nav.catalog-head__tabs.js-catalog-nav(aria-label="Разделы каталога")
-		each section, index in catalog.sections
-			if section.tab
-				+tab(section.tab, { active: index === 0 }).js-catalog-nav-tab(data-target=`catalog-${section.id}`)
+	//- табы фиксируются под шапкой, пока на экране разделы каталога (catalog-nav.js); __nav держит место
+	.catalog-head__nav.js-catalog-nav-holder
+		.catalog-head__nav-bar.js-catalog-nav-bar
+			nav.catalog-head__tabs.js-catalog-nav(aria-label="Разделы каталога")
+				each section, index in catalog.sections
+					if section.tab
+						+tab(section.tab, { active: index === 0 }).js-catalog-nav-tab(data-target=`catalog-${section.id}`)
 
 each section in catalog.sections
 	section.catalog-section.container(class=`catalog-section--${section.id}` id=`catalog-${section.id}`)

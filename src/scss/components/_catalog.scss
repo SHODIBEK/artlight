@@ -3,8 +3,13 @@
 // Моб. — карточки в колонку; 768–1279 — сетка в 2 колонки; ≥ 1280 — ряды из макета 1728
 // (ширина карточки — --basis из data.catalog: ширина в макете, при сжатии ряда — пропорционально; иначе поровну).
 
+// высота зафиксированной полосы табов (таб 40 + поля)
+$catalog-nav-bar: 60px;
+
 // заголовок, файлы и табы-якоря
 .catalog-head {
+	$b: &;
+
 	margin-top: 16px;
 
 	&__top {
@@ -34,11 +39,47 @@
 		width: 157px;
 	}
 
+	&__nav {
+		margin-top: 16px;
+	}
+
+	// зафиксированная полоса табов: на всю ширину экрана под шапкой, табы — в строку с прокруткой;
+	// после последнего раздела уезжает под шапку (is-away)
+	&__nav-bar {
+		&.is-fixed {
+			position: fixed;
+			left: 0;
+			right: 0;
+			top: var(--header-height);
+			z-index: 80;
+			padding: 10px 0; // (60 − 40) / 2
+			background-color: var(--color-white);
+			transition: transform $duration-normal, visibility $duration-normal;
+		}
+
+		&.is-away {
+			visibility: hidden;
+			transform: translateY(-100%);
+		}
+	}
+
 	&__tabs {
 		display: flex;
 		flex-wrap: wrap;
-		margin-top: 16px;
 		gap: 8px;
+
+		#{$b}__nav-bar.is-fixed & {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			margin: 0 auto;
+			padding: 0 var(--gutter);
+			max-width: var(--container-width);
+			scrollbar-width: none;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
 	}
 
 	@media (min-width: #{$tablet}px) {
@@ -62,7 +103,7 @@
 			display: none;
 		}
 
-		&__tabs {
+		&__nav {
 			margin-top: 20px;
 		}
 	}
@@ -71,7 +112,7 @@
 // раздел каталога: заголовок + сетка
 .catalog-section {
 	margin-top: 60px;
-	scroll-margin-top: calc(var(--header-height) + 20px);
+	scroll-margin-top: calc(var(--header-height) + #{$catalog-nav-bar} + 20px); // под шапкой и табами
 
 	&--type {
 		margin-top: 30px;
@@ -587,7 +628,7 @@
 	flex-direction: column;
 	margin-top: 60px;
 	gap: 8px;
-	scroll-margin-top: calc(var(--header-height) + 20px);
+	scroll-margin-top: calc(var(--header-height) + #{$catalog-nav-bar} + 20px); // под шапкой и табами
 
 	&__button {
 		width: 100%;
