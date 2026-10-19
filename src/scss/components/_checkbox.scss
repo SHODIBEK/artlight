@@ -136,6 +136,13 @@
 		@include stroke(1px, var(--color-light-grey));
 	}
 
+	// на белом фоне (фильтры списка товаров): без заливки, обводка stroke
+	&--white #{$b}__box {
+		background-color: transparent;
+
+		@include stroke(1px, var(--color-stroke));
+	}
+
 	// на тёмном фоне (форма заявки): пустой квадрат прозрачный с обводкой light-grey, текст белый
 	&--dark {
 		color: var(--color-white);

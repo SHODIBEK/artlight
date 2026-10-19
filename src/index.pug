@@ -1,52 +1,35 @@
 extends pug/base
 
-prepend vars
-	//-
+//- Служебное оглавление вёрстки: ссылки на все страницы src/*.pug.
+//- Список собирает gulpfile.js (sitePages → locals.sitePages): название — из `- title = '...'` страницы,
+//- новая страница появляется здесь сама. Главная сайта — home.html.
 
 append vars
-	- title = 'ARTLIGHT | Главная'
-	- meta.description = 'Описания'
-	- meta.keywords = 'keywords'
+	- title = 'ARTLIGHT | Страницы вёрстки'
+	- meta.description = 'Оглавление сверстанных страниц'
 	- meta.viewport = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover'
 	- meta.formatDetection = 'telephone=no'
-	//- - meta.themeColor = '#0dafdc'
-	//- - meta.msapplicationTileColor = '#ffffff'
-	//- - meta.msapplicationTileImage = './favicon/ms-icon-144x144.png'
-	//- - link.appleTouchIcon57x57 = './favicon/apple-icon-57x57.png'
-	//- - link.appleTouchIcon60x60 = './favicon/apple-icon-60x60.png'
-	//- - link.appleTouchIcon72x72 = './favicon/apple-icon-72x72.png'
-	//- - link.appleTouchIcon76x76 = './favicon/apple-icon-76x76.png'
-	//- - link.appleTouchIcon120x120 = './favicon/apple-icon-120x120.png'
-	//- - link.appleTouchIcon114x114 = './favicon/apple-icon-114x114.png'
-	//- - link.appleTouchIcon144x144 = './favicon/apple-icon-144x144.png'
-	//- - link.appleTouchIcon152x152 = './favicon/apple-icon-152x152.png'
-	//- - link.appleTouchIcon180x180 = './favicon/apple-icon-180x180.png'
-	//- - link.appleTouchIcon192x192 = './favicon/apple-icon-192x192.png'
-	//- - link.appleTouchIcon192x192 = './favicon/apple-icon-192x192.png'
-	//- - link.icon = './favicon/favicon.ico'
-	//- - link.icon192x192 = './favicon/android-icon-192x192.png'
-	//- - link.icon32x32 = './favicon/favicon-32x32.png'
-	//- - link.icon96x96 = './favicon/favicon-96x96.png'
-	//- - link.icon16x16 = './favicon/favicon-16x16.png'
-	//- - link.manifest = './favicon/manifest.json'
-	- defaultLink = 'javascript:void(0);'
-	- aos = true
 
 block content
-	include pug/data
+	-
+		// служебные страницы — в конце списка
+		var servicePages = ['ui-kit']
+		var pages = (typeof sitePages !== 'undefined' ? sitePages : []).slice().sort(function (a, b) {
+			var rank = function (page) {
+				if (page.name === 'home') return 0
+				return servicePages.indexOf(page.name) === -1 ? 1 : 2
+			}
+			return rank(a) - rank(b) || a.title.localeCompare(b.title, 'ru')
+		})
 
-	include pug/components/preloader
+	main.pages.container
+		h1.pages__title Страницы вёрстки
+		p.pages__text Все сверстанные страницы ARTLIGHT. Список обновляется сам при сборке.
 
-	.site
-		<!-- Header Section  -->
-		include pug/components/header
-		<!-- Main Section  -->
-		main.main
-			include pug/pages/home
-		<!-- Footer Section  -->
-		include pug/components/footer
-
-	include pug/components/float-actions
-	include pug/components/modal-callback
-
-	//- include pug/components/modal
+		ol.pages__list
+			each page, index in pages
+				li.pages__item(class=(servicePages.indexOf(page.name) !== -1 ? 'pages__item--service' : null))
+					a.pages__link(href=page.url)
+						span.pages__number= index + 1
+						span.pages__name= page.title
+						span.pages__file= page.url

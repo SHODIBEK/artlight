@@ -2,7 +2,7 @@
 //- hover | pressed | focus | disabled | error | filled | readonly
 
 //- @demo +button({ view: 'main', label: 'все проекты (34)', href: '#' })
-//- view: main | secondary | tertiary | stroke | arrow
+//- view: main | secondary | tertiary | stroke | arrow; icon: false — без круга со стрелкой / шеврона
 mixin button(opts)
 	-
 		var o = opts || {}
@@ -13,20 +13,20 @@ mixin button(opts)
 		if (o.state) cls.push('is-' + o.state)
 	if isLink
 		a.button(class=cls href=(isDisabled ? null : o.href) aria-disabled=(isDisabled ? 'true' : null) aria-label=o.ariaLabel)&attributes(attributes)
-			+buttonContent(view, o.label)
+			+buttonContent(view, o.label, o.icon !== false)
 	else
 		button.button(class=cls type=(o.type || 'button') disabled=isDisabled aria-label=o.ariaLabel)&attributes(attributes)
-			+buttonContent(view, o.label)
+			+buttonContent(view, o.label, o.icon !== false)
 
-mixin buttonContent(view, label)
+mixin buttonContent(view, label, icon)
 	if view === 'arrow'
 		+svg('arrow-right').button__icon
 	else
 		span.button__text= label
-		if view === 'main' || view === 'secondary'
+		if icon && (view === 'main' || view === 'secondary')
 			span.button__circle
 				+svg('arrow-up-right').button__icon
-		if view === 'stroke'
+		if icon && view === 'stroke'
 			+svg('chevron-right').button__chevron
 
 //- @demo +tab('35W', { active: true })

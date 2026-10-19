@@ -24,19 +24,6 @@
 		return vars.join('; ')
 	}
 
-	// фон плашки цвета: картинка images/catalog/color-<name>.png, градиент или цвет.
-	// Задаётся в style, не CSS-переменной: url() в переменной браузер считает от css/main.css
-	var catalogSwatches = {
-		'chrome-gradient': 'linear-gradient(#2e2e2e, #949494 48.558%, #2e2e2e)',
-		champagne: 'linear-gradient(#8f6f51, #d9c5b1 48.558%, #dec8b0)',
-	}
-
-	function catalogSwatch(value) {
-		if (value.charAt(0) === '#') return value
-		if (catalogSwatches[value]) return catalogSwatches[value]
-		return 'url(' + baseDir + 'images/catalog/color-' + value + '.png) center / cover'
-	}
-
 
 mixin catalogLines(item)
 	if item.lines
@@ -83,11 +70,11 @@ mixin catalogPurpose(item, text)
 
 mixin catalogColor(item)
 	a.catalog-color(class=(item.light ? 'catalog-color--light' : null) href=(item.url || '#'))
-		span.catalog-color__swatch(style=(item.fill ? 'background: ' + catalogSwatch(item.fill) : null))
+		span.catalog-color__swatch(style=(item.fill ? 'background: ' + swatchBackground(item.fill) : null))
 			if item.top
-				span.catalog-color__half.catalog-color__half--top(style='background: ' + catalogSwatch(item.top))
+				span.catalog-color__half.catalog-color__half--top(style='background: ' + swatchBackground(item.top))
 			if item.bottom
-				span.catalog-color__half.catalog-color__half--bottom(style='background: ' + catalogSwatch(item.bottom))
+				span.catalog-color__half.catalog-color__half--bottom(style='background: ' + swatchBackground(item.bottom))
 		span.catalog-color__name= item.name
 
 section.catalog-head.container

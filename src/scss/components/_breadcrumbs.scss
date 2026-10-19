@@ -1,0 +1,34 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Хлебные крошки: 15 Regular, black-60, разделитель « / »
+.breadcrumbs {
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black-60);
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__separator {
+		white-space: pre;
+	}
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+}

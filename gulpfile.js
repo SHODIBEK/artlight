@@ -2,6 +2,7 @@ let gulp = require("gulp");
 let gulpLoadPlugins = require("gulp-load-plugins");
 let yargs = require("yargs");
 let path = require("path");
+let fs = require("fs");
 let del = require("del");
 let webpackConfig = require("./webpack.config");
 let sass = require("gulp-sass")(require("sass"));
@@ -190,6 +191,48 @@ gulp.task("sprites:svg", () => {
 		.pipe(gulp.dest("build/images"));
 });
 
+// оглавление index.html: все страницы src/*.pug, кроме самого index; название — из `- title = '...'` страницы
+function sitePages() {
+	return fs.readdirSync("src")
+		.filter((file) => file.endsWith(".pug") && file !== "index.pug")
+		.map((file) => {
+			let source = fs.readFileSync(path.join("src", file), "utf8");
+			let title = source.match(/^\s*-\s*title\s*=\s*['"](.+?)['"]/m);
+			let name = file.replace(/\.pug$/, "");
+
+			return {
+				name,
+				url: `${name}.html`,
+				title: title ? title[1].replace(/^artlight\s*\|\s*/i, "") : name,
+			};
+		});
+}
+
+function pugOptions() {
+	return {
+		pretty: argv.minifyHtml ? false : "\t",
+		locals: {
+			sitePages: sitePages(),
+		},
+	};
+}
+
+// при правке страницы (src/*.pug) пересобирается и оглавление index.html
+function compileIndex() {
+	return new Promise((resolve, reject) => {
+		gulp.src("src/index.pug")
+			.pipe(
+				$.plumber({
+					errorHandler,
+				})
+			)
+			.pipe($.pug(pugOptions()))
+			.pipe(gulp.dest("build"))
+			.on("end", resolve)
+			.on("error", reject);
+	});
+}
+
 gulp.task("pug", () => {
 	if (!emittyPug) {
 		emittyPug = $.emitty.setup("src", "pug", {
@@ -206,11 +249,7 @@ gulp.task("pug", () => {
 				})
 			)
 			.pipe($.if(argv.debug, $.debug()))
-			.pipe(
-				$.pug({
-					pretty: argv.minifyHtml ? false : "\t",
-				})
-			)
+			.pipe($.pug(pugOptions()))
 			.pipe(gulp.dest("build"));
 	}
 
@@ -224,15 +263,17 @@ gulp.task("pug", () => {
 				)
 				.pipe(emittyPug.filter(global.emittyPugChangedFile))
 				.pipe($.if(argv.debug, $.debug()))
-				.pipe(
-					$.pug({
-						pretty: argv.minifyHtml ? false : "\t",
-					})
-				)
+				.pipe($.pug(pugOptions()))
 				.pipe(gulp.dest("build"))
 				.on("end", resolve)
 				.on("error", reject);
 		});
+	}).then(() => {
+		// изменилась страница (src/*.pug) или файл удалён — обновить оглавление
+		let changed = global.emittyPugChangedFile;
+		let isPage = !changed || path.dirname(path.resolve(changed)) === path.resolve("src");
+
+		return isPage && path.basename(changed || "") !== "index.pug" ? compileIndex() : null;
 	});
 });
 

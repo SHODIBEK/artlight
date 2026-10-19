@@ -1,0 +1,13 @@
+//- @demo +breadcrumbs([{ name: 'Главная', url: 'home.html' }, { name: 'Каталог', url: 'catalog.html' }, { name: 'Встраиваемые светильники' }])
+//- последний пункт (без url) — текущая страница
+mixin breadcrumbs(items)
+	nav.breadcrumbs(aria-label="Хлебные крошки")&attributes(attributes)
+		ol.breadcrumbs__list
+			each item, index in items
+				li.breadcrumbs__item
+					if index
+						span.breadcrumbs__separator(aria-hidden="true")= ' / '
+					if item.url
+						a.breadcrumbs__link(href=item.url)= item.name
+					else
+						span.breadcrumbs__current(aria-current="page")= item.name

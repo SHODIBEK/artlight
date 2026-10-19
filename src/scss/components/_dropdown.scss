@@ -1,0 +1,91 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Выпадающий список под плашкой (сортировка, количество, фильтры на десктопе). В макете открытого состояния нет:
+// белая панель с тенью, варианты — как на экранах моб. фильтров. dropdown.js: .js-dropdown-toggle → is-open
+.dropdown {
+	position: relative;
+
+	&__panel {
+		position: absolute;
+		left: 0;
+		top: calc(100% + 4px);
+		z-index: 30;
+		overflow-y: auto;
+		padding: 20px;
+		width: max-content; // по самому длинному варианту, без переносов
+		min-width: 220px;
+		max-width: calc(100vw - var(--gutter) * 2);
+		max-height: 360px;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px var(--color-light-grey);
+		background-color: var(--color-white);
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-4px);
+		transition: opacity $duration-normal, transform $duration-normal, visibility $duration-normal;
+		overscroll-behavior: contain;
+		scrollbar-gutter: stable both-edges; // полоса прокрутки не съедает правое поле — поля симметричны
+		scrollbar-width: thin;
+
+		&--narrow {
+			min-width: 100%;
+		}
+	}
+
+	// у правого края экрана (dropdown.js ставит, если панель не помещается) — по правому краю плашки
+	&--right &__panel,
+	&.is-flipped &__panel {
+		left: auto;
+		right: 0;
+	}
+
+	&.is-open &__panel {
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+	}
+}
+
+// варианты фильтра: чекбоксы или ссылки (в выпадающем списке и на экране панели фильтров)
+.filter-options {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 16px;
+
+	&__item {
+		display: flex;
+	}
+
+	&__checkbox {
+		white-space: normal;
+
+		.dropdown & {
+			white-space: nowrap;
+		}
+	}
+
+	&__link {
+		outline: none;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-align: left;
+		text-decoration: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			font-weight: 600;
+		}
+	}
+}

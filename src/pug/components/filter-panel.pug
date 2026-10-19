@@ -1,0 +1,18 @@
+//- Панель «Все фильтры»: моб. — на весь экран (макет node-id=2-23528, экраны фильтров 2-23598, 2-23621, 2-23633, 2-23684, 2-23735),
+//- ≥ 768 — справа шириной 402. Главный экран — фильтры-плашки (выбранный: «Название: N» + крестик сброса), по клику — экран вариантов.
+- var lights = data.lights
+.filter-panel.js-panel(data-panel-id="filters" aria-hidden="true" aria-label=lights.allFilters)
+	.filter-panel__dialog
+		.filter-panel__screen.is-active(data-screen="main")
+			button.filter-panel__back.js-panel-close(type="button" aria-label="Закрыть")
+				+svg('back').filter-panel__back-icon
+			.filter-panel__chips
+				each filter in lights.filters
+					+listingChip(filter.name, { chevron: 'right', name: filter.name, cls: 'js-filter-chip js-filter-screen-open', labelCls: 'js-filter-label', reset: 'js-filter-reset' })(data-filter=filter.id data-screen-target=filter.id)
+			+listingChip(lights.resetFilters, { cls: 'filter-panel__reset js-filter-reset-all', reset: 'filter-panel__reset-icon' })
+
+		each filter in lights.filters
+			.filter-panel__screen(data-screen=filter.id)
+				button.filter-panel__back.js-filter-screen-back(type="button" aria-label="Назад")
+					+svg('back').filter-panel__back-icon
+				+filterOptions(filter)

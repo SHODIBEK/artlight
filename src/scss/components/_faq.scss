@@ -1,0 +1,145 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Вопрос / ответ: аккордеон шириной 900 по центру (accordion.js), плюс / минус справа
+.faq {
+	margin-top: 100px;
+	max-width: calc(900px + var(--gutter) * 2);
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-align: center;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin-top: 20px;
+		gap: 8px;
+	}
+
+	&__item {
+		background-color: var(--color-light-grey);
+	}
+
+	&__question {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		outline: none;
+		padding: 16px;
+		width: 100%;
+		text-align: left;
+		color: var(--color-black);
+		transition: padding $duration-normal;
+		gap: 16px;
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		.is-open > & {
+			padding-bottom: 20px;
+		}
+	}
+
+	&__text {
+		font-weight: 600;
+		font-size: 15px;
+		line-height: 17px;
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+
+		&--minus {
+			display: none;
+		}
+
+		.is-open > .faq__question &--plus {
+			display: none;
+		}
+
+		.is-open > .faq__question &--minus {
+			display: block;
+		}
+	}
+
+	&__answer {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows $duration-normal;
+
+		.is-open > & {
+			grid-template-rows: 1fr;
+		}
+	}
+
+	// снизу — поле карточки + 2 пустые строки, как в макете
+	&__inner {
+		overflow: hidden;
+		padding: 0 16px;
+		min-height: 0;
+
+		&::after {
+			content: "";
+			display: block;
+			height: 52px;
+		}
+	}
+
+	&__paragraph,
+	&__note {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__paragraph + &__paragraph {
+		margin-top: 18px;
+	}
+
+	&__note {
+		margin-top: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__list {
+			margin-top: 32px;
+		}
+
+		&__question {
+			padding: 30px;
+		}
+
+		&__text {
+			font-size: 16px;
+			line-height: 18px;
+		}
+
+		&__inner {
+			padding: 0 30px;
+
+			&::after {
+				height: 66px;
+			}
+		}
+
+		&__note {
+			margin-top: 30px;
+		}
+	}
+}

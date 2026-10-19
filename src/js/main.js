@@ -14,6 +14,10 @@ import feedbackFormInit from "./components/feedback-form";
 import modalInit from "./components/modal";
 import floatActionsInit from "./components/float-actions";
 import catalogNavInit from "./components/catalog-nav";
+import accordionInit from "./components/accordion";
+import dropdownInit from "./components/dropdown";
+import filtersInit from "./components/filters";
+import productGalleryInit from "./components/product-gallery";
 
 ieFix();
 vhFix();
@@ -29,3 +33,7 @@ feedbackFormInit();
 modalInit();
 floatActionsInit();
 catalogNavInit();
+accordionInit();
+dropdownInit();
+filtersInit();
+productGalleryInit();

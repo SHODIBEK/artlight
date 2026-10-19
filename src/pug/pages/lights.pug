@@ -1,0 +1,144 @@
+//- Список товаров «Встраиваемые светильники»: десктоп node-id=2-10313, моб. node-id=2-15717 (фильтры моб. — 2-23528)
+-
+	var lights = data.lights
+
+	// пункты свёрнутых групп сайдбара — названия из разделов data.catalog
+	function asideSectionItems(id) {
+		var items = []
+		data.catalog.sections.forEach(function (section) {
+			if (section.id !== id) return
+			section.rows.forEach(function (row) {
+				row.forEach(function (item) {
+					items.push(item.lines ? item.lines.join(' ') : item.name)
+				})
+			})
+		})
+		return items
+	}
+
+mixin asideItem(name, url)
+	a.listing-aside__item(href=(url || '#'))
+		span.listing-aside__text= name
+
+section.listing-head.container
+	+breadcrumbs(lights.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= lights.title
+	p.listing-head__intro= typo(lights.intro)
+
+.listing.container
+	//- ≥ 1280 — колонка слева, ниже — панель «Все категории» (filters.js)
+	aside.listing-aside.js-panel(data-panel-id="categories" aria-label=lights.allCategories)
+		.listing-aside__bar
+			button.listing-aside__close.js-panel-close(type="button" aria-label="Закрыть")
+				+svg('back').listing-aside__close-icon
+
+		.listing-aside__groups.js-accordion
+			each group in lights.aside.groups
+				.listing-aside__group.js-accordion-item(class=(group.open ? 'is-open' : null))
+					button.listing-aside__head.js-accordion-toggle(type="button" aria-expanded=(group.open ? 'true' : 'false'))
+						span.listing-aside__title= group.title
+						+svg('chevron-up').listing-aside__chevron
+					.listing-aside__body.js-accordion-body
+						.listing-aside__inner
+							if group.colors
+								each color in group.colors
+									a.listing-aside__item.listing-aside__item--color(href=(color.url || '#'))
+										span.listing-aside__swatch(style=(color.fill ? 'background: ' + swatchBackground(color.fill) : null))
+											if color.top
+												span.listing-aside__half.listing-aside__half--top(style='background: ' + swatchBackground(color.top))
+											if color.bottom
+												span.listing-aside__half.listing-aside__half--bottom(style='background: ' + swatchBackground(color.bottom))
+										span.listing-aside__text= color.name
+							else if group.items
+								each item in group.items
+									if item.children
+										.listing-aside__sub.js-accordion-item(class=(item.open ? 'is-open' : null))
+											button.listing-aside__item.listing-aside__item--parent.js-accordion-toggle(type="button" aria-expanded=(item.open ? 'true' : 'false'))
+												span.listing-aside__text= item.name
+												+svg('chevron-up').listing-aside__chevron
+											.listing-aside__body.js-accordion-body
+												.listing-aside__inner
+													each child in item.children
+														a.listing-aside__item.listing-aside__item--child(href="#")
+															span.listing-aside__text= typo(child)
+									else
+										+asideItem(typo(item.name), item.url)
+							else
+								each name in asideSectionItems(group.section)
+									+asideItem(name)
+
+		.listing-aside__files
+			//- кнопка stroke с иконкой документа слева (в +button иконки слева нет)
+			a.button.button--stroke.listing-aside__file.listing-aside__file--catalog(href="#")
+				+svg('document').listing-aside__file-icon
+				span.button__text= lights.aside.catalogLabel
+			each file in lights.aside.files
+				+button({ view: 'stroke', label: file.name, href: file.url }).listing-aside__file
+
+	.listing__main
+		.listing-toolbar
+			.listing-toolbar__filters
+				each filter in lights.filters
+					+dropdown({ cls: 'listing-toolbar__filter' })(data-filter=filter.id)
+						+listingChip(filter.name, { chevron: 'down', name: filter.name, cls: 'js-dropdown-toggle js-filter-chip', labelCls: 'js-filter-label' })(data-filter=filter.id aria-expanded="false")
+						.dropdown__panel
+							+filterOptions(filter)
+				+listingChip(lights.allCategories, { icon: 'categories', cls: 'listing-toolbar__categories' })(data-open-panel="categories")
+				+listingChip(lights.allFilters, { icon: 'filter', cls: 'listing-toolbar__all' })(data-open-panel="filters")
+
+			.listing-toolbar__row
+				.listing-toolbar__toggles
+					each toggle in lights.toggles
+						+listingChip(toggle.name, { icon: toggle.icon, cls: 'js-listing-toggle' })(aria-pressed="false" data-value=toggle.value)
+
+				.listing-toolbar__sort
+					+dropdown()
+						+listingChip(lights.sort[0], { icon: 'sort', cls: 'js-dropdown-toggle', labelCls: 'js-dropdown-value' })(aria-expanded="false")
+						.dropdown__panel
+							ul.filter-options.filter-options--links
+								each option, index in lights.sort
+									li.filter-options__item
+										button.filter-options__link.js-dropdown-option(type="button" class=(index === 0 ? 'is-active' : null))= option
+					+dropdown()
+						+listingChip(lights.perPage[0], { chevron: 'down', cls: 'js-dropdown-toggle', labelCls: 'js-dropdown-value' })(aria-expanded="false" aria-label="Товаров на странице")
+						.dropdown__panel.dropdown__panel--narrow
+							ul.filter-options.filter-options--links
+								each option, index in lights.perPage
+									li.filter-options__item
+										button.filter-options__link.js-dropdown-option(type="button" class=(index === 0 ? 'is-active' : null))= option
+
+			nav.listing-toolbar__tags(aria-label="Подборки")
+				each tag in lights.tags
+					a.listing-toolbar__tag(href="#")= tag
+
+		.listing__grid
+			each item, index in lights.products
+				+productCard(item)(class=(index >= 10 ? 'product-card--desktop' : null))
+
+		+button({ view: 'main', label: lights.more, icon: false }).listing__more
+		+pagination(lights.pagination.current, lights.pagination.total).listing__pagination
+
+section.seo-text.container
+	.seo-text__inner
+		each paragraph in lights.seo
+			p.seo-text__paragraph= typo(paragraph)
+
+include ../sections/projects
+
+section.faq.container
+	h2.faq__title= lights.faq.title
+	.faq__list.js-accordion(data-accordion-single)
+		each item in lights.faq.items
+			.faq__item.js-accordion-item(class=(item.open ? 'is-open' : null))
+				button.faq__question.js-accordion-toggle(type="button" aria-expanded=(item.open ? 'true' : 'false'))
+					span.faq__text= typo(item.question)
+					+svg('plus').faq__icon.faq__icon--plus
+					+svg('minus').faq__icon.faq__icon--minus
+				.faq__answer.js-accordion-body
+					.faq__inner
+						each paragraph in (item.answer || lights.seo)
+							p.faq__paragraph= typo(paragraph)
+	p.faq__note= typo(lights.faq.note)
+
+include ../sections/reviews
+include ../sections/feedback

@@ -1,0 +1,93 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Панель «Все фильтры»: моб. https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-23528 — на весь
+// экран,
+// ≥ 768 — справа шириной 402 поверх затемнения. Экраны: главный (плашки-фильтры) и по экрану на фильтр (node-
+// id=2-23598 и др.)
+.filter-panel {
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 200;
+	background-color: rgba(0, 0, 0, 0);
+	visibility: hidden;
+	transition: background-color $duration-normal, visibility $duration-normal;
+
+	&.is-open {
+		visibility: visible;
+	}
+
+	&__dialog {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		overflow-y: auto;
+		width: 100%;
+		background-color: var(--color-white);
+		transform: translateX(100%);
+		transition: transform $duration-normal;
+		overscroll-behavior: contain;
+	}
+
+	&.is-open &__dialog {
+		transform: none;
+	}
+
+	&__screen {
+		display: none;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 16px;
+		gap: 22px;
+
+		&.is-active {
+			display: flex;
+		}
+	}
+
+	&__back {
+		display: flex;
+		outline: none;
+		color: var(--color-black);
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+		}
+	}
+
+	&__back-icon {
+		width: 20px;
+		height: 20px;
+	}
+
+	&__chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	&__reset {
+		width: 100%;
+	}
+
+	// крестик «Сбросить все фильтры» виден всегда
+	&__reset-icon {
+		display: flex;
+	}
+
+	&__screen .filter-options {
+		gap: 22px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&.is-open {
+			background-color: rgba(0, 0, 0, 0.4);
+		}
+
+		&__dialog {
+			width: 402px;
+		}
+	}
+}

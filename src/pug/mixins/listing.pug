@@ -1,0 +1,119 @@
+//- Список товаров (lights.html): фильтры, карточка товара. Данные — data.lights.
+-
+	// рамка фото в карточке, px по макету от центра фото-блока: d — десктоп 328×418, m — моб. 177×230
+	// (x, y — сдвиг центра рамки, w × h — размер); crop — картинка внутри рамки, % (left, top, width, height); flip — зеркально
+	var productImages = {
+		downlight: { d: [0, 19, 336, 250], m: [0.5, 19, 148, 110], crop: [0, -34.44, 100, 134.44] },
+		pendant: { d: [-1.5, -31, 373, 373], m: [0, -28.5, 177, 177], flip: true },
+		linear: { d: [138, 0.5, 504, 504], m: [54.5, -21, 188, 188] },
+	}
+
+	function productPercent(value) {
+		return Math.round(value * 10000) / 10000 + '%'
+	}
+
+	// рамка — в % фото-блока, чтобы фото масштабировалось вместе с карточкой
+	function productFrameStyle(name) {
+		var img = productImages[name]
+		var vars = []
+		var boxes = { d: [328, 418], m: [177, 230] }
+
+		Object.keys(boxes).forEach(function (key) {
+			var f = img[key]
+			var box = boxes[key]
+			vars.push(
+				'--' + key + '-x: ' + productPercent(50 + f[0] / box[0] * 100),
+				'--' + key + '-y: ' + productPercent(50 + f[1] / box[1] * 100),
+				'--' + key + '-w: ' + productPercent(f[2] / box[0] * 100),
+				'--' + key + '-h: ' + productPercent(f[3] / box[1] * 100)
+			)
+		})
+
+		if (img.crop) {
+			vars.push('--crop-x: ' + img.crop[0] + '%', '--crop-y: ' + img.crop[1] + '%', '--crop-w: ' + img.crop[2] + '%', '--crop-h: ' + img.crop[3] + '%')
+		}
+
+		return vars.join('; ')
+	}
+
+	// галерея карточки: своё фото + остальные по кругу (5 зон ховера, как точек в макете)
+	function productGallery(image) {
+		var names = Object.keys(productImages)
+		var start = names.indexOf(image)
+		var gallery = []
+
+		for (var i = 0; i < 5; i++) {
+			gallery.push(names[(start + i) % names.length])
+		}
+
+		return gallery
+	}
+
+	// пункты фильтра «Тип» — подменю каталога моб. меню
+	function filterLinks(filter) {
+		return data.mobileMenu.submenus[filter.links]
+	}
+
+//- кнопка-фильтр (серая плашка 40): label, иконка слева (icon) или шеврон справа (chevron: 'down' | 'right')
+mixin listingChip(label, opts)
+	- var o = opts || {}
+	button.listing-chip(type="button" class=[o.icon ? 'listing-chip--icon' : null, o.cls])&attributes(attributes)
+		if o.icon
+			+svg(o.icon).listing-chip__icon(class=`listing-chip__icon--${o.icon}`)
+		span.listing-chip__label(class=o.labelCls data-name=o.name)= label
+		if o.chevron === 'down'
+			+svg('chevron-up').listing-chip__chevron
+		if o.chevron === 'right'
+			+svg('chevron-right').listing-chip__chevron.listing-chip__chevron--right
+		if o.reset
+			span.listing-chip__reset(class=o.reset aria-hidden="true")
+				+svg('close-sm').listing-chip__close
+
+//- варианты фильтра: ссылки или чекбоксы (одинаковые name/value в выпадающем списке и панели — filters.js их связывает)
+mixin filterOptions(filter)
+	if filter.links
+		ul.filter-options.filter-options--links
+			each link in filterLinks(filter)
+				li.filter-options__item
+					a.filter-options__link(href=link.url)= link.name
+	else
+		ul.filter-options
+			each option, index in filter.options
+				li.filter-options__item
+					+checkbox({ name: `filter-${filter.id}`, value: String(index) }).checkbox--white.filter-options__checkbox(data-filter=filter.id)
+						span.checkbox__label= option
+
+//- выпадающий список (сортировка, количество, фильтры на десктопе)
+mixin dropdown(opts)
+	- var o = opts || {}
+	.dropdown.js-dropdown(class=o.cls)&attributes(attributes)
+		block
+
+//- карточка товара: фото на сером фоне (галерея по зонам ховера), бейджи, наличие, название, цена
+mixin productCard(item)
+	-
+		var lights = data.lights
+		var gallery = productGallery(item.image)
+	a.product-card(href=(item.url || '#'))&attributes(attributes)
+		span.product-card__picture.js-product-gallery
+			span.product-card__gallery
+				each name, index in gallery
+					span.product-card__frame(class=[index === 0 ? 'is-active' : null, productImages[name].flip ? 'product-card__frame--flip' : null, productImages[name].crop ? 'product-card__frame--crop' : null] style=productFrameStyle(name))
+						img.product-card__image(src=`${baseDir}images/products/${name}.jpg` alt=(index === 0 ? item.name : '') loading="lazy" draggable="false")
+			if item.badges && item.badges.length
+				span.product-card__badges
+					each badge in item.badges
+						span.product-card__badge(class=`product-card__badge--${badge}`)= lights.badges[badge]
+			span.product-card__stock(class=`product-card__stock--${item.stock}` title=lights.stockLabels[item.stock] aria-label=lights.stockLabels[item.stock])
+				- for (var bar = 0; bar < 3; bar++)
+					span.product-card__bar
+			span.product-card__dots(aria-hidden="true")
+				each name, index in gallery
+					span.product-card__dot(class=(index === 0 ? 'is-active' : null))
+		span.product-card__body
+			span.product-card__name= item.name
+			span.product-card__text= item.text
+			span.product-card__prices
+				span.product-card__price(class=(item.oldPrice ? 'product-card__price--sale' : null))= item.price
+				if item.oldPrice
+					s.product-card__old= item.oldPrice

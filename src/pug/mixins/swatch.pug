@@ -1,0 +1,13 @@
+//- фон плашки цвета: картинка images/catalog/color-<name>.png, градиент или цвет (каталог, сайдбар списка товаров).
+//- Задаётся в style, не CSS-переменной: url() в переменной браузер считает от css/main.css
+-
+	var swatchGradients = {
+		'chrome-gradient': 'linear-gradient(#2e2e2e, #949494 48.558%, #2e2e2e)',
+		champagne: 'linear-gradient(#8f6f51, #d9c5b1 48.558%, #dec8b0)',
+	}
+
+	function swatchBackground(value) {
+		if (value.charAt(0) === '#') return value
+		if (swatchGradients[value]) return swatchGradients[value]
+		return 'url(' + baseDir + 'images/catalog/color-' + value + '.png) center / cover'
+	}

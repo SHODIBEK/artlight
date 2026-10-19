@@ -10,6 +10,7 @@
 
 ## Структура
 - Страницы: `src/*.pug` (extends `src/pug/base.pug`). Данные/тексты — `src/pug/data.pug`.
+- `index.html` — служебное оглавление вёрстки (не страница сайта): список всех `src/*.pug` собирает `gulpfile.js` (`sitePages` → locals `sitePages`, название — из `- title = '...'` без «ARTLIGHT | »), новая страница появляется сама (при добавлении/удалении/правке страницы `index` пересобирается). Служебные (`ui-kit`) — в конце. Главная сайта — `home.pug` → `home.html` (логотип в шапке и «Главная» в крошках ведут туда). Стили — `_pages.scss`.
 - Шапка/общие блоки: `src/pug/components/`; секции страниц: `src/pug/sections/`; сборка страницы: `src/pug/pages/`.
 - UI-kit миксины: `src/pug/mixins/ui.pug` (`+button`, `+tab`, `+linkBack`, `+checkbox`, `+input`, `+search`, `+pagination`, `+sidebar`). Описание — `docs/ui-kit.md`, демо — `ui-kit.html`.
 - Стили: блок = файл `src/scss/components/_<блок>.scss`, подключить в `src/scss/main.scss`. JS-компоненты: `src/js/components/`, init в `src/js/main.js`.
@@ -34,7 +35,7 @@
 ## Figma
 - Файл `BBlv4Y6Hjn3vuFhWGffGIm`, MCP-сервер `plugin:figma:figma`. Перед `get_design_context` загрузить skill `figma:figma-design-to-code`.
 - **Запрашивать только нужный узел**, не `get_metadata` всей страницы (`0:1` ≈ 2.5 МБ).
-- Главная, десктоп `2:23` / мобильная `2:13032`:
+- Главная (`home.html`), десктоп `2:23` / мобильная `2:13032`:
 
 | Блок | Десктоп | Моб. | Статус |
 |---|---|---|---|
@@ -51,15 +52,16 @@
 - Попап «Обратный звонок»: окно десктоп `2:869` (в кадре `2:430`), моб. `2:13838` (в кадре `2:13446`) — готово. Эталоны `design/callback-desktop.png` / `callback-mobile.png`. Попапы: `.modal.js-modal[data-modal-id]` + кнопки `data-modal="<id>"` (`src/js/components/modal.js`); разметка `src/pug/components/modal-callback.pug`.
 - UI-kit `2:35861`. Мобильное меню — только PNG `design/home-mobile-menu.png`.
 - Плавающие кнопки (`float-actions.pug`, `float-actions.js`): «Написать» раскрывает WhatsApp / Max / Telegram (`data.floatActions.messengers`) и меняется на крестик — макет моб. `56:11070`; на десктопе открытого состояния нет — мессенджеры «таблетками» с подписью по правому краю. Закрытие — повторный клик, клик мимо, Escape.
-- Прелоадер (только главная, не в макете): `src/pug/components/preloader.pug` в `index.pug` — чёрный фон, логотип инлайн по центру (`clamp(150px, 20vw, 360px)`); логотип проявляется (1.2 с); `preloader.js` — через 1.5 с после `load` плавно исчезает (1.2 с) и удаляется, пока виден — `html.is-preloading` (overflow hidden + `scrollbar-gutter: stable`, сам прелоадер `100vw` — логотип не прыгает от полосы прокрутки). Буквы логотипа в `logo.svg` — `currentColor` (в шапке чёрные, в прелоадере белые).
+- Прелоадер (только главная, не в макете): `src/pug/components/preloader.pug` в `home.pug` — чёрный фон, логотип инлайн по центру (`clamp(150px, 20vw, 360px)`); логотип проявляется (1.2 с); `preloader.js` — через 1.5 с после `load` плавно исчезает (1.2 с) и удаляется, пока виден — `html.is-preloading` (overflow hidden + `scrollbar-gutter: stable`, сам прелоадер `100vw` — логотип не прыгает от полосы прокрутки). Буквы логотипа в `logo.svg` — `currentColor` (в шапке чёрные, в прелоадере белые).
 - Каталог `catalog.html`: десктоп `2:2262` / моб. `2:15285` — готово (эталоны `design/catalog-desktop.png` / `catalog-mobile.png`). Разметка `src/pug/pages/catalog.pug`, данные `data.catalog`, стили `_catalog.scss`, табы-якоря `catalog-nav.js` (фиксируются под шапкой полосой 60px, пока на экране разделы, — `is-fixed`, место держит `.js-catalog-nav-holder`; после последнего раздела уезжают под шапку — `is-away`; в фиксированной полосе табы в строку с прокруткой, активный подкручивается в видимую часть). Картинки — исходники из `get_design_context` в `src/images/catalog/` (CROP-кадры обрезаны заранее); рамка картинки в карточке — `d`/`m` в данных (`[x, y, w, h, ширина карточки]` по макету). Ряды «По типу» ≥ 1280 — `flex-basis` = ширина карточки в макете. В макете 1-е карточки «По статусу» / «По назначению» — состояние ховер. Моб. карточки в макете местами 362 (поля 20) — у нас 370, как весь контейнер. Отзывы/форма/подвал — с главной, на моб. отступ 60 (`compactSections` → `--compact`).
+- Список товаров `lights.html` («Встраиваемые светильники»): десктоп `2:10313` / моб. `2:15717`, моб. фильтры `2:23528` (экраны: Тип `2:23598`, Тип установки `2:23621`, Мощность `2:23633`, Температура `2:23684`, Индекс Ra `2:23735`) — готово (эталоны `design/lights-desktop.png` / `lights-mobile.png`). Разметка `src/pug/pages/lights.pug`, миксины `src/pug/mixins/listing.pug` (`+productCard`, `+listingChip`, `+filterOptions`, рамки фото `productImages` — % фото-блока 328×418 / 177×230), `+breadcrumbs`, панель `components/filter-panel.pug`, данные `data.lights`. Стили `_listing.scss` (шапка, сайдбар, тулбар, SEO-текст), `_product-card.scss`, `_dropdown.scss`, `_filter-panel.scss`, `_faq.scss`. JS: `accordion.js` (FAQ, группы сайдбара), `dropdown.js`, `filters.js` (панели `.js-panel` + кнопки `data-open-panel`, экраны, синхронизация чекбоксов десктоп ↔ панель, «Название: N»), `product-gallery.js` (фото по зонам ховера). Сайдбар и плашки-фильтры — с 1280, ниже сайдбар = панель «Все категории»; сетка 2 / 3 (768+) / 4 (1600+). Моб. — 10 карточек (`product-card--desktop` скрыты). Порядок карточек — по десктопу (в моб. макете другой). В макете тексты «Мощность»/«Индекс Ra» — заглушки (Ra = копия температур), «Угол»/«Степень защиты» без экранов — значения придуманы. Ряды карточек ≥ 768 — `row-gap: 25` (в макете ряд 509 + 30 при карточке 514). SEO-текст ≥ 1280 — 234 от пагинации (`.listing__main` padding 84 + 150), сайдбар с `margin-bottom: −150` не растягивает блок, но SEO не встаёт выше его низа. Выпадающие списки — ширина по содержимому, у правого края экрана открываются влево (`is-flipped`, `dropdown.js`). FAQ — открыт один вопрос (`data-accordion-single`). Функция плашек цвета — `swatchBackground` (`mixins/swatch.pug`, общая с каталогом).
 - Фон с `url()` не передавать CSS-переменной из `style`: Chrome считает путь от `css/main.css` — задавать `background` прямо в `style`.
 
 ## Проверка pixel perfect
 - Эталон — экспорт PNG в `design/` (`home-desktop.png.png` 1728, `home-mobile.png.png` 402). Данные MCP иногда расходятся с PNG на 1–3px — верить PNG.
 - Скрипты `tools/pixel/` (нужен запущенный `npx gulp`):
-  - `sh tools/pixel/shot.sh http://localhost:3000/index.html 1728 900 out.png`
-  - мобильная 402: `sh tools/pixel/frame.sh index.html 402 900 out.png` (headless не даёт окно < 500)
+  - `sh tools/pixel/shot.sh http://localhost:3000/home.html 1728 900 out.png`
+  - мобильная 402: `sh tools/pixel/frame.sh home.html 402 900 out.png` (headless не даёт окно < 500)
   - `python tools/pixel/diff.py design.png out.png x0 y0 x1 y1 diff.png` — процент пикселей с отличием > 40 (норма — только сглаживание текста, ~0.5–3%)
   - `python tools/pixel/px.py img seg y0 y1 x0 x1 R,G,B` — координаты элементов по фону
 - Если headless Chrome виснет на localhost (код 21 / таймаут; остаются процессы с профилем `pixel-chrome`) — снимать `file:///…/build/<page>.html` с отдельным `--user-data-dir` (SVG-спрайт по `file://` не грузится — иконки на снимке пустые). Не запускать `npx gulp build` при работающем `npx gulp` — два процесса пишут `build/` одновременно и ломают `vendor.js`.
