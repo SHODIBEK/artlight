@@ -1,0 +1,12 @@
+//- Карточка реализованного проекта («Реализованные проекты»): фото на всю карточку, плашки-теги слева сверху,
+//- название снизу; описание раскрывается при ховере (в макете 1-я карточка — состояние ховер)
+mixin projectCard(item, text)
+	a.project-card(href=(item.url || '#'))&attributes(attributes)
+		img.project-card__image(src=`${baseDir}images/projects/project-${item.image}.jpg` alt="" loading="lazy")
+		span.project-card__tags
+			each tag in item.tags
+				span.project-card__tag= tag
+		span.project-card__body
+			span.project-card__name= item.title
+			span.project-card__reveal
+				span.project-card__text= typo(item.text || text)

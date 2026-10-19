@@ -18,6 +18,7 @@ import accordionInit from "./components/accordion";
 import dropdownInit from "./components/dropdown";
 import filtersInit from "./components/filters";
 import productGalleryInit from "./components/product-gallery";
+import projectTypesInit from "./components/project-types";
 
 ieFix();
 vhFix();
@@ -37,3 +38,4 @@ accordionInit();
 dropdownInit();
 filtersInit();
 productGalleryInit();
+projectTypesInit();

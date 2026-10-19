@@ -1,0 +1,11 @@
+//- Панель «Выбрать тип проекта» (моб., node-id=2-23562): на весь экран, ≥ 768 — справа шириной 402 (filters.js).
+//- Выбор типа закрывает панель (.js-panel-close), активный тип синхронизирован с табами страницы (project-types.js).
+- var page = data.projectsPage
+.filter-panel.js-panel(data-panel-id="project-types" aria-hidden="true" aria-label=page.chooseType)
+	.filter-panel__dialog
+		.filter-panel__screen.is-active(data-screen="main")
+			button.filter-panel__back.js-panel-close(type="button" aria-label="Закрыть")
+				+svg('back').filter-panel__back-icon
+			.filter-panel__chips
+				each type, index in page.types
+					+tab(type, { active: index === 0 }).js-project-type.js-panel-close(data-value=type)

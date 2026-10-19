@@ -1,6 +1,18 @@
-//- Список товаров «Встраиваемые светильники»: десктоп node-id=2-10313, моб. node-id=2-15717 (фильтры моб. — 2-23528)
+//- Список товаров «Встраиваемые светильники»: десктоп node-id=2-10313, моб. node-id=2-15717 (фильтры моб. — 2-23528).
+//- Та же разметка — «Шинопровод и комплектующие» (busbar.pug, `- var listing = data.busbar`): десктоп 2-11144, моб. 2-16181
 -
-	var lights = data.lights
+	var lights = typeof listing !== 'undefined' ? listing : data.lights
+
+	// рамка фото карточки подкатегории (CSS-переменные): [right, top, size]
+	function subcatImageStyle(item) {
+		var vars = []
+		var keys = ['d', 'm']
+		keys.forEach(function (key) {
+			vars.push('--' + key + '-right: ' + item[key][0] + 'px', '--' + key + '-top: ' + item[key][1] + 'px', '--' + key + '-size: ' + item[key][2] + 'px')
+		})
+		if (item.rotate) vars.push('--rotate: ' + item.rotate + 'deg')
+		return vars.join('; ')
+	}
 
 	// пункты свёрнутых групп сайдбара — названия из разделов data.catalog
 	function asideSectionItems(id) {
@@ -22,7 +34,12 @@ mixin asideItem(name, url)
 
 section.listing-head.container
 	+breadcrumbs(lights.breadcrumbs).listing-head__breadcrumbs
-	h1.listing-head__title= lights.title
+	if lights.count
+		.listing-head__heading
+			h1.listing-head__title= typo(lights.title)
+			p.listing-head__total= lights.count
+	else
+		h1.listing-head__title= lights.title
 	p.listing-head__intro= typo(lights.intro)
 
 .listing.container
@@ -76,6 +93,14 @@ section.listing-head.container
 				+button({ view: 'stroke', label: file.name, href: file.url }).listing-aside__file
 
 	.listing__main
+		if lights.subcategories
+			nav.listing-subcats(aria-label="Подкатегории")
+				each item in lights.subcategories
+					a.listing-subcat(href=(item.url || '#'))
+						span.listing-subcat__title= typo(item.name)
+						span.listing-subcat__picture(style=subcatImageStyle(item))
+							img.listing-subcat__image(src=`${baseDir}images/catalog/${item.image}.png` alt="" loading="lazy" draggable="false")
+
 		.listing-toolbar
 			.listing-toolbar__filters
 				each filter in lights.filters
@@ -100,14 +125,14 @@ section.listing-head.container
 									li.filter-options__item
 										button.filter-options__link.js-dropdown-option(type="button" class=(index === 0 ? 'is-active' : null))= option
 					+dropdown()
-						+listingChip(lights.perPage[0], { chevron: 'down', cls: 'js-dropdown-toggle', labelCls: 'js-dropdown-value' })(aria-expanded="false" aria-label="Товаров на странице")
+						+listingChip(lights.perPage[0], { chevron: 'down', cls: 'js-dropdown-toggle', labelCls: 'js-dropdown-value', prefix: lights.perPagePrefix })(aria-expanded="false" aria-label=(lights.perPagePrefix ? null : 'Товаров на странице'))
 						.dropdown__panel.dropdown__panel--narrow
 							ul.filter-options.filter-options--links
 								each option, index in lights.perPage
 									li.filter-options__item
 										button.filter-options__link.js-dropdown-option(type="button" class=(index === 0 ? 'is-active' : null))= option
 
-			nav.listing-toolbar__tags(aria-label="Подборки")
+			nav.listing-toolbar__tags(class=(lights.tagsWrap ? 'listing-toolbar__tags--wrap' : null) aria-label="Подборки")
 				each tag in lights.tags
 					a.listing-toolbar__tag(href="#")= tag
 

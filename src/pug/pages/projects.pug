@@ -1,0 +1,30 @@
+//- «Реализованные проекты»: десктоп node-id=2-2689, моб. node-id=2-16656 (панель «Выбрать тип проекта» — 2-23562)
+- var page = data.projectsPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+	//- моб.: число проектов и кнопка панели типов (≥ 768 — табы)
+	.listing-head__mobile
+		p.listing-head__count= page.count
+		+listingChip(page.chooseType, { icon: 'filter-square', cls: 'listing-head__choose' })(data-open-panel="project-types")
+
+.project-list.container
+	nav.project-list__types(aria-label="Типы проектов")
+		each type, index in page.types
+			+tab(type, { active: index === 0 }).js-project-type(data-value=type)
+
+	.project-list__grid
+		each item, index in page.items
+			+projectCard(item, page.text)(class=(index >= 8 ? 'project-card--desktop' : null))
+
+	+button({ view: 'main', label: page.more, icon: false }).project-list__more
+	+pagination(page.pagination.current, page.pagination.total).project-list__pagination
+
+section.seo-text.seo-text--plain.container(class=(sectionsGap ? 'seo-text--gap-' + sectionsGap : null))
+	.seo-text__inner
+		each paragraph in page.seo
+			p.seo-text__paragraph= typo(paragraph)
+
+include ../sections/reviews
+include ../sections/feedback

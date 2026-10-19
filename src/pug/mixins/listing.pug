@@ -60,7 +60,8 @@ mixin listingChip(label, opts)
 	button.listing-chip(type="button" class=[o.icon ? 'listing-chip--icon' : null, o.cls])&attributes(attributes)
 		if o.icon
 			+svg(o.icon).listing-chip__icon(class=`listing-chip__icon--${o.icon}`)
-		span.listing-chip__label(class=o.labelCls data-name=o.name)= label
+		//- prefix — постоянная часть подписи перед значением (dropdown.js сохраняет её при выборе варианта)
+		span.listing-chip__label(class=o.labelCls data-name=o.name data-prefix=o.prefix)= (o.prefix || '') + label
 		if o.chevron === 'down'
 			+svg('chevron-up').listing-chip__chevron
 		if o.chevron === 'right'

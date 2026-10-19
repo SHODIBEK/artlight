@@ -1,7 +1,7 @@
 /**
 * Выпадающие списки (.js-dropdown): .js-dropdown-toggle открывает/закрывает (is-open, aria-expanded).
 * Закрытие — клик мимо, Escape, открытие другого списка. Вариант .js-dropdown-option (сортировка, количество)
-* подставляется в .js-dropdown-value плашки и закрывает список.
+* подставляется в .js-dropdown-value плашки (после data-prefix, если есть) и закрывает список.
 * Панель открывается от левого края плашки; если не помещается в экран справа — от правого (is-flipped).
 */
 export default function dropdownInit() {
@@ -69,7 +69,9 @@ export default function dropdownInit() {
 			const dropdown = option.closest('.js-dropdown');
 
 			dropdown.querySelectorAll('.js-dropdown-option').forEach((item) => item.classList.toggle('is-active', item === option));
-			dropdown.querySelector('.js-dropdown-value').textContent = option.textContent;
+			const value = dropdown.querySelector('.js-dropdown-value');
+
+			value.textContent = (value.dataset.prefix || '') + option.textContent;
 			close();
 
 			return;

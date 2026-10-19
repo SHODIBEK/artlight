@@ -1,7 +1,7 @@
 - var footer = data.footer
 - var submenus = data.mobileMenu.submenus
 
-footer.footer(class=(typeof compactSections !== 'undefined' && compactSections ? 'footer--compact' : null))
+footer.footer(class=[typeof compactSections !== 'undefined' && compactSections ? 'footer--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'footer--gap-' + sectionsGap : null])
 	.container.footer__container
 		.footer__top
 			nav.footer__nav(aria-label="Меню в подвале")

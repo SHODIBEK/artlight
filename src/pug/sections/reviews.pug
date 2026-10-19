@@ -1,4 +1,4 @@
-section.reviews(class=(typeof compactSections !== 'undefined' && compactSections ? 'reviews--compact' : null))
+section.reviews(class=[typeof compactSections !== 'undefined' && compactSections ? 'reviews--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'reviews--gap-' + sectionsGap : null])
 	.container
 		h2.reviews__title.title.title--h2= data.home.reviews.title
 

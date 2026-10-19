@@ -1,4 +1,4 @@
-section.feedback(class=(typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null))
+section.feedback(class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null])
 	- var feedback = data.home.feedback
 	.container.feedback__container
 		.feedback__intro
