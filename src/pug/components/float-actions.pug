@@ -3,7 +3,7 @@
 .float-actions.js-float-actions
 	.float-actions__messengers#float-messengers(aria-hidden="true")
 		each item in data.floatActions.messengers
-			a.float-actions__item.float-actions__item--messenger(href=item.url target="_blank" rel="noopener" tabindex="-1" aria-label=item.name)
+			a.float-actions__item.float-actions__item--messenger(href=item.url target="_blank" rel="noopener" tabindex="-1" aria-label=`Написать в ${item.name}`)
 				+svg(item.icon).float-actions__icon.float-actions__icon--messenger
 				span.float-actions__text= item.name
 	a.float-actions__item(href=`tel:${data.header.phones[0].tel}`)
