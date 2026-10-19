@@ -1,8 +1,7 @@
 section.about.container
 	- var about = data.home.about
-	picture.about__picture
-		source(media="(max-width: 767px)" srcset=`${baseDir}images/home/about-company-mobile@2x.jpg`)
-		img.about__image(src=`${baseDir}images/home/about-company@2x.jpg` alt="" loading="lazy")
+	//- вместо фото из макета — видео о компании (как на странице «О компании»)
+	+videoPlayer().about__picture
 
 	.about__content
 		.about__intro

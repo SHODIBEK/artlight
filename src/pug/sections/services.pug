@@ -1,19 +1,38 @@
+//- servicesOptions (необязательно): { mod, id, title, images } — «О компании»: заголовок, своя сетка ≥ 1280
+//- и свои кадры фото на ней (images: mod карточки → images/about/<имя>.jpg);
+//- «Услуги»: extraItems — третий ряд (фото item.src → images/services/service-<src>.jpg), button: false — без кнопки
+- var servicesOpts = typeof servicesOptions !== 'undefined' ? servicesOptions : {}
+
 mixin serviceItem(item)
+	- var wideImage = servicesOpts.images && servicesOpts.images[item.mod]
 	a.services__item(class=`services__item--${item.mod}` href=item.url)
-		picture.services__picture
-			source(media="(max-width: 767px)" srcset=`${baseDir}images/home/service-${item.image}-mobile@2x.jpg`)
-			img.services__image(src=`${baseDir}images/home/service-${item.image}${item.desktopSuffix ? '-desktop' : ''}@2x.jpg` alt="" loading="lazy")
+		if item.src
+			span.services__picture
+				img.services__image(src=`${baseDir}images/services/service-${item.src}.jpg` alt="" loading="lazy")
+		else
+			picture.services__picture
+				source(media="(max-width: 767px)" srcset=`${baseDir}images/home/service-${item.image}-mobile@2x.jpg`)
+				if wideImage
+					source(media="(min-width: 1280px)" srcset=`${baseDir}images/about/${wideImage}.jpg`)
+				img.services__image(src=`${baseDir}images/home/service-${item.image}${item.desktopSuffix ? '-desktop' : ''}@2x.jpg` alt="" loading="lazy")
 		span.services__body
 			span.services__title= typo(item.title)
 			span.services__text= typo(item.text)
 
-section.services.container
+section.services.container(class=(servicesOpts.mod ? `services--${servicesOpts.mod}` : null) id=servicesOpts.id)
 	- var items = data.home.services.items
+	if servicesOpts.title
+		h2.services__heading= servicesOpts.title
 	.services__row.services__row--top
 		each item in items.slice(0, 4)
 			+serviceItem(item)
 	.services__row.services__row--bottom
 		each item in items.slice(4)
 			+serviceItem(item)
+	if servicesOpts.extraItems
+		.services__row.services__row--extra
+			each item in servicesOpts.extraItems
+				+serviceItem(item)
 
-	+button({ view: 'main', label: data.home.services.button.label, href: data.home.services.button.url }).services__button
+	if servicesOpts.button !== false
+		+button({ view: 'main', label: data.home.services.button.label, href: data.home.services.button.url }).services__button

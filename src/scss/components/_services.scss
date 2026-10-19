@@ -154,3 +154,156 @@
 		}
 	}
 }
+
+// «О компании»: заголовок раздела, шаг карточек 30 на моб.; ≥ 1280 — сетка макета 2-12751:
+// [проектирование 834 (фото 396) / 407 + 407 (фото 420)] + серийное 834 (фото 998), ниже 834 + 834 (фото 420)
+.services--about {
+	margin-top: 100px;
+	gap: 30px;
+	scroll-margin-top: calc(var(--header-height) + 60px + 20px);
+
+	.services__heading {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	.services__row {
+		row-gap: 30px;
+	}
+
+	.services__button {
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+
+		.services__heading {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		.services__row {
+			row-gap: 40px;
+		}
+
+		.services__row--top {
+			margin-bottom: 10px;
+		}
+
+		.services__button {
+			margin-top: 10px;
+			width: auto;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		margin-top: 80px;
+
+		.services__row--top {
+			grid-template-areas:
+				"lighting lighting serial serial"
+				"low-voltage service serial serial";
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		.services__row--bottom {
+			column-gap: 20px;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.services__item--lighting-design .services__picture {
+			height: 396px;
+		}
+
+		.services__item--lighting-design .services__text {
+			max-width: 482px;
+		}
+
+		.services__item--serial .services__title {
+			max-width: 415px;
+		}
+
+		.services__item--serial .services__text {
+			max-width: 508px;
+		}
+	}
+}
+
+// Страница «Услуги» (десктоп node-id=2-11986, моб. 2-17498): сетка главной + третий ряд, без кнопки;
+// моб. шаг карточек 30. Третий ряд ≥ 1280 — зеркало верхнего: монтаж 700 (фото 1038 = 578 + 40 + 420) + 2 × 2 по 474
+.services--page {
+	margin-top: 30px;
+	gap: 30px;
+
+	.services__row {
+		row-gap: 30px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 40px;
+
+		.services__row {
+			row-gap: 40px;
+		}
+
+		.services__item--mounting {
+			grid-column: span 2;
+		}
+
+		.services__row--extra .services__text,
+		.services__item--mounting .services__title,
+		.services__item--lighting-equipment .services__title,
+		.services__item--smart-control .services__title {
+			max-width: 415px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		margin-top: 30px;
+
+		.services__row--extra {
+			grid-template-areas:
+				"mounting lighting-equipment warranty"
+				"mounting smart-control delivery";
+			grid-template-columns: 700px minmax(0, 1fr) minmax(0, 1fr);
+		}
+
+		.services__item--mounting {
+			grid-area: mounting;
+		}
+
+		.services__item--lighting-equipment {
+			grid-area: lighting-equipment;
+		}
+
+		.services__item--warranty {
+			grid-area: warranty;
+		}
+
+		.services__item--smart-control {
+			grid-area: smart-control;
+		}
+
+		.services__item--delivery {
+			grid-area: delivery;
+		}
+
+		.services__item--mounting .services__picture {
+			height: 1038px;
+		}
+
+		// в отличие от главной: фото 414, текст в 3 строки (533)
+		.services__item--lighting-design .services__picture {
+			height: 414px;
+		}
+
+		.services__item--lighting-design .services__text {
+			max-width: 533px;
+		}
+	}
+}

@@ -1,0 +1,103 @@
+//- «О компании»: десктоп node-id=2-12647, моб. node-id=2-17168
+- var page = data.aboutPage
+- var aboutImg = (name) => `${baseDir}images/about/${name}`
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+	//- табы-якоря фиксируются под шапкой, пока на экране разделы (catalog-nav.js, как в каталоге); моб. — в строку с прокруткой
+	.catalog-head__nav.about-nav.js-catalog-nav-holder
+		.catalog-head__nav-bar.js-catalog-nav-bar
+			nav.catalog-head__tabs.catalog-head__tabs--row.js-catalog-nav(aria-label="Разделы страницы")
+				each tab in page.tabs
+					+tab(tab.name).js-catalog-nav-tab(data-target=tab.target)
+
+//- большое фото + логотип «ART 30 лет LIGHT» и два фото
+section.about-intro.about-anchor.container#about-intro
+	img.about-intro__photo(src=aboutImg('intro-main.jpg') alt="")
+	.about-intro__side
+		picture.about-intro__logo
+			source(media="(max-width: 767px)" srcset=aboutImg('logo-30-mobile.svg'))
+			img.about-intro__logo-image(src=aboutImg('logo-30.svg') width="473" height="204" alt="ARTLIGHT, 30 лет. Производитель светотехнических решений с 1996 года")
+		.about-intro__photos
+			img.about-intro__photo-small(src=aboutImg('intro-1.jpg') alt="" loading="lazy")
+			img.about-intro__photo-small(src=aboutImg('intro-2.jpg') alt="" loading="lazy")
+
+//- история (линия с точками у годов) и «Компания ARTLIGHT сегодня»
+section.about-history.container
+	ol.about-history__timeline
+		each item in page.history
+			li.about-history__item
+				p.about-history__year= item.year
+				.about-history__text
+					each paragraph in item.text
+						p= typo(paragraph)
+
+	.about-today
+		h2.about-title= page.today.title
+		p.about-today__lead= typo(page.today.lead)
+		img.about-today__photo(src=aboutImg('today.jpg') alt="" loading="lazy")
+		.about-today__text
+			each paragraph, index in page.today.text
+				p.about-today__paragraph(class=`about-today__paragraph--${index + 1}`)= typo(paragraph)
+		.about-today__stats
+			each group in page.today.stats
+				.about-stats
+					h3.about-stats__title= group.title
+					ul.about-stats__list
+						each item in group.items
+							li.about-stats__item
+								+svg(item.icon).about-stats__icon
+								span.about-stats__body
+									span.about-stats__label(class=(item.narrow ? 'about-stats__label--narrow' : null))= typo(item.label)
+									span.about-stats__value= item.value
+		p.about-today__outro= typo(page.today.outro)
+
+//- видео о компании (+videoPlayer, общий с главной) и текст о партнёрстве
+section.about-video.container
+	+videoPlayer().about-video__player
+	.about-video__text
+		each paragraph in page.partners
+			p= typo(paragraph)
+
+- var servicesOptions = { mod: 'about', id: 'about-services', title: page.servicesTitle, images: { 'lighting-design': 'service-1', 'low-voltage': 'service-2', 'service-department': 'service-3', serial: 'service-4', custom: 'today', stock: 'service-5' } }
+include ../sections/services
+
+section.about-components.about-anchor.container#about-components
+	h2.about-title= page.components.title
+	p.about-components__text= typo(page.components.text)
+	//- моб. и < 1280 — лента с прокруткой
+	.about-components__list
+		each item in page.components.items
+			.about-components__item
+				img.about-components__logo(src=aboutImg(`${item.image}.png`) width="215" height="85" alt=item.name loading="lazy")
+				p.about-components__desc= typo(item.text)
+	+button({ view: 'main', label: page.components.button.label, href: page.components.button.url }).about-components__button
+
+//- дипломы и благодарности: ≥ 1280 — сетка по 5, ниже — лента с прокруткой («Показать ещё» на моб. нет)
+mixin aboutGallery(gallery, opts)
+	section.about-gallery.about-anchor.container(class=`about-gallery--${opts.mod}` id=opts.id)
+		h2.about-title= gallery.title
+		if gallery.text
+			p.about-gallery__text= typo(gallery.text)
+		.about-gallery__grid
+			each image in gallery.images
+				.about-gallery__item
+					img.about-gallery__image(src=aboutImg(`${image}.jpg`) alt="" loading="lazy")
+		+button({ view: 'main', label: gallery.more, icon: false }).about-gallery__more
+
++aboutGallery(page.achievements, { mod: 'achievements', id: 'about-achievements' })
+
+section.about-clients.about-anchor.container#about-clients
+	h2.about-title= page.clients.title
+	ul.about-clients__list
+		each size, index in page.clients.logos
+			li.about-clients__item
+				img.about-clients__logo(src=aboutImg(`client-${String(index + 1).padStart(2, '0')}.svg`) width=size[0] height=size[1] alt="" loading="lazy")
+
++aboutGallery(page.thanks, { mod: 'thanks', id: 'about-thanks' })
+
+include ../sections/reviews
+- var feedbackData = page.cooperation
+- var feedbackId = 'about-cooperation'
+include ../sections/feedback

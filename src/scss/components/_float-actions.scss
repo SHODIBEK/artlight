@@ -56,7 +56,18 @@
 		}
 
 		// мессенджеры появляются снизу вверх (ближний к «Написать» — первым)
+		// фон светлее акцента; ховер — акцент (светлый ховер почти не отличался бы)
 		&--messenger {
+			background-color: var(--color-accent-light);
+
+			@include state-hover {
+				background-color: var(--color-accent);
+			}
+
+			@include state-pressed {
+				background-color: var(--color-accent-pressed);
+			}
+
 			opacity: 0;
 			visibility: hidden;
 			transform: translateY(10px);

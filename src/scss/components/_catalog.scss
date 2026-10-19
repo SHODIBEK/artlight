@@ -68,6 +68,19 @@ $catalog-nav-bar: 60px;
 		flex-wrap: wrap;
 		gap: 8px;
 
+		// «О компании»: в строку с прокруткой и без фиксации, до краёв экрана
+		&--row {
+			flex-wrap: nowrap;
+			overflow-x: auto;
+			margin: 0 calc(var(--gutter) * -1);
+			padding: 0 var(--gutter);
+			scrollbar-width: none;
+
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+
 		#{$b}__nav-bar.is-fixed & {
 			flex-wrap: nowrap;
 			overflow-x: auto;

@@ -1,0 +1,61 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Видео о компании (+videoPlayer, video-player.js). Размеры рамки задаёт блок, куда плеер подмешан.
+// Кнопка на всё видео: на паузе — «play» (как в макете «О компании»), при воспроизведении «pause» —
+// при наведении и пару секунд после касания (is-hinted).
+.video-player {
+	position: relative;
+	overflow: hidden;
+	background-color: var(--color-light-grey);
+
+	&__video {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__toggle {
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		border: 0;
+		padding: 0;
+		background: none;
+		cursor: pointer;
+
+		@include state-focus {
+			outline: 2px solid var(--color-accent);
+			outline-offset: -2px;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 66px;
+		height: 66px;
+		color: var(--color-white);
+		opacity: 0;
+		filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.25));
+		transform: translate(-50%, -50%);
+		transition: opacity $duration-normal;
+	}
+
+	&.is-paused &__icon--play {
+		opacity: 0.8;
+	}
+
+	&:not(.is-paused).is-hinted &__icon--pause,
+	&:not(.is-paused) &__toggle:focus-visible &__icon--pause {
+		opacity: 0.8;
+	}
+
+	@media (hover: hover) {
+		&:not(.is-paused):hover &__icon--pause {
+			opacity: 0.8;
+		}
+	}
+}

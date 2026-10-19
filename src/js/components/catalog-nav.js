@@ -81,7 +81,14 @@ export default function catalogNavInit() {
 
 	const updateFixed = () => {
 		const top = header ? header.offsetHeight : 0;
-		const lastSection = sections[sections.length - 1];
+		// последний на странице раздел (порядок табов может отличаться от порядка разделов)
+		const lastSection = sections.reduce((last, section) => {
+			if (!section || last && section.getBoundingClientRect().bottom <= last.getBoundingClientRect().bottom) {
+				return last;
+			}
+
+			return section;
+		}, null);
 		const isFixed = holder.getBoundingClientRect().top < top;
 		const isAway = isFixed && lastSection && lastSection.getBoundingClientRect().bottom < top + bar.offsetHeight;
 
@@ -108,12 +115,17 @@ export default function catalogNavInit() {
 			return;
 		}
 
+		// порядок табов может не совпадать с порядком разделов («О компании») — берём ближайший к линии
 		const line = window.innerHeight / 3;
 		let active = tabs[0];
+		let activeTop = -Infinity;
 
 		sections.forEach((section, index) => {
-			if (section && section.getBoundingClientRect().top <= line) {
+			const top = section ? section.getBoundingClientRect().top : Infinity;
+
+			if (top <= line && top > activeTop) {
 				active = tabs[index];
+				activeTop = top;
 			}
 		});
 

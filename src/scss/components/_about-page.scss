@@ -1,0 +1,619 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Страница «О компании»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-12647,
+// моб. node-id=2-17168.
+// Между секциями: моб. 100, ≥ 768 — 80 (до отзывов, формы, подвала — 150, как на главной).
+// Шаг строк — как округляет Figma: Medium 16 → 19, Regular 16 → 20, 15 → 18, 18 → 21, 20 × 1.2 → 24, 26 × 1.3 → 34.
+
+// разделы под шапкой и зафиксированными табами (catalog-nav.js)
+.about-anchor {
+	scroll-margin-top: calc(var(--header-height) + 60px + 20px);
+}
+
+// заголовок раздела
+.about-title {
+	margin: 0;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 36px;
+	text-transform: uppercase;
+	color: var(--color-black);
+
+	@media (min-width: #{$tablet}px) {
+		font-size: 46px;
+		line-height: 55px;
+	}
+}
+
+// табы-якоря под заголовком
+.about-nav {
+	margin-top: 12px;
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 30px;
+	}
+}
+
+// моб. — фото на всю ширину 402×472; логотип 370 (свой svg), фото 177×209.
+// ≥ 1280 — фото 864×764 слева, справа логотип 473×204 и два фото 392×480.
+.about-intro {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+
+	&__photo {
+		display: block;
+		margin: 0 calc(var(--gutter) * -1);
+		width: calc(100% + var(--gutter) * 2);
+		height: 472px;
+		max-width: none;
+		object-fit: cover;
+	}
+
+	&__side {
+		display: flex;
+		flex-direction: column;
+		margin-top: 100px;
+		gap: 60px;
+	}
+
+	&__logo,
+	&__logo-image {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__photos {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 16px;
+	}
+
+	&__photo-small {
+		display: block;
+		width: 100%;
+		height: 209px;
+		object-fit: cover;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__photo {
+			margin: 0;
+			width: 100%;
+			height: 600px;
+		}
+
+		&__side {
+			margin-top: 80px;
+			gap: 80px;
+		}
+
+		&__logo,
+		&__logo-image {
+			width: 473px;
+		}
+
+		&__photos {
+			gap: 20px;
+		}
+
+		&__photo-small {
+			height: 480px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: grid;
+		grid-template-columns: minmax(0, 864fr) minmax(0, 804fr);
+		margin-top: 20px;
+		gap: 20px;
+
+		&__photo {
+			height: 764px;
+		}
+
+		&__side {
+			margin-top: 0;
+		}
+	}
+}
+
+// история: линия 7px с точками 30px у годов (моб. 14 + 30 до текста); ≥ 1280 — колонка 481 слева,
+// годы распределены по высоте «Компания ARTLIGHT сегодня» (1071 справа, зазор 136)
+.about-history {
+	margin-top: 100px;
+
+	&__timeline {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0 0 0 44px;
+		gap: 106px;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 3.5px;
+			top: 0;
+			bottom: 0;
+			width: 7px;
+			background-color: var(--color-accent);
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		// точка — у строки года, как в моб. макете (top 12);
+		// в десктопном макете точки съехали с годов — у нас так же, как на моб.
+		&::before {
+			content: "";
+			position: absolute;
+			left: -52px;
+			top: 12px;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			background-color: var(--color-accent);
+		}
+	}
+
+	&__year {
+		margin: 0;
+		font-weight: 700;
+		font-size: 46px;
+		line-height: 55px;
+		color: var(--color-black);
+	}
+
+	&__text {
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 21px;
+		color: var(--color-black);
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 21px; // пустая строка
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+
+		&__text {
+			font-size: 26px;
+			line-height: 34px;
+
+			p + p {
+				margin-top: 34px;
+			}
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: grid;
+		column-gap: 136px;
+		grid-template-columns: minmax(0, 481fr) minmax(0, 1071fr);
+
+		&__timeline {
+			justify-content: space-between;
+			gap: 0;
+		}
+	}
+}
+
+// «Компания ARTLIGHT сегодня»
+.about-today {
+	display: flex;
+	flex-direction: column;
+	margin-top: 100px;
+	color: var(--color-black);
+	gap: 30px;
+
+	&__lead,
+	&__paragraph {
+		margin: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: 355px;
+		object-fit: cover;
+	}
+
+	// моб.: абзацы через 30, 2-й и 3-й меняются местами
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	&__paragraph--2 {
+		order: 1;
+	}
+
+	&__paragraph--4 {
+		order: 2;
+	}
+
+	&__stats {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__outro {
+		margin: 0;
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 44px;
+
+		&__lead,
+		&__paragraph,
+		&__outro {
+			font-weight: 500;
+			font-size: 20px;
+			line-height: 24px;
+		}
+
+		&__photo {
+			height: 751px;
+		}
+
+		// десктоп: [1 + 2] — 73 — [3 + пустая строка + 4]
+		&__text {
+			display: block;
+		}
+
+		&__paragraph--3 {
+			margin-top: 73px;
+		}
+
+		&__paragraph--4 {
+			margin-top: 24px;
+		}
+
+		&__stats {
+			flex-direction: row;
+			gap: 184px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		margin-top: 0;
+	}
+}
+
+// «Численность персонала» / «Объём производства»
+.about-stats {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 29px;
+		white-space: nowrap;
+		text-transform: uppercase;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 16px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+		color: var(--color-black-60);
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__label {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+
+		&--narrow {
+			max-width: 136px;
+		}
+	}
+
+	&__value {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__label,
+		&__value {
+			font-size: 20px;
+			line-height: 24px;
+		}
+
+		&__label {
+			white-space: nowrap;
+
+			&--narrow {
+				max-width: none;
+			}
+		}
+	}
+}
+
+// видео (в макете — серый блок с кнопкой; видео — от заказчика, .video-player) и текст о партнёрстве
+.about-video {
+	margin-top: 100px;
+
+	// рамка видео (+videoPlayer, блок .video-player)
+	&__player {
+		height: 282px;
+	}
+
+	&__text {
+		margin-top: 100px;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--color-black);
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 20px; // пустая строка
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+
+		&__player {
+			height: 400px;
+		}
+
+		&__text {
+			margin: 80px auto 0;
+			max-width: 900px;
+			text-align: center;
+		}
+	}
+
+	// высота как в макете (1688×497) на любой ширине десктопа — видео обрезается по ширине (cover)
+	@media (min-width: #{$header-desktop}px) {
+		&__player {
+			height: 497px;
+		}
+	}
+}
+
+// «Услуги» — секция главной (services.pug) с заголовком и своей сеткой ≥ 1280: см. .services--about в _services.scss
+
+// лента с прокруткой до краёв экрана (моб. и < 1280)
+@mixin about-strip {
+	display: flex;
+	overflow-x: auto;
+	margin: 0 calc(var(--gutter) * -1);
+	padding: 0 var(--gutter);
+	scroll-snap-type: x mandatory;
+	scroll-padding: 0 var(--gutter);
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	> * {
+		flex-shrink: 0;
+		scroll-snap-align: start;
+	}
+}
+
+// «Комплектующие»: логотипы 215×85 + описание; ≥ 1280 — 7 в ряд
+.about-components {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 100px;
+	gap: 30px;
+
+	&__text {
+		margin: 0;
+		max-width: 721px;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--color-black);
+	}
+
+	&__list {
+		@include about-strip;
+
+		align-self: stretch;
+		gap: 30px;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		width: 215.43px;
+		gap: 16px;
+	}
+
+	&__logo {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+
+	&__desc {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+
+		&__button {
+			width: auto;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__list {
+			overflow: visible;
+			margin: 0;
+			padding: 30px 0;
+		}
+
+		&__item {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+	}
+}
+
+// «Наши достижения» (557:800) и «Благодарности» (321.6:426): ≥ 1280 — по 5 в ряд, ниже — лента карточек 320
+.about-gallery {
+	display: flex;
+	flex-direction: column;
+	margin-top: 100px;
+	gap: 30px;
+
+	&__text {
+		margin: 0;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--color-black);
+	}
+
+	&__grid {
+		@include about-strip;
+
+		gap: 20px;
+	}
+
+	&__item {
+		position: relative;
+		overflow: hidden;
+		width: 320px;
+		aspect-ratio: 557 / 800;
+	}
+
+	&--thanks &__item {
+		aspect-ratio: 321.6 / 426;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__more {
+		display: none;
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&--thanks {
+			gap: 37px;
+		}
+
+		&__grid {
+			display: grid;
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			overflow: visible;
+			margin: 0;
+			padding: 0;
+			gap: 30px 20px;
+		}
+
+		&__item {
+			width: auto;
+		}
+
+		&__more {
+			display: inline-flex;
+		}
+	}
+}
+
+// «Среди наших клиентов»: ≥ 768 — логотипы рядами по центру; моб. (в моб. макете раздела нет) —
+// лента в одну строку со свайпом, логотипы по центру строки высотой 66 (самый высокий логотип)
+.about-clients {
+	margin-top: 100px;
+
+	&__list {
+		@include about-strip;
+
+		align-items: center;
+		list-style: none;
+		margin: 30px calc(var(--gutter) * -1) 0;
+		min-height: 66px;
+		gap: 40px;
+	}
+
+	&__logo {
+		display: block;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 80px;
+
+		&__list {
+			flex-wrap: wrap;
+			align-items: flex-start;
+			justify-content: center;
+			overflow: visible;
+			margin: 56px 0 0;
+			padding: 0;
+			min-height: 0;
+			scroll-snap-type: none;
+			gap: 30px 60px;
+		}
+	}
+}

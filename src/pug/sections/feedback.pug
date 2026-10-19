@@ -1,5 +1,8 @@
-section.feedback(class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null])
-	- var feedback = data.home.feedback
+//- Форма заявки. feedbackData — данные другой формы поверх data.home.feedback («О компании» — «Приглашаем к сотрудничеству»:
+//- поля в 2 колонки, вид деятельности — select), feedbackId — якорь секции
+- var feedback = Object.assign({}, data.home.feedback, typeof feedbackData !== 'undefined' ? feedbackData : {})
+- var isCooperation = !!feedback.activities
+section.feedback(id=(typeof feedbackId !== 'undefined' ? feedbackId : null) class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null, isCooperation ? 'feedback--cooperation' : null])
 	.container.feedback__container
 		.feedback__intro
 			h2.feedback__title= typo(feedback.title)
@@ -7,10 +10,22 @@ section.feedback(class=[typeof compactSections !== 'undefined' && compactSection
 
 		form.feedback__form.js-feedback-form(action=feedback.action method="post" enctype="multipart/form-data" novalidate)
 			.feedback__fields
-				+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'name' } }).feedback__input
-				+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).feedback__input.feedback__input--phone
-				+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).feedback__input
-				+input({ name: 'comment', placeholder: 'Дополнительная информация', textarea: true }).feedback__input.feedback__input--textarea
+				if isCooperation
+					//- порядок — моб. макета; на десктопе «Фамилия» перед «Имя» (order)
+					+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'given-name' } }).feedback__input
+					+input({ name: 'surname', placeholder: 'Фамилия', attrs: { autocomplete: 'family-name' } }).feedback__input.feedback__input--surname
+					+input({ name: 'company', placeholder: 'Компания', attrs: { autocomplete: 'organization' } }).feedback__input
+					+input({ name: 'activity', placeholder: feedback.activityPlaceholder, options: feedback.activities }).feedback__input.feedback__input--select
+					+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).feedback__input
+					+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).feedback__input.feedback__input--phone
+					+input({ name: 'country', placeholder: 'Страна', attrs: { autocomplete: 'country-name' } }).feedback__input
+					+input({ name: 'city', placeholder: 'Город', attrs: { autocomplete: 'address-level2' } }).feedback__input
+					+input({ name: 'comment', placeholder: 'Сообщение', textarea: true }).feedback__input.feedback__input--textarea
+				else
+					+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'name' } }).feedback__input
+					+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).feedback__input.feedback__input--phone
+					+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).feedback__input
+					+input({ name: 'comment', placeholder: 'Дополнительная информация', textarea: true }).feedback__input.feedback__input--textarea
 				label.feedback__file
 					input.feedback__file-input.js-feedback-file(type="file" name="files[]" multiple)
 					+svg('attach').feedback__file-icon

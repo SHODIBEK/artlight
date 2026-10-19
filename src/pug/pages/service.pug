@@ -1,0 +1,27 @@
+//- Страница услуги «Серийное производство»: десктоп node-id=2-12200, моб. node-id=2-17702 (панель «Все виды услуг» — 2-17865)
+- var page = data.servicePage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+	//- моб.: кнопка панели видов услуг (≥ 768 — табы)
+	+listingChip(page.chooseType, { icon: 'filter-square', cls: 'service-page__choose' })(data-open-panel="service-types")
+
+.service-page.container
+	nav.service-page__types(aria-label="Виды услуг")
+		each type in page.types
+			+tab(type.name, { href: type.url, active: type.active })
+
+	.service-page__content
+		img.service-page__photo(src=`${baseDir}images/services/${page.image}.jpg` alt="")
+		p.service-page__lead= typo(page.lead)
+		.service-page__columns
+			.service-page__list
+				each line in page.list
+					p= typo(line)
+			.service-page__side
+				p.service-page__note= typo(page.note)
+				+button({ view: 'main', label: page.button.label, href: page.button.url }).service-page__button
+
+include ../sections/reviews
+include ../sections/feedback

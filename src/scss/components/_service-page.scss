@@ -1,0 +1,111 @@
+// Страница услуги «Серийное производство»: десктоп node-id=2-12200, моб. 2-17702.
+// Виды услуг — табы-ссылки (≥ 768), на моб. — кнопка «Все виды услуг» и панель (service-types-panel.pug).
+// Шаг строк «normal» LT Superior: Semibold 20 / 24 → 22 / 27, Medium 16 / 20 → 19 / 24.
+.service-page {
+	display: flex;
+	flex-direction: column;
+	margin-top: 30px;
+	gap: 30px;
+
+	// шаг 8.5: Figma округляет ширины текстов вверх — иначе табы к концу ряда сдвигаются
+	&__types {
+		display: none;
+		flex-wrap: wrap;
+		gap: 8px 8.5px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		color: var(--color-black);
+		gap: 30px;
+	}
+
+	&__photo {
+		display: block;
+		width: 100%;
+		height: 420px;
+		object-fit: cover;
+	}
+
+	&__lead {
+		margin: 0;
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 22px;
+	}
+
+	&__columns {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+	}
+
+	&__list {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__side {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+	}
+
+	&__note {
+		margin: 0;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 24px;
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	// моб.: в макете текст и фото — с полями 20 (362), шапка — 16
+	@media (max-width: #{$tablet - 1}px) {
+		&__content {
+			padding: 0 4px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__types {
+			display: flex;
+		}
+
+		&__lead {
+			font-size: 24px;
+			line-height: 27px;
+		}
+
+		&__list {
+			font-size: 20px;
+			line-height: 24px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__columns {
+			display: grid;
+			column-gap: 73px;
+			align-items: start;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+}
+
+// кнопка панели «Все виды услуг» под заголовком (моб.)
+.listing-chip.service-page__choose {
+	margin-top: 12px;
+
+	@media (min-width: #{$tablet}px) {
+		display: none;
+	}
+}

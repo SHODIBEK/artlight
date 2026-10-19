@@ -68,6 +68,14 @@
 		gap: 8px;
 	}
 
+	// виды услуг: длинные названия — в две строки (шаг 18)
+	&__chips--wrap .tab {
+		max-width: 100%;
+		line-height: 18px;
+		white-space: normal;
+		text-align: left;
+	}
+
 	&__reset {
 		width: 100%;
 	}

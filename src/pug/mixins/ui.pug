@@ -36,8 +36,13 @@ mixin tab(label, opts)
 		var cls = []
 		if (o.active) cls.push('is-active')
 		if (o.state) cls.push('is-' + o.state)
-	button.tab(class=cls type="button" disabled=(o.state === 'disabled') aria-pressed=(o.active ? 'true' : 'false'))&attributes(attributes)
-		span.tab__label= label
+	//- href — таб-ссылка (виды услуг): активная — текущая страница
+	if o.href
+		a.tab(class=cls href=o.href aria-current=(o.active ? 'page' : null))&attributes(attributes)
+			span.tab__label= label
+	else
+		button.tab(class=cls type="button" disabled=(o.state === 'disabled') aria-pressed=(o.active ? 'true' : 'false'))&attributes(attributes)
+			span.tab__label= label
 
 //- @demo +linkBack('Вернуться в каталог', 'catalog.html')
 mixin linkBack(label, href, opts)

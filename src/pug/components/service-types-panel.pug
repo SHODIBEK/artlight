@@ -1,0 +1,11 @@
+//- Панель «Все виды услуг» (моб., node-id=2-17865): на весь экран, ≥ 768 — справа шириной 402 (filters.js).
+//- Виды услуг — ссылки на страницы услуг, как табы страницы; длинные названия переносятся в две строки.
+- var page = data.servicePage
+.filter-panel.js-panel(data-panel-id="service-types" aria-hidden="true" aria-label=page.chooseType)
+	.filter-panel__dialog
+		.filter-panel__screen.is-active(data-screen="main")
+			button.filter-panel__back.js-panel-close(type="button" aria-label="Закрыть")
+				+svg('back').filter-panel__back-icon
+			.filter-panel__chips.filter-panel__chips--wrap
+				each type in page.types
+					+tab(typo(type.name), { href: type.url, active: type.active })

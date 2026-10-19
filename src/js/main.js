@@ -21,6 +21,7 @@ import productGalleryInit from "./components/product-gallery";
 import projectTypesInit from "./components/project-types";
 import projectGalleryInit from "./components/project-gallery";
 import productSliderInit from "./components/product-slider";
+import videoPlayerInit from "./components/video-player";
 
 ieFix();
 vhFix();
@@ -41,5 +42,6 @@ dropdownInit();
 filtersInit();
 projectGalleryInit();
 productSliderInit();
+videoPlayerInit();
 productGalleryInit();
 projectTypesInit();

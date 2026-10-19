@@ -1,0 +1,11 @@
+//- «Услуги»: десктоп node-id=2-11986, моб. node-id=2-17498
+- var page = data.servicesPage
+- var servicesOptions = { mod: 'page', extraItems: page.items, button: false }
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+include ../sections/services
+include ../sections/reviews
+include ../sections/feedback
