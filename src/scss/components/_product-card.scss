@@ -220,6 +220,45 @@
 		color: var(--color-black-60);
 	}
 
+	// слайдер «В проекте использовались» (страница проекта): карточка 332.8 / 356, фото 418 на всех ширинах,
+	// рамка фото в px от центра (как в десктопном макете)
+	&--slide {
+		width: 332.8px;
+
+		@media (min-width: #{$tablet}px) {
+			width: 356px;
+		}
+
+		#{$b}__picture {
+			height: 418px;
+			aspect-ratio: auto;
+		}
+
+		#{$b}__frame {
+			left: calc(50% + var(--p-x));
+			top: calc(50% + var(--p-y));
+			width: var(--p-w);
+			height: var(--p-h);
+		}
+
+		#{$b}__badges {
+			gap: 12px;
+		}
+
+		#{$b}__dots {
+			bottom: 9px;
+		}
+
+		#{$b}__body {
+			max-width: 209px;
+			gap: 10px;
+		}
+
+		#{$b}__name {
+			margin-bottom: 2px;
+		}
+	}
+
 	// моб. — 10 карточек, как в макете
 	@media (max-width: #{$tablet - 1}px) {
 		&--desktop {

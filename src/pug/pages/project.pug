@@ -1,0 +1,56 @@
+//- Страница проекта: десктоп node-id=2-2938, моб. node-id=2-16859
+- var page = data.projectPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+	.project-tags
+		each tag in page.tags
+			span.project-tags__item= tag
+
+//- большое фото + лента фото (по клику фото ленты показывается в большом)
+section.project-gallery.js-project-gallery
+	.project-gallery__main
+		img.project-gallery__photo.js-project-gallery-photo(src=`${baseDir}images/projects/project-${page.photo}.jpg` alt=page.title)
+		span.project-gallery__watermark(aria-hidden="true")= page.watermark
+
+	.project-gallery__strip
+		.project-gallery__slider.swiper.js-project-gallery-slider
+			.swiper-wrapper
+				each image in page.gallery
+					button.project-gallery__thumb.swiper-slide(type="button" data-src=`${baseDir}images/projects/project-${image}.jpg` aria-label="Показать фото")
+						img.project-gallery__image(src=`${baseDir}images/projects/project-${image}.jpg` alt="" loading="lazy" draggable="false")
+		+button({ view: 'arrow', ariaLabel: 'Предыдущие фото' }).project-gallery__arrow.project-gallery__arrow--prev.js-project-gallery-prev
+		+button({ view: 'arrow', ariaLabel: 'Следующие фото' }).project-gallery__arrow.project-gallery__arrow--next.js-project-gallery-next
+
+section.project-about.container
+	.project-about__column
+		h2.project-about__title= page.detailsTitle
+		dl.project-about__details
+			each item in page.details
+				.project-about__detail
+					dt.project-about__label= item.label
+					dd.project-about__value= item.value
+		//- кнопка stroke с иконкой документа слева (в +button иконки слева нет)
+		a.button.button--stroke.project-about__pdf(href=page.pdf.url)
+			+svg('document').project-about__pdf-icon
+			span.button__text= page.pdf.label
+
+	.project-about__column
+		h2.project-about__title= page.infoTitle
+		.project-about__text
+			each paragraph in page.info
+				p= typo(paragraph)
+
+section.product-slider(class=(sectionsGap ? 'product-slider--gap-' + sectionsGap : null))
+	.container
+		h2.product-slider__title.title.title--h2= page.productsTitle
+		.product-slider__slider.swiper.js-product-slider
+			.swiper-wrapper
+				each item in page.products
+					+productCard(item).product-card--slide.swiper-slide
+
+- var projectsTitle = page.similarTitle
+include ../sections/projects
+include ../sections/reviews
+include ../sections/feedback

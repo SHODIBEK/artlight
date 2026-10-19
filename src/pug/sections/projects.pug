@@ -1,6 +1,7 @@
-section.projects
+//- projectsTitle — свой заголовок (страница проекта: «Похожие проекты»), sectionsGap — отступ между секциями
+section.projects(class=(typeof sectionsGap !== 'undefined' && sectionsGap ? 'projects--gap-' + sectionsGap : null))
 	.container
-		h2.projects__title.title.title--h2= data.home.projects.title
+		h2.projects__title.title.title--h2= typeof projectsTitle !== 'undefined' ? projectsTitle : data.home.projects.title
 
 		.projects__slider.swiper.js-projects-slider
 			.swiper-wrapper

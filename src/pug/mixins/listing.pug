@@ -29,6 +29,9 @@
 			)
 		})
 
+		// карточка фиксированной высоты (слайдер «В проекте использовались») — рамка в px от центра, как в десктопе
+		vars.push('--p-x: ' + img.d[0] + 'px', '--p-y: ' + img.d[1] + 'px', '--p-w: ' + img.d[2] + 'px', '--p-h: ' + img.d[3] + 'px')
+
 		if (img.crop) {
 			vars.push('--crop-x: ' + img.crop[0] + '%', '--crop-y: ' + img.crop[1] + '%', '--crop-w: ' + img.crop[2] + '%', '--crop-h: ' + img.crop[3] + '%')
 		}

@@ -29,6 +29,7 @@ export default function productGalleryInit() {
 	galleries.forEach((gallery) => {
 		const count = gallery.querySelectorAll('.product-card__frame').length;
 		const card = gallery.closest('.product-card');
+		const inSlider = Boolean(gallery.closest('.swiper'));
 		let startX = 0;
 		let startY = 0;
 		let swiped = false;
@@ -59,7 +60,8 @@ export default function productGalleryInit() {
 		}, {passive: true});
 
 		gallery.addEventListener('touchend', (event) => {
-			if (!mobile.matches) {
+			// в слайдере карточек свайп листает слайдер, а не фото
+			if (!mobile.matches || inSlider) {
 				return;
 			}
 

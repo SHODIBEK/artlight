@@ -1,0 +1,288 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Страница проекта: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-2938,
+// моб. node-id=2-16859. Шапка — .listing-head (крошки, H1), ниже теги, фото, детали / информация,
+// слайдер товаров «В проекте использовались», «Похожие проекты» (секция главной), отзывы, форма.
+
+// теги проекта под заголовком: серые плашки 26
+.project-tags {
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 12px;
+	gap: 8px;
+
+	&__item {
+		padding: 4px 9px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 0;
+	}
+}
+
+// большое фото (472 / 767 при 1728) + лента фото: моб. — по одному на всю ширину (368), ≥ 768 — 431 × 320 по центру
+.project-gallery {
+	margin-top: 30px;
+
+	&__main {
+		position: relative;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		overflow: hidden;
+		padding: 30px;
+		height: 472px;
+	}
+
+	&__photo {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: opacity $duration-normal;
+
+		&.is-changing {
+			opacity: 0;
+		}
+	}
+
+	&__watermark {
+		position: relative;
+		font-weight: 500;
+		font-size: 23px;
+		line-height: 28px;
+		color: rgba(255, 255, 255, 0.4);
+		pointer-events: none;
+	}
+
+	&__strip {
+		position: relative;
+		margin-top: 60px;
+	}
+
+	&__thumb {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		outline: none;
+		border: 0;
+		padding: 0;
+		width: 100%;
+		height: 368px;
+		background: none;
+		cursor: pointer;
+
+		@include photo-hover(".project-gallery__image");
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: -2px;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	// моб. — у краёв фото (поле 16), ≥ 768 — в зазорах между 1–2 и 4–5 фото ленты (центр ± 676.5)
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		background-color: var(--color-light-grey);
+		transform: translateY(-50%);
+
+		@include state-hover {
+			background-color: var(--color-accent);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-accent-pressed);
+		}
+
+		@include state-focus {
+			background-color: var(--color-light-grey);
+		}
+
+		// отражаем всю кнопку, а не иконку: анимация ховера (button-nudge) задаёт иконке свой transform;
+		// так и стрелка на ховере ходит влево
+		&--prev {
+			left: 16px;
+			transform: translateY(-50%) scaleX(-1);
+		}
+
+		&--next {
+			right: 16px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__main {
+			height: clamp(472px, 44.39vw, 767px); // 767 при 1728
+		}
+
+		&__strip {
+			margin-top: 40px;
+		}
+
+		&__thumb {
+			width: 431px;
+			height: 320px;
+		}
+
+		&__arrow {
+			&--prev {
+				left: max(16px, calc(50% - 708.5px));
+			}
+
+			&--next {
+				right: max(16px, calc(50% - 708.5px));
+			}
+		}
+	}
+}
+
+// «Детали» и «Информация»: моб. — друг под другом (60), ≥ 768 — две колонки (20)
+.project-about {
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	color: var(--color-black);
+	gap: 60px;
+
+	&__column {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		align-items: flex-start;
+		min-width: 0;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 29px;
+		text-transform: uppercase;
+	}
+
+	&__details {
+		display: flex;
+		flex-direction: column;
+		margin: 20px 0 0;
+		gap: 20px;
+	}
+
+	&__detail {
+		display: flex;
+		flex-direction: column;
+		font-size: 18px;
+		line-height: 22px;
+		gap: 8px;
+	}
+
+	&__label {
+		color: var(--color-black-60);
+	}
+
+	&__value {
+		margin: 0;
+	}
+
+	&__pdf {
+		margin-top: 20px;
+		padding: 0 30px;
+		width: 100%;
+		height: 60px;
+	}
+
+	&__pdf-icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	// абзацы через пустую строку; шаг строк 20 — как в макете (23 строки = 460)
+	&__text {
+		margin-top: 20px;
+		font-size: 16px;
+		line-height: 20px;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 20px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		flex-direction: row;
+		margin-top: 120px;
+		gap: 20px;
+
+		&__details {
+			margin-top: 30px;
+			gap: 30px;
+		}
+
+		&__pdf {
+			margin-top: 30px;
+			width: auto;
+		}
+
+		&__text {
+			margin-top: 30px;
+		}
+	}
+}
+
+// слайдер товаров «В проекте использовались»: карточки 332.8 / 356 (шаг 20), лента уходит за правый край экрана
+.product-slider {
+	overflow: hidden;
+	margin-top: 100px;
+
+	&__title {
+		font-size: 30px;
+		line-height: 36px;
+	}
+
+	// справа — до края экрана, слева режем по полю контейнера;
+	// в макете карточка 514 стоит в ряду 509 со сдвигом −2.5 (выступает сверху и снизу)
+	&__slider {
+		clip-path: inset(0 -100vw 0 0);
+		overflow: visible;
+		margin-top: 17.5px;
+		margin-bottom: -2.5px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&--gap-120 {
+			margin-top: 120px;
+		}
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__slider {
+			margin-top: 27.5px;
+		}
+	}
+}
