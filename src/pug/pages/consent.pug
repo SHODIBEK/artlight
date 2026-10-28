@@ -1,0 +1,20 @@
+//- «Согласие пользователя сайта на обработку персональных данных»: десктоп node-id=2-4897, моб. node-id=2-19127
+- var page = data.consentPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= typo(page.title)
+
+.legal-text.container
+	.legal-text__inner
+		each paragraph in page.paragraphs
+			if paragraph.includes('{email}')
+				p
+					| #{typo(paragraph.replace('{email}', ''))}
+					a.legal-text__link(href=`mailto:${page.email}`)= page.email
+			else
+				p= typo(paragraph)
+
+include ../sections/reviews
+- var feedbackData = page.feedback
+include ../sections/feedback

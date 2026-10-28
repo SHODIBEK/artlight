@@ -45,7 +45,7 @@ footer.footer(class=[typeof compactSections !== 'undefined' && compactSections ?
 					+checkbox({ name: 'agree_personal', value: 'y' }).footer__checkbox
 						span.checkbox__label
 							| #{typo(footer.subscribe.agreementPersonal)}
-							a.footer__agreement-link(href=footer.subscribe.agreementPersonalLink.url target="_blank" rel="noopener")= footer.subscribe.agreementPersonalLink.name
+							a.footer__agreement-link(href=footer.subscribe.agreementPersonalLink.url)= footer.subscribe.agreementPersonalLink.name
 
 				ul.footer__socials
 					each social in data.socials

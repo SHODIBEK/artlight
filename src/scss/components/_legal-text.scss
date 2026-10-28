@@ -1,0 +1,42 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Текст юридических страниц («Согласие на обработку персональных данных»: десктоп node-id=2-4897, моб. 2-19127).
+// Абзацы без отступов; моб. 15 / 18, ≥ 768 — 20 / 24, колонка 888 по центру (в макете поля 400).
+.legal-text {
+	margin-top: 30px;
+	color: var(--color-black);
+
+	&__inner {
+		font-size: 15px;
+		line-height: 18px;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__inner {
+			margin: 0 auto;
+			max-width: 888px;
+			font-size: 20px;
+			line-height: 24px;
+		}
+	}
+}
