@@ -1514,3 +1514,20 @@
 		],
 		feedback: data.cooperationPage.feedback,
 	};
+
+	//- «IES/LDT файлы» — вариант с карточками (фото + ссылка на архив)
+	//- в макете у всех карточек «ART-MG23_IES», фото по кругу: карданный, подвесной, линейный
+	data.iesCardsPage = {
+		breadcrumbs: data.iesPage.breadcrumbs,
+		title: data.iesPage.title,
+		intro: data.iesPage.intro,
+		note: data.iesPage.note,
+		searchPlaceholder: data.iesPage.searchPlaceholder,
+		empty: data.iesPage.empty,
+		cards: Array.from({ length: 30 }, (item, index) => ({
+			name: 'ART-MG23_IES',
+			file: 'https://artlight.ru/upload/iblock/621/lqxozj83opl1gdkrq0bgae3qphqqjik0/ART-MG23_IES.7z',
+			image: ['gimbal', 'pendant', 'gimbal', 'linear', 'gimbal', 'gimbal', 'pendant', 'linear', 'gimbal', 'pendant'][index % 10],
+		})),
+		feedback: data.cooperationPage.feedback,
+	};

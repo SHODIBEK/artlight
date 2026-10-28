@@ -1,0 +1,31 @@
+//- «IES/LDT файлы» с карточками: десктоп node-id=2-5567, моб. node-id=2-18986
+- var page = data.iesCardsPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+.js-ies
+	.ies-cards-intro.container
+		.ies-cards-intro__inner
+			.ies-cards-intro__text
+				each paragraph in page.intro
+					p.ies-cards-intro__paragraph= typo(paragraph)
+			p.ies-cards-intro__note
+				| #{typo(page.note.before)}#{' '}
+				a.ies-cards-intro__mail(href=`mailto:${page.note.email}`)= page.note.email
+				| #{typo(page.note.after)}
+			+search({ placeholder: page.searchPlaceholder }).ies-cards-intro__search.js-ies-search
+
+	.ies-cards.container
+		ul.ies-cards__grid
+			each card in page.cards
+				li.ies-cards__item.js-ies-item(data-name=card.name.toLowerCase())
+					a.ies-card(href=card.file target="_blank" rel="noopener")
+						span.ies-card__picture
+							img.ies-card__image(src=`images/ies/ies-${card.image}.webp` alt=card.name width="644" height="836" loading="lazy")
+						span.ies-card__name= card.name
+		p.ies-cards__empty.js-ies-empty(hidden)= page.empty
+
+- var feedbackData = page.feedback
+include ../sections/feedback
