@@ -1,7 +1,7 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
 // «IES/LDT файлы»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-4736,
 // моб. node-id=2-18833. < 1280 — в колонку: текст, список файлов, «Если вы не нашли…»;
-// ≥ 1280 — 2 колонки по 824: слева текст и «Если вы не нашли…», справа список и поиск по нему.
+// ≥ 1280 — 2 колонки по 824: слева текст и «Если вы не нашли…», справа поиск и список.
 .ies {
 	margin-top: 30px;
 	color: var(--color-black);
@@ -57,7 +57,7 @@
 		color: var(--color-black-60);
 	}
 
-	&__search {
+	&__search-bar {
 		display: none;
 	}
 
@@ -103,20 +103,14 @@
 			margin-top: 58px;
 		}
 
-		// в макете — под списком; липнет к низу экрана, пока виден список
+		// под заголовком списка (в макете — под списком), отступы 30 — как пустая строка списка
+		&__search-bar {
+			display: block;
+			margin-top: 30px;
+		}
+
 		&__search {
-			position: sticky;
-			bottom: 20px;
-			z-index: 1;
-			display: flex;
-			margin-top: 40px;
 			width: 254px;
-			background-color: var(--color-white);
 		}
 	}
-}
-
-// .site обрезает по ширине через overflow-x: hidden — с ним не работает sticky у поиска; clip не создаёт прокрутку
-.site:has(.js-ies) {
-	overflow-x: clip;
 }
