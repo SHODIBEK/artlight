@@ -1,0 +1,42 @@
+//- «Благодарности»: десктоп node-id=2-3773, моб. node-id=2-18099
+- var page = data.thanksPage
+- var thanksImg = (name) => `${baseDir}images/thanks/${name}.webp`
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+.thanks-list.container
+	.thanks-list__grid
+		each item, index in page.items
+			figure.thanks-card(class=(index >= page.mobileCount ? 'thanks-card--desktop' : null))
+				//- 1-й ряд — первый экран: фото без lazy
+				img.thanks-card__image(src=thanksImg(item.image) width="724" height="1024" alt=item.author)&attributes(index < 4 ? (index === 0 ? { fetchpriority: 'high' } : {}) : { loading: 'lazy' })
+				figcaption.thanks-card__caption
+					p.thanks-card__text= typo(item.text)
+					p.thanks-card__author= typo(item.author)
+
+section.thanks-note.container(class=(sectionsGap ? 'thanks-note--gap-' + sectionsGap : null))
+	.thanks-note__inner
+		h2.thanks-note__title= typo(page.note.title)
+		.thanks-note__text
+			each paragraph in page.note.paragraphs
+				p.thanks-note__paragraph
+					if Array.isArray(paragraph)
+						each line, lineIndex in paragraph
+							if lineIndex
+								br
+							| #{typo(line)}
+					else
+						| #{typo(paragraph)}
+			p.thanks-note__paragraph
+				| #{page.note.question}
+				br
+				| Напишите нам на почту
+				|
+				a.thanks-note__link(href=`mailto:${page.note.email}?subject=${encodeURIComponent(page.note.subject)}`)= page.note.email
+				|
+				| #{typo('с темой «' + page.note.subject + '».')}
+
+include ../sections/reviews
+include ../sections/feedback
