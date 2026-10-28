@@ -1,0 +1,64 @@
+//- Страница новости: десктоп node-id=2-3275, моб. node-id=2-19671
+- var page = data.newsPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title.listing-head__title--news= typo(page.title)
+	.news-meta
+		span.news-meta__tag= page.tag
+		time.news-meta__date(datetime=page.datetime)
+			+svg('calendar').news-meta__icon
+			span.news-meta__value= page.date
+
+//- обложка на всю ширину (как большое фото страницы проекта)
+.news-cover
+	img.news-cover__photo(src=`${baseDir}images/projects/project-${page.photo}.jpg` alt=page.title)
+	span.news-cover__watermark(aria-hidden="true")= page.watermark
+
+article.news-article
+	.container
+		p.news-article__lead= typo(page.lead)
+
+		.news-article__body
+			each section in page.sections
+				.news-article__section
+					h2.news-article__title= typo(section.title)
+					//- link — текст раздела целиком ссылкой (внешний сайт — в новой вкладке)
+					#{section.link ? 'a' : 'div'}.news-article__text(class=(section.link ? 'news-article__text--link' : null) href=section.link target=(section.link ? '_blank' : null) rel=(section.link ? 'noopener noreferrer' : null))
+						each paragraph in section.paragraphs
+							p= typo(paragraph)
+
+	//- лента фото: в макете 474 × 480 по центру с выходом за края экрана, свайп (в моб. макете ленты нет)
+	.news-gallery
+		.news-gallery__slider.swiper.js-news-gallery
+			.swiper-wrapper
+				each image in page.gallery
+					.news-gallery__slide.swiper-slide
+						img.news-gallery__image(src=`${baseDir}images/projects/project-${image}.jpg` alt="" loading="lazy" draggable="false")
+
+	.container
+		.news-article__body.news-article__body--finale
+			.news-article__section
+				h2.news-article__title= typo(page.finale.title)
+				.news-article__text
+					each paragraph, index in page.finale.paragraphs
+						p(class=(index ? 'news-article__extra' : null))= typo(paragraph)
+
+section.product-slider
+	.container
+		h2.product-slider__title.title.title--h2= page.productsTitle
+		.product-slider__slider.swiper.js-product-slider
+			.swiper-wrapper
+				each item in page.products
+					+productCard(item).product-card--slide.swiper-slide
+
+section.news-similar
+	.container
+		h2.news-similar__title.title.title--h2= page.similarTitle
+		.news-similar__slider.swiper.js-news-similar
+			.swiper-wrapper
+				each item in page.similar
+					+blogCard(item, data.blogPage).blog-card--slide.swiper-slide
+
+include ../sections/reviews
+include ../sections/feedback

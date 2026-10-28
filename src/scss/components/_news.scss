@@ -1,0 +1,307 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Страница новости: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-3275,
+// моб. node-id=2-19671. Шапка — .listing-head (крошки, H1 44 / 24), рубрика и дата, обложка на всю ширину,
+// текст статьи (лид 814 по центру, разделы 1178), лента фото (только ≥ 768), «Связанные коллекции»
+// (.product-slider страницы проекта), «Похожие новости» (карточки блога), отзывы, форма. Между секциями 150 / 100.
+
+.listing-head__title--news {
+	font-size: 24px;
+	line-height: 29px;
+
+	@media (min-width: #{$tablet}px) {
+		font-size: 44px;
+		line-height: 53px;
+	}
+}
+
+// рубрика (серая плашка 26) и дата с иконкой календаря
+.news-meta {
+	display: flex;
+	align-items: flex-start;
+	margin-top: 12px;
+	color: var(--color-black);
+	gap: 10px;
+
+	&__tag {
+		padding: 4px 9px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		background-color: var(--color-light-grey);
+	}
+
+	&__date {
+		display: flex;
+		align-items: center;
+		height: 24px;
+		gap: 4px;
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__value {
+		padding-top: 4px;
+		font-size: 16px;
+		line-height: 20px;
+		white-space: nowrap;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 8px;
+	}
+}
+
+// обложка: 472 / 767 при 1728 (как большое фото страницы проекта), надпись — только ≥ 768
+.news-cover {
+	position: relative;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+	overflow: hidden;
+	margin-top: 30px;
+	padding: 30px;
+	height: 472px;
+
+	&__photo {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__watermark {
+		position: relative;
+		display: none;
+		font-weight: 500;
+		font-size: 23px;
+		line-height: 28px;
+		color: rgba(255, 255, 255, 0.4);
+		pointer-events: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+		height: clamp(472px, 44.39vw, 767px);
+
+		&__watermark {
+			display: block;
+		}
+	}
+}
+
+// текст статьи: моб. 16/19, ≥ 768 — 20/24; абзацы через пустую строку
+.news-article {
+	margin-top: 100px;
+	color: var(--color-black);
+
+	&__lead {
+		margin: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		margin-top: 60px;
+		gap: 30px;
+
+		&--finale {
+			margin-top: 60px;
+		}
+	}
+
+	&__section {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 29px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 19px;
+		}
+
+		// ссылка: подчёркивание как в макете (толщина и положение — из шрифта), ховер — как пункт меню
+		&--link {
+			display: block;
+			outline: none;
+			text-decoration: underline;
+			text-underline-position: from-font;
+			color: inherit;
+			transition: color $duration-normal;
+			text-decoration-thickness: from-font;
+
+			@include state-hover {
+				color: var(--color-black-60);
+			}
+
+			@include state-focus {
+				outline: 2px solid var(--color-black);
+				outline-offset: 2px;
+			}
+		}
+	}
+
+	// в моб. макете у «Ждём вас на выставке!» один абзац
+	&__extra {
+		display: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__lead {
+			margin: 0 auto;
+			max-width: 814px;
+			font-size: 20px;
+			line-height: 24px;
+			text-align: center;
+		}
+
+		&__body {
+			margin: 150px auto 0;
+			max-width: 1178px;
+			gap: 20px;
+
+			&--finale {
+				margin-top: 150px;
+			}
+		}
+
+		&__section {
+			gap: 20px;
+		}
+
+		&__text {
+			font-size: 20px;
+			line-height: 24px;
+
+			p + p {
+				margin-top: 24px;
+			}
+		}
+
+		&__extra {
+			display: block;
+		}
+
+		&__body--finale &__section,
+		&__body--finale &__text {
+			gap: 30px;
+		}
+
+		&__body--finale &__text {
+			display: flex;
+			flex-direction: column;
+
+			p + p {
+				margin-top: 0;
+			}
+		}
+	}
+}
+
+// лента фото 474 × 480 (шаг 20): в макете центр экрана — зазор между 2-м и 3-м фото, лента выходит за оба края.
+// Swiper центрирует слайд, поэтому сдвигаем сам слайдер на половину шага влево (центр слайдера = центр 2-го фото)
+.news-gallery {
+	display: none;
+	overflow: hidden;
+	margin-top: 174px; // в макете 150 + 24: после текста раздела пустые строки
+
+	&__slider {
+		overflow: visible;
+		margin-left: -494px;
+	}
+
+	&__slide {
+		overflow: hidden;
+		width: 474px;
+		height: 480px;
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		display: block;
+	}
+}
+
+// «Похожие новости»: моб. — лента карточек 320 (шаг 16) до правого края экрана, ≥ 768 — по 2, ≥ 1280 — 4 в ряд (407)
+.news-similar {
+	overflow: hidden;
+	margin-top: 100px;
+
+	&__title {
+		font-size: 30px;
+		line-height: 36px;
+	}
+
+	&__slider {
+		clip-path: inset(0 -100vw 0 0);
+		overflow: visible;
+		margin-top: 22.5px; // в моб. макете карточка 506.5 стоит в ряду 509 со сдвигом 2.5
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__slider {
+			margin-top: 30px;
+		}
+	}
+}
+
+.blog-card--slide {
+	width: 320px;
+
+	.blog-card__picture {
+		height: 304px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		width: calc((100% - 20px) / 2);
+
+		.blog-card__picture {
+			height: 480px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		width: calc((100% - 60px) / 4);
+	}
+}

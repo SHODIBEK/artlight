@@ -5,16 +5,19 @@
 	line-height: 18px;
 	color: var(--color-black-60);
 
+	// пункты в строку текстом: длинный текущий пункт переносится по словам, а не уходит целиком на новую строку
 	&__list {
-		display: flex;
-		flex-wrap: wrap;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 
+	&__item {
+		display: inline;
+	}
+
 	&__separator {
-		white-space: pre;
+		white-space: pre-wrap;
 	}
 
 	&__link {

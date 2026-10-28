@@ -22,6 +22,7 @@ import projectTypesInit from "./components/project-types";
 import projectGalleryInit from "./components/project-gallery";
 import productSliderInit from "./components/product-slider";
 import videoPlayerInit from "./components/video-player";
+import newsSlidersInit from "./components/news-sliders";
 
 ieFix();
 vhFix();
@@ -43,5 +44,6 @@ filtersInit();
 projectGalleryInit();
 productSliderInit();
 videoPlayerInit();
+newsSlidersInit();
 productGalleryInit();
 projectTypesInit();
