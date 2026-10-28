@@ -406,3 +406,27 @@
 		}
 	}
 }
+
+// «Работа у нас» (vacancies.html, десктоп node-id=2-6851, моб. 2-20981): поля и фото «О компании», без текста;
+// моб. — сообщение 159, файл 56; ≥ 1280 — вакансия на всю ширину, остальные по 2 в ряд
+.feedback--vacancy {
+	.feedback__input--textarea {
+		height: 159px;
+	}
+
+	.feedback__file {
+		height: 56px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		.feedback__input--textarea {
+			height: 125px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		.feedback__input--select {
+			grid-column: 1 / -1;
+		}
+	}
+}

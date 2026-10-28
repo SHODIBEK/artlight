@@ -1,0 +1,192 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Работа у нас»: десктоп node-id=2-6732, моб. 2-20866.
+// Шаг строк: Medium 16 × 1.2 → 19, 20 × 1.2 → 24; Bold 20 × 1.2 → 24, 26 × 1.2 → 31; Regular 16 × 1.5 → 24.
+
+// текст + фото: < 1280 — фото под текстом, ≥ 1280 — 2 колонки по 834
+.vacancies-intro {
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	color: var(--color-black);
+	gap: 20px;
+
+	&__text {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+
+		p {
+			margin: 0;
+		}
+
+		// между абзацами — пустая строка
+		p + p {
+			margin-top: 19px;
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+		color: inherit;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&__picture {
+		position: relative;
+		overflow: hidden;
+		height: 493px;
+	}
+
+	&__photo {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__text {
+			font-size: 20px;
+			line-height: 24px;
+
+			p + p {
+				margin-top: 24px;
+			}
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: grid;
+		align-items: start;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+// вакансии: моб. — поля 20 (в макете карточки 362), ≥ 1280 — по 2 в ряд
+.vacancies {
+	display: grid;
+	margin-top: 100px;
+	gap: 20px;
+
+	@media (max-width: #{$tablet - 1}px) {
+		padding-right: 20px;
+		padding-left: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 60px;
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		align-items: start;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.vacancy-card {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 20px;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	gap: 20px;
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		font-size: 16px;
+		line-height: 24px;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	// подробности: высота анимируется 0fr → 1fr (accordion.js); −20 — компенсирует gap карточки, пока закрыто
+	&__body {
+		display: grid;
+		grid-template-rows: 0fr;
+		margin-top: -20px;
+		transition: grid-template-rows $duration-normal;
+
+		.is-open > & {
+			grid-template-rows: 1fr;
+		}
+	}
+
+	&__inner {
+		overflow: hidden;
+		min-height: 0;
+	}
+
+	// между блоками — пустая строка (шаг строк 24)
+	&__group {
+		padding-top: 24px;
+	}
+
+	&__link {
+		text-decoration: underline;
+		color: inherit;
+		transition: color $duration-normal;
+		text-underline-offset: 2px;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	&__less,
+	.is-open &__more {
+		display: none;
+	}
+
+	.is-open &__less {
+		display: inline;
+	}
+
+	// стрелка «Свернуть» — вверх-влево
+	&__circle {
+		transition: background-color $duration-normal, transform $duration-normal;
+
+		.is-open & {
+			transform: rotate(-90deg);
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 30px;
+
+		&__title {
+			font-size: 26px;
+			line-height: 31px;
+		}
+
+		&__button {
+			width: auto;
+		}
+	}
+}

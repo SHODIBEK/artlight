@@ -1,0 +1,56 @@
+//- «Работа у нас»: десктоп node-id=2-6732, моб. node-id=2-20866
+- var page = data.vacanciesPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= typo(page.title)
+
+//- текст + фото: < 1280 — фото под текстом, ≥ 1280 — 2 колонки по 834
+section.vacancies-intro.container
+	.vacancies-intro__text
+		each paragraph in page.intro
+			if paragraph.includes('{hh}')
+				- var parts = paragraph.split('{hh}')
+				p
+					| #{typo(parts[0])}
+					a.vacancies-intro__link(href=page.hh.url target="_blank" rel="noopener")= page.hh.name
+					| #{parts[1]}
+			else
+				p= typo(paragraph)
+	.vacancies-intro__picture
+		img.vacancies-intro__photo(src=`${baseDir}images/vacancies/${page.photo}.webp` width="834" height="493" alt=page.title fetchpriority="high")
+
+//- вакансии: < 1280 — в колонку, ≥ 1280 — по 2 в ряд; «Подробнее» раскрывает details (accordion.js), кнопка → «Свернуть»
+section.vacancies.container
+	each item, index in page.vacancies
+		- var bodyId = `vacancy-${index + 1}-details`
+		article.vacancy-card.js-accordion-item
+			h2.vacancy-card__title= typo(item.title)
+			.vacancy-card__text
+				each line in item.lines
+					p= typo(line)
+			.vacancy-card__body.js-accordion-body(id=bodyId)
+				.vacancy-card__inner
+					each group in item.details
+						.vacancy-card__text.vacancy-card__group
+							p= typo(group.title)
+							each line in group.lines
+								if line.includes('{email}')
+									- var parts = line.split('{email}')
+									p
+										| #{typo(parts[0])}
+										a.vacancy-card__link(href=`mailto:${page.email}`)= page.email
+										| #{typo(parts[1])}
+								else
+									p= typo(line)
+			//- разметка +button (main), но два текста — «Подробнее» / «Свернуть»
+			button.button.button--main.vacancy-card__button.js-accordion-toggle(type="button" aria-expanded="false" aria-controls=bodyId)
+				span.button__text
+					span.vacancy-card__more= page.button
+					span.vacancy-card__less= page.buttonClose
+				span.button__circle.vacancy-card__circle
+					+svg('arrow-up-right').button__icon
+
+include ../sections/reviews
+- var feedbackData = page.feedback
+include ../sections/feedback
