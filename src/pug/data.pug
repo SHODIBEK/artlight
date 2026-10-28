@@ -1351,3 +1351,40 @@
 			{ name: 'Магнитный шинопровод и комплектующие', image: 'busbar-magnetic', d: [-215.33, -321, 736], m: [-305, -365, 736] },
 		],
 	});
+
+	// «Результаты поиска» (search.html): десктоп node-id=2-3979, моб. node-id=2-18271.
+	// Товары — как в data.lights (в макете у всех «Светильник встраиваемый»): ≥ 1600 — 8 (4 × 2), 1280–1599 и 768–1279 — 9 (3 × 3),
+	// моб. — 10 (2 × 5), порядок по десктопу (в моб. макете другой). Статьи — карточки «Блога» (рубрика/анонс — из data.blogPage)
+	data.searchPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Результаты поиска по запросу «Art»' },
+		],
+		title: 'Результаты поиска по запросу «Art»',
+		query: 'Art',
+		placeholder: 'Поиск по ARTLIGHT',
+		scopes: ['Искать везде', 'В каталоге', 'В продукции других производителей', 'По всему сайту'],
+		scopeLabel: 'Где искать',
+		submit: 'Показать',
+		sort: ['Сначала новые', 'Релевантность'],
+		// sort: true — плашка сортировки, 'desktop' — только ≥ 768 (в моб. макете нет)
+		sections: [
+			{ id: 'catalog', title: 'Каталог', sort: true, type: 'products' },
+			{ id: 'others', title: 'Продукция других производителей', type: 'products' },
+			{ id: 'site', title: 'Поиск по всему сайту', sort: 'desktop', type: 'articles' },
+		],
+		products: data.lights.products.slice(0, 10).map(function (item) {
+			return Object.assign({}, item, { text: 'Светильник встраиваемый' })
+		}),
+		articles: [
+			{ image: 'oceania-shopping-mall', shade: true },
+			{ image: 'zoological-museum' },
+			{ image: 'restaurant-organic' },
+			{ image: 'oceania-shopping-mall', shade: true },
+			{ image: 'zoological-museum' },
+			{ image: 'restaurant-organic' },
+		],
+		// общие для статей; в заголовке тут «партнёр»
+		article: Object.assign({}, data.blogPage, { name: 'ARTLIGHT — авторизованный партнёр DIALux' }),
+		pagination: { current: 1, total: 3 },
+	};

@@ -1,0 +1,24 @@
+// Форма на странице «Результаты поиска»: запрос, где искать, «Показать».
+// Десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-3985, моб. node-id=2-18278.
+// Моб. — в колонку (шаг 12), ≥ 768 — в строку: поля поровну, кнопка 195
+.search-form {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	gap: 12px;
+
+	&__submit {
+		height: 56px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		flex-direction: row;
+		margin-top: 30px;
+		gap: 20px;
+
+		&__field {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+	}
+}

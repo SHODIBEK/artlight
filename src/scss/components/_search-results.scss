@@ -1,0 +1,106 @@
+// Разделы страницы «Результаты поиска»: «Каталог», «Продукция других производителей» (товары),
+// «Поиск по всему сайту» (статьи).
+// Десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-3993, моб. node-id=2-18286.
+// Товары: 2 / 3 (768+) / 4 (1600+) в ряд — моб. 10, до 1600 — 9, ≥ 1600 — 8 карточек. Статьи: 1 / 2 / 3, моб. — 5.
+// Между разделами 30 / 40
+.search-results {
+	margin-top: 30px;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__sort {
+		flex-shrink: 0;
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		margin-top: 24px;
+		gap: 24px 16px;
+	}
+
+	&__pagination {
+		justify-content: center;
+		margin-top: 24px;
+		gap: 16px;
+	}
+
+	&--articles &__grid {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 40px 20px;
+	}
+
+	@media (max-width: #{$tablet - 1}px) {
+		&__sort--desktop,
+		.blog-card--desktop {
+			display: none;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			margin-top: 20px;
+			gap: 25px 20px; // в макете ряды по 509 + 30 при карточке 514 — шаг 539 (как в списке товаров)
+		}
+
+		&__pagination {
+			margin-top: 20px;
+			gap: 8px;
+		}
+
+		// карточка 514 по центру ряда 509 (y −2.5): сетка и пагинация — 20 − 2.5
+		&--products &__grid {
+			margin-top: 17.5px;
+		}
+
+		&--products &__pagination {
+			margin-top: 17.5px;
+		}
+
+		&--products &__grid > :nth-child(n + 10) {
+			display: none;
+		}
+
+		&--articles &__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&--articles &__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: #{$header-full}px) {
+		&--products &__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		&--products &__grid > :nth-child(n + 9) {
+			display: none;
+		}
+	}
+}

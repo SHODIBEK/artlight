@@ -82,7 +82,7 @@ mixin checkbox(opts)
 //- @demo +input({ name: 'email', type: 'email', placeholder: 'Почта', action: true, white: true })
 //- @demo +input({ name: 'comment', placeholder: 'Дополнительная информация', textarea: true })
 //- @demo +input({ name: 'topic', placeholder: 'Тема обращения', options: ['Консультация', 'Другое'], line: true })
-//- textarea — многострочное поле; options — выпадающий список (placeholder — пустой пункт);
+//- textarea — многострочное поле; options — выпадающий список (placeholder — пустой пункт, value — выбранный вариант вместо него);
 //- line — белое поле с серой линией снизу (попапы); attrs — доп. атрибуты самого поля (autocomplete, class для JS…)
 mixin input(opts)
 	-
@@ -102,9 +102,10 @@ mixin input(opts)
 				required=o.required
 				aria-label=o.ariaLabel || o.placeholder
 			)&attributes(o.attrs || {})
-				option(value="" selected disabled hidden)= o.placeholder
+				if !o.value
+					option(value="" selected disabled hidden)= o.placeholder
 				each option in o.options
-					option(value=option)= option
+					option(value=option selected=(option === o.value))= option
 			+svg('select-chevron').input__chevron
 		else if o.textarea
 			textarea.input__field(

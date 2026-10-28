@@ -28,6 +28,15 @@
 		&--narrow {
 			min-width: 100%;
 		}
+
+		// сортировка на странице поиска (открытое состояние в макете 2-4000): поля 14, вариант 177.5, тень 54
+		&--check {
+			top: calc(100% + 7.5px);
+			padding: 14px;
+			min-width: 0;
+			box-shadow: 0 0 54px rgba(0, 0, 0, 0.05);
+			scrollbar-gutter: auto;
+		}
 	}
 
 	// у правого края экрана (dropdown.js ставит, если панель не помещается) — по правому краю плашки
@@ -86,6 +95,35 @@
 
 		&.is-active {
 			font-weight: 600;
+		}
+	}
+
+	// активный вариант — галочкой слева, без жирного (текст в 26.5 от края)
+	&__check {
+		position: absolute;
+		left: -5.75px; // в иконке 24 галочка 12.5 × 8.5 начинается с 5.75
+		top: 50%;
+		width: 24px;
+		height: 24px;
+		opacity: 0;
+		transform: translateY(-50%);
+	}
+
+	&--check {
+		gap: 14px;
+	}
+
+	&--check &__link {
+		position: relative;
+		padding-left: 26.5px;
+		min-width: 177.5px;
+
+		&.is-active {
+			font-weight: 400;
+		}
+
+		&.is-active .filter-options__check {
+			opacity: 1;
 		}
 	}
 }

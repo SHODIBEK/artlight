@@ -1,0 +1,40 @@
+//- «Результаты поиска»: десктоп node-id=2-3979, моб. node-id=2-18271
+- var page = data.searchPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= typo(page.title)
+
+	form.search-form(action="search.html" method="get" role="search")
+		+input({ name: 'q', value: page.query, placeholder: page.placeholder, attrs: { enterkeyhint: 'search' } }).input--outline.search-form__field
+		+input({ name: 'where', value: page.scopes[0], options: page.scopes, ariaLabel: page.scopeLabel }).input--outline.search-form__field
+		+button({ view: 'main', label: page.submit, icon: false, type: 'submit' }).search-form__submit
+
+each section in page.sections
+	section.search-results.container(class=`search-results--${section.type}`)
+		.search-results__head
+			h2.search-results__title= typo(section.title)
+			if section.sort
+				+dropdown({ cls: ['dropdown--right', 'search-results__sort', section.sort === 'desktop' ? 'search-results__sort--desktop' : null] })
+					+listingChip(page.sort[0], { icon: 'sort', cls: 'js-dropdown-toggle', labelCls: 'js-dropdown-value' })(aria-expanded="false")
+					.dropdown__panel.dropdown__panel--check
+						ul.filter-options.filter-options--links.filter-options--check
+							each option, index in page.sort
+								li.filter-options__item
+									button.filter-options__link.js-dropdown-option(type="button" class=(index === 0 ? 'is-active' : null))
+										+svg('check').filter-options__check
+										| #{option}
+
+		.search-results__grid
+			if section.type === 'products'
+				each item, index in page.products
+					//- первый ряд «Каталога» — на первом экране (фото без lazy)
+					+productCard(item, section.id === 'catalog' && index < 4).product-card--wide
+			else
+				each item, index in page.articles
+					+blogCard(item, page.article)(class=(index >= 5 ? 'blog-card--desktop' : null))
+
+		+pagination(page.pagination.current, page.pagination.total).search-results__pagination
+
+include ../sections/reviews
+include ../sections/feedback

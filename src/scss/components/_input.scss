@@ -188,6 +188,38 @@
 		}
 	}
 
+	// страница поиска: белое поле 56 с серой обводкой (в т. ч. заполненное), поля 24; шеврон 8×5 в 17 от края
+	&--outline {
+		--input-pad-x: 24px;
+
+		padding: 0 24px;
+		height: 56px;
+		background-color: var(--color-white);
+
+		&,
+		&:has(#{$b}__field:not(:placeholder-shown)),
+		&.is-filled {
+			@include stroke(1px, var(--color-stroke));
+		}
+
+		&#{$b}--select {
+			padding: 0;
+		}
+
+		#{$b}__chevron {
+			right: 17px;
+			width: 8px;
+			height: 5px;
+		}
+
+		&:not(.is-disabled):not(.is-readonly):focus-within,
+		&.is-focus {
+			background-color: var(--color-white);
+
+			@include stroke(3px, var(--color-accent));
+		}
+	}
+
 	// Input / Email: белый фон; плейсхолдер в макете чёрный
 	&--white {
 		box-shadow: none;

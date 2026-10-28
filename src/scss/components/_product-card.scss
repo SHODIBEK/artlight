@@ -260,6 +260,23 @@
 		}
 	}
 
+	// «Результаты поиска»: ≥ 1280 карточка шире 328 (407 в макете), фото 418 по высоте, рамка в px от центра
+	&--wide {
+		@media (min-width: #{$header-desktop}px) {
+			#{$b}__picture {
+				height: 418px;
+				aspect-ratio: auto;
+			}
+
+			#{$b}__frame {
+				left: calc(50% + var(--p-x));
+				top: calc(50% + var(--p-y));
+				width: var(--p-w);
+				height: var(--p-h);
+			}
+		}
+	}
+
 	// моб. — 10 карточек, как в макете
 	@media (max-width: #{$tablet - 1}px) {
 		&--desktop {
