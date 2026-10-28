@@ -25,6 +25,7 @@ import videoPlayerInit from "./components/video-player";
 import newsSlidersInit from "./components/news-sliders";
 import iesSearchInit from "./components/ies-search";
 import lazyBgInit from "./components/lazy-bg";
+import contactsSliderInit from "./components/contacts-slider";
 
 ieFix();
 vhFix();
@@ -49,5 +50,6 @@ videoPlayerInit();
 newsSlidersInit();
 iesSearchInit();
 lazyBgInit();
+contactsSliderInit();
 productGalleryInit();
 projectTypesInit();

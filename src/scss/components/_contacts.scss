@@ -1,0 +1,221 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Контакты»: десктоп node-id=2-6445, моб. node-id=2-20589.
+// Моб. / < 1280 — всё в колонку (шаг 20), ≥ 1280 — текст 804 + фото 864, карта под ними на всю ширину;
+// склад — текст + карта справа; сервисная служба и реквизиты — 2 колонки по 834. Между разделами 60.
+.contacts-nav {
+	margin-top: 12px;
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+	}
+}
+
+.contacts {
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	gap: 60px;
+}
+
+// заголовок раздела: моб. 24/29, ≥ 768 — 46/55
+.contacts-title {
+	margin: 0;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 29px;
+	text-transform: uppercase;
+	color: var(--color-black);
+
+	@media (min-width: #{$tablet}px) {
+		font-size: 46px;
+		line-height: 55px;
+	}
+}
+
+// строки контактов: иконка 24 + текст (моб. 16/19, ≥ 768 — 20/24), шаг 28
+.contacts-list {
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 28px 0 0;
+	padding: 0;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 19px;
+	color: var(--color-black);
+	gap: 28px;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		min-height: 24px;
+		gap: 8px;
+
+		// моб.: многострочный адрес — иконка по первой строке
+		&--address {
+			align-items: flex-start;
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__link {
+		text-decoration: underline;
+		text-underline-position: from-font;
+		color: inherit;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		font-size: 20px;
+		line-height: 24px;
+
+		&__item--address {
+			align-items: center;
+		}
+	}
+}
+
+.contacts-office {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 20px;
+	scroll-margin-top: calc(var(--header-height) + 60px + 20px); // под шапкой и табами
+
+	&__note {
+		margin-top: 28px;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		text-wrap: balance;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 18px; // пустая строка
+		}
+	}
+
+	&__photos,
+	&__map {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		height: 493px;
+	}
+
+	&__slider {
+		height: 100%;
+	}
+
+	&__slide {
+		height: 100%;
+	}
+
+	&__photo,
+	&__map-image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	// стрелки по краям фото (поле 30), по центру высоты
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		transform: translateY(-50%);
+
+		// отражаем всю кнопку: иконке на ховере анимация (button-nudge) задаёт свой transform
+		&--prev {
+			left: 30px;
+			transform: translateY(-50%) scaleX(-1);
+		}
+
+		&--next {
+			right: 30px;
+		}
+
+		&.swiper-button-disabled {
+			display: none;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		grid-template-columns: minmax(0, 804fr) minmax(0, 864fr);
+		gap: 60px 20px;
+
+		&__map {
+			grid-column: 1 / -1;
+		}
+
+		&--map &__map {
+			grid-column: auto;
+		}
+	}
+}
+
+// сервисная служба и реквизиты
+.contacts-columns {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 60px;
+
+	&__item {
+		scroll-margin-top: calc(var(--header-height) + 60px + 20px);
+	}
+
+	// моб. — на всю ширину, текст переносится в колонку 179 по центру
+	&__button {
+		margin-top: 28px;
+		width: 100%;
+		white-space: normal;
+
+		.button__text {
+			max-width: 179px;
+			text-align: center;
+		}
+	}
+
+	&__requisites {
+		margin: 28px 0 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__button {
+			width: auto;
+			white-space: nowrap;
+
+			.button__text {
+				max-width: none;
+			}
+		}
+
+		&__requisites {
+			font-size: 20px;
+			line-height: 24px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 20px;
+	}
+}

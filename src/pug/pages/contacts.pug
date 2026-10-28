@@ -1,0 +1,82 @@
+//- «Контакты»: десктоп node-id=2-6445, моб. node-id=2-20589
+- var page = data.contactsPage
+- var contactsImg = (name) => `${baseDir}images/contacts/${name}.webp`
+- var tabs = page.offices.concat([page.service, page.requisites])
+
+//- строки контактов: адрес, телефон, часы работы, почта (иконка 24 + текст)
+mixin contactsList(item)
+	ul.contacts-list
+		if item.address
+			li.contacts-list__item.contacts-list__item--address
+				+svg('map-pin').contacts-list__icon
+				span= typo(item.address)
+		if item.phone
+			li.contacts-list__item
+				+svg('cell-phone').contacts-list__icon
+				a.contacts-list__link(href=`tel:${item.phone.replace(/[^+\d]/g, '')}`)= item.phone
+		if item.hours
+			li.contacts-list__item
+				+svg('clock').contacts-list__icon
+				span= item.hours
+		if item.email
+			li.contacts-list__item
+				+svg('mail').contacts-list__icon
+				a.contacts-list__link(href=`mailto:${item.email}`)= item.email
+
+//- место под карту (Яндекс Карты — когда будет ключ API; адрес — data-address); пока картинка из макета
+mixin contactsMap(item)
+	.contacts-office__map.js-contacts-map(data-address=item.mapQuery)
+		img.contacts-office__map-image(src=contactsImg('map') alt="" loading="lazy" draggable="false")
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+	//- табы-якоря фиксируются под шапкой, пока на экране разделы (catalog-nav.js, как в каталоге)
+	.catalog-head__nav.contacts-nav.js-catalog-nav-holder
+		.catalog-head__nav-bar.js-catalog-nav-bar
+			nav.catalog-head__tabs.js-catalog-nav(aria-label="Разделы страницы")
+				each tab in tabs
+					+tab(tab.tab).js-catalog-nav-tab(data-target=tab.id)
+
+.contacts
+	each place, placeNumber in page.offices
+		section.contacts-office.container(id=place.id class=(place.photos ? null : 'contacts-office--map'))
+			.contacts-office__info
+				h2.contacts-title= typo(place.title)
+				+contactsList(place)
+				if place.note
+					.contacts-office__note
+						each paragraph in place.note
+							p= typo(paragraph)
+
+			if place.photos
+				//- слайдер фото: свайп и стрелки; 1-е фото страницы — LCP, без lazy
+				.contacts-office__photos.js-contacts-slider
+					.swiper.contacts-office__slider
+						.swiper-wrapper
+							each photo, photoNumber in place.photos
+								.swiper-slide.contacts-office__slide
+									- var isFirst = placeNumber === 0 && photoNumber === 0
+									img.contacts-office__photo(src=contactsImg(photo) alt=place.title loading=(isFirst ? null : 'lazy') fetchpriority=(isFirst ? 'high' : null) draggable="false")
+					+button({ view: 'arrow', ariaLabel: 'Предыдущее фото' }).contacts-office__arrow.contacts-office__arrow--prev.js-contacts-slider-prev
+					+button({ view: 'arrow', ariaLabel: 'Следующее фото' }).contacts-office__arrow.contacts-office__arrow--next.js-contacts-slider-next
+				+contactsMap(place)
+			else
+				+contactsMap(place)
+
+	section.contacts-columns.container
+		.contacts-columns__item(id=page.service.id)
+			h2.contacts-title= typo(page.service.title)
+			+contactsList(page.service)
+			+button({ view: 'main', label: page.service.button.label, href: page.service.button.url }).contacts-columns__button
+
+		.contacts-columns__item(id=page.requisites.id)
+			h2.contacts-title= page.requisites.title
+			p.contacts-columns__requisites
+				each line, index in page.requisites.lines
+					if index
+						br
+					| #{line}
+
+include ../sections/reviews
+include ../sections/feedback
