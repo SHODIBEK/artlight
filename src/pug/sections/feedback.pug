@@ -3,7 +3,9 @@
 - var feedback = Object.assign({}, data.home.feedback, typeof feedbackData !== 'undefined' ? feedbackData : {})
 - var isCooperation = !!feedback.activities
 //- «Приглашаем к сотрудничеству» (cooperation.html) — «ФИО», «Название компании», вид деятельности на всю ширину
-- var isPartner = feedback.fields === 'partner'
+//- Страница курса (course.html) — те же поля, курс (select) первым, без страны и города
+- var isCourse = feedback.fields === 'course'
+- var isPartner = feedback.fields === 'partner' || isCourse
 section.feedback.js-lazy-bg(id=(typeof feedbackId !== 'undefined' ? feedbackId : null) class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null, isCooperation ? 'feedback--cooperation' : null, isPartner ? 'feedback--partner' : null])
 	.container.feedback__container
 		.feedback__intro
@@ -13,7 +15,14 @@ section.feedback.js-lazy-bg(id=(typeof feedbackId !== 'undefined' ? feedbackId :
 
 		form.feedback__form.js-feedback-form(action=feedback.action method="post" enctype="multipart/form-data" novalidate)
 			.feedback__fields
-				if isPartner
+				if isCourse
+					+input({ name: 'course', placeholder: feedback.activityPlaceholder, options: feedback.activities, value: feedback.activityValue }).feedback__input.feedback__input--select
+					+input({ name: 'name', placeholder: 'ФИО', required: true, attrs: { autocomplete: 'name' } }).feedback__input
+					+input({ name: 'company', placeholder: 'Название компании', attrs: { autocomplete: 'organization' } }).feedback__input
+					+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).feedback__input.feedback__input--phone
+					+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).feedback__input
+					+input({ name: 'comment', placeholder: 'Сообщение', textarea: true }).feedback__input.feedback__input--textarea
+				else if isPartner
 					+input({ name: 'name', placeholder: 'ФИО', required: true, attrs: { autocomplete: 'name' } }).feedback__input
 					+input({ name: 'company', placeholder: 'Название компании', attrs: { autocomplete: 'organization' } }).feedback__input
 					+input({ name: 'activity', placeholder: feedback.activityPlaceholder, options: feedback.activities }).feedback__input.feedback__input--select

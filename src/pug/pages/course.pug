@@ -1,0 +1,71 @@
+//- Страница курса «Курсы DIALux Evo 13»: десктоп node-id=2-6223, моб. node-id=2-20283
+- var page = data.coursePage
+
+mixin courseLines(lines)
+	each line, index in lines
+		if index
+			br
+		| #{typo(line)}
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= typo(page.title)
+	p.course-place
+		+svg('map-pin').course-place__icon
+		span= page.place
+
+//- фото + «О курсе»: < 1280 — фото над текстом (моб. — на всю ширину экрана), ≥ 1280 — 2 колонки, фото на высоту текста
+section.course.container
+	.course__picture
+		img.course__photo(src=`${baseDir}images/course/${page.photo}.webp` alt=page.title fetchpriority="high")
+
+	.course__info
+		.course__about
+			h2.course__title= page.about.title
+			p.course__text= typo(page.about.text)
+			//- только в моб. макете
+			each paragraph in page.about.extra
+				p.course__text.course__text--extra= typo(paragraph)
+
+		each item in page.info
+			.course__item
+				p.course__label= item.label
+				p.course__value= typo(item.value)
+
+		.course__price
+			h2.course__title= page.price.title
+			each item in page.price.items
+				.course__price-item
+					p.course__label= item.label
+					p.course__price-value= item.value
+
+		+button({ view: 'main', label: page.button.label, href: page.button.url }).course__button
+
+//- «Программа курса» и «Содержание курса»: < 1280 — друг под другом, ≥ 1280 — 2 колонки
+section.course-program.container
+	.course-program__col
+		h2.course-program__title= page.programTitle
+		.course-program__text
+			each paragraph in page.program
+				p
+					+courseLines(paragraph)
+
+	.course-program__col
+		h2.course-program__title.course-program__title--content= page.contentTitle
+		.course-program__blocks.js-accordion(data-accordion-single)
+			each block in page.blocks
+				.course-block.js-accordion-item(class=(block.open ? 'is-open' : null))
+					button.course-block__head.js-accordion-toggle(type="button" aria-expanded=(block.open ? 'true' : 'false'))
+						span.course-block__title= block.title
+						+svg('plus').course-block__icon.course-block__icon--plus
+						+svg('minus').course-block__icon.course-block__icon--minus
+					.course-block__body.js-accordion-body
+						.course-block__inner
+							each paragraph in block.paragraphs
+								p
+									+courseLines(paragraph)
+
+include ../sections/reviews
+- var feedbackData = page.feedback
+- var feedbackId = 'course-form'
+include ../sections/feedback
