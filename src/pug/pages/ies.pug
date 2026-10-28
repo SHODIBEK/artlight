@@ -1,0 +1,33 @@
+//- «IES/LDT файлы»: десктоп node-id=2-4736, моб. node-id=2-18833
+- var page = data.iesPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+.ies.container.js-ies
+	.ies__intro
+		each paragraph in page.intro
+			p.ies__paragraph= typo(paragraph)
+
+	.ies__files
+		p.ies__lead= typo(page.listTitle)
+		ul.ies__list
+			each file in page.files
+				li.ies__item.js-ies-item(data-name=file[0].toLowerCase())
+					a.ies__link(href=file[1] target="_blank" rel="noopener")= file[0]
+					if file[2]
+						| #{' '}
+						a.ies__link(href=file[2] target="_blank" rel="noopener")= page.more
+		p.ies__empty.js-ies-empty(hidden)= page.empty
+		//- поиск по списку — только в 2 колонки (≥ 1280), в моб. макете нет
+		+search({ placeholder: page.searchPlaceholder }).ies__search.js-ies-search
+
+	//- ≥ 1280 — под вводным текстом, ниже — после списка
+	p.ies__note
+		| #{typo(page.note.before)}#{' '}
+		a.ies__mail(href=`mailto:${page.note.email}`)= page.note.email
+		| #{typo(page.note.after)}
+
+include ../sections/reviews
+include ../sections/feedback

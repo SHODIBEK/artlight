@@ -23,6 +23,7 @@ import projectGalleryInit from "./components/project-gallery";
 import productSliderInit from "./components/product-slider";
 import videoPlayerInit from "./components/video-player";
 import newsSlidersInit from "./components/news-sliders";
+import iesSearchInit from "./components/ies-search";
 import lazyBgInit from "./components/lazy-bg";
 
 ieFix();
@@ -46,6 +47,7 @@ projectGalleryInit();
 productSliderInit();
 videoPlayerInit();
 newsSlidersInit();
+iesSearchInit();
 lazyBgInit();
 productGalleryInit();
 projectTypesInit();

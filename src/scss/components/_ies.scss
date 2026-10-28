@@ -1,0 +1,122 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «IES/LDT файлы»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-4736,
+// моб. node-id=2-18833. < 1280 — в колонку: текст, список файлов, «Если вы не нашли…»;
+// ≥ 1280 — 2 колонки по 824: слева текст и «Если вы не нашли…», справа список и поиск по нему.
+.ies {
+	margin-top: 30px;
+	color: var(--color-black);
+
+	&__paragraph {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+
+		& + & {
+			margin-top: 18px;
+		}
+	}
+
+	&__files {
+		margin-top: 40px;
+		font-size: 15px;
+		line-height: 30px;
+	}
+
+	&__lead {
+		margin: 0;
+	}
+
+	// в макете после заголовка списка — пустая строка
+	&__list {
+		list-style: none;
+		margin: 30px 0 0;
+		padding: 0;
+	}
+
+	&__link,
+	&__mail {
+		outline: none;
+		text-decoration: underline;
+		text-underline-position: from-font;
+		color: inherit;
+		transition: color $duration-normal;
+		text-decoration-thickness: from-font;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&__empty {
+		margin: 0;
+		color: var(--color-black-60);
+	}
+
+	&__search {
+		display: none;
+	}
+
+	// моб.: в макете поля 20 (контейнер 16)
+	&__note {
+		margin: 100px 0 0;
+		padding: 0 4px;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 24px;
+	}
+
+	&__mail {
+		text-decoration: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__note {
+			padding: 0;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: grid;
+		column-gap: 40px;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		grid-template-rows: auto auto 1fr;
+
+		&__intro {
+			grid-area: 1 / 1;
+		}
+
+		&__files {
+			grid-area: 1 / 2 / 4 / 3;
+			margin-top: 0;
+		}
+
+		// в макете после текста — пустая строка (18) и отступ 40
+		&__note {
+			grid-area: 2 / 1;
+			margin-top: 58px;
+		}
+
+		// в макете — под списком; липнет к низу экрана, пока виден список
+		&__search {
+			position: sticky;
+			bottom: 20px;
+			z-index: 1;
+			display: flex;
+			margin-top: 40px;
+			width: 254px;
+			background-color: var(--color-white);
+		}
+	}
+}
+
+// .site обрезает по ширине через overflow-x: hidden — с ним не работает sticky у поиска; clip не создаёт прокрутку
+.site:has(.js-ies) {
+	overflow-x: clip;
+}
