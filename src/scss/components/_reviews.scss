@@ -150,3 +150,10 @@
 		margin-top: 120px;
 	}
 }
+
+// «Блог»: между секциями 93 на десктопе
+.reviews--gap-93 {
+	@media (min-width: #{$tablet}px) {
+		margin-top: 93px;
+	}
+}

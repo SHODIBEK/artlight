@@ -501,6 +501,37 @@
 			],
 		},
 
+		// Блог (blog.html). Фото — те же src/images/projects/project-<image>.jpg; shade — градиент снизу (как в макете)
+		blogPage: {
+			breadcrumbs: [
+				{ name: 'Главная', url: 'home.html' },
+				{ name: 'Блог' },
+			],
+			title: 'Блог',
+			// в макете «Все проекты»
+			types: ['Все проекты', 'Мероприятия', 'Обучение', 'Новости по новинкам', 'Акции'],
+			items: [
+				{ image: 'oceania-shopping-mall', shade: true },
+				{ image: 'zoological-museum' },
+				{ image: 'restaurant-organic' },
+				{ image: 'oceania-shopping-mall', shade: true },
+				{ image: 'restaurant-organic' },
+				{ image: 'zoological-museum' },
+				{ image: 'zoological-museum' },
+				{ image: 'oceania-shopping-mall', shade: true },
+				{ image: 'restaurant-organic' },
+				{ image: 'oceania-shopping-mall', shade: true },
+				{ image: 'zoological-museum' },
+				{ image: 'restaurant-organic' },
+			],
+			// общие для карточек (в макете у всех одинаковые)
+			tag: 'Новости по новинкам',
+			name: 'ARTLIGHT — авторизованный партнер DIALux',
+			text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование',
+			more: 'Показать ещё проекты',
+			pagination: { current: 1, total: 3 },
+		},
+
 		// Страница проекта (project.html). Фото — src/images/projects/project-<image>.jpg (общие со списком проектов):
 		// photo — большое фото, gallery — лента под ним (по клику фото ленты показывается в большом)
 		projectPage: {

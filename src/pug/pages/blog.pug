@@ -1,0 +1,27 @@
+//- «Блог»: десктоп node-id=2-12384, моб. node-id=2-17891
+- var page = data.blogPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+.blog-list.container
+	//- моб. — в строку с прокруткой до краёв экрана
+	nav.blog-list__types(aria-label="Рубрики блога")
+		each type, index in page.types
+			+tab(type, { active: index === 0 }).js-project-type(data-value=type)
+
+	.blog-list__grid
+		each item, index in page.items
+			a.blog-card(href=(item.url || '#') class=(index >= 5 ? 'blog-card--desktop' : null))
+				span.blog-card__picture(class=(item.shade ? 'blog-card__picture--shade' : null))
+					img.blog-card__image(src=`${baseDir}images/projects/project-${item.image}.jpg` alt="" loading="lazy")
+					span.blog-card__tag= item.tag || page.tag
+				span.blog-card__name= typo(item.name || page.name)
+				span.blog-card__text= typo(item.text || page.text)
+
+	+button({ view: 'main', label: page.more, icon: false }).blog-list__more
+	+pagination(page.pagination.current, page.pagination.total).blog-list__pagination
+
+include ../sections/reviews
+include ../sections/feedback

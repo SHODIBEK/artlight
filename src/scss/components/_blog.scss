@@ -1,0 +1,156 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Блог»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-12384,
+// моб. node-id=2-17891. Моб.: рубрики в строку с прокруткой, карточки в колонку (5 шт.);
+// ≥ 768 — рубрики с переносом, карточки по 2; ≥ 1280 — по 3 (549.3 в макете 1728).
+.blog-list {
+	margin-top: 12px;
+
+	&__types {
+		display: flex;
+		overflow-x: auto;
+		margin: 0 calc(var(--gutter) * -1);
+		padding: 0 var(--gutter);
+		gap: 8px 8.5px; // шаг 8.5: Figma округляет ширины текстов вверх (как табы «Проектов»)
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		.tab {
+			flex-shrink: 0;
+		}
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		margin-top: 30px;
+		gap: 40px 20px;
+	}
+
+	&__more {
+		margin-top: 30px;
+		width: 100%;
+	}
+
+	&__pagination {
+		justify-content: center;
+		margin-top: 30px;
+		gap: 8px;
+	}
+
+	@media (max-width: #{$tablet - 1}px) {
+		.blog-card--desktop {
+			display: none;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__types {
+			flex-wrap: wrap;
+			overflow: visible;
+			margin: 0;
+			padding: 0;
+		}
+
+		&__grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__more,
+		&__pagination {
+			margin-top: 40px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+}
+
+// карточка статьи: фото с рубрикой, под ним заголовок и анонс
+.blog-card {
+	display: flex;
+	flex-direction: column;
+	outline: none;
+	color: var(--color-black);
+
+	@include photo-hover(".blog-card__image", ".blog-card__picture");
+
+	// заголовок — как пункт меню шапки
+	@include state-hover {
+		.blog-card__name {
+			color: var(--color-black-60);
+		}
+	}
+
+	@include state-focus {
+		outline: 2px solid var(--color-black);
+		outline-offset: 2px;
+	}
+
+	&__picture {
+		position: relative;
+		display: block;
+		overflow: hidden;
+		height: 400px;
+
+		// градиент снизу (в макете — у части фото)
+		&--shade::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			z-index: 1;
+			background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 71.146%, rgba(0, 0, 0, 0.7) 100%);
+			pointer-events: none;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__tag {
+		position: absolute;
+		left: 30px;
+		top: 30px;
+		z-index: 1;
+		padding: 6px 9px 5px;
+		font-size: 15px;
+		line-height: 15px;
+		color: var(--color-black);
+		background-color: var(--color-white);
+	}
+
+	&__name {
+		margin-top: 20px;
+		font-weight: 700;
+		font-size: 22px;
+		line-height: 26px;
+		text-transform: uppercase;
+		transition: color $duration-normal;
+	}
+
+	&__text {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__picture {
+			height: 480px;
+		}
+	}
+}
