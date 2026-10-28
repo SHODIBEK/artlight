@@ -12,7 +12,7 @@ section.listing-head.container
 
 	.ies__files
 		p.ies__lead= typo(page.listTitle)
-		//- поиск по списку — только в 2 колонки (≥ 1280), в моб. макете нет
+		//- поиск по списку — на всех ширинах (в моб. макете нет)
 		.ies__search-bar
 			+search({ placeholder: page.searchPlaceholder }).ies__search.js-ies-search
 		ul.ies__list

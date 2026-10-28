@@ -1,5 +1,5 @@
 /**
-* «IES/LDT файлы»: поиск по списку файлов (≥ 1280) — скрывает пункты, в названии которых нет запроса.
+* «IES/LDT файлы»: поиск по списку файлов — скрывает пункты, в названии которых нет запроса.
 */
 export default function iesSearchInit() {
 	const root = document.querySelector('.js-ies');
