@@ -1,6 +1,6 @@
 //- servicesOptions (необязательно): { mod, id, title, images } — «О компании»: заголовок, своя сетка ≥ 1280
-//- и свои кадры фото на ней (images: mod карточки → images/about/<имя>.jpg);
-//- «Услуги»: extraItems — третий ряд (фото item.src → images/services/service-<src>.jpg), button: false — без кнопки
+//- и свои кадры фото на ней (images: mod карточки → images/about/<имя>.webp);
+//- «Услуги»: extraItems — третий ряд (фото item.src → images/services/service-<src>.webp), button: false — без кнопки
 - var servicesOpts = typeof servicesOptions !== 'undefined' ? servicesOptions : {}
 
 mixin serviceItem(item)
@@ -8,13 +8,13 @@ mixin serviceItem(item)
 	a.services__item(class=`services__item--${item.mod}` href=item.url)
 		if item.src
 			span.services__picture
-				img.services__image(src=`${baseDir}images/services/service-${item.src}.jpg` alt="" loading="lazy")
+				img.services__image(src=`${baseDir}images/services/service-${item.src}.webp` alt="" loading="lazy")
 		else
 			picture.services__picture
-				source(media="(max-width: 767px)" srcset=`${baseDir}images/home/service-${item.image}-mobile@2x.jpg`)
+				source(media="(max-width: 767px)" srcset=`${baseDir}images/home/service-${item.image}-mobile@2x.webp`)
 				if wideImage
-					source(media="(min-width: 1280px)" srcset=`${baseDir}images/about/${wideImage}.jpg`)
-				img.services__image(src=`${baseDir}images/home/service-${item.image}${item.desktopSuffix ? '-desktop' : ''}@2x.jpg` alt="" loading="lazy")
+					source(media="(min-width: 1280px)" srcset=`${baseDir}images/about/${wideImage}.webp`)
+				img.services__image(src=`${baseDir}images/home/service-${item.image}${item.desktopSuffix ? '-desktop' : ''}@2x.webp` alt="" loading="lazy")
 		span.services__body
 			span.services__title= typo(item.title)
 			span.services__text= typo(item.text)

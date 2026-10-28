@@ -126,7 +126,7 @@
 		position: absolute;
 		bottom: 0;
 		width: 6px;
-		background-color: var(--color-light-grey);
+		background-color: var(--color-white); // неактивные — белые: серые сливались с фоном фото
 
 		&:nth-child(1) {
 			left: 0;
@@ -167,10 +167,11 @@
 		gap: 4px;
 	}
 
+	// неактивные — белые: серые сливались с серым фоном фото
 	&__dot {
 		width: 3px;
 		height: 3px;
-		background-color: var(--color-light-grey);
+		background-color: var(--color-white);
 		transition: width $duration-normal, background-color $duration-normal;
 
 		&.is-active {

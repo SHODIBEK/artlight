@@ -7,7 +7,7 @@ section.projects(class=(typeof sectionsGap !== 'undefined' && sectionsGap ? 'pro
 			.swiper-wrapper
 				each item in data.home.projects.items
 					a.projects__item.swiper-slide(href=item.url)
-						img.projects__image(src=`${baseDir}images/home/project-${item.image}@2x.jpg` alt="" loading="lazy" draggable="false")
+						img.projects__image(src=`${baseDir}images/home/project-${item.image}@2x.webp` alt="" loading="lazy" draggable="false")
 						span.projects__tags
 							each tag in item.tags
 								span.projects__tag= tag

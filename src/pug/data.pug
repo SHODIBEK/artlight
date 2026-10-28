@@ -37,14 +37,14 @@
 			hero: {
 				titleLines: ['Проектируем', 'и производим', 'светильники', 'для бизнеса'],
 				button: { label: 'смотреть проекты (22)', url: 'projects.html' },
-				// images/home/<image>.jpg и <image>@2x.jpg
+				// images/home/<image>.webp и <image>@2x.webp
 				slides: [
 					{ image: 'slider-1' },
 					{ image: 'slider-2' },
 				],
 			},
 
-			// images/home/cat-<image>-desktop.png и -mobile.png (2x). only — карточка только в одной из версий макета
+			// images/home/cat-<image>-desktop.webp и -mobile.webp (2x). only — карточка только в одной из версий макета
 			categories: {
 				items: [
 					{ image: 'recessed-lights', lines: ['Встраиваемые светильники'], url: 'catalog.html' },
@@ -59,7 +59,7 @@
 				button: { label: 'весь каталог', url: 'catalog.html' },
 			},
 
-			// images/home/service-<image>@2x.jpg (десктоп, desktopSuffix — service-<image>-desktop@2x.jpg) и service-<image>-mobile@2x.jpg
+			// images/home/service-<image>@2x.webp (десктоп, desktopSuffix — service-<image>-desktop@2x.webp) и service-<image>-mobile@2x.webp
 			// порядок — как в мобильном макете; на десктопе первые 4 — верхний ряд, последние 2 — нижний
 			services: {
 				items: [
@@ -99,7 +99,7 @@
 				],
 			},
 
-			// images/home/project-<image>@2x.jpg (731×1008); text — показывается при ховере (моб. — у активного слайда)
+			// images/home/project-<image>@2x.webp (731×1008); text — показывается при ховере (моб. — у активного слайда)
 			projects: {
 				title: 'реализованные проекты',
 				items: [
@@ -125,7 +125,7 @@
 				],
 			},
 
-			// images/home/review-avatar-<avatar>@2x.png (60×60, экспорт аватара из Figma)
+			// images/home/review-avatar-<avatar>@2x.webp (60×60, экспорт аватара из Figma)
 			reviews: {
 				title: 'отзывы',
 				items: [
@@ -141,7 +141,7 @@
 				],
 			},
 
-			// Форма заявки (фон images/home/form-bg@2x.jpg)
+			// Форма заявки (фон images/home/form-bg@2x.webp)
 			feedback: {
 				title: 'Вам требуются светильники для проекта?',
 				text: 'Начните с простого — напишите нам и расскажите о нем! Наши специалисты разработают проект освещения — индивидуальное решение, которое подчеркнёт все преимущества вашего объекта',
@@ -155,7 +155,7 @@
 		},
 
 		// Каталог: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-2262, моб. node-id=2-15285
-		// Картинки карточек — images/catalog/<image>.png (исходники из Figma; CROP-кадры уже обрезаны).
+		// Картинки карточек — images/catalog/<image>.webp (исходники из Figma; CROP-кадры уже обрезаны).
 		// d / m — рамка картинки в карточке по макету: [x, y, ширина, высота, ширина карточки] (десктоп / моб.);
 		// flip — отражена по горизонтали; normal — без mix-blend-mode: darken; overlay — градиент поверх (white | wall | grey).
 		// rows — ряды десктопа (≥ 1280): в «По типу» ряд делится пропорционально ширинам карточек макета (d[4], без картинки — w),
@@ -217,7 +217,7 @@
 				},
 				{
 					id: 'purpose', view: 'purpose', title: 'По назначению', tab: 'По назначению',
-					// images/catalog/purpose-<image>.jpg; text — на десктопе при наведении, на моб. всегда
+					// images/catalog/purpose-<image>.webp; text — на десктопе при наведении, на моб. всегда
 					text: 'Компания ARTLIGHT не только предлагает светотехническую продукцию, но и оказывает услуги по расчёту и проектированию освещения вне зависимости от того, где и какое оборудование',
 					rows: [
 						[
@@ -463,7 +463,7 @@
 			},
 		},
 
-		// «Реализованные проекты» (projects.html). Карточки по 2 и 3 в ряд (десктоп), image — src/images/projects/project-<image>.jpg
+		// «Реализованные проекты» (projects.html). Карточки по 2 и 3 в ряд (десктоп), image — src/images/projects/project-<image>.webp
 		projectsPage: {
 			breadcrumbs: [
 				{ name: 'Главная', url: 'home.html' },
@@ -501,7 +501,7 @@
 			],
 		},
 
-		// Блог (blog.html). Фото — те же src/images/projects/project-<image>.jpg; shade — градиент снизу (как в макете)
+		// Блог (blog.html). Фото — те же src/images/projects/project-<image>.webp; shade — градиент снизу (как в макете)
 		blogPage: {
 			breadcrumbs: [
 				{ name: 'Главная', url: 'home.html' },
@@ -533,7 +533,7 @@
 			pagination: { current: 1, total: 3 },
 		},
 
-		// Страница новости (news.html). Фото — src/images/projects/project-<image>.jpg (в макете те же исходники).
+		// Страница новости (news.html). Фото — src/images/projects/project-<image>.webp (в макете те же исходники).
 		// sections — разделы статьи (title, paragraphs, link — весь текст раздела ссылкой); finale — «Ждём вас…» (в макете абзацы шире разнесены)
 		newsPage: {
 			breadcrumbs: [
@@ -596,7 +596,7 @@
 			],
 		},
 
-		// Страница проекта (project.html). Фото — src/images/projects/project-<image>.jpg (общие со списком проектов):
+		// Страница проекта (project.html). Фото — src/images/projects/project-<image>.webp (общие со списком проектов):
 		// photo — большое фото, gallery — лента под ним (по клику фото ленты показывается в большом)
 		projectPage: {
 			breadcrumbs: [
@@ -763,7 +763,7 @@
 
 		// «О компании» (about.html): десктоп node-id=2-12647, моб. node-id=2-17168. Картинки — src/images/about/ (исходники из Figma).
 		// tabs — якоря разделов страницы (catalog-nav.js), target — id раздела; порядок — как разделы на странице (в макете «Комплектующие» после «Клиентов»)
-		// «Услуги»: первые 6 карточек — с главной (data.home.services), дальше — свои; фото images/services/service-<src>.jpg
+		// «Услуги»: первые 6 карточек — с главной (data.home.services), дальше — свои; фото images/services/service-<src>.webp
 		// страница услуги («Серийное производство»): виды услуг — табы-ссылки (моб. — панель «Все виды услуг»)
 		servicePage: {
 			breadcrumbs: [
@@ -786,7 +786,7 @@
 				{ name: 'Доставка', url: 'javascript:void(0);' },
 				{ name: 'Монтаж и шеф-монтаж', url: 'javascript:void(0);' },
 			],
-			image: 'serial-production', // images/services/<image>.jpg
+			image: 'serial-production', // images/services/<image>.webp
 			lead: 'Торговая марка ARTLIGHT была зарегистрирована в 2000 году. С тех пор сменилось три поколения источников света, наш ассортимент продукции значительно расширился, что позволяет комплектовать объекты максимально разнообразно и эффективно.',
 			// строки левой колонки (каждая — с новой строки, как в макете)
 			list: [
@@ -882,7 +882,7 @@
 
 			servicesTitle: 'Услуги',
 
-			// images/about/brand-N.png — логотипы, кадр из макета (215×85)
+			// images/about/brand-N.webp — логотипы, кадр из макета (215×85)
 			components: {
 				title: 'Комплектующие',
 				text: 'Мы сотрудничаем только с надёжными и проверенными поставщиками качественных комплектующих, используемых для производства продукции нашей торговой марки.',
@@ -898,7 +898,7 @@
 				button: { label: 'подробнее', url: '#' },
 			},
 
-			// images/about/diploma.jpg (кадр 557×800) и thanks.jpg; в макете одна картинка на все места
+			// images/about/diploma.webp (кадр 557×800) и thanks.webp; в макете одна картинка на все места
 			achievements: {
 				title: 'Наши достижения',
 				text: 'Компания ARTLIGHT является активным участником специализированных светотехнических и интерьерных выставок, тематических мероприятий, направленных на продвижение своей торговой марки.',
@@ -922,7 +922,7 @@
 				more: 'Показать ещё',
 			},
 
-			// форма «Приглашаем к сотрудничеству» — секция feedback с этими данными (фон images/about/form-bg.jpg)
+			// форма «Приглашаем к сотрудничеству» — секция feedback с этими данными (фон images/about/form-bg.webp)
 			cooperation: {
 				title: 'Приглашаем к сотрудничеству',
 				text: 'Мы сотрудничаем только с надёжными и проверенными поставщиками качественных комплектующих, используемых для производства продукции нашей торговой марки.',

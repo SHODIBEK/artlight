@@ -12,7 +12,7 @@ section.listing-head.container
 
 //- обложка на всю ширину (как большое фото страницы проекта)
 .news-cover
-	img.news-cover__photo(src=`${baseDir}images/projects/project-${page.photo}.jpg` alt=page.title)
+	img.news-cover__photo(src=`${baseDir}images/projects/project-${page.photo}.webp` alt=page.title fetchpriority="high")
 	span.news-cover__watermark(aria-hidden="true")= page.watermark
 
 article.news-article
@@ -34,7 +34,7 @@ article.news-article
 			.swiper-wrapper
 				each image in page.gallery
 					.news-gallery__slide.swiper-slide
-						img.news-gallery__image(src=`${baseDir}images/projects/project-${image}.jpg` alt="" loading="lazy" draggable="false")
+						img.news-gallery__image(src=`${baseDir}images/projects/project-${image}.webp` alt="" loading="lazy" draggable="false")
 
 	.container
 		.news-article__body.news-article__body--finale

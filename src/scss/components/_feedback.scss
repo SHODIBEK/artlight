@@ -6,7 +6,12 @@
 	margin-top: 100px;
 	padding: 40px 0;
 	color: var(--color-white);
-	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/home/form-bg@2x.jpg") center / cover no-repeat;
+	background: #1e1e1e center / cover no-repeat;
+
+	// фото фона — лениво: lazy-bg.js ставит is-bg-loaded, когда секция подходит к экрану (до этого — тёмный фон)
+	&.is-bg-loaded {
+		background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/home/form-bg@2x.webp");
+	}
 
 	// каталог: между секциями 60 на моб.
 	&--compact {
@@ -289,7 +294,10 @@
 // «О компании» — «Приглашаем к сотрудничеству» (десктоп node-id=2-12965, моб. 2-17434): своё фото,
 // 9 полей (≥ 1280 — по 2 в ряд, «Фамилия» перед «Имя», сообщение на всю ширину), слева колонка 716
 .feedback--cooperation {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/about/form-bg.jpg");
+	&.is-bg-loaded {
+		background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/about/form-bg.webp");
+	}
+
 	scroll-margin-top: var(--header-height);
 
 	.feedback__input--select {

@@ -13,7 +13,7 @@ section.listing-head.container
 			+tab(type.name, { href: type.url, active: type.active })
 
 	.service-page__content
-		img.service-page__photo(src=`${baseDir}images/services/${page.image}.jpg` alt="")
+		img.service-page__photo(src=`${baseDir}images/services/${page.image}.webp` alt="" fetchpriority="high")
 		p.service-page__lead= typo(page.lead)
 		.service-page__columns
 			.service-page__list

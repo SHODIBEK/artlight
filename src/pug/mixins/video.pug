@@ -3,7 +3,7 @@
 //- Моб. (< 768) — лёгкая версия 600p. Файлы — images/about/video*.
 mixin videoPlayer()
 	.video-player.js-video-player&attributes(attributes)
-		video.video-player__video.js-video-player-media(muted loop playsinline preload="none" poster=`${baseDir}images/about/video-poster.jpg` aria-label="Видео о компании")
+		video.video-player__video.js-video-player-media(muted loop playsinline preload="none" poster=`${baseDir}images/about/video-poster.webp` aria-label="Видео о компании")
 			source(media="(max-width: 767px)" src=`${baseDir}images/about/video-mobile.mp4` type="video/mp4")
 			source(src=`${baseDir}images/about/video.mp4` type="video/mp4")
 		button.video-player__toggle.js-video-player-toggle(type="button" aria-label="Поставить видео на паузу")

@@ -14,14 +14,14 @@ section.listing-head.container
 
 //- большое фото + логотип «ART 30 лет LIGHT» и два фото
 section.about-intro.about-anchor.container#about-intro
-	img.about-intro__photo(src=aboutImg('intro-main.jpg') alt="")
+	img.about-intro__photo(src=aboutImg('intro-main.webp') alt="" fetchpriority="high")
 	.about-intro__side
 		picture.about-intro__logo
 			source(media="(max-width: 767px)" srcset=aboutImg('logo-30-mobile.svg'))
 			img.about-intro__logo-image(src=aboutImg('logo-30.svg') width="473" height="204" alt="ARTLIGHT, 30 лет. Производитель светотехнических решений с 1996 года")
 		.about-intro__photos
-			img.about-intro__photo-small(src=aboutImg('intro-1.jpg') alt="" loading="lazy")
-			img.about-intro__photo-small(src=aboutImg('intro-2.jpg') alt="" loading="lazy")
+			img.about-intro__photo-small(src=aboutImg('intro-1.webp') alt="" loading="lazy")
+			img.about-intro__photo-small(src=aboutImg('intro-2.webp') alt="" loading="lazy")
 
 //- история (линия с точками у годов) и «Компания ARTLIGHT сегодня»
 section.about-history.container
@@ -36,7 +36,7 @@ section.about-history.container
 	.about-today
 		h2.about-title= page.today.title
 		p.about-today__lead= typo(page.today.lead)
-		img.about-today__photo(src=aboutImg('today.jpg') alt="" loading="lazy")
+		img.about-today__photo(src=aboutImg('today.webp') alt="" loading="lazy")
 		.about-today__text
 			each paragraph, index in page.today.text
 				p.about-today__paragraph(class=`about-today__paragraph--${index + 1}`)= typo(paragraph)
@@ -70,7 +70,7 @@ section.about-components.about-anchor.container#about-components
 	.about-components__list
 		each item in page.components.items
 			.about-components__item
-				img.about-components__logo(src=aboutImg(`${item.image}.png`) width="215" height="85" alt=item.name loading="lazy")
+				img.about-components__logo(src=aboutImg(`${item.image}.webp`) width="215" height="85" alt=item.name loading="lazy")
 				p.about-components__desc= typo(item.text)
 	+button({ view: 'main', label: page.components.button.label, href: page.components.button.url }).about-components__button
 
@@ -83,7 +83,7 @@ mixin aboutGallery(gallery, opts)
 		.about-gallery__grid
 			each image in gallery.images
 				.about-gallery__item
-					img.about-gallery__image(src=aboutImg(`${image}.jpg`) alt="" loading="lazy")
+					img.about-gallery__image(src=aboutImg(`${image}.webp`) alt="" loading="lazy")
 		+button({ view: 'main', label: gallery.more, icon: false }).about-gallery__more
 
 +aboutGallery(page.achievements, { mod: 'achievements', id: 'about-achievements' })

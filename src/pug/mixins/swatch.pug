@@ -1,4 +1,4 @@
-//- фон плашки цвета: картинка images/catalog/color-<name>.png, градиент или цвет (каталог, сайдбар списка товаров).
+//- фон плашки цвета: картинка images/catalog/color-<name>.webp, градиент или цвет (каталог, сайдбар списка товаров).
 //- Задаётся в style, не CSS-переменной: url() в переменной браузер считает от css/main.css
 -
 	var swatchGradients = {
@@ -9,5 +9,5 @@
 	function swatchBackground(value) {
 		if (value.charAt(0) === '#') return value
 		if (swatchGradients[value]) return swatchGradients[value]
-		return 'url(' + baseDir + 'images/catalog/color-' + value + '.png) center / cover'
+		return 'url(' + baseDir + 'images/catalog/color-' + value + '.webp) center / cover'
 	}

@@ -34,7 +34,8 @@ mixin catalogLines(item)
 	else
 		= item.name
 
-mixin catalogCard(item, proportional)
+//- eager — карточка на первом экране: фото без lazy (LCP)
+mixin catalogCard(item, proportional, eager)
 	-
 		var cls = []
 		if (proportional) cls.push('catalog-card--tall')
@@ -50,7 +51,7 @@ mixin catalogCard(item, proportional)
 				if (item.img.normal) pictureCls.push('catalog-card__picture--normal')
 				if (item.img.overlay) pictureCls.push('catalog-card__picture--' + item.img.overlay)
 			span.catalog-card__picture(class=pictureCls style=catalogImageStyle(item.img))
-				img.catalog-card__image(src=`${baseDir}images/catalog/${item.img.name}.png` alt="" loading="lazy" draggable="false")
+				img.catalog-card__image(src=`${baseDir}images/catalog/${item.img.name}.webp` alt="" loading=(eager ? null : 'lazy') draggable="false")
 
 mixin catalogStatus(item)
 	a.catalog-status(href=(item.url || '#'))
@@ -61,7 +62,7 @@ mixin catalogStatus(item)
 mixin catalogPurpose(item, text)
 	a.catalog-purpose(href=(item.url || '#'))
 		span.catalog-purpose__picture
-			img.catalog-purpose__image(src=`${baseDir}images/catalog/purpose-${item.image}.jpg` alt="" loading="lazy" draggable="false")
+			img.catalog-purpose__image(src=`${baseDir}images/catalog/purpose-${item.image}.webp` alt="" loading="lazy" draggable="false")
 		span.catalog-purpose__shade
 		span.catalog-purpose__content
 			span.catalog-purpose__title
@@ -93,7 +94,7 @@ section.catalog-head.container
 					if section.tab
 						+tab(section.tab, { active: index === 0 }).js-catalog-nav-tab(data-target=`catalog-${section.id}`)
 
-each section in catalog.sections
+each section, sectionIndex in catalog.sections
 	section.catalog-section.container(class=`catalog-section--${section.id}` id=`catalog-${section.id}`)
 		h2.catalog-section__title= section.title
 
@@ -102,7 +103,7 @@ each section in catalog.sections
 				each item in section.items
 					+catalogColor(item)
 			else
-				each row in section.rows
+				each row, rowIndex in section.rows
 					.catalog-section__row
 						each item in row
 							if section.view === 'status'
@@ -110,7 +111,7 @@ each section in catalog.sections
 							else if section.view === 'purpose'
 								+catalogPurpose(item, section.text)
 							else
-								+catalogCard(item, section.id === 'type')
+								+catalogCard(item, section.id === 'type', sectionIndex === 0 && rowIndex === 0)
 
 //- моб. макет: файлы под каталогом (наверху — кнопка «Скачать» со ссылкой сюда)
 .catalog-files.container#catalog-files

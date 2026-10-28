@@ -11,15 +11,15 @@ section.listing-head.container
 //- большое фото + лента фото (по клику фото ленты показывается в большом)
 section.project-gallery.js-project-gallery
 	.project-gallery__main
-		img.project-gallery__photo.js-project-gallery-photo(src=`${baseDir}images/projects/project-${page.photo}.jpg` alt=page.title)
+		img.project-gallery__photo.js-project-gallery-photo(src=`${baseDir}images/projects/project-${page.photo}.webp` alt=page.title fetchpriority="high")
 		span.project-gallery__watermark(aria-hidden="true")= page.watermark
 
 	.project-gallery__strip
 		.project-gallery__slider.swiper.js-project-gallery-slider
 			.swiper-wrapper
 				each image in page.gallery
-					button.project-gallery__thumb.swiper-slide(type="button" data-src=`${baseDir}images/projects/project-${image}.jpg` aria-label="Показать фото")
-						img.project-gallery__image(src=`${baseDir}images/projects/project-${image}.jpg` alt="" loading="lazy" draggable="false")
+					button.project-gallery__thumb.swiper-slide(type="button" data-src=`${baseDir}images/projects/project-${image}.webp` aria-label="Показать фото")
+						img.project-gallery__image(src=`${baseDir}images/projects/project-${image}.webp` alt="" loading="lazy" draggable="false")
 		+button({ view: 'arrow', ariaLabel: 'Предыдущие фото' }).project-gallery__arrow.project-gallery__arrow--prev.js-project-gallery-prev
 		+button({ view: 'arrow', ariaLabel: 'Следующие фото' }).project-gallery__arrow.project-gallery__arrow--next.js-project-gallery-next
 

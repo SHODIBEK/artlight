@@ -23,6 +23,7 @@ import projectGalleryInit from "./components/project-gallery";
 import productSliderInit from "./components/product-slider";
 import videoPlayerInit from "./components/video-player";
 import newsSlidersInit from "./components/news-sliders";
+import lazyBgInit from "./components/lazy-bg";
 
 ieFix();
 vhFix();
@@ -45,5 +46,6 @@ projectGalleryInit();
 productSliderInit();
 videoPlayerInit();
 newsSlidersInit();
+lazyBgInit();
 productGalleryInit();
 projectTypesInit();

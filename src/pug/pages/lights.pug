@@ -99,7 +99,7 @@ section.listing-head.container
 					a.listing-subcat(href=(item.url || '#'))
 						span.listing-subcat__title= typo(item.name)
 						span.listing-subcat__picture(style=subcatImageStyle(item))
-							img.listing-subcat__image(src=`${baseDir}images/catalog/${item.image}.png` alt="" loading="lazy" draggable="false")
+							img.listing-subcat__image(src=`${baseDir}images/catalog/${item.image}.webp` alt="" loading="lazy" draggable="false")
 
 		.listing-toolbar
 			.listing-toolbar__filters
@@ -138,7 +138,7 @@ section.listing-head.container
 
 		.listing__grid
 			each item, index in lights.products
-				+productCard(item)(class=(index >= 10 ? 'product-card--desktop' : null))
+				+productCard(item, index < 4)(class=(index >= 10 ? 'product-card--desktop' : null))
 
 		+button({ view: 'main', label: lights.more, icon: false }).listing__more
 		+pagination(lights.pagination.current, lights.pagination.total).listing__pagination

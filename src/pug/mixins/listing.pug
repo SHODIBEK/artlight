@@ -93,8 +93,9 @@ mixin dropdown(opts)
 	.dropdown.js-dropdown(class=o.cls)&attributes(attributes)
 		block
 
-//- карточка товара: фото на сером фоне (галерея по зонам ховера), бейджи, наличие, название, цена
-mixin productCard(item)
+//- карточка товара: фото на сером фоне (галерея по зонам ховера), бейджи, наличие, название, цена.
+//- eager — карточка на первом экране: главное фото без lazy (LCP)
+mixin productCard(item, eager)
 	-
 		var lights = data.lights
 		var gallery = productGallery(item.image)
@@ -103,7 +104,7 @@ mixin productCard(item)
 			span.product-card__gallery
 				each name, index in gallery
 					span.product-card__frame(class=[index === 0 ? 'is-active' : null, productImages[name].flip ? 'product-card__frame--flip' : null, productImages[name].crop ? 'product-card__frame--crop' : null] style=productFrameStyle(name))
-						img.product-card__image(src=`${baseDir}images/products/${name}.jpg` alt=(index === 0 ? item.name : '') loading="lazy" draggable="false")
+						img.product-card__image(src=`${baseDir}images/products/${name}.webp` alt=(index === 0 ? item.name : '') loading=(eager && index === 0 ? null : 'lazy') draggable="false")
 			if item.badges && item.badges.length
 				span.product-card__badges
 					each badge in item.badges

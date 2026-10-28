@@ -5,10 +5,10 @@ section.hero
 				.hero__slide.swiper-slide
 					picture.hero__picture
 						//- на мобильных — исходник целиком (object-fit: cover), как в макете 402×820
-						source(media="(max-width: 767px)" srcset=`${baseDir}images/home/${slide.image}-mobile.jpg`)
+						source(media="(max-width: 767px)" srcset=`${baseDir}images/home/${slide.image}-mobile.webp`)
 						img.hero__image(
-							src=`${baseDir}images/home/${slide.image}.jpg`
-							srcset=`${baseDir}images/home/${slide.image}@2x.jpg 2x`
+							src=`${baseDir}images/home/${slide.image}.webp`
+							srcset=`${baseDir}images/home/${slide.image}@2x.webp 2x`
 							alt=""
 							fetchpriority=(index === 0 ? 'high' : null)
 							loading=(index === 0 ? null : 'lazy')

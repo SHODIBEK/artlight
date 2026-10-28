@@ -2,7 +2,7 @@
 //- название снизу; описание раскрывается при ховере (в макете 1-я карточка — состояние ховер)
 mixin projectCard(item, text)
 	a.project-card(href=(item.url || '#'))&attributes(attributes)
-		img.project-card__image(src=`${baseDir}images/projects/project-${item.image}.jpg` alt="" loading="lazy")
+		img.project-card__image(src=`${baseDir}images/projects/project-${item.image}.webp` alt="" loading="lazy")
 		span.project-card__tags
 			each tag in item.tags
 				span.project-card__tag= tag

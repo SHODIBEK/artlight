@@ -2,7 +2,7 @@
 //- поля в 2 колонки, вид деятельности — select), feedbackId — якорь секции
 - var feedback = Object.assign({}, data.home.feedback, typeof feedbackData !== 'undefined' ? feedbackData : {})
 - var isCooperation = !!feedback.activities
-section.feedback(id=(typeof feedbackId !== 'undefined' ? feedbackId : null) class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null, isCooperation ? 'feedback--cooperation' : null])
+section.feedback.js-lazy-bg(id=(typeof feedbackId !== 'undefined' ? feedbackId : null) class=[typeof compactSections !== 'undefined' && compactSections ? 'feedback--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'feedback--gap-' + sectionsGap : null, isCooperation ? 'feedback--cooperation' : null])
 	.container.feedback__container
 		.feedback__intro
 			h2.feedback__title= typo(feedback.title)
