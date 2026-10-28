@@ -1,0 +1,132 @@
+// «Приглашаем к сотрудничеству»: десктоп node-id=2-4549, моб. 2-19490.
+// Моб. (и < 1280): фото 400 над текстом, шаг 12, между разделами 100;
+// ≥ 1280 — текст слева, фото справа (по 829, зазор 30), между разделами 90.
+// Шаг строк: Medium 16 × 1.4 → 22, 20 × normal → 24, 20 × 1.5 → 30; Bold 24 × 1.2 → 29.
+.cooperation {
+	display: flex;
+	flex-direction: column;
+	margin-top: 40px;
+	color: var(--color-black);
+	gap: 100px;
+
+	&__intro {
+		margin-bottom: -60px;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 22px;
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 22px;
+		}
+	}
+
+	&__group {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__content {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 29px;
+		text-transform: uppercase;
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 22px;
+
+		li::before {
+			content: "• ";
+		}
+	}
+
+	&__picture {
+		position: relative;
+		order: -1;
+		height: 400px;
+
+		&--shade::after {
+			content: "";
+			position: absolute;
+			background: linear-gradient(rgba(0, 0, 0, 0) 71.146%, rgba(0, 0, 0, 0.7));
+			inset: 0;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	// моб.: в макете текст и фото — с полями 20 (362), шапка — 16
+	@media (max-width: #{$tablet - 1}px) {
+		padding: 0 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__intro {
+			max-width: 854px;
+			font-size: 20px;
+			line-height: 24px;
+
+			p + p {
+				margin-top: 24px;
+			}
+		}
+
+		&__list {
+			font-size: 20px;
+			line-height: 30px;
+		}
+
+		&__content {
+			gap: 30px;
+		}
+
+		&__group {
+			gap: 30px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		gap: 90px;
+
+		&__intro {
+			margin-bottom: 0;
+		}
+
+		&__group {
+			flex-direction: row;
+			align-items: flex-start;
+		}
+
+		&__content,
+		&__picture {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+
+		&__picture {
+			order: 0;
+		}
+	}
+}

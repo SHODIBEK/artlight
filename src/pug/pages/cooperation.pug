@@ -1,0 +1,26 @@
+//- «Приглашаем к сотрудничеству»: десктоп node-id=2-4549, моб. node-id=2-19490
+- var page = data.cooperationPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= typo(page.title)
+
+.cooperation.container
+	.cooperation__intro
+		each paragraph in page.intro
+			p= typo(paragraph)
+
+	each group, index in page.groups
+		section.cooperation__group
+			.cooperation__content
+				h2.cooperation__title= typo(group.title)
+				ul.cooperation__list
+					each item in group.items
+						li= typo(item)
+			.cooperation__picture(class=(group.shade ? 'cooperation__picture--shade' : null))
+				//- 1-е фото — на первом экране (LCP): без lazy
+				img.cooperation__image(src=`${baseDir}images/projects/project-${group.image}.webp` width="829" height="400" alt="")&attributes(index ? { loading: 'lazy' } : { fetchpriority: 'high' })
+
+include ../sections/reviews
+- var feedbackData = page.feedback
+include ../sections/feedback

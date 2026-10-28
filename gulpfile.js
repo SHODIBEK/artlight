@@ -269,11 +269,15 @@ gulp.task("pug", () => {
 				.on("error", reject);
 		});
 	}).then(() => {
-		// изменилась страница (src/*.pug) или файл удалён — обновить оглавление
+		// изменилась страница (src/*.pug) или файл удалён — обновить оглавление.
+		// Флаг pagesChanged: при нескольких правках подряд в emittyPugChangedFile остаётся только последний файл
 		let changed = global.emittyPugChangedFile;
 		let isPage = !changed || path.dirname(path.resolve(changed)) === path.resolve("src");
+		let rebuild = global.pagesChanged || (isPage && path.basename(changed || "") !== "index.pug");
 
-		return isPage && path.basename(changed || "") !== "index.pug" ? compileIndex() : null;
+		global.pagesChanged = false;
+
+		return rebuild ? compileIndex() : null;
 	});
 });
 
@@ -459,6 +463,10 @@ gulp.task("watch", () => {
 		gulp.series("pug")
 	).on("all", (event, file) => {
 		global.emittyPugChangedFile = event === "unlink" ? undefined : file;
+
+		if (path.dirname(path.resolve(file)) === path.resolve("src") && path.basename(file) !== "index.pug") {
+			global.pagesChanged = true;
+		}
 	});
 
 	gulp.watch("src/scss/**/*.scss", gulp.series("scss"));

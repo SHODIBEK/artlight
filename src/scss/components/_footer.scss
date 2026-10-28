@@ -348,3 +348,10 @@
 		margin-top: 93px;
 	}
 }
+
+// «Приглашаем к сотрудничеству»: между секциями 90 на десктопе
+.footer--gap-90 {
+	@media (min-width: #{$tablet}px) {
+		margin-top: 90px;
+	}
+}

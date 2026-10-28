@@ -291,6 +291,13 @@
 	}
 }
 
+// «Приглашаем к сотрудничеству»: между секциями 90 на десктопе
+.feedback--gap-90 {
+	@media (min-width: #{$tablet}px) {
+		margin-top: 90px;
+	}
+}
+
 // «О компании» — «Приглашаем к сотрудничеству» (десктоп node-id=2-12965, моб. 2-17434): своё фото,
 // 9 полей (≥ 1280 — по 2 в ряд, «Фамилия» перед «Имя», сообщение на всю ширину), слева колонка 716
 .feedback--cooperation {
@@ -367,6 +374,34 @@
 
 		.feedback__input--textarea,
 		.feedback__file {
+			grid-column: 1 / -1;
+		}
+	}
+}
+
+// «Приглашаем к сотрудничеству» (cooperation.html, десктоп node-id=2-4672, моб. 2-19611): поля и фото «О компании»,
+// без текста; моб. — сообщение 159, файл 56; ≥ 1280 — слева колонка 680, вид деятельности на всю ширину
+.feedback--partner {
+	.feedback__input--textarea {
+		height: 159px;
+	}
+
+	.feedback__file {
+		height: 56px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		.feedback__input--textarea {
+			height: 125px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		.feedback__container {
+			grid-template-columns: minmax(0, 680px) minmax(0, 844px);
+		}
+
+		.feedback__input--select {
 			grid-column: 1 / -1;
 		}
 	}
