@@ -1,0 +1,144 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Страница бренда «Bover»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-7350,
+// моб. node-id=2-21163. Логотип + текст о фабрике и ссылка на её сайт, ниже — товары бренда (+productCard).
+
+// логотип (квадрат 827, кадр — object-fit: cover): моб. 168 над текстом, 768–1279 — 300, ≥ 1280 — 524×493 слева
+.brand-about {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+	gap: 20px;
+
+	&__picture {
+		overflow: hidden;
+		height: 168px;
+	}
+
+	&__logo {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	// «normal» LT Superior Medium: 16 → 19, 20 → 24; абзацы через пустую строку
+	&__text {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+		color: var(--color-black);
+
+		p {
+			margin: 0;
+		}
+
+		p + p {
+			margin-top: 19px;
+		}
+	}
+
+	&__site {
+		align-self: flex-start;
+		outline: none;
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 24px;
+		text-decoration: underline;
+		text-underline-position: from-font;
+		color: var(--color-black);
+		transition: color $duration-normal;
+		text-decoration-thickness: from-font;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 40px;
+
+		&__picture {
+			height: 300px;
+		}
+
+		&__text {
+			font-size: 20px;
+			line-height: 24px;
+
+			p + p {
+				margin-top: 24px;
+			}
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		flex-direction: row;
+
+		&__picture {
+			flex-shrink: 0;
+			width: 524px;
+			height: 493px;
+		}
+
+		// в макете текст по центру высоты блока (500 при логотипе 493)
+		&__body {
+			flex: 1;
+			align-self: center;
+			justify-content: center;
+		}
+	}
+}
+
+// товары: сетка «Каталога» из поиска — 2 / 3 (768+) / 4 (1600+), карточек 10 / 9 / 8
+.brand-products {
+	margin-top: 100px;
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24px 16px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+
+		&__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 25px 20px; // в макете ряды по 509 + 30 при карточке 514 — шаг 539
+		}
+
+		&__grid > :nth-child(n + 10) {
+			display: none;
+		}
+	}
+
+	// карточка 514 по центру ряда 509 (y −2.5)
+	@media (min-width: #{$header-desktop}px) {
+		margin-top: 147.5px;
+
+		&__grid {
+			margin-bottom: -2.5px;
+		}
+	}
+
+	@media (min-width: #{$header-full}px) {
+		&__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		&__grid > :nth-child(n + 9) {
+			display: none;
+		}
+	}
+}

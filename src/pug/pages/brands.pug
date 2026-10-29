@@ -15,7 +15,7 @@ section.brands.container
 	ul.brands__grid
 		each brand, index in page.brands
 			li.brands__item.js-brands-item(data-type=brand[2])
-				a.brand-card(href=defaultLink)
+				a.brand-card(href=page.url)
 					img.brand-card__logo(src=`${baseDir}images/brands/brand-${brand[1]}.webp` width="142" height="85" alt=brand[0] loading=(index < 7 ? null : 'lazy'))
 					span.brand-card__name= typo(brand[0])
 	p.brands__note= typo(page.note)

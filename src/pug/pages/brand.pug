@@ -1,0 +1,26 @@
+//- Страница бренда «Bover»: десктоп node-id=2-7350, моб. node-id=2-21163
+- var page = data.brandPage
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+//- логотип + текст: < 1280 — логотип над текстом, ≥ 1280 — логотип 524 слева, текст по центру справа
+section.brand-about.container
+	.brand-about__picture
+		img.brand-about__logo(src=`${baseDir}images/brands/${page.logo}.webp` width="827" height="827" alt=page.title fetchpriority="high")
+	.brand-about__body
+		//- без typo(): в макете предлоги остаются в конце строк
+		.brand-about__text
+			each paragraph in page.text
+				p= paragraph
+		a.brand-about__site(href=page.site.url target="_blank" rel="noopener")= page.site.name
+
+//- товары бренда: 2 / 3 (768+) / 4 (1600+) в ряд, карточек 10 / 9 / 8 — как «Каталог» в поиске
+section.brand-products.container
+	.brand-products__grid
+		each item in page.products
+			+productCard(item).product-card--wide
+
+- var feedbackData = page.feedback
+include ../sections/feedback
