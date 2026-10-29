@@ -71,29 +71,31 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 		.checkout-section__head
 			h2.checkout-section__title= page.cartTitle
 		.checkout-section__body
-			ul.cart__list.checkout-cart__list.js-cart-list#checkout-cart-list
-				each item, index in cart.items
-					+cartItem(item, index, { eager: false })
-			button.button.button--tertiary.checkout-cart__toggle.js-checkout-toggle.js-cart-filled(type="button" aria-expanded="true" aria-controls="checkout-cart-list" data-show=page.showList data-hide=page.hideList)
-				span.button__text.js-checkout-toggle-text= page.hideList
-				+svg('chevron-line').checkout-cart__toggle-icon
+			//- ширина — как у списка на странице корзины (≥ 1280 — без колонки 542 + 20), «Сумма заказа» под товарами
+			.checkout-cart__main
+				ul.cart__list.checkout-cart__list.js-cart-list#checkout-cart-list
+					each item, index in cart.items
+						+cartItem(item, index, { eager: false })
+				button.button.button--tertiary.checkout-cart__toggle.js-checkout-toggle.js-cart-filled(type="button" aria-expanded="true" aria-controls="checkout-cart-list" data-show=page.showList data-hide=page.hideList)
+					span.button__text.js-checkout-toggle-text= page.hideList
+					+svg('chevron-line').checkout-cart__toggle-icon
 
-			.cart__empty.js-cart-empty(hidden)
-				p.cart__empty-text= cart.empty
-				+button({ label: cart.emptyLink.name, href: cart.emptyLink.url }).cart__empty-button
+				.cart__empty.js-cart-empty(hidden)
+					p.cart__empty-text= cart.empty
+					+button({ label: cart.emptyLink.name, href: cart.emptyLink.url }).cart__empty-button
 
-			.cart-summary.checkout-summary.js-cart-summary
-				h3.cart-summary__title= cart.summary.title
-				dl.cart-summary__list
-					.cart-summary__row
-						dt= cart.summary.goods
-						dd.cart-summary__value.js-cart-total-count= cartCount + ' шт.'
-					.cart-summary__row
-						dt= cart.summary.delivery
-						dd.cart-summary__value= cart.summary.deliveryValue
-					.cart-summary__row.cart-summary__row--total
-						dt= cart.summary.total
-						dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
+				aside.cart-summary.checkout-summary.js-cart-summary
+					h3.cart-summary__title= cart.summary.title
+					dl.cart-summary__list
+						.cart-summary__row
+							dt= cart.summary.goods
+							dd.cart-summary__value.js-cart-total-count= cartCount + ' шт.'
+						.cart-summary__row
+							dt= cart.summary.delivery
+							dd.cart-summary__value= cart.summary.deliveryValue
+						.cart-summary__row.cart-summary__row--total
+							dt= cart.summary.total
+							dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
 
 	section.checkout-delivery.container.js-checkout-delivery
 		h2.checkout-section__title= delivery.title

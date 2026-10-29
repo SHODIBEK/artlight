@@ -197,6 +197,13 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 
 // «Корзина»: список товаров (сворачивается), «Скрыть список», «Сумма заказа»
 .checkout-cart {
+	// ширина как у списка на странице корзины: контейнер минус «Сумма заказа» 542 и зазор 20
+	@media (min-width: #{$header-desktop}px) {
+		&__main {
+			max-width: calc(100% - 562px);
+		}
+	}
+
 	&__list {
 		margin: 0;
 		gap: 20px;
@@ -242,7 +249,7 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	margin-top: 20px;
 	padding: 24px;
 
-	// в корзине ≥ 1280 — колонка 542 справа, sticky; здесь — на всю ширину контейнера
+	// под товарами, на ширину списка (в корзине ≥ 1280 — колонка 542 справа, sticky)
 	@media (min-width: #{$header-desktop}px) {
 		position: static;
 		width: auto;
