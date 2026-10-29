@@ -35,6 +35,18 @@
 		width: 100%;
 	}
 
+	// две кнопки (попап «Товар добавлен в корзину»): моб. — в колонку, главная сверху; ≥ 768 — в ряд, главная справа
+	&__buttons {
+		display: flex;
+		flex-direction: column-reverse;
+		width: 100%;
+		gap: 16px;
+	}
+
+	&__buttons &__button {
+		padding: 0 10px;
+	}
+
 	@media (min-width: #{$tablet}px) {
 		gap: 30px;
 
@@ -46,6 +58,16 @@
 		&__title {
 			font-size: 46px;
 			line-height: 55px;
+		}
+
+		&__buttons {
+			flex-direction: row;
+			gap: 20px;
+		}
+
+		&__buttons &__button {
+			flex: 1 1 0;
+			min-width: 0;
 		}
 	}
 }

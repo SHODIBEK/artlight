@@ -1,0 +1,19 @@
+//- Попап «Товар добавлен в корзину»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-911,
+//- моб. node-id=2-13891. Окно и заголовок — как у «Успешной отправки» (.success). Показ — cart-added.html.
+//- Подключение (бэкенд): после успешного добавления товара в корзину —
+//- document.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'cart-added' } }));
+//- или атрибут data-modal-open — открыт при загрузке (здесь — cartAddedOpen = true перед include).
+//- «Продолжить выбор» закрывает попап (.js-modal-close), «Перейти в корзину» — ссылка на корзину.
+- var cartAdded = data.cartAddedModal
+
+.modal.js-modal(data-modal-id="cart-added" data-modal-open=(typeof cartAddedOpen !== 'undefined' && cartAddedOpen) role="dialog" aria-modal="true" aria-labelledby="cart-added-title" aria-hidden="true")
+	.modal__dialog
+		button.modal__close.js-modal-close(type="button" aria-label="Закрыть")
+			+svg('popup-close').modal__close-icon
+
+		.success
+			+svg('success-check').success__icon
+			h2.success__title#cart-added-title= typo(cartAdded.title)
+			.success__buttons
+				+button({ view: 'grey', label: cartAdded.continue }).success__button.js-modal-close
+				+button({ view: 'main', label: cartAdded.cart, href: cartAdded.url }).success__button

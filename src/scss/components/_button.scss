@@ -160,6 +160,25 @@
 		}
 	}
 
+	// серая без иконки — попап «Товар добавлен в корзину» (в ui-kit нет; состояния — как у tertiary)
+	&--grey {
+		background-color: var(--color-grey-button);
+
+		@include state-hover {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+
+			@include stroke(1px, var(--color-black-60));
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
 	// Button / Tertiary
 	&--tertiary {
 		padding: 10px;
