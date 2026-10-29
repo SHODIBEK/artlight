@@ -1,0 +1,680 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Оформление запроса»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-7693,
+// моб. node-id=2-22650; вкладки доставки — 2-7873 / 2-22828, 2-8049 / 2-23002, 2-8232 / 2-23184.
+// Секции через 60. ≥ 1280 — заголовок слева, содержимое справа (по 834); «Доставка» — на всю ширину.
+// Товары и «Сумма заказа» — блоки корзины (.cart-item, .cart-summary).
+$checkout-field-bg: #f7f7f7; // поля формы в макете светлее light-grey
+
+.checkout {
+	[hidden] {
+		display: none;
+	}
+
+	// поля «Информации о вас» и адреса
+	&__input,
+	.checkout-address__field:not(.input--line) {
+		box-shadow: none;
+		background-color: $checkout-field-bg;
+	}
+
+	// моб. поля 58 (паддинг 20), ≥ 768 — 70 (30)
+	&__input {
+		--input-pad-x: 20px;
+
+		padding: 20px;
+		height: auto;
+
+		.input__field {
+			height: 18px;
+			line-height: 18px;
+		}
+	}
+
+	// телефон: intl-tel-input оборачивает поле в .iti на всю ширину
+	&__input--phone {
+		padding: 0;
+
+		.iti {
+			--iti-pad: 20px;
+		}
+
+		.input__field {
+			padding: 20px 20px 20px 0;
+			height: 58px;
+			box-sizing: border-box;
+		}
+	}
+
+	&__input--comment {
+		height: 159px;
+
+		.input__field {
+			height: 100%;
+		}
+	}
+
+	// подсказка в 2 строки на моб. (76), в одну — с 768
+	&__input--manager .input__field {
+		height: 36px;
+	}
+
+	&__check {
+		align-items: center;
+
+		.checkbox__label {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__input {
+			--input-pad-x: 30px;
+
+			padding: 10px 30px;
+			height: 70px;
+		}
+
+		&__input--phone {
+			padding: 0;
+
+			.iti {
+				--iti-pad: 30px;
+			}
+
+			.input__field {
+				padding: 10px 30px 10px 0;
+				height: 70px;
+			}
+		}
+
+		&__input--comment {
+			padding: 30px;
+			height: 125px;
+		}
+
+		&__input--manager {
+			align-items: center;
+			padding: 26px 30px;
+
+			.input__field {
+				height: 18px;
+			}
+		}
+	}
+}
+
+.checkout-section,
+.checkout-delivery {
+	margin-top: 60px;
+}
+
+.checkout-section {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 20px;
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		align-items: start;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+// «Информация о вас»
+.checkout-info {
+	&__text {
+		margin: 20px 0 0;
+		font-size: 16px;
+		line-height: 19px;
+		color: var(--color-black);
+	}
+
+	&__auth {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		margin-top: 20px;
+		gap: 20px;
+	}
+
+	&__auth-button {
+		padding: 10px;
+		width: 100%;
+	}
+
+	&__fields {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 12px;
+	}
+
+	&__reserve {
+		display: flex;
+		margin-top: 35px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__auth {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			max-width: 621px;
+		}
+
+		&__fields {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+
+			.checkout__input--comment {
+				grid-column: 1 / -1;
+			}
+
+			// «менеджер» — отдельно, через 35
+			.checkout__input--manager {
+				grid-column: 1 / -1;
+				margin-top: 23px;
+			}
+		}
+	}
+}
+
+// «Корзина»: список товаров (сворачивается), «Скрыть список», «Сумма заказа»
+.checkout-cart {
+	&__list {
+		margin: 0;
+		gap: 20px;
+
+		&.is-collapsed {
+			display: none;
+		}
+	}
+
+	&__toggle {
+		margin-top: 20px;
+		width: 100%;
+
+		&[aria-expanded="false"] .checkout-cart__toggle-icon {
+			transform: rotate(180deg);
+		}
+	}
+
+	&__toggle-icon {
+		flex-shrink: 0;
+		width: 12.37px;
+		height: 7.25px;
+		transition: transform $duration-normal;
+	}
+
+	.cart__empty {
+		margin-top: 0;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__list {
+			gap: 4px;
+		}
+
+		// на десктопе в макете фото без отметки
+		.cart-item__check {
+			display: none;
+		}
+	}
+}
+
+.checkout-summary {
+	margin-top: 20px;
+	padding: 24px;
+}
+
+// «Доставка»: табы — моб. в строку с прокруткой до краёв (40), ≥ 768 — на всю ширину поровну (60)
+.checkout-delivery {
+	&__tabs {
+		display: flex;
+		overflow-x: auto;
+		margin: 20px calc(var(--gutter) * -1) 0;
+		padding: 0 var(--gutter);
+		gap: 8px;
+		scrollbar-width: none;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	&__tab {
+		flex-shrink: 0;
+	}
+
+	&__panel {
+		margin: 20px 0 0;
+		border: 0;
+		padding: 0;
+		min-width: 0;
+	}
+
+	// «По Санкт-Петербургу»: моб. поля через 20 (в «Других городах» — 16)
+	&__panel > .checkout-address {
+		row-gap: 20px;
+	}
+
+	&__panel--wide {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__tabs {
+			overflow: visible;
+			margin: 20px 0 0;
+			padding: 0;
+		}
+
+		&__tab {
+			flex: 1 1 0;
+			height: 60px;
+			min-width: 0;
+			white-space: normal;
+			text-align: center;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__panel--wide {
+			margin-top: 30px;
+			gap: 30px;
+		}
+	}
+}
+
+// самовывоз: офисы + карта (≥ 1280 — карта справа на высоту офисов)
+.checkout-pickup {
+	&__offices {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 20px;
+	}
+
+	&__map {
+		position: relative;
+		overflow: hidden;
+		margin-top: 20px;
+		height: 322px;
+		background-color: var(--color-light-grey);
+	}
+
+	// картинка не задаёт высоту: ≥ 1280 карта — на высоту офисов
+	&__map-image {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		user-select: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__offices {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__map {
+			height: 400px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: flex;
+		gap: 20px;
+
+		&__offices {
+			flex-shrink: 0;
+			grid-template-columns: minmax(0, 1fr);
+			width: 416px;
+		}
+
+		&__map {
+			flex: 1 1 0;
+			margin-top: 0;
+			height: auto;
+		}
+	}
+}
+
+.checkout-office {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	padding: 24px;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	gap: 21px;
+
+	&__city {
+		margin: 0;
+		font-weight: 500;
+		font-size: 22px;
+		line-height: 26px;
+	}
+
+	&__line {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	&__line--accent {
+		font-weight: 500;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+}
+
+// адрес: моб. в колонку (шаг 16), 768–1279 — 6 колонок, ≥ 1280 — 10 (город и улица по 5, остальные по 2)
+.checkout-address {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	gap: 16px;
+
+	@media (min-width: #{$tablet}px) {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 20px 12px;
+
+		&__field {
+			grid-column: span 2;
+		}
+
+		&__field--wide,
+		&__field--half {
+			grid-column: span 3;
+		}
+
+		&__field--full {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		grid-template-columns: repeat(10, minmax(0, 1fr));
+
+		&__field--half {
+			grid-column: span 2;
+		}
+
+		&__field--wide {
+			grid-column: span 5;
+		}
+	}
+}
+
+// группа: заголовок (24 Semibold) + варианты / поля
+.checkout-group {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 600;
+		font-size: 24px;
+		line-height: 27px;
+		color: var(--color-black);
+	}
+
+	&__link {
+		font-size: 15px;
+		line-height: 18px;
+		text-decoration: underline;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__choices {
+		display: flex;
+		flex-direction: column;
+		align-self: stretch;
+		gap: 10px;
+	}
+
+	.checkout-address {
+		align-self: stretch;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
+
+		&__head {
+			flex-direction: row;
+			align-items: center;
+			gap: 30px;
+		}
+
+		&__choices {
+			flex-flow: row wrap;
+			align-self: flex-start;
+			gap: 20px;
+		}
+	}
+}
+
+// вариант: рамка stroke (выбранный — accent), круг 32; моб. — на всю ширину, по центру
+.checkout-choice {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 21px;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black);
+	transition: box-shadow $duration-normal;
+	cursor: pointer;
+	gap: 12px;
+
+	@include stroke(1px, var(--color-stroke));
+
+	&__input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__mark {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+
+		@include stroke(1px, var(--color-stroke));
+	}
+
+	&__icon {
+		width: 32px;
+		height: 32px;
+		opacity: 0;
+		transition: opacity $duration-normal;
+	}
+
+	@include state-hover {
+		@include stroke(1px, var(--color-black-60));
+	}
+
+	&:focus-within {
+		@include stroke(2px, var(--color-black));
+	}
+
+	&:has(.checkout-choice__input:checked) {
+		@include stroke(1px, var(--color-accent));
+
+		.checkout-choice__mark {
+			box-shadow: none;
+			background-color: var(--color-accent);
+		}
+
+		.checkout-choice__icon {
+			opacity: 1;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		justify-content: flex-start;
+	}
+}
+
+// «До терминала в Москве»: условия бесплатной доставки
+.checkout-note {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+
+	&__icon {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+	}
+
+	&__svg {
+		width: 16px;
+		height: 16px;
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__line {
+			display: block;
+		}
+	}
+}
+
+// другая ТК: текст + поле с линией снизу
+.checkout-other {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	&__text {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+}
+
+// «Подтверждение»
+.checkout-file {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px dashed var(--color-light-grey);
+	padding: 10px;
+	height: 56px;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black);
+	transition: background-color $duration-normal;
+	cursor: pointer;
+	gap: 3px;
+
+	@include state-hover {
+		background-color: var(--color-light-grey);
+	}
+
+	&:focus-within {
+		outline: 2px solid var(--color-black);
+		outline-offset: -2px;
+	}
+
+	&__input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__text {
+		overflow: hidden;
+		min-width: 0;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+
+.checkout-confirm {
+	&__agreements {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-top: 35px;
+		gap: 16px;
+
+		.checkout__check {
+			display: flex;
+		}
+	}
+
+	&__submit {
+		margin-top: 35px;
+		width: 100%;
+	}
+}

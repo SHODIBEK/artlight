@@ -1,0 +1,162 @@
+//- Оформление запроса: десктоп node-id=2-7693, моб. node-id=2-22650. Доставка — табы, макеты вкладок:
+//- По Санкт-Петербургу 2-7873 / 2-22828, До терминала в Москве 2-8049 / 2-23002, Другие города РФ 2-8232 / 2-23184
+- var page = data.checkoutPage
+- var cart = data.cartPage
+- var delivery = page.delivery
+- var money = (value, cents) => value.toLocaleString('ru-RU', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 }).replace(/\s/g, ' ') + ' ₽'
+- var cartTotal = cart.items.reduce((sum, item) => sum + item.price * item.count, 0)
+- var cartCount = cart.items.reduce((sum, item) => sum + item.count, 0)
+
+//- вариант-карточка с круглой отметкой (транспортная компания, способ получения)
+mixin choice(name, label, opts)
+	- var o = opts || {}
+	label.checkout-choice&attributes(attributes)
+		input.checkout-choice__input(type="radio" name=name value=(o.value || label) checked=o.checked)
+		span.checkout-choice__mark
+			+svg('check').checkout-choice__icon
+		span.checkout-choice__label= label
+
+//- адрес доставки: город, улица, дом, этаж, кв / офис, индекс, тип объекта, комментарий
+mixin addressFields(prefix)
+	.checkout-address&attributes(attributes)
+		+input({ name: prefix + '_city', placeholder: 'Город', attrs: { autocomplete: 'address-level2' } }).checkout-address__field.checkout-address__field--wide
+		+input({ name: prefix + '_street', placeholder: 'Улица', attrs: { autocomplete: 'address-line1' } }).checkout-address__field.checkout-address__field--wide
+		+input({ name: prefix + '_house', placeholder: 'Дом' }).checkout-address__field
+		+input({ name: prefix + '_floor', placeholder: 'Этаж' }).checkout-address__field
+		+input({ name: prefix + '_flat', placeholder: 'Кв / Офис' }).checkout-address__field
+		+input({ name: prefix + '_index', placeholder: 'Индекс', attrs: { autocomplete: 'postal-code', inputmode: 'numeric' } }).checkout-address__field.checkout-address__field--half
+		+input({ name: prefix + '_object', placeholder: 'Тип объекта', options: delivery.objectTypes }).checkout-address__field.checkout-address__field--half
+		+input({ name: prefix + '_comment', placeholder: 'Комментарий к запросу', textarea: true }).checkout-address__field.checkout-address__field--full
+
+//- транспортные компании + «другая ТК»
+mixin companies(prefix, list)
+	.checkout-group
+		.checkout-group__head
+			h3.checkout-group__title= delivery.companyTitle
+			a.checkout-group__link(href=delivery.companyInfo.url target="_blank" rel="noopener")= delivery.companyInfo.name
+		.checkout-group__choices
+			each company, index in list
+				+choice(prefix + '_company', company, { checked: index === list.length - 1 })
+	.checkout-other
+		p.checkout-other__text= typo(delivery.otherNote)
+		+input({ name: prefix + '_company_other', placeholder: delivery.otherPlaceholder, line: true }).checkout-other__input
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+//- вся страница — одна форма: проверка — feedback-form.js (имя, телефон, почта, согласия — data-validate),
+//- товары и «Сумма заказа» — cart.js, вкладки доставки и «Скрыть список» — checkout.js
+form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enctype="multipart/form-data" novalidate data-validate=".input__field, .js-checkout-agree .checkbox__input")
+	section.checkout-section.checkout-info.container
+		.checkout-section__head
+			h2.checkout-section__title= page.info.title
+			p.checkout-info__text= typo(page.info.text)
+			.checkout-info__auth
+				+button({ label: page.info.login, icon: false }).checkout-info__auth-button
+				+button({ label: page.info.register, view: 'tertiary' }).checkout-info__auth-button
+		.checkout-section__body
+			.checkout-info__fields
+				+input({ name: 'surname', placeholder: 'Фамилия', attrs: { autocomplete: 'family-name' } }).checkout__input
+				+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'given-name' } }).checkout__input
+				+input({ name: 'email', type: 'email', placeholder: 'Почта', attrs: { autocomplete: 'email' } }).checkout__input
+				+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).checkout__input.checkout__input--phone
+				+input({ name: 'comment', placeholder: 'Комментарий к запросу', textarea: true }).checkout__input.checkout__input--comment
+				//- моб. подсказка в 2 строки — textarea в одну строку на десктопе
+				+input({ name: 'manager', placeholder: page.info.manager, textarea: true, attrs: { rows: 1 } }).checkout__input.checkout__input--manager
+			+checkbox({ name: 'reserve', value: 'y' }).checkbox--light.checkout__check.checkout-info__reserve
+				span.checkbox__label= typo(page.info.reserve)
+
+	section.checkout-section.checkout-cart.container
+		.checkout-section__head
+			h2.checkout-section__title= page.cartTitle
+		.checkout-section__body
+			ul.cart__list.checkout-cart__list.js-cart-list#checkout-cart-list
+				each item, index in cart.items
+					+cartItem(item, index, { eager: false })
+			button.button.button--tertiary.checkout-cart__toggle.js-checkout-toggle.js-cart-filled(type="button" aria-expanded="true" aria-controls="checkout-cart-list" data-show=page.showList data-hide=page.hideList)
+				span.button__text.js-checkout-toggle-text= page.hideList
+				+svg('chevron-line').checkout-cart__toggle-icon
+
+			.cart__empty.js-cart-empty(hidden)
+				p.cart__empty-text= cart.empty
+				+button({ label: cart.emptyLink.name, href: cart.emptyLink.url }).cart__empty-button
+
+			.cart-summary.checkout-summary.js-cart-summary
+				h3.cart-summary__title= cart.summary.title
+				dl.cart-summary__list
+					.cart-summary__row
+						dt= cart.summary.goods
+						dd.cart-summary__value.js-cart-total-count= cartCount + ' шт.'
+					.cart-summary__row
+						dt= cart.summary.delivery
+						dd.cart-summary__value= cart.summary.deliveryValue
+					.cart-summary__row.cart-summary__row--total
+						dt= cart.summary.total
+						dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
+
+	section.checkout-delivery.container.js-checkout-delivery
+		h2.checkout-section__title= delivery.title
+		input.js-checkout-delivery-value(type="hidden" name="delivery" value=delivery.tabs[0].id)
+		.checkout-delivery__tabs
+			each tab, index in delivery.tabs
+				+tab(tab.name, { active: !index }).checkout-delivery__tab.js-checkout-tab(data-tab=tab.id aria-controls=`delivery-${tab.id}`)
+
+		//- скрытые вкладки — fieldset disabled: их поля не отправляются
+		fieldset.checkout-delivery__panel.checkout-pickup(id="delivery-pickup" data-panel="pickup")
+			legend.visually-hidden= delivery.tabs[0].name
+			.checkout-pickup__offices
+				each office in delivery.offices
+					.checkout-office
+						p.checkout-office__city= office.city
+						p.checkout-office__line= office.address
+						a.checkout-office__line.checkout-office__line--accent(href=`tel:${office.phone.replace(/[^\d+]/g, '')}`)= office.phone
+						p.checkout-office__line= office.hours
+						a.checkout-office__line.checkout-office__line--accent(href=`mailto:${office.email}`)= office.email
+			//- место под Яндекс Карты (как в «Контактах»), пока — картинка из макета
+			.checkout-pickup__map.js-contacts-map(data-address=delivery.offices[0].mapQuery)
+				img.checkout-pickup__map-image(src=`${baseDir}images/contacts/map.webp` alt="" loading="lazy" draggable="false")
+
+		fieldset.checkout-delivery__panel(id="delivery-spb" data-panel="spb" hidden disabled)
+			legend.visually-hidden= delivery.tabs[1].name
+			+addressFields('spb')
+
+		fieldset.checkout-delivery__panel.checkout-delivery__panel--wide(id="delivery-moscow" data-panel="moscow" hidden disabled)
+			legend.visually-hidden= delivery.tabs[2].name
+			.checkout-note
+				span.checkout-note__icon
+					+svg('info').checkout-note__svg
+				p.checkout-note__text
+					//- моб. — одним абзацем, ≥ 768 — по строкам
+					each line, index in delivery.moscowNote
+						if index
+							= ' '
+						span.checkout-note__line= typo(line)
+			+companies('moscow', delivery.moscowCompanies)
+
+		fieldset.checkout-delivery__panel.checkout-delivery__panel--wide(id="delivery-russia" data-panel="russia" hidden disabled)
+			legend.visually-hidden= delivery.tabs[3].name
+			.checkout-group
+				h3.checkout-group__title= delivery.methodTitle
+				.checkout-group__choices
+					+choice('russia_method', delivery.methods[0], { value: 'terminal' }).js-checkout-method
+					+choice('russia_method', delivery.methods[1], { value: 'address', checked: true }).js-checkout-method
+			//- адрес — только при «Доставке до адреса»
+			.checkout-group.js-checkout-address
+				h3.checkout-group__title= delivery.addressTitle
+				+addressFields('russia')
+			+companies('russia', delivery.russiaCompanies)
+
+	section.checkout-section.checkout-confirm.container
+		.checkout-section__head
+			h2.checkout-section__title= page.confirm.title
+		.checkout-section__body
+			label.checkout-file
+				input.checkout-file__input.js-feedback-file(type="file" name="files[]" multiple)
+				+svg('attach').checkout-file__icon
+				span.checkout-file__text.js-feedback-file-text(data-empty=page.confirm.file)= page.confirm.file
+			.checkout-confirm__agreements
+				each item in page.confirm.agreements
+					+checkbox({ name: item.name, value: 'y' }).checkbox--light.checkout__check.js-checkout-agree
+						span.checkbox__label= typo(item.text)
+			+button({ view: 'main', type: 'submit', label: page.confirm.submit, icon: false }).checkout-confirm__submit

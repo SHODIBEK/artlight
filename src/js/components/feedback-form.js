@@ -33,7 +33,8 @@ function setError(field, isError) {
 
 export default function feedbackFormInit() {
 	document.querySelectorAll('.js-feedback-form').forEach((form) => {
-		const fields = [...form.querySelectorAll('.input__field, .checkbox__input')];
+		// data-validate — какие поля проверять («Оформление запроса»: без чекбоксов товаров и резерва)
+		const fields = [...form.querySelectorAll(form.dataset.validate || '.input__field, .checkbox__input')];
 
 		fields.forEach((field) => {
 			const eventName = field.type === 'checkbox' ? 'change' : 'input';
@@ -43,7 +44,8 @@ export default function feedbackFormInit() {
 
 		form.addEventListener('submit', (event) => {
 			const invalid = fields.filter((field) => {
-				const isError = !isFieldValid(field);
+				// поля скрытой вкладки (fieldset disabled) не отправляются — не проверяем
+				const isError = !field.disabled && !isFieldValid(field);
 
 				setError(field, isError);
 

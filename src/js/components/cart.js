@@ -1,6 +1,8 @@
 /**
 * Корзина: количество (− / +), удаление товара и выбранных, «Выбрать все» (частичный выбор — indeterminate),
 * «Сумма заказа» — по выбранным товарам. Пустая корзина — сообщение со ссылкой в каталог.
+* Те же товары на «Оформлении запроса» (без панели «Выбрать все» и кнопки «Оформить»; .js-cart-filled — скрыть,
+* когда корзина пуста).
 */
 const formatMoney = (value, cents) => `${value.toLocaleString('ru-RU', {
 	minimumFractionDigits: cents ? 2 : 0,
@@ -48,18 +50,31 @@ export default function cartInit() {
 
 		totalCount.textContent = `${count} шт.`;
 		total.textContent = formatMoney(sum, true);
-		order.disabled = !selected.length;
+		if (order) {
+			order.disabled = !selected.length;
+		}
 
-		allInput.checked = items.length > 0 && selected.length === items.length;
-		allInput.indeterminate = selected.length > 0 && selected.length < items.length;
+		if (allInput) {
+			allInput.checked = items.length > 0 && selected.length === items.length;
+			allInput.indeterminate = selected.length > 0 && selected.length < items.length;
+		}
 
 		const isEmpty = !items.length;
 
 		empty.hidden = !isEmpty;
-		list.hidden = isEmpty;
-		toolbar.hidden = isEmpty;
-		summary.hidden = isEmpty;
+		[list, toolbar, summary, ...cart.querySelectorAll('.js-cart-filled')].forEach((el) => {
+			if (el) {
+				el.hidden = isEmpty;
+			}
+		});
 	};
+
+	// «Оформить» — на страницу оформления запроса
+	if (order && order.dataset.href) {
+		order.addEventListener('click', () => {
+			window.location.href = order.dataset.href;
+		});
+	}
 
 	cart.addEventListener('click', (event) => {
 		const item = event.target.closest('.js-cart-item');
@@ -94,7 +109,7 @@ export default function cartInit() {
 	});
 
 	cart.addEventListener('change', (event) => {
-		if (event.target === allInput) {
+		if (allInput && event.target === allInput) {
 			getItems().forEach((item) => {
 				getCheck(item).checked = allInput.checked;
 			});

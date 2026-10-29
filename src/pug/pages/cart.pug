@@ -21,29 +21,7 @@ section.cart.container.js-cart
 
 		ul.cart__list.js-cart-list
 			each item, index in page.items
-				li.cart-item.js-cart-item(data-price=item.price)
-					.cart-item__picture
-						//- первое фото — первый экран (LCP)
-						img.cart-item__image(src=`${baseDir}images/cart/${item.image}.webp` width="160" height="160" alt=item.name)&attributes(index ? { loading: 'lazy' } : { fetchpriority: 'high' })
-						+checkbox({ name: 'cart_item', value: String(item.id), checked: true, ariaLabel: 'Выбрать товар' }).cart-item__check.js-cart-check
-					.cart-item__body
-						.cart-item__top
-							.cart-item__info
-								p.cart-item__name= typo(item.name)
-								p.cart-item__specs= item.specs
-							.cart-item__actions
-								button.cart-item__action(type="button" aria-label="В избранное" aria-pressed="false")
-									+svg('heart').cart-item__action-icon
-								button.cart-item__action.js-cart-remove(type="button" aria-label="Удалить из корзины")
-									+svg('cart-remove').cart-item__action-icon
-						.cart-item__bottom
-							p.cart-item__price.js-cart-item-price= money(item.price * item.count)
-							.cart-item__counter
-								button.cart-item__count-button.js-cart-minus(type="button" aria-label="Уменьшить количество" disabled=(item.count <= 1))
-									+svg('cart-minus').cart-item__count-icon
-								span.cart-item__count.js-cart-count(aria-live="polite")= item.count
-								button.cart-item__count-button.js-cart-plus(type="button" aria-label="Увеличить количество")
-									+svg('cart-plus').cart-item__count-icon
+				+cartItem(item, index)
 
 		.cart__empty.js-cart-empty(hidden)
 			p.cart__empty-text= page.empty
@@ -61,5 +39,5 @@ section.cart.container.js-cart
 			.cart-summary__row.cart-summary__row--total
 				dt= page.summary.total
 				dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
-		+button({ label: page.summary.order }).cart-summary__button.js-cart-order
+		+button({ label: page.summary.order }).cart-summary__button.js-cart-order(data-href=page.summary.orderUrl)
 		+button({ label: page.summary.login, view: 'secondary' }).cart-summary__button.cart-summary__button--login

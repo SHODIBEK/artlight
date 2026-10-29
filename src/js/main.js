@@ -28,6 +28,7 @@ import lazyBgInit from "./components/lazy-bg";
 import contactsSliderInit from "./components/contacts-slider";
 import brandsFilterInit from "./components/brands-filter";
 import cartInit from "./components/cart";
+import checkoutInit from "./components/checkout";
 
 ieFix();
 vhFix();
@@ -57,3 +58,4 @@ productGalleryInit();
 projectTypesInit();
 brandsFilterInit();
 cartInit();
+checkoutInit();
