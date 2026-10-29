@@ -31,6 +31,36 @@ function setError(field, isError) {
 	}
 }
 
+// отправка формы; кнопка отправки заблокирована, пока ждём ответ
+function send(form) {
+	const action = form.getAttribute('action');
+
+	if (!action || action === '#') {
+		return Promise.resolve();
+	}
+
+	const submit = form.querySelector('[type="submit"]');
+
+	if (submit) {
+		submit.disabled = true;
+	}
+
+	return fetch(action, {
+		method: form.getAttribute('method') || 'POST',
+		body: new FormData(form),
+	})
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error(`HTTP ${response.status}`);
+			}
+		})
+		.finally(() => {
+			if (submit) {
+				submit.disabled = false;
+			}
+		});
+}
+
 export default function feedbackFormInit() {
 	document.querySelectorAll('.js-feedback-form').forEach((form) => {
 		// data-validate — какие поля проверять («Оформление запроса»: без чекбоксов товаров и резерва)
@@ -41,6 +71,9 @@ export default function feedbackFormInit() {
 
 			field.addEventListener(eventName, () => setError(field, false));
 		});
+
+		const fileInput = form.querySelector('.js-feedback-file');
+		const fileText = form.querySelector('.js-feedback-file-text');
 
 		form.addEventListener('submit', (event) => {
 			const invalid = fields.filter((field) => {
@@ -55,11 +88,28 @@ export default function feedbackFormInit() {
 			if (invalid.length) {
 				event.preventDefault();
 				invalid[0].focus();
+
+				return;
+			}
+
+			// data-success — id попапа «Успешная отправка»: форма уходит fetch'ем на action (POST, FormData),
+			// при ответе 2xx очищается и открывается попап; action="#" (вёрстка) — без запроса, сразу попап
+			if (form.dataset.success) {
+				event.preventDefault();
+				send(form).then(() => {
+					form.reset();
+
+					if (fileText) {
+						fileText.textContent = fileText.dataset.empty;
+					}
+
+					document.dispatchEvent(new CustomEvent('modal:open', {detail: {id: form.dataset.success}}));
+				}).catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Форма не отправлена:', error);
+				});
 			}
 		});
-
-		const fileInput = form.querySelector('.js-feedback-file');
-		const fileText = form.querySelector('.js-feedback-file-text');
 
 		if (fileInput && fileText) {
 			fileInput.addEventListener('change', () => {

@@ -17,7 +17,7 @@
 							| #{callback.notePrefix}
 							a.callback__link(href=callback.noteLink.url target="_blank")= callback.noteLink.name
 
-				form.callback__form.js-feedback-form(action=callback.action method="post" enctype="multipart/form-data" novalidate)
+				form.callback__form.js-feedback-form(action=callback.action method="post" enctype="multipart/form-data" novalidate data-success="success")
 					.callback__fields
 						+input({ name: 'name', placeholder: 'Имя', required: true, line: true, attrs: { autocomplete: 'name' } }).callback__input
 						+input({ name: 'phone', type: 'tel', required: true, line: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).callback__input.callback__input--phone

@@ -1,0 +1,19 @@
+//- Попап «Успешная отправка формы»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-1363,
+//- моб. node-id=2-14296. Тексты без typo(): переносы как в макете. Показ — success.html.
+//- Подключение (бэкенд):
+//- 1) форма с data-success="success" — feedback-form.js после проверки отправляет её fetch'ем на action
+//-    и при ответе 2xx открывает попап (action="#" — без запроса, сразу попап);
+//- 2) из своего кода — document.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'success' } }));
+//- 3) открыт при загрузке страницы — атрибут data-modal-open (здесь — successOpen = true перед include).
+- var success = data.successModal
+
+.modal.js-modal(data-modal-id="success" data-modal-open=(typeof successOpen !== 'undefined' && successOpen) role="dialog" aria-modal="true" aria-labelledby="success-title" aria-hidden="true")
+	.modal__dialog
+		button.modal__close.js-modal-close(type="button" aria-label="Закрыть")
+			+svg('popup-close').modal__close-icon
+
+		.success
+			+svg('success-check').success__icon
+			h2.success__title#success-title= success.title
+			p.success__text= success.text
+			+button({ view: 'main', label: success.button }).success__button.js-modal-close

@@ -15,7 +15,7 @@ section.feedback.js-lazy-bg(id=(typeof feedbackId !== 'undefined' ? feedbackId :
 			if feedback.text
 				p.feedback__text= typo(feedback.text)
 
-		form.feedback__form.js-feedback-form(action=feedback.action method="post" enctype="multipart/form-data" novalidate)
+		form.feedback__form.js-feedback-form(action=feedback.action method="post" enctype="multipart/form-data" novalidate data-success="success")
 			.feedback__fields
 				if isCourse
 					+input({ name: 'course', placeholder: feedback.activityPlaceholder, options: feedback.activities, value: feedback.activityValue }).feedback__input.feedback__input--select

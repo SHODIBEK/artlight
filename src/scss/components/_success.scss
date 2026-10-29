@@ -1,0 +1,51 @@
+// Попап «Успешная отправка формы»:
+// десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-1363,
+// моб. node-id=2-14296. Окно — .modal__dialog (370 / 704, поля 20·16 / 30)
+.success {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	color: var(--color-black);
+	gap: 32px;
+
+	&__icon {
+		display: block;
+		flex-shrink: 0;
+		width: 56px;
+		height: 56px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-transform: uppercase;
+	}
+
+	&__text {
+		margin: 0;
+		font-size: 20px;
+		line-height: 28px;
+		text-wrap: balance;
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 30px;
+
+		&__icon {
+			width: 80px;
+			height: 80px;
+		}
+
+		&__title {
+			font-size: 46px;
+			line-height: 55px;
+		}
+	}
+}

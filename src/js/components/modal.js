@@ -64,6 +64,16 @@ export default function modalInit() {
 		}
 	});
 
+	// открытие из кода: document.dispatchEvent(new CustomEvent('modal:open', {detail: {id}})) —
+	// попап «Успешная отправка» вместо открытого «Обратного звонка»; фокус потом — на кнопку, открывшую первый
+	document.addEventListener('modal:open', (event) => {
+		const modal = document.querySelector(`.js-modal[data-modal-id="${event.detail.id}"]`);
+
+		if (modal) {
+			open(modal, current ? opener : document.activeElement);
+		}
+	});
+
 	modals.forEach((modal) => {
 		modal.querySelector('.modal__dialog').setAttribute('tabindex', '-1');
 
@@ -83,4 +93,11 @@ export default function modalInit() {
 			close();
 		}
 	});
+
+	// data-modal-open — попап открыт при загрузке (success.html)
+	const openOnLoad = document.querySelector('.js-modal[data-modal-open]');
+
+	if (openOnLoad) {
+		open(openOnLoad, null);
+	}
 }
