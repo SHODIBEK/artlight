@@ -26,6 +26,7 @@ import newsSlidersInit from "./components/news-sliders";
 import iesSearchInit from "./components/ies-search";
 import lazyBgInit from "./components/lazy-bg";
 import contactsSliderInit from "./components/contacts-slider";
+import brandsFilterInit from "./components/brands-filter";
 
 ieFix();
 vhFix();
@@ -53,3 +54,4 @@ lazyBgInit();
 contactsSliderInit();
 productGalleryInit();
 projectTypesInit();
+brandsFilterInit();

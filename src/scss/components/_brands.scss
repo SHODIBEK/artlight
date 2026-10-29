@@ -1,0 +1,134 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Продукция других производителей»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-
+// id=2-6908, моб. node-id=2-21042. Под H1 — табы видов продукции и вводный текст, ниже сетка логотипов брендов:
+// 2 / 4 (768+) / 7 (1280+) в ряд; моб. — поля 20 (контейнер 16), шаг 22.
+.brands-head {
+	&__types {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 20px;
+		gap: 8px 8.5px; // шаг 8.5: Figma округляет ширины текстов вверх (как табы «Блога»)
+	}
+
+	&__intro {
+		margin: 20px 0 0;
+		max-width: 1068px;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__types,
+		&__intro {
+			margin-top: 30px;
+		}
+	}
+}
+
+.brands {
+	margin-top: 90px;
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		list-style: none;
+		margin: 0;
+		padding: 0 4px;
+		gap: 22px;
+	}
+
+	&__item {
+		display: flex;
+		justify-content: center;
+
+		// скрыт фильтром по виду продукции (brands-filter.js)
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__note {
+		margin: 90px 0 0;
+		padding: 0 4px;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 70px;
+
+		&__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+			padding: 0;
+			gap: 60px 30px;
+		}
+
+		&__note {
+			margin: 120px auto 0;
+			padding: 0;
+			max-width: 1068px;
+			text-align: center;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__grid {
+			grid-template-columns: repeat(7, minmax(0, 1fr));
+			row-gap: 100px;
+		}
+
+		&__note {
+			margin-top: 180px;
+		}
+	}
+}
+
+// бренд: логотип, под ним (8 / 16) название 15 / 18 по центру
+.brand-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	outline: none;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+	color: var(--color-black);
+	gap: 8px;
+
+	&__logo {
+		display: block;
+		width: 100px;
+		height: 60px;
+	}
+
+	&__name {
+		overflow-wrap: anywhere;
+		font-size: 15px;
+		line-height: 18px;
+		transition: color $duration-normal;
+	}
+
+	@include state-hover {
+		.brand-card__name {
+			color: var(--color-black-60);
+		}
+	}
+
+	@include state-focus {
+		outline: 2px solid var(--color-black);
+		outline-offset: 2px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 16px;
+
+		&__logo {
+			width: 142px;
+			height: 85px;
+		}
+	}
+}
