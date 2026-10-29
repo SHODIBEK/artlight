@@ -1,7 +1,7 @@
 /**
 * «Оформление запроса»: «Скрыть / Показать список товаров», вкладки доставки (скрытые — fieldset disabled,
 * их поля не отправляются; выбранная — в скрытом поле delivery), «Другие города РФ»: адрес — только при
-* «Доставке до адреса».
+* «Доставке до адреса». Самовывоз: «Заберу здесь» выбирает пункт (скрытое поле pickup_office).
 */
 export default function checkoutInit() {
 	const form = document.querySelector('.js-checkout');
@@ -54,6 +54,24 @@ export default function checkoutInit() {
 			});
 		});
 	}
+
+	const offices = [...form.querySelectorAll('.js-checkout-office')];
+	const officeValue = form.querySelector('.js-checkout-office-value');
+
+	offices.forEach((office) => {
+		const button = office.querySelector('.js-checkout-office-button');
+
+		button.addEventListener('click', () => {
+			offices.forEach((item) => {
+				const isSelected = item === office;
+
+				item.classList.toggle('is-selected', isSelected);
+				item.querySelector('.js-checkout-office-button').setAttribute('aria-pressed', String(isSelected));
+			});
+
+			officeValue.value = button.dataset.value;
+		});
+	});
 
 	const address = form.querySelector('.js-checkout-address');
 

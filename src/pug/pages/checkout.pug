@@ -64,10 +64,10 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 				+input({ name: 'comment', placeholder: 'Комментарий к запросу', textarea: true }).checkout__input.checkout__input--comment
 				//- моб. подсказка в 2 строки — textarea в одну строку на десктопе
 				+input({ name: 'manager', placeholder: page.info.manager, textarea: true, attrs: { rows: 1 } }).checkout__input.checkout__input--manager
-			+checkbox({ name: 'reserve', value: 'y' }).checkbox--light.checkout__check.checkout-info__reserve
+			+checkbox({ name: 'reserve', value: 'y', checked: true }).checkbox--light.checkout__check.checkout-info__reserve
 				span.checkbox__label= typo(page.info.reserve)
 
-	section.checkout-section.checkout-cart.container
+	section.checkout-section.checkout-section--full.checkout-cart.container
 		.checkout-section__head
 			h2.checkout-section__title= page.cartTitle
 		.checkout-section__body
@@ -105,14 +105,17 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 		//- скрытые вкладки — fieldset disabled: их поля не отправляются
 		fieldset.checkout-delivery__panel.checkout-pickup(id="delivery-pickup" data-panel="pickup")
 			legend.visually-hidden= delivery.tabs[0].name
+			//- выбранный пункт самовывоза — «Заберу здесь» (checkout.js), значение — в скрытом поле
+			input.js-checkout-office-value(type="hidden" name="pickup_office" value=delivery.offices[0].city)
 			.checkout-pickup__offices
-				each office in delivery.offices
-					.checkout-office
+				each office, index in delivery.offices
+					.checkout-office.js-checkout-office(class=(index ? null : 'is-selected'))
 						p.checkout-office__city= office.city
 						p.checkout-office__line= office.address
 						a.checkout-office__line.checkout-office__line--accent(href=`tel:${office.phone.replace(/[^\d+]/g, '')}`)= office.phone
 						p.checkout-office__line= office.hours
 						a.checkout-office__line.checkout-office__line--accent(href=`mailto:${office.email}`)= office.email
+						+button({ label: delivery.pickupButton, icon: false }).checkout-office__button.js-checkout-office-button(data-value=office.city aria-pressed=(index ? 'false' : 'true'))
 			//- место под Яндекс Карты (как в «Контактах»), пока — картинка из макета
 			.checkout-pickup__map.js-contacts-map(data-address=delivery.offices[0].mapQuery)
 				img.checkout-pickup__map-image(src=`${baseDir}images/contacts/map.webp` alt="" loading="lazy" draggable="false")
@@ -157,6 +160,6 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 				span.checkout-file__text.js-feedback-file-text(data-empty=page.confirm.file)= page.confirm.file
 			.checkout-confirm__agreements
 				each item in page.confirm.agreements
-					+checkbox({ name: item.name, value: 'y' }).checkbox--light.checkout__check.js-checkout-agree
+					+checkbox({ name: item.name, value: 'y', checked: item.checked }).checkbox--light.checkout__check.js-checkout-agree
 						span.checkbox__label= typo(item.text)
 			+button({ view: 'main', type: 'submit', label: page.confirm.submit, icon: false }).checkout-confirm__submit

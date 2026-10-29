@@ -133,6 +133,11 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	@media (min-width: #{$header-desktop}px) {
 		align-items: start;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
+
+		// «Корзина»: заголовок сверху, список товаров на всю ширину (макет «Самовывоза» 2-7693)
+		&--full {
+			grid-template-columns: minmax(0, 1fr);
+		}
 	}
 }
 
@@ -236,6 +241,12 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 .checkout-summary {
 	margin-top: 20px;
 	padding: 24px;
+
+	// в корзине ≥ 1280 — колонка 542 справа, sticky; здесь — на всю ширину контейнера
+	@media (min-width: #{$header-desktop}px) {
+		position: static;
+		width: auto;
+	}
 }
 
 // «Доставка»: табы — моб. в строку с прокруткой до краёв (40), ≥ 768 — на всю ширину поровну (60)
@@ -362,7 +373,13 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	padding: 24px;
 	color: var(--color-black);
 	background-color: var(--color-light-grey);
+	transition: box-shadow $duration-normal;
 	gap: 21px;
+
+	// ховер — рамка accent
+	@include state-hover {
+		@include stroke(1px, var(--color-accent));
+	}
 
 	&__city {
 		margin: 0;
@@ -390,6 +407,16 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 		@include state-focus {
 			text-decoration: underline;
 		}
+	}
+
+	// «Заберу здесь»: на всю ширину карточки, 56, текст без капса
+	&__button {
+		margin-top: 3px; // 24 от последней строки
+		padding: 0 20px;
+		width: 100%;
+		height: 56px;
+		font-weight: 500;
+		text-transform: none;
 	}
 }
 
