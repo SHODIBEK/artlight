@@ -1,0 +1,63 @@
+// «404 — страница не найдена» (404.html)
+.not-found {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 122px;
+	padding-bottom: 263px;
+	text-align: center;
+
+	// «404»: 200 (402) → 500 (1728), градиент снизу прозрачный → чёрный, прозрачность 10%
+	&__code {
+		// заголовок заходит на нижнюю часть строки «404»: −26 (402) → −105.5 (1728)
+		margin: 0 0 clamp(-105.5px, -1.9px - 6vw, -26px);
+
+		// padding-left = трекинг: цифры по центру без хвостового letter-spacing
+		padding-left: 0.02em;
+		font-weight: 600;
+		font-size: clamp(200px, 109px + 22.62vw, 500px);
+		line-height: normal;
+		letter-spacing: 0.02em;
+		white-space: nowrap;
+		color: transparent;
+		background-image: linear-gradient(to top, rgba(0, 0, 0, 0), #000);
+		// stylelint-disable-next-line property-no-vendor-prefix -- Safari / старый Chrome
+		-webkit-background-clip: text;
+		background-clip: text;
+		opacity: 0.1;
+		pointer-events: none;
+		user-select: none;
+	}
+
+	&__title {
+		position: relative;
+		margin: 0;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		text-transform: uppercase;
+		color: var(--color-black);
+
+		@media (min-width: #{$tablet}px) {
+			font-size: 36px;
+			line-height: 43px;
+		}
+	}
+
+	&__button {
+		margin-top: 25px;
+		width: 100%;
+		max-width: 362px;
+		font-size: 14px;
+
+		@media (min-width: #{$tablet}px) {
+			margin-top: 42px;
+			max-width: 393px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding-top: 90px;
+		padding-bottom: 186px;
+	}
+}

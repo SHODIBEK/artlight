@@ -1,0 +1,7 @@
+//- «404 — страница не найдена»: десктоп node-id=2-336, моб. node-id=2-13424
+- var page = data.notFoundPage
+
+section.not-found.container
+	p.not-found__code(aria-hidden="true") 404
+	h1.not-found__title= page.title
+	+button({ label: page.button, href: page.href }).not-found__button

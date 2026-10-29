@@ -355,3 +355,8 @@
 		margin-top: 90px;
 	}
 }
+
+// «404»: подвал сразу после блока (отступ — у .not-found)
+.footer--gap-none {
+	margin-top: 0;
+}
