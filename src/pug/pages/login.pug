@@ -1,0 +1,57 @@
+//- «Вход и регистрация»: вход — десктоп node-id=2-10177, моб. node-id=2-23396; регистрация — 2-10209 / 2-23429.
+//- Вкладки — auth.js (#register открывает регистрацию), проверка полей — feedback-form.js
+- var page = data.authPage
+
+//- пароль с кнопкой «показать / скрыть» (auth.js)
+mixin passwordInput(name, autocomplete)
+	+input({ name: name, type: 'password', placeholder: 'Пароль', required: true, attrs: { autocomplete: autocomplete, minlength: 6 } }).auth__input.js-password&attributes(attributes)
+		button.auth__eye.js-password-toggle(type="button" aria-label="Показать пароль" aria-pressed="false" data-show="Показать пароль" data-hide="Скрыть пароль")
+			+svg('eye').auth__eye-icon.auth__eye-icon--show
+			+svg('eye-off').auth__eye-icon.auth__eye-icon--hide
+
+section.auth.container.js-auth
+	.auth__box
+		h1.auth__title= page.title
+
+		.auth__tabs(role="tablist")
+			button.auth__tab.is-active.js-auth-tab#auth-tab-login(type="button" role="tab" aria-selected="true" aria-controls="auth-login" data-tab="login")= page.tabs.login
+			button.auth__tab.js-auth-tab#auth-tab-register(type="button" role="tab" aria-selected="false" aria-controls="auth-register" data-tab="register" tabindex="-1")= page.tabs.register
+
+		//- Вход
+		form.auth__form.js-feedback-form#auth-login(action="#" method="post" novalidate role="tabpanel" aria-labelledby="auth-tab-login" data-validate=".input__field")
+			.auth__fields
+				+input({ name: 'email', type: 'email', placeholder: 'Почта', required: true, attrs: { autocomplete: 'email' } }).auth__input
+				+passwordInput('password', 'current-password')
+			.auth__row
+				+checkbox({ name: 'remember', value: 'y' }).checkbox--white.auth__check
+					span.checkbox__label= page.login.remember
+				a.auth__link(href=page.login.forgot.url)= page.login.forgot.name
+			+button({ type: 'submit', label: page.login.submit }).auth__submit
+
+		//- Регистрация
+		form.auth__form.auth__form--register.js-feedback-form#auth-register(action="#" method="post" novalidate role="tabpanel" aria-labelledby="auth-tab-register" data-validate=".input__field, .js-auth-agree .checkbox__input" hidden)
+			.auth__fields.auth__fields--grid
+				+input({ name: 'surname', placeholder: 'Фамилия', attrs: { autocomplete: 'family-name' } }).auth__input
+				+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'given-name' } }).auth__input
+				+input({ name: 'email', type: 'email', placeholder: 'Почта', required: true, attrs: { autocomplete: 'email' } }).auth__input
+				+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).auth__input.auth__input--phone
+				+input({ name: 'company', placeholder: 'Название компании', attrs: { autocomplete: 'organization' } }).auth__input
+				+input({ name: 'inn', placeholder: 'ИНН', attrs: { inputmode: 'numeric', pattern: '\\d{10}|\\d{12}' } }).auth__input
+				+input({ name: 'tax', placeholder: 'Система налогообложения', options: page.register.taxes }).auth__input
+				+input({ name: 'position', placeholder: 'Должность', attrs: { autocomplete: 'organization-title' } }).auth__input
+				+input({ name: 'city', placeholder: 'Город', attrs: { autocomplete: 'address-level2' } }).auth__input
+				+input({ name: 'site', type: 'url', placeholder: 'Сайт', attrs: { autocomplete: 'url' } }).auth__input
+				+passwordInput('password', 'new-password')(class="auth__input--wide")
+				+input({ name: 'activity', placeholder: 'Вид деятельности', options: page.register.activities }).auth__input.auth__input--wide.auth__input--activity
+			.auth__agreements
+				each item in page.register.agreements
+					+checkbox({ name: item.name, value: 'y' }).checkbox--white.auth__check(class=(item.name === 'agree_ads' ? null : 'js-auth-agree'))
+						span.checkbox__label= typo(item.text)
+			.auth__benefits
+				h2.auth__benefits-title= page.register.benefitsTitle
+				ul.auth__benefits-list
+					each item in page.register.benefits
+						li.auth__benefit
+							+svg(item.icon).auth__benefit-icon
+							span.auth__benefit-text= typo(item.text)
+			+button({ type: 'submit', label: page.register.submit }).auth__submit

@@ -29,6 +29,7 @@ import contactsSliderInit from "./components/contacts-slider";
 import brandsFilterInit from "./components/brands-filter";
 import cartInit from "./components/cart";
 import checkoutInit from "./components/checkout";
+import authInit from "./components/auth";
 
 ieFix();
 vhFix();
@@ -59,3 +60,4 @@ projectTypesInit();
 brandsFilterInit();
 cartInit();
 checkoutInit();
+authInit();

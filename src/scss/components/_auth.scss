@@ -1,0 +1,344 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// «Вход и регистрация»: вход — десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-10177,
+// моб. node-id=2-23396; регистрация — 2-10209 / 2-23429.
+// Моб.: без подложки, поля light-grey 58 (паддинг 20). ≥ 768 — серая подложка 844 (паддинг 40), поля белые 70;
+// регистрация — поля по 2 в ряд. От шапки 60 / 150, до подвала — 100 / 150 (отступ подвала).
+.auth {
+	$b: &;
+
+	padding-top: 60px;
+
+	[hidden] {
+		display: none;
+	}
+
+	&__box {
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+		max-width: 844px;
+		gap: 30px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 30px;
+		line-height: 36px;
+		text-align: center;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	&__tabs {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__tab {
+		display: flex;
+		flex: 1 1 0;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		padding: 10px;
+
+		// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+		padding-top: 11px;
+		height: 70px;
+		min-width: 0;
+		font-family: var(--font-family);
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-stroke);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&.is-active {
+			background-color: var(--color-accent);
+			cursor: default;
+		}
+	}
+
+	&__form {
+		display: flex;
+		flex-direction: column;
+		gap: 35px;
+	}
+
+	&__fields {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 12px;
+	}
+
+	// поля: моб. 58 (паддинг 20), ≥ 768 — 70 (30)
+	&__input {
+		--input-pad-x: 20px;
+
+		padding: 20px;
+		height: auto;
+
+		.input__field {
+			height: 18px;
+			line-height: 18px;
+		}
+
+		&.input--select {
+			padding: 0;
+
+			.input__field {
+				height: 58px;
+			}
+		}
+	}
+
+	// телефон: intl-tel-input оборачивает поле в .iti на всю ширину
+	&__input--phone {
+		padding: 0;
+
+		.iti {
+			--iti-pad: 20px;
+		}
+
+		.input__field {
+			padding: 20px 20px 20px 0;
+			height: 58px;
+			box-sizing: border-box;
+		}
+	}
+
+	// показать / скрыть пароль
+	&__eye {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		margin: -10px;
+		outline: none;
+		padding: 10px;
+		color: var(--color-black);
+		opacity: 0.5;
+		transition: opacity $duration-normal;
+
+		@include state-hover {
+			opacity: 1;
+		}
+
+		&:focus-visible {
+			opacity: 1;
+
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__eye-icon {
+		width: 18px;
+		height: 18px;
+
+		&--hide {
+			display: none;
+		}
+	}
+
+	&__eye[aria-pressed="true"] &__eye-icon--show {
+		display: none;
+	}
+
+	&__eye[aria-pressed="true"] &__eye-icon--hide {
+		display: block;
+	}
+
+	// «Запомнить меня» + «Забыли пароль?»
+	&__row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	&__check {
+		align-items: center;
+
+		.checkbox__label {
+			flex: 1 1 0;
+			min-width: 0;
+		}
+	}
+
+	&__link {
+		flex-shrink: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+	}
+
+	&__agreements {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	&__benefits {
+		display: flex;
+		flex-direction: column;
+		gap: 35px;
+	}
+
+	&__benefits-title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		color: var(--color-black);
+	}
+
+	// моб. — по 3 и 2 в ряд по центру (114 / 124, как в макете)
+	&__benefits-list {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 14px;
+	}
+
+	&__benefit {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 114px;
+		font-size: 15px;
+		line-height: 18px;
+		text-align: center;
+		color: var(--color-black);
+		gap: 16px;
+
+		&:nth-child(n + 4) {
+			width: 124px;
+		}
+	}
+
+	&__benefit-icon {
+		flex-shrink: 0;
+		width: 18px;
+		height: 18px;
+		opacity: 0.5;
+	}
+
+	&__submit {
+		padding: 0 20px;
+		width: 100%;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__box {
+			padding: 40px;
+			background-color: var(--color-light-grey);
+			gap: 40px;
+		}
+
+		&__title {
+			font-size: 40px;
+			line-height: 48px;
+		}
+
+		&__tabs {
+			gap: 20px;
+		}
+
+		&__tab:not(.is-active) {
+			background-color: var(--color-white);
+
+			@include state-hover {
+				background-color: var(--color-grey-hover);
+			}
+
+			@include state-pressed {
+				background-color: var(--color-stroke);
+			}
+		}
+
+		&__fields--grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		&__input {
+			--input-pad-x: 30px;
+
+			padding: 10px 30px;
+			height: 70px;
+			background-color: var(--color-white);
+
+			&.input--select {
+				padding: 0;
+
+				.input__field {
+					height: 70px;
+				}
+			}
+
+			&--wide {
+				grid-column: 1 / -1;
+			}
+		}
+
+		// «Вид деятельности» — отдельно, через 35
+		&__input--activity {
+			margin-top: 23px;
+		}
+
+		&__input--phone {
+			padding: 0;
+
+			.iti {
+				--iti-pad: 30px;
+			}
+
+			.input__field {
+				padding: 10px 30px 10px 0;
+				height: 70px;
+			}
+		}
+
+		&__agreements {
+			gap: 16px;
+		}
+
+		&__benefits-list {
+			flex-wrap: nowrap;
+		}
+
+		&__benefit,
+		&__benefit:nth-child(n + 4) {
+			flex: 1 1 0;
+			width: auto;
+			min-width: 0;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		padding-top: 150px;
+	}
+}

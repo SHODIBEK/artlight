@@ -53,8 +53,8 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 			h2.checkout-section__title= page.info.title
 			p.checkout-info__text= typo(page.info.text)
 			.checkout-info__auth
-				+button({ label: page.info.login, icon: false }).checkout-info__auth-button
-				+button({ label: page.info.register, view: 'tertiary' }).checkout-info__auth-button
+				+button({ label: page.info.login, icon: false, href: 'login.html' }).checkout-info__auth-button
+				+button({ label: page.info.register, view: 'tertiary', href: 'login.html#register' }).checkout-info__auth-button
 		.checkout-section__body
 			.checkout-info__fields
 				+input({ name: 'surname', placeholder: 'Фамилия', attrs: { autocomplete: 'family-name' } }).checkout__input

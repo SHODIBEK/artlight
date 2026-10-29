@@ -129,6 +129,9 @@ mixin input(opts)
 				required=o.required
 				aria-label=o.ariaLabel || o.placeholder
 			)&attributes(o.attrs || {})
+		//- содержимое блока — справа от поля (кнопка «показать пароль»)
+		if block
+			block
 		if o.action
 			button.input__action(type="submit" aria-label=(o.actionLabel || 'Отправить') disabled=(o.state === 'disabled' || o.state === 'readonly'))
 				+svg('arrow-right').input__icon
