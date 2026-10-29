@@ -1,4 +1,4 @@
-//- Страница услуги «Серийное производство»: десктоп node-id=2-12200, моб. node-id=2-17702 (панель «Все виды услуг» — 2-17865)
+//- Страница услуги «Серийное производство»: десктоп node-id=122-11202, моб. node-id=122-11930 (панель «Все виды услуг» — 2-17865)
 - var page = data.servicePage
 
 section.listing-head.container
@@ -14,8 +14,8 @@ section.listing-head.container
 
 	.service-page__content
 		img.service-page__photo(src=`${baseDir}images/services/${page.image}.webp` alt="" fetchpriority="high")
-		p.service-page__lead= typo(page.lead)
-		.service-page__columns
+		.service-page__text
+			p.service-page__lead= typo(page.lead)
 			.service-page__list
 				each line in page.list
 					p= typo(line)

@@ -1,4 +1,4 @@
-// Страница услуги «Серийное производство»: десктоп node-id=2-12200, моб. 2-17702.
+// Страница услуги «Серийное производство»: десктоп node-id=122-11202, моб. 122-11930.
 // Виды услуг — табы-ссылки (≥ 768), на моб. — кнопка «Все виды услуг» и панель (service-types-panel.pug).
 // Шаг строк «normal» LT Superior: Semibold 20 / 24 → 22 / 27, Medium 16 / 20 → 19 / 24.
 .service-page {
@@ -35,9 +35,13 @@
 		line-height: 22px;
 	}
 
-	&__columns {
+	// текст одной колонкой 1178 по центру (≥ 768 — отступ 40 от фото)
+	&__text {
 		display: flex;
 		flex-direction: column;
+		width: 100%;
+		max-width: 1178px;
+		margin: 0 auto;
 		gap: 30px;
 	}
 
@@ -80,6 +84,10 @@
 			display: flex;
 		}
 
+		&__text {
+			padding-top: 40px;
+		}
+
 		&__lead {
 			font-size: 24px;
 			line-height: 27px;
@@ -88,15 +96,6 @@
 		&__list {
 			font-size: 20px;
 			line-height: 24px;
-		}
-	}
-
-	@media (min-width: #{$header-desktop}px) {
-		&__columns {
-			display: grid;
-			column-gap: 73px;
-			align-items: start;
-			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
 }
