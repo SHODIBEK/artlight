@@ -29,6 +29,14 @@
 		text-wrap: balance;
 	}
 
+	// «Корзина»: строка под заголовком (моб. 15/18, ≥ 768 — 18/22)
+	&__note {
+		margin: 12px 0 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
 	// «Реализованные проекты», моб.: число проектов и кнопка панели «Выбрать тип проекта» (≥ 768 — табы)
 	&__count {
 		margin: 12px 0 0;
@@ -74,6 +82,11 @@
 
 		&__intro {
 			margin-top: 30px;
+		}
+
+		&__note {
+			font-size: 18px;
+			line-height: 22px;
 		}
 
 		&__heading {

@@ -27,6 +27,7 @@ import iesSearchInit from "./components/ies-search";
 import lazyBgInit from "./components/lazy-bg";
 import contactsSliderInit from "./components/contacts-slider";
 import brandsFilterInit from "./components/brands-filter";
+import cartInit from "./components/cart";
 
 ieFix();
 vhFix();
@@ -55,3 +56,4 @@ contactsSliderInit();
 productGalleryInit();
 projectTypesInit();
 brandsFilterInit();
+cartInit();

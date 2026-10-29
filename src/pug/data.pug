@@ -1917,3 +1917,36 @@
 		products: data.searchPage.products,
 		feedback: data.vacanciesPage.feedback,
 	};
+
+	//- Корзина (cart.html): десктоп node-id=2-7577, моб. node-id=2-21397. На неё ведёт иконка корзины в шапке.
+	data.cartPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Моя корзина' },
+		],
+		title: 'Корзина',
+		intro: 'Пожалуйста, проверьте товары добавленные в корзину',
+		selectAll: 'Выбрать все',
+		removeSelected: 'Удалить выбранные',
+		items: [1, 2, 3].map(function (id) {
+			return {
+				id: id,
+				name: 'LED Светильник поворотный для магнитного шинопровода ART-MAG15-TUBE40',
+				specs: '7W, 36°, без димм., 3000K, Black, >90Ra, ART, Ø42 L90',
+				image: 'cart-product',
+				price: 5250,
+				count: 1,
+			};
+		}),
+		summary: {
+			title: 'Сумма заказа',
+			goods: 'Товары',
+			delivery: 'Доставка',
+			deliveryValue: 'бесплатно',
+			total: 'Итого:',
+			order: 'Оформить',
+			login: 'Войти',
+		},
+		empty: 'В корзине пока нет товаров',
+		emptyLink: { name: 'Перейти в каталог', url: 'catalog.html' },
+	};

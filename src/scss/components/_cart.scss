@@ -1,0 +1,358 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Корзина: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-7577,
+// моб. node-id=2-21397. < 1280 — «Сумма заказа» под списком, ≥ 1280 — справа (542).
+.cart {
+	margin-top: 30px;
+
+	// пустая корзина (cart.js): список, панель и «Сумма заказа» скрыты
+	[hidden] {
+		display: none;
+	}
+
+	&__main {
+		min-width: 0;
+	}
+
+	&__toolbar {
+		display: flex;
+		align-items: center;
+		gap: 40px;
+	}
+
+	&__select-all .checkbox__label {
+		margin-left: 10px;
+	}
+
+	&__remove-selected {
+		display: inline-flex;
+		align-items: center;
+		outline: none;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		transition: color $duration-normal;
+		gap: 10px;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	&__remove-selected-icon {
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 30px 0 0;
+		padding: 0;
+		gap: 30px;
+	}
+
+	&__empty {
+		margin-top: 30px;
+	}
+
+	&__empty-text {
+		margin: 0 0 30px;
+		font-size: 18px;
+		line-height: 22px;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 60px;
+
+		&__list {
+			margin-top: 20px;
+			gap: 4px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		display: flex;
+		align-items: flex-start;
+		gap: 20px;
+
+		&__main {
+			flex: 1 1 0;
+		}
+	}
+}
+
+// товар: моб. фото 84×104, ≥ 768 — 130×160 (по центру высоты)
+.cart-item {
+	display: flex;
+	align-items: flex-start;
+	border-top: 1px solid var(--color-stroke);
+	padding: 24px 0;
+	gap: 15px;
+
+	&__picture {
+		position: relative;
+		flex-shrink: 0;
+		overflow: hidden;
+		width: 84px;
+		height: 104px;
+		background-color: var(--color-light-grey);
+
+		// моб.: фото под заливкой stroke 20%
+		&::after {
+			content: "";
+			position: absolute;
+			background-color: rgba(216, 216, 216, 0.2);
+			pointer-events: none;
+			inset: 0;
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&__check {
+		position: absolute;
+		left: 16px;
+		top: 16px;
+		z-index: 1;
+	}
+
+	&__body {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		min-width: 0;
+		gap: 20px;
+	}
+
+	&__top {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	&__info {
+		display: flex;
+		flex: 1 1 0;
+		flex-direction: column;
+		min-width: 0;
+		gap: 12px;
+	}
+
+	&__name {
+		margin: 0;
+		font-size: 18px;
+		line-height: 22px;
+		color: var(--color-black);
+	}
+
+	&__specs {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__actions {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__action {
+		display: flex;
+		outline: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&[aria-pressed="true"] {
+			color: var(--color-red);
+		}
+	}
+
+	&__action-icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	&__bottom {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	&__price {
+		margin: 0;
+		font-weight: 500;
+		font-size: 22px;
+		line-height: 26px;
+		white-space: nowrap;
+		color: var(--color-black);
+	}
+
+	&__counter {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: space-between;
+		padding: 0 8px;
+		width: 94px;
+		height: 44px;
+
+		@include stroke(1px, var(--color-light-grey));
+	}
+
+	&__count-button {
+		display: flex;
+		outline: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&:disabled {
+			color: var(--color-stroke);
+			cursor: default;
+		}
+	}
+
+	&__count-icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	&__count {
+		min-width: 9px;
+		font-size: 15px;
+		line-height: 18px;
+		text-align: center;
+		color: var(--color-black);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		align-items: center;
+		border-top-color: var(--color-light-grey);
+
+		&__picture {
+			width: 130px;
+			height: 160px;
+
+			&::after {
+				content: none;
+			}
+		}
+
+		&__body {
+			align-self: stretch;
+			justify-content: space-between;
+		}
+
+		&__info {
+			flex: 0 1 405px;
+		}
+	}
+}
+
+.cart-summary {
+	display: flex;
+	flex-direction: column;
+	margin-top: 60px;
+	padding: 16px;
+	background-color: var(--color-light-grey);
+	gap: 21px;
+
+	&__title {
+		margin: 0;
+		font-weight: 500;
+		font-size: 18px;
+		line-height: 21px;
+		color: var(--color-black);
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		gap: 21px;
+	}
+
+	&__row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		gap: 20px;
+	}
+
+	&__value {
+		margin: 0;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	&__total {
+		font-size: 18px;
+		line-height: 21px;
+	}
+
+	&__button {
+		width: 100%;
+	}
+
+	// в макете «Войти» — белая без обводки (обводка — только в состояниях)
+	&__button--login:not(:hover):not(:focus-visible):not(:active) {
+		box-shadow: none;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 24px;
+
+		&__title {
+			font-size: 22px;
+			line-height: 26px;
+		}
+
+		&__total {
+			font-size: 22px;
+			line-height: 26px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		position: sticky;
+		top: calc(var(--header-height) + 20px);
+		flex-shrink: 0;
+		margin-top: 0;
+		width: 542px;
+	}
+}
