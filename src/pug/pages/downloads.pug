@@ -1,0 +1,37 @@
+//- Личный кабинет — материалы для скачивания: десктоп node-id=129-17505, моб. node-id=129-18747
+- var page = data.downloadsPage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content.downloads
+		each section in page.sections
+			.downloads__section
+				h2.account__title.account-service__title.downloads__title= section.title
+				if section.archive
+					//- моб. — во всю ширину (у каталогов — под карточками), ≥ 768 — справа от заголовка
+					a.downloads__button.downloads__button--grey.downloads__archive(href=section.archive.url)
+						span= section.archive.label
+						+svg('link-out').downloads__icon
+				if section.items
+					ul.downloads__list
+						each item in section.items
+							li.downloads__card
+								.downloads__text
+									span.downloads__name= typo(item.name)
+									each line in item.info
+										span.downloads__info= line
+								.downloads__buttons
+									a.downloads__button.downloads__button--accent(href=item.url download)
+										+svg('download').downloads__icon
+										span= item.choose ? page.downloadAll : page.download
+									if item.choose
+										a.downloads__button(href=item.choose)
+											+svg('link-out').downloads__icon
+											span= page.choose

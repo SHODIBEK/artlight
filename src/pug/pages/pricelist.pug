@@ -1,0 +1,25 @@
+//- Личный кабинет — прайс-лист: десктоп node-id=129-17149, моб. node-id=129-18607
+- var page = data.priceListPage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		.price-list
+			h2.account__title= page.title
+			ul.price-list__files
+				each file in page.files
+					li
+						//- карточка целиком — ссылка на файл (download)
+						a.price-list__file(href=file.url download)
+							+svg('table').price-list__icon
+							span.price-list__text
+								span.price-list__name= file.name
+								span.price-list__info= file.info
+							+svg('download').price-list__download

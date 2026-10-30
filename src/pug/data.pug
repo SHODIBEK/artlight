@@ -2097,12 +2097,12 @@
 			{ label: 'Главная', icon: 'cube', href: 'account.html' },
 			{ label: 'Заказы', icon: 'list-check', href: 'orders.html' },
 			{ label: 'Профиль', icon: 'user', href: 'profile.html' },
-			{ label: 'Избранное', icon: 'heart', href: '#' },
-			{ label: 'Прайс-лист', icon: 'table', href: '#' },
-			{ label: 'Обратная связь', icon: 'message', href: '#' },
-			{ label: 'Сервисная служба', icon: 'message', href: '#' },
-			{ label: 'Акты сверки и УПД', icon: 'message', href: '#' },
-			{ label: 'Материалы для скачивания', icon: 'download', href: '#' },
+			{ label: 'Избранное', icon: 'heart', href: 'favorites.html' },
+			{ label: 'Прайс-лист', icon: 'table', href: 'pricelist.html' },
+			{ label: 'Обратная связь', icon: 'message', href: 'account-feedback.html' },
+			{ label: 'Сервисная служба', icon: 'message', href: 'account-service.html' },
+			{ label: 'Акты сверки и УПД', icon: 'message', href: 'account-documents.html' },
+			{ label: 'Материалы для скачивания', icon: 'download', href: 'downloads.html' },
 			{ label: 'Выйти', icon: 'logout', href: 'login.html' },
 		],
 		discount: 'Ваша скидка 10%',
@@ -2120,11 +2120,11 @@
 		},
 		cards: [
 			{ title: 'Профиль', text: 'Информация о вашем профиле', icon: 'user', href: 'profile.html' },
-			{ title: 'Избранное', text: '4 товара', icon: 'heart', href: '#' },
+			{ title: 'Избранное', text: '4 товара', icon: 'heart', href: 'favorites.html' },
 			{ title: 'Заказы', text: 'Информация о ваших заказах', icon: 'list-check', href: 'orders.html' },
-			{ title: 'Обратная связь', text: 'Новое обращение', icon: 'message', href: '#' },
-			{ title: 'Материалы для скачивания', text: 'Файлы, сертификаты, каталоги', icon: 'download', href: '#' },
-			{ title: 'Прайс-лист', text: 'Розничный прайс-лист', icon: 'table', href: '#' },
+			{ title: 'Обратная связь', text: 'Новое обращение', icon: 'message', href: 'account-feedback.html' },
+			{ title: 'Материалы для скачивания', text: 'Файлы, сертификаты, каталоги', icon: 'download', href: 'downloads.html' },
+			{ title: 'Прайс-лист', text: 'Розничный прайс-лист', icon: 'table', href: 'pricelist.html' },
 		],
 	};
 
@@ -2195,6 +2195,30 @@
 			title: 'Адреса доставки',
 			add: 'Добавить адрес доставки',
 		},
+	};
+
+	// Личный кабинет — избранное (favorites.html): вкладки «Все товары» / «Группы товаров» (favorites.html#groups)
+	data.favoritesPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Избранное' },
+		],
+		url: 'favorites.html',
+		title: 'Избранное',
+		tabs: [
+			{ id: 'products', label: 'Все товары' },
+			{ id: 'groups', label: 'Группы товаров' },
+		],
+		products: data.searchPage.products,
+		pagination: { current: 1, total: 3 },
+		// в макете «Добавить нового контрагента» — копия с «Контрагентов»
+		add: 'Добавить новую группу',
+		groups: [
+			{ title: 'Светильники', text: '10 товаров', href: '#' },
+			{ title: 'Группа 1', text: '10 товаров', href: '#' },
+			{ title: 'Группа 2', text: '10 товаров', href: '#' },
+		],
 	};
 
 	data.orderPage = {
@@ -2353,3 +2377,160 @@
 			})
 		}
 	})();
+
+	// ЛК «Прайс-лист» (pricelist.html): десктоп node-id=129-17149, моб. node-id=129-18607.
+	// files — файлы для скачивания (url — пока #, бэкенд подставит ссылку на файл)
+	data.priceListPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Прайс-лист' },
+		],
+		url: 'pricelist.html',
+		title: 'Прайс-лист',
+		files: [
+			{ name: 'Скачать прайс artlight розничный 2026 — от 06.07.26', info: 'xls, 65.08 МБ', url: '#' },
+		],
+	};
+
+	// ЛК «Материалы для скачивания» (downloads.html): десктоп node-id=129-17505, моб. node-id=129-18747.
+	// Ссылки на архивы и файлы пока # («Выбрать конкретный файл» у IES — страница ies.html)
+	data.downloadsPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Материалы для скачивания' },
+		],
+		url: 'downloads.html',
+		download: 'Скачать',
+		downloadAll: 'Скачать все архивом',
+		choose: 'Выбрать конкретный файл',
+		sections: [
+			{
+				title: 'Материалы для скачивания',
+				items: [
+					{ name: 'IES/LTD', info: ['306 файлов', 'Размер: 12.78 мб'], url: '#', choose: 'ies.html' },
+					{ name: 'BIM', info: ['70 файлов', 'Размер: 99.83 мб'], url: '#', choose: '#' },
+					{ name: '3D', info: ['127 файлов', 'Размер: 76.46 мб'], url: '#', choose: '#' },
+					{ name: 'Монтажные инструкции', info: ['354 файлов', 'Размер: 75.06 мб'], url: '#', choose: '#' },
+				],
+			},
+			{
+				title: 'Сертификаты на продукцию ARTLIGHT',
+				archive: { label: 'Архивные сертификаты', url: '#' },
+			},
+			{
+				title: 'Актуальные каталоги',
+				archive: { label: 'Архивные каталоги', url: '#' },
+				items: [
+					{ name: 'ARTLIGHT каталог № 11', info: ['pdf, 62.27 мб'], url: '#' },
+					{ name: 'ARTLIGHT_распродажа', info: ['pdf, 4.9 мб'], url: '#' },
+				],
+			},
+			{
+				// в макете заголовок повторяет предыдущий
+				title: 'Актуальные каталоги',
+				items: [
+					{ name: 'ARTLIGHT_альбом по проектированию_2023', info: ['pdf, 10.65 мб'], url: '#' },
+				],
+			},
+		],
+	};
+
+	// ЛК «Сервисная служба» (account-service.html): десктоп node-id=129-17333, моб. node-id=129-18681
+	data.accountServicePage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Сервисная служба' },
+		],
+		url: 'account-service.html',
+		title: 'Сервисная служба',
+		add: { label: 'Добавить новое обращение', url: 'account-service-new.html' },
+	};
+
+	// ЛК «Сервисная служба — новое обращение» (account-service-new.html): десктоп node-id=129-17672, моб. node-id=129-18860.
+	// Варианты контрагентов и ИНН придуманы (в макете только плейсхолдеры); контактное лицо, ИНН и почта заполнены, как в макете
+	data.accountServiceNewPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Сервисная служба', url: 'account-service.html' },
+			{ name: 'Новое обращение' },
+		],
+		url: 'account-service-new.html',
+		title: 'Новое обращение',
+		back: { label: 'Вернуться в сервисную службу', url: 'account-service.html' },
+		intro: [
+			'Если у вас возникли технические проблемы с продукцией торговой марки ARTLIGHT или светотехническим оборудованием других производителей, приобретённым в нашей компании, вы можете обратиться в нашу сервисную службу. Для этого вам необходимо заполнить форму, расположенную ниже.',
+			'После проверки данных Вашему обращению будет присвоен номер, Диспетчер нашей сервисной службы свяжется с вами и расскажет, каким образом вы можете передать нам неисправное оборудование.',
+		],
+		action: '#',
+		counterparty: { label: 'Контрагенты', options: ['ООО «Артлайт»', 'ИП Иванов И. И.'] },
+		contact: { label: 'Контактное лицо', options: ['тест'], value: 'тест' },
+		inn: { label: 'Инн', options: ['тест'], value: 'тест' },
+		email: { label: 'Почта', value: 'test@test.com' },
+		phone: '+7 912 345-67-89',
+		fields: [
+			{ name: 'order', label: 'Номер заказа или счета на оплату заказа' },
+			{ name: 'article', label: 'Артикул товара' },
+			{ name: 'build', label: 'Номер сборки' },
+			{ name: 'quantity', label: 'Количество', type: 'number', attrs: { min: 1, inputmode: 'numeric' } },
+		],
+		message: 'Описание неисправности',
+		file: 'Прикрепить файл',
+		accept: '.pdf,.png,.jpg,.jpeg,.mp4,.avi,.txt,.doc,.odt,.docx',
+		hint: 'Вы можете добавить до 10 фотографий до 15 мб в сумме или 1 видео-файл размером 15 мб Разрешённые расширения загружаемых файлов — pdf, png, jpg, jpeg, mp4, avi, txt, doc, odt, docx',
+		cancel: 'отмена',
+		submit: 'Отправить сообщение',
+	};
+
+	//- ЛК «Акты сверки и УПД» (account-documents.html): десктоп node-id=129-17405, моб. node-id=129-18701.
+	//- Варианты контрагентов / ИНН придуманы (в макете только плейсхолдеры)
+	data.accountDocumentsPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Акты сверки и УПД' },
+		],
+		url: 'account-documents.html',
+		title: 'Акты сверки и УПД',
+		intro: [
+			'Необходимые для бухгалтерии документы (акты сверки, УПД) вы можете запросить, заполнив форму, расположенную ниже.',
+			'Наш бухгалтер отправит вам документы на указанный ниже email.',
+		],
+		action: '#',
+		types: [
+			{ value: 'act', label: 'Акт сверки' },
+			{ value: 'upd', label: 'УПД / Счёт-фактура на аванс' },
+		],
+		dates: [
+			{ name: 'date_from', label: 'Дата с' },
+			{ name: 'date_to', label: 'Дата до' },
+		],
+		counterparty: { label: 'Контрагент', options: ['ООО «Артлайт»', 'ИП Иванов И. И.'] },
+		inn: { label: 'ИНН', options: ['7801234567', '780123456789'] },
+		email: 'Почта',
+		submit: 'Отправить',
+	};
+
+	//- ЛК «Обратная связь»: варианты тем, контрагентов и контактных лиц придуманы (в макете только плейсхолдеры);
+	//- контактное лицо и почта — данные кабинета (в макете заполнены)
+	data.accountFeedbackPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Обратная связь' },
+		],
+		url: 'account-feedback.html',
+		title: 'Обратная связь',
+		action: '#',
+		topic: { label: 'Тема сообщения', options: ['Вопрос по заказу', 'Вопрос по оплате', 'Доставка', 'Документы', 'Другое'] },
+		counterparty: { label: 'Контрагенты', options: ['ООО «Артлайт»', 'ИП Иванов И. И.'] },
+		contact: { label: 'Контактное лицо', options: ['тест'], value: 'тест' },
+		email: { label: 'Почта', value: 'test@test.com' },
+		phone: '+7 912 345-67-89',
+		message: 'Сообщение',
+		file: 'Прикрепить файл',
+		submit: 'Отправить',
+	};

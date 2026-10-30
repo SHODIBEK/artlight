@@ -1,0 +1,172 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// ЛК «Обратная связь»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=129-17226,
+// моб. node-id=129-18628. Моб. — поля в колонку, шаг 30, поля 20; ≥ 768 — шаг 20, поля 30,
+// первые 4 поля по 2 в ряд, телефон и сообщение — на всю ширину.
+.account-feedback {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__fields {
+		--input-pad-x: 20px;
+
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 30px;
+
+		.iti {
+			--iti-pad: 20px;
+		}
+	}
+
+	&__file {
+		border-color: var(--color-stroke);
+	}
+
+	&__submit {
+		width: 100%;
+	}
+
+	// «Новое обращение» (сервисная служба): моб. node-id=129-18860 — назад (круг 32) + заголовок Medium 24/29,
+	// текст и подсказка 15/18, кнопки моб. в колонку через 10, ≥ 768 — в ряд по 50% через 10
+	&__head {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__heading {
+		margin: 0;
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 29px;
+		color: var(--color-black);
+	}
+
+	&__intro {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+
+		p {
+			margin: 0;
+		}
+
+		// между абзацами пустая строка
+		p + p {
+			margin-top: 18px;
+		}
+	}
+
+	&__hint {
+		margin: 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.button {
+			width: 100%;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
+
+		&__fields {
+			--input-pad-x: 30px;
+
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 20px;
+
+			.iti {
+				--iti-pad: 30px;
+			}
+		}
+
+		&__input--wide {
+			grid-column: 1 / -1;
+		}
+
+		&__buttons {
+			flex-direction: row;
+
+			.button {
+				flex: 1 1 0;
+			}
+		}
+	}
+}
+
+// ЛК «Акты сверки и УПД»: десктоп node-id=129-17405, моб. node-id=129-18701. Форма «Обратной связи»:
+// вид документа — радио-табы (шаг 8), «Дата с» / «Дата до» — поле-плашка с календарём на 1 месяц (date-range.js)
+.account-documents {
+	&__types {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	&__type {
+		position: relative;
+		cursor: pointer;
+
+		&:has(.account-documents__radio:checked) {
+			background-color: var(--color-accent);
+
+			@include state-hover {
+				background-color: var(--color-accent-hover);
+			}
+		}
+
+		&:has(.account-documents__radio:focus-visible) {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__radio {
+		position: absolute;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	&__date {
+		.input {
+			width: 100%;
+		}
+	}
+
+	&__toggle {
+		overflow: hidden;
+		white-space: nowrap;
+		text-align: left;
+		text-overflow: ellipsis;
+		color: var(--color-black-60);
+		cursor: pointer;
+
+		// выбрана дата — чёрная
+		&.is-selected {
+			color: var(--color-black);
+		}
+	}
+
+	&__chevron {
+		transition: transform $duration-normal;
+
+		.is-open & {
+			transform: translateY(-50%) rotate(180deg);
+		}
+	}
+}
+
+// календарь одной даты — на ширину поля (не 2 месяца)
+.date-range--single {
+	@media (min-width: #{$tablet}px) {
+		width: auto;
+	}
+}

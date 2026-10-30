@@ -1,0 +1,141 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// ЛК «Материалы для скачивания»:
+// десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=129-17505,
+// моб. node-id=129-18747. Разделы моб. через 30, ≥ 768 — 60; заголовок → содержимое 18 / 20.
+// Карточки: моб. в колонку на всю ширину, 768+ — по 2, 1600+ — по 4 (в макете 300.25).
+// «Архивные …»: моб. — кнопка во всю ширину (у каталогов — под карточками), ≥ 768 — справа от заголовка.
+.downloads {
+	&__section {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+
+	&__archive:not(:last-child) {
+		order: 1;
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 20px;
+	}
+
+	&__card {
+		display: flex;
+		flex-direction: column;
+		padding: 24px;
+		background-color: var(--color-light-grey);
+		gap: 12px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+	}
+
+	&__name {
+		font-size: 18px;
+		line-height: 22px;
+		color: var(--color-black);
+	}
+
+	&__info {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+
+	&__button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		padding: 0 16px;
+		height: 40px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-decoration: none;
+		color: var(--color-black);
+		background-color: var(--color-white);
+		transition: background-color $duration-normal;
+		gap: 6px;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&--accent {
+			background-color: var(--color-accent);
+
+			@include state-hover {
+				background-color: var(--color-accent-hover);
+			}
+
+			@include state-pressed {
+				background-color: var(--color-accent-pressed);
+			}
+		}
+
+		&--grey {
+			background-color: var(--color-light-grey);
+			gap: 10px;
+
+			@include state-hover {
+				background-color: var(--color-grey-button);
+			}
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 60px;
+
+		&__section {
+			display: grid;
+			align-items: start;
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 20px;
+		}
+
+		&__title {
+			grid-column: 1;
+		}
+
+		&__archive {
+			grid-column: 2;
+			grid-row: 1;
+		}
+
+		&__list {
+			grid-column: 1 / -1;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (min-width: 1600px) {
+		&__list {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+}

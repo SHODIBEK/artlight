@@ -85,6 +85,8 @@ h 70, px 30, текст 15/1.2, placeholder black-60.
 Default: bg light-grey · Hover: #E8E8E8 + border 1 stroke · Focus: border 3 accent · Filled: текст black · Error: border 2 red · Disabled: bg stroke, placeholder opacity .6 · ReadOnly: bg light-grey + border 1 stroke.
 
 Textarea: `+input({ ..., textarea: true })` → `.input--textarea` (текст сверху, h 125, p 30; высоту можно переопределить). `attrs` — атрибуты самого поля.
+
+Подпись: `+input({ ..., label: 'Почта' })` → `.input--label` + `.input__label` — вместо плейсхолдера: у пустого поля по центру, с значением / в фокусе — сверху (15/18 в 13.5), значение 16/19 под ней (ЛК «Обратная связь»).
 Select: `+input({ ..., options: [...], placeholder })` → `.input--select` (select на всё поле, шеврон `select-chevron` справа; пустой пункт — серый плейсхолдер). Горизонтальный паддинг — `--input-pad-x` (30 / 20 в мобильных формах).
 Попапы: `line: true` → `.input--line` (белое поле, серая линия снизу).
 

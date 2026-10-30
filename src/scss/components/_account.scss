@@ -171,6 +171,12 @@
 		padding-top: 23px;
 		padding-bottom: 23px;
 	}
+
+	// группа избранного: 92 на всех ширинах
+	&--group {
+		padding-top: 23px;
+		padding-bottom: 23px;
+	}
 }
 
 // «Персональный менеджер»: раскрыт по умолчанию, шеврон вниз — раскрыт (как в макете), вверх — свёрнут
@@ -729,5 +735,22 @@
 			margin: 0;
 			padding: 0;
 		}
+	}
+}
+
+// ЛК «Сервисная служба»: десктоп node-id=129-17333, моб. node-id=129-18681.
+// Заголовок (здесь и на моб. 34/41) и «Добавить новое обращение» — моб. через 30, ≥ 768 — 20
+.account-service {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__title {
+		font-size: 34px;
+		line-height: 41px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
 	}
 }

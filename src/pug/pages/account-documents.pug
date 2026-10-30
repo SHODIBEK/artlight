@@ -1,0 +1,46 @@
+//- Личный кабинет — акты сверки и УПД: десктоп node-id=129-17405, моб. node-id=129-18701
+- var page = data.accountDocumentsPage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		//- отправка — feedback-form.js: проверка, fetch на action (POST: type, date_from, date_to — ГГГГ-ММ-ДД,
+		//- counterparty, inn, email), при 2xx — попап «Успешная отправка»
+		form.account-feedback.account-documents.js-feedback-form(action=page.action method="post" novalidate data-success="success")
+			h2.account__title.account-service__title= page.title
+			.account-feedback__intro
+				each text in page.intro
+					p= typo(text)
+			//- вид документа — радио в оформлении таба (сбрасывается вместе с формой)
+			.account-documents__types(role="radiogroup" aria-label=page.title)
+				each type, index in page.types
+					label.tab.account-documents__type
+						input.account-documents__radio(type="radio" name="type" value=type.value checked=(index === 0))
+						span.tab__label= type.label
+			.account-feedback__fields
+				//- дата: календарь на 1 месяц (date-range.js, data-single) — выбор дня сразу подставляет дату и закрывает
+				each date in page.dates
+					+dropdown({ cls: 'account-documents__date account-feedback__input' })
+						.input.input--select
+							button.input__field.account-documents__toggle.js-dropdown-toggle(type="button" aria-expanded="false" aria-label=date.label)
+								span.account-documents__value.js-dropdown-value= date.label
+							+svg('select-chevron').input__chevron.account-documents__chevron
+						.dropdown__panel.dropdown__panel--calendar.date-range.date-range--single.js-date-range(data-placeholder=date.label data-single)
+							input.js-date-range-from(type="hidden" name=date.name value="")
+							.date-range__head
+								button.date-range__arrow.js-date-range-prev(type="button" aria-label="Предыдущий месяц")
+									+svg('chevron-up').date-range__arrow-icon.date-range__arrow-icon--prev
+								button.date-range__arrow.js-date-range-next(type="button" aria-label="Следующий месяц")
+									+svg('chevron-up').date-range__arrow-icon.date-range__arrow-icon--next
+							.date-range__months.js-date-range-months
+				+input({ name: 'counterparty', label: page.counterparty.label, options: page.counterparty.options }).account-feedback__input
+				+input({ name: 'inn', label: page.inn.label, options: page.inn.options }).account-feedback__input
+				+input({ name: 'email', type: 'email', placeholder: page.email, required: true, attrs: { autocomplete: 'email' } }).account-feedback__input.account-feedback__input--wide
+			+button({ view: 'main', type: 'submit', label: page.submit }).account-feedback__submit

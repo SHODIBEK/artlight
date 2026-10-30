@@ -1,0 +1,28 @@
+//- Личный кабинет — обратная связь: десктоп node-id=129-17226, моб. node-id=129-18628
+- var page = data.accountFeedbackPage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		//- отправка — feedback-form.js: проверка, fetch на action, при 2xx — попап «Успешная отправка»
+		form.account-feedback.js-feedback-form(action=page.action method="post" enctype="multipart/form-data" novalidate data-success="success")
+			h2.account__title= page.title
+			.account-feedback__fields
+				+input({ name: 'topic', label: page.topic.label, options: page.topic.options, required: true }).account-feedback__input
+				+input({ name: 'counterparty', label: page.counterparty.label, options: page.counterparty.options }).account-feedback__input
+				+input({ name: 'contact', label: page.contact.label, options: page.contact.options, value: page.contact.value }).account-feedback__input
+				+input({ name: 'email', type: 'email', label: page.email.label, value: page.email.value, attrs: { autocomplete: 'email' } }).account-feedback__input
+				+input({ name: 'phone', type: 'tel', value: page.phone, required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).account-feedback__input.account-feedback__input--wide
+				+input({ name: 'message', placeholder: page.message, textarea: true, required: true }).account-feedback__input.account-feedback__input--wide
+			label.checkout-file.account-feedback__file
+				input.checkout-file__input.js-feedback-file(type="file" name="files[]" multiple)
+				+svg('attach').checkout-file__icon
+				span.checkout-file__text.js-feedback-file-text(data-empty=page.file)= page.file
+			+button({ view: 'main', type: 'submit', label: page.submit }).account-feedback__submit

@@ -1,0 +1,19 @@
+//- Личный кабинет — сервисная служба: десктоп node-id=129-17333, моб. node-id=129-18681
+- var page = data.accountServicePage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		.account-service
+			h2.account__title.account-service__title= page.title
+			//- форма обращения в макете нет — пока #
+			a.profile-add(href=page.add.url)
+				+svg('add').profile-add__icon
+				span= page.add.label

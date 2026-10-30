@@ -1,0 +1,100 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// ЛК «Прайс-лист»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=129-17149,
+// моб. node-id=129-18607. Карточка файла целиком — ссылка на скачивание:
+// моб. — в колонку (название, размер, значок скачивания, без значка таблицы), 146;
+// ≥ 768 — в строку: значок таблицы, название + размер, значок скачивания справа, 92.
+.price-list {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__files {
+		display: flex;
+		flex-direction: column;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 20px;
+	}
+
+	&__file {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		outline: none;
+		padding: 24px;
+		text-decoration: none;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		gap: 8px;
+
+		@include state-hover {
+			.price-list__name,
+			.price-list__download {
+				color: var(--color-black-60);
+			}
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__icon {
+		display: none;
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		gap: 8px;
+	}
+
+	&__name {
+		font-size: 16px;
+		line-height: 20px;
+		transition: color $duration-normal;
+	}
+
+	&__info {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__download {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+		transition: color $duration-normal;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
+
+		&__file {
+			flex-direction: row;
+			align-items: center;
+			padding: 23px 24px;
+			gap: 12px;
+		}
+
+		&__icon {
+			display: block;
+		}
+
+		&__text {
+			flex-grow: 1;
+			gap: 6px;
+		}
+
+		&__name {
+			font-size: 18px;
+			line-height: 22px;
+		}
+	}
+}

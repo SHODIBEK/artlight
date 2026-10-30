@@ -1,0 +1,92 @@
+// Личный кабинет — избранное: «Все товары» — десктоп node-id=129-16998, моб. node-id=129-18412;
+// (моб. node-id=129-18412), «Группы товаров» node-id=129-17803 (моб. node-id=129-18935).
+// Моб. — блоки через 30, ≥ 768 — 20; товары — сетка «Встраиваемых», группы — карточки главной кабинета
+.favorites {
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 8.5px;
+	}
+
+	&__panel {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24px 16px;
+	}
+
+	&__pagination {
+		justify-content: center;
+		margin-top: -6px; // 24 от товаров
+		gap: 16px;
+	}
+
+	&__groups {
+		display: grid;
+		grid-template-columns: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 20px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
+
+		&__panel {
+			gap: 20px;
+		}
+
+		&__grid {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+			gap: 25px 20px; // ряды 509 + 30 при карточке 514 — шаг 539, как в «Встраиваемых»
+
+			.product-card:nth-child(n + 10) {
+				display: none;
+			}
+		}
+
+		&__pagination {
+			margin-top: 0;
+			gap: 8px;
+		}
+
+		&__groups {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	// как в макете: 4 товара без пагинации; карточка 514 в ряду 509 (y −2.5)
+	@media (min-width: #{$header-desktop}px) {
+		&__grid {
+			margin-top: -2.5px;
+
+			.product-card:nth-child(n + 5) {
+				display: none;
+			}
+		}
+
+		&__pagination {
+			display: none;
+		}
+	}
+
+	@media (min-width: #{$header-full}px) {
+		&__grid {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		&__groups {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+}

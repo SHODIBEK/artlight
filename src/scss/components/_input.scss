@@ -171,6 +171,36 @@
 		pointer-events: none;
 	}
 
+	// подпись вместо плейсхолдера (ЛК «Обратная связь»): с значением / в фокусе — подпись 15/18 в 13.5 от верха,
+	// значение 16/19 под ней через 6; пустое поле — подпись по центру, как плейсхолдер (у select — и в фокусе)
+	&--label {
+		#{$b}__field {
+			padding-top: 37.5px;
+			padding-bottom: 13.5px;
+			font-size: 16px;
+		}
+	}
+
+	&__label {
+		position: absolute;
+		left: var(--input-pad-x, 30px);
+		right: var(--input-pad-x, 30px);
+		top: 13.5px;
+		overflow: hidden;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		color: var(--color-black-60);
+		transition: top $duration-normal;
+		pointer-events: none;
+	}
+
+	&__field:placeholder-shown:not(:focus) ~ #{$b}__label,
+	&__field:has(option[value=""]:checked) ~ #{$b}__label {
+		top: 26px;
+	}
+
 	// попапы: белое поле с серой линией снизу (в т. ч. заполненное)
 	&--line {
 		background-color: var(--color-white);

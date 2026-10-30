@@ -2,7 +2,8 @@
 * Вкладки (role="tab" + панели role="tabpanel" по aria-controls): клик, стрелки ← →,
 * хеш в адресе = data-tab (у 1-й вкладки — без хеша), переход по хешу открывает вкладку.
 * data-crumbs у корня — селектор «крошек»: у не первой вкладки последний пункт становится ссылкой,
-* а название вкладки добавляется текущим пунктом («Профиль / Контрагенты»).
+* а название вкладки добавляется текущим пунктом («Профиль / Контрагенты»);
+* с data-crumbs-all — и у 1-й вкладки («Избранное / Все товары»).
 */
 function crumbsInit(root, tabs) {
 	const crumbs = root.dataset.crumbs && document.querySelector(root.dataset.crumbs);
@@ -11,6 +12,7 @@ function crumbsInit(root, tabs) {
 		return () => {};
 	}
 
+	const always = 'crumbsAll' in root.dataset;
 	const base = crumbs.querySelector('.breadcrumbs__item:last-child');
 	const current = base.querySelector('.breadcrumbs__current');
 	const link = document.createElement('a');
@@ -22,7 +24,7 @@ function crumbsInit(root, tabs) {
 	link.textContent = current.textContent;
 
 	return (tab) => {
-		const isFirst = tab === tabs[0];
+		const isFirst = tab === tabs[0] && !always;
 
 		if (isFirst) {
 			link.replaceWith(current);
@@ -89,9 +91,15 @@ export function tabsInit(root, selector = '.js-tab') {
 		if (tab) {
 			select(tab);
 		}
+
+		return tab;
 	};
 
-	fromHash();
+	// без хеша — крошки по активной вкладке (с data-crumbs-all у 1-й тоже есть название)
+	if (!fromHash()) {
+		updateCrumbs(tabs.find((item) => item.classList.contains('is-active')) || tabs[0]);
+	}
+
 	window.addEventListener('hashchange', fromHash);
 }
 

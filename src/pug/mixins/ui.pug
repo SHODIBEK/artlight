@@ -84,10 +84,16 @@ mixin checkbox(opts)
 //- @demo +input({ name: 'topic', placeholder: 'Тема обращения', options: ['Консультация', 'Другое'], line: true })
 //- textarea — многострочное поле; options — выпадающий список (placeholder — пустой пункт, value — выбранный вариант вместо него);
 //- line — белое поле с серой линией снизу (попапы); attrs — доп. атрибуты самого поля (autocomplete, class для JS…)
+//- label — подпись вместо плейсхолдера: у пустого поля — на месте плейсхолдера, с значением / в фокусе — над ним
 mixin input(opts)
 	-
-		var o = opts || {}
+		var o = Object.assign({}, opts)
 		var cls = []
+		if (o.label) {
+			cls.push('input--label')
+			o.ariaLabel = o.ariaLabel || o.label
+			o.placeholder = o.options ? '' : ' '
+		}
 		if (o.white) cls.push('input--white')
 		if (o.line) cls.push('input--line')
 		if (o.textarea) cls.push('input--textarea')
@@ -129,6 +135,8 @@ mixin input(opts)
 				required=o.required
 				aria-label=o.ariaLabel || o.placeholder
 			)&attributes(o.attrs || {})
+		if o.label
+			span.input__label(aria-hidden="true")= o.label
 		//- содержимое блока — справа от поля (кнопка «показать пароль»)
 		if block
 			block

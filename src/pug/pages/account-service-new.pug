@@ -1,0 +1,39 @@
+//- Личный кабинет — сервисная служба, новое обращение: десктоп node-id=129-17672, моб. node-id=129-18860
+- var page = data.accountServiceNewPage
+- var accountCurrent = data.accountServicePage.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		//- отправка — feedback-form.js: проверка, fetch на action, при 2xx — попап «Успешная отправка»
+		form.account-feedback.account-feedback--service.js-feedback-form(action=page.action method="post" enctype="multipart/form-data" novalidate data-success="success")
+			.account-feedback__head
+				a.account-order__back(href=page.back.url aria-label=page.back.label)
+					+svg('chevron-right').account-order__back-icon
+				h2.account-feedback__heading= page.title
+			.account-feedback__intro
+				each text in page.intro
+					p= typo(text)
+			.account-feedback__fields
+				+input({ name: 'counterparty', label: page.counterparty.label, options: page.counterparty.options }).account-feedback__input
+				+input({ name: 'contact', label: page.contact.label, options: page.contact.options, value: page.contact.value }).account-feedback__input
+				+input({ name: 'inn', label: page.inn.label, options: page.inn.options, value: page.inn.value }).account-feedback__input
+				+input({ name: 'email', type: 'email', label: page.email.label, value: page.email.value, attrs: { autocomplete: 'email' } }).account-feedback__input
+				+input({ name: 'phone', type: 'tel', value: page.phone, required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).account-feedback__input.account-feedback__input--wide
+				each field in page.fields
+					+input({ name: field.name, placeholder: field.label, type: field.type, attrs: field.attrs }).account-feedback__input
+				+input({ name: 'message', placeholder: page.message, textarea: true, required: true }).account-feedback__input.account-feedback__input--wide
+			label.checkout-file.account-feedback__file
+				input.checkout-file__input.js-feedback-file(type="file" name="files[]" multiple accept=page.accept)
+				+svg('attach').checkout-file__icon
+				span.checkout-file__text.js-feedback-file-text(data-empty=page.file)= page.file
+			p.account-feedback__hint= typo(page.hint)
+			.account-feedback__buttons
+				+button({ view: 'tertiary', href: page.back.url, label: page.cancel })
+				+button({ view: 'main', type: 'submit', label: page.submit })

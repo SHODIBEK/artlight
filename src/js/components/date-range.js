@@ -9,6 +9,10 @@
 * подставляет полученные даты в value скрытых полей — календарь и подпись плашки восстанавливаются из них
 * (если value пустые — из адреса страницы, для вёрстки). Без формы — только событие daterange:change на панели
 * (detail: {from, to} — Date или null). «Сбросить» очищает выбор (применяется по «Применить»).
+*
+* data-single (ЛК «Акты сверки и УПД» — поля «Дата с» / «Дата до»): одна дата, всегда 1 месяц, без «Применить» —
+* клик по дню подставляет дату (ДД.ММ.ГГГГ) в плашку и ГГГГ-ММ-ДД в скрытое поле .js-date-range-from и закрывает
+* календарь; форму не отправляет. Сброс формы (reset) очищает выбор.
 */
 const MONTHS = ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'];
 const WEEKDAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
@@ -35,6 +39,7 @@ function dateRangeItem(panel) {
 	const prev = panel.querySelector('.js-date-range-prev');
 	const next = panel.querySelector('.js-date-range-next');
 	const form = panel.closest('form');
+	const isSingle = 'single' in panel.dataset;
 	const today = new Date();
 	const todayKey = toKey(today);
 	const lastMonth = monthStart(today);
@@ -45,7 +50,7 @@ function dateRangeItem(panel) {
 	let view = lastMonth;
 
 	const count = () => {
-		return TABLET.matches ? 2 : 1;
+		return TABLET.matches && !isSingle ? 2 : 1;
 	};
 
 	// первый показанный месяц: последний показанный — не позже текущего
@@ -120,6 +125,59 @@ function dateRangeItem(panel) {
 	prev.addEventListener('click', () => shift(-1));
 	next.addEventListener('click', () => shift(1));
 
+	months.addEventListener('mouseover', (event) => {
+		const day = event.target.closest('.date-range__day[data-date]');
+
+		if (!isSingle && start && !end && day) {
+			hover = day.dataset.date;
+			paint();
+		}
+	});
+
+	// выбранный период → скрытые поля и подпись плашки (без выбора поля disabled — не уходят в запрос)
+	const fill = () => {
+		const to = end || start;
+
+		inputFrom.value = start ? toKey(start) : '';
+		inputFrom.disabled = !start;
+
+		if (inputTo) {
+			inputTo.value = to ? toKey(to) : '';
+			inputTo.disabled = !start;
+		}
+
+		if (!start) {
+			value.textContent = panel.dataset.placeholder;
+		} else {
+			value.textContent = isSingle ? toLabel(start) : `${toLabel(start)} — ${toLabel(to)}`;
+		}
+
+		toggle.classList.toggle('is-selected', Boolean(start));
+	};
+
+	const apply = () => {
+		fill();
+
+		const detail = {
+			from: start,
+			to: end || start,
+		};
+
+		panel.dispatchEvent(new CustomEvent('daterange:change', {
+			bubbles: true,
+			detail,
+		}));
+
+		if (form && !isSingle) {
+			form.submit();
+
+			return;
+		}
+
+		toggle.click(); // закрыть панель — через dropdown.js
+		toggle.focus();
+	};
+
 	months.addEventListener('click', (event) => {
 		const day = event.target.closest('.date-range__day[data-date]');
 
@@ -128,6 +186,15 @@ function dateRangeItem(panel) {
 		}
 
 		const date = fromKey(day.dataset.date);
+
+		if (isSingle) {
+			start = date;
+			end = date;
+			paint();
+			apply();
+
+			return;
+		}
 
 		if (!start || end) {
 			start = date;
@@ -143,61 +210,30 @@ function dateRangeItem(panel) {
 		paint();
 	});
 
-	months.addEventListener('mouseover', (event) => {
-		const day = event.target.closest('.date-range__day[data-date]');
-
-		if (start && !end && day) {
-			hover = day.dataset.date;
-			paint();
-		}
-	});
-
-	// выбранный период → скрытые поля и подпись плашки (без выбора поля disabled — не уходят в запрос)
-	const fill = () => {
-		const to = end || start;
-
-		inputFrom.value = start ? toKey(start) : '';
-		inputTo.value = to ? toKey(to) : '';
-		inputFrom.disabled = !start;
-		inputTo.disabled = !start;
-		value.textContent = start ? `${toLabel(start)} — ${toLabel(to)}` : panel.dataset.placeholder;
-		toggle.classList.toggle('is-selected', Boolean(start));
-	};
-
-	panel.querySelector('.js-date-range-apply').addEventListener('click', () => {
-		fill();
-
-		const detail = {
-			from: start,
-			to: end || start,
-		};
-
-		panel.dispatchEvent(new CustomEvent('daterange:change', {
-			bubbles: true,
-			detail,
-		}));
-
-		if (form) {
-			form.submit();
-
-			return;
-		}
-
-		toggle.click(); // закрыть панель — через dropdown.js
-		toggle.focus();
-	});
-
-	panel.querySelector('.js-date-range-reset').addEventListener('click', () => {
+	const clear = () => {
 		start = null;
 		end = null;
 		hover = null;
 		paint();
-	});
+	};
+
+	if (isSingle) {
+		// после reset скрытое поле уже пустое — подпись плашки обновляем следующим кадром
+		if (form) {
+			form.addEventListener('reset', () => {
+				clear();
+				requestAnimationFrame(fill);
+			});
+		}
+	} else {
+		panel.querySelector('.js-date-range-apply').addEventListener('click', apply);
+		panel.querySelector('.js-date-range-reset').addEventListener('click', clear);
+	}
 
 	// начальный период — из value полей (бэкенд), иначе из адреса страницы
 	const params = new URLSearchParams(window.location.search);
 	const initialFrom = inputFrom.value || params.get(inputFrom.name) || '';
-	const initialTo = inputTo.value || params.get(inputTo.name) || initialFrom;
+	const initialTo = inputTo ? inputTo.value || params.get(inputTo.name) || initialFrom : initialFrom;
 
 	if (KEY_RE.test(initialFrom) && KEY_RE.test(initialTo)) {
 		[start, end] = [fromKey(initialFrom), fromKey(initialTo)].sort((a, b) => a - b);

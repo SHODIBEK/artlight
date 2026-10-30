@@ -1,0 +1,53 @@
+//- Личный кабинет — избранное: «Все товары» — десктоп node-id=129-16998, моб. node-id=129-18412;
+//- «Группы товаров» (favorites.html#groups) — десктоп node-id=129-17803, моб. node-id=129-18935.
+//- Вкладки — tabs.js (data-crumbs-all — название вкладки в крошках и у 1-й: «Избранное / Все товары»)
+- var page = data.favoritesPage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs.js-tabs-crumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content.favorites.js-tabs(data-crumbs=".js-tabs-crumbs" data-crumbs-all)
+		h2.account__title= page.title
+
+		.favorites__tabs(role="tablist" aria-label=page.title)
+			each tab, index in page.tabs
+				button.tab.js-tab(
+					class=(index ? null : 'is-active')
+					id=`favorites-tab-${tab.id}`
+					type="button"
+					role="tab"
+					aria-selected=(index ? 'false' : 'true')
+					aria-controls=`favorites-${tab.id}`
+					tabindex=(index ? '-1' : null)
+					data-tab=tab.id
+				)
+					span.tab__label= tab.label
+
+		//- товары: сетка 2 / 3 (768+) / 4 (1600+); карточек 10 / 9 (768+) / 4 (1280+, как в макете — без пагинации)
+		.favorites__panel#favorites-products(role="tabpanel" aria-labelledby="favorites-tab-products")
+			.favorites__grid
+				each item, index in page.products
+					+productCard(item, index < 4)
+			+pagination(page.pagination.current, page.pagination.total).favorites__pagination
+
+		//- группы: карточки как на главной кабинета (1 / 2 (768+) / 3 (1600+)), формы добавления в макете нет
+		.favorites__panel#favorites-groups(role="tabpanel" aria-labelledby="favorites-tab-groups" hidden)
+			a.profile-add(href="#")
+				+svg('add').profile-add__icon
+				span= page.add
+			ul.favorites__groups
+				each group in page.groups
+					li
+						a.account-card.account-card--group(href=group.href)
+							+svg('box').account-card__icon
+							span.account-card__text
+								span.account-card__title= group.title
+								span.account-card__note= group.text
+
+include ../components/account-menu-panel
