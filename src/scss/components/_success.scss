@@ -1,3 +1,4 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
 // Попап «Успешная отправка формы»:
 // десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-1363,
 // моб. node-id=2-14296. Окно — .modal__dialog (370 / 704, поля 20·16 / 30)
@@ -43,8 +44,44 @@
 		gap: 16px;
 	}
 
+	// «Оформление запроса» (node-id=2-1813 / 2-14699): без иконки, моб. текст 16/22
+	&--request &__text {
+		font-size: 16px;
+		line-height: 22px;
+	}
+
 	&__buttons &__button {
 		padding: 0 10px;
+	}
+
+	// «Восстановление пароля» (node-id=145-14202 / 145-15104): текст 16/22, поле + кнопка через 12, ссылка «назад» 20/28
+	&--password &__text {
+		font-size: 16px;
+		line-height: 22px;
+	}
+
+	&__line {
+		display: block;
+	}
+
+	&__form {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		width: 100%;
+		gap: 12px;
+	}
+
+	&__back {
+		font-family: var(--font-family);
+		font-size: 20px;
+		line-height: 28px;
+		color: var(--color-black);
+		transition: color $duration-normal;
+		text-wrap: balance;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
 	}
 
 	@media (min-width: #{$tablet}px) {
@@ -63,6 +100,12 @@
 		&__buttons {
 			flex-direction: row;
 			gap: 20px;
+		}
+
+		&--request &__text,
+		&--password &__text {
+			font-size: 20px;
+			line-height: 28px;
 		}
 
 		&__buttons &__button {

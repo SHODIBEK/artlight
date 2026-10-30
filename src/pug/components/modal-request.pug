@@ -1,0 +1,17 @@
+//- Попап «Оформление запроса»: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-1813,
+//- моб. node-id=2-14699. Окно и заголовок — как у «Успешной отправки» (.success), без иконки. Показ — request.html.
+//- Подключение (бэкенд): форма оформления (checkout.pug) с data-success="request" — feedback-form.js после проверки
+//- отправляет её fetch'ем на action и при ответе 2xx открывает попап (action="#" — без запроса, сразу попап);
+//- из своего кода — document.dispatchEvent(new CustomEvent('modal:open', { detail: { id: 'request' } }));
+//- открыт при загрузке — атрибут data-modal-open (здесь — requestOpen = true перед include).
+- var request = data.requestModal
+
+.modal.js-modal(data-modal-id="request" data-modal-open=(typeof requestOpen !== 'undefined' && requestOpen) role="dialog" aria-modal="true" aria-labelledby="request-title" aria-hidden="true")
+	.modal__dialog
+		button.modal__close.js-modal-close(type="button" aria-label="Закрыть")
+			+svg('popup-close').modal__close-icon
+
+		.success.success--request
+			h2.success__title#request-title= request.title
+			p.success__text= request.text
+			+button({ view: 'main', label: request.button, href: request.url }).success__button

@@ -25,7 +25,7 @@ section.auth.container.js-auth
 			.auth__row
 				+checkbox({ name: 'remember', value: 'y' }).checkbox--white.auth__check
 					span.checkbox__label= page.login.remember
-				a.auth__link(href=page.login.forgot.url)= page.login.forgot.name
+				a.auth__link(href=page.login.forgot.url data-modal=page.login.forgot.modal)= page.login.forgot.name
 			+button({ type: 'submit', label: page.login.submit }).auth__submit
 
 		//- Регистрация

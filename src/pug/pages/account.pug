@@ -1,0 +1,22 @@
+//- Личный кабинет — главная: десктоп node-id=129-11069, моб. node-id=129-12634, моб. меню node-id=129-12557
+- var page = data.accountPage
+- var accountCurrent = 'account.html'
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= page.title
+
+//- ≥ 1280 — меню слева (407) и карточки разделов справа; < 1280 — кнопка «меню» (панель account-menu) над менеджером
+section.account.container
+	include ../components/account-aside
+
+	ul.account__cards
+		each card in page.cards
+			li
+				a.account-card(href=card.href)
+					+svg(card.icon).account-card__icon
+					span.account-card__text
+						span.account-card__title= card.title
+						span.account-card__note= card.text
+
+include ../components/account-menu-panel

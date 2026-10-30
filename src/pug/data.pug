@@ -398,6 +398,7 @@
 				{ id: 'color', name: 'Цвет', options: ['Белые', 'Белые с золотым', 'Белые с серым', 'Белые с чёрным', 'Белые/хром', 'Белые/шампань', 'Золотые', 'Лакированная латунь', 'Покраска по RAL', 'Серые', 'Хром', 'Чёрные'] },
 			],
 			allFilters: 'Все фильтры',
+			resetAll: 'Сбросить фильтры', // ≥ 1280 — вместо «Все фильтры» (ниже панель остаётся: отдельных плашек фильтров нет)
 			allCategories: 'Все категории',
 			resetFilters: 'Сбросить все фильтры',
 			toggles: [
@@ -1330,6 +1331,34 @@
 			url: 'cart.html',
 		},
 
+		// попап «Оформление запроса» (modal-request.pug) — после отправки формы checkout.html
+		requestModal: {
+			title: 'Оформление запроса',
+			text: 'Благодарим Вас за запрос! Наш менеджер свяжется с Вами в ближайшее время (согласно режиму работы компании).',
+			button: 'Продолжить покупки',
+			url: 'catalog.html',
+		},
+
+		// попап «Восстановление пароля» (modal-password.pug) — «Забыли пароль?» на login.html
+		passwordModal: {
+			title: 'Восстановление пароля',
+			text: ['Введите ваш email, указанный при регистрации.', 'Мы отправим на него письмо с дальнейшими инструкциями'],
+			submit: 'Отправить',
+			back: 'Вернуться на страницу входа',
+			action: '#',
+		},
+
+		// попап «Письмо отправлено» (modal-password-sent.pug) — после отправки формы «Восстановления пароля»
+		passwordSentModal: {
+			title: 'Восстановление пароля',
+			text: 'На ваш электронный адрес отправлено письмо. Для смены пароля необходимо пройти по ссылке, указанной в письме.',
+			button: { name: 'На главную', url: 'home.html' },
+			links: [
+				{ name: 'У меня есть пароль. Я хочу войти на сайт.', url: 'login.html#login' },
+				{ name: 'Хочу зарегистрироваться', url: 'login.html#register' },
+			],
+		},
+
 		// плавающие кнопки: «Написать» раскрывает мессенджеры (макет моб. node-id=56-11070); ссылки — временные, ждём от заказчика
 		floatActions: {
 			messengers: [
@@ -2027,7 +2056,7 @@
 		tabs: { login: 'вход', register: 'Регистрация' },
 		login: {
 			remember: 'Запомнить меня',
-			forgot: { name: 'Забыли пароль?', url: '#' },
+			forgot: { name: 'Забыли пароль?', url: '#', modal: 'password-recovery' },
 			submit: 'Войти',
 		},
 		register: {
@@ -2054,4 +2083,144 @@
 		title: 'Страница не найдена',
 		button: 'вернуться на главную',
 		href: 'home.html',
+	};
+
+	//- Личный кабинет — главная (account.html): десктоп node-id=129-11069, моб. node-id=129-12634, моб. меню node-id=129-12557
+	data.accountPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет' },
+		],
+		title: 'Личный кабинет',
+		menuButton: 'меню',
+		menu: [
+			{ label: 'Главная', icon: 'cube', href: 'account.html' },
+			{ label: 'Заказы', icon: 'list-check', href: 'orders.html' },
+			{ label: 'Профиль', icon: 'user', href: 'profile.html' },
+			{ label: 'Избранное', icon: 'heart', href: '#' },
+			{ label: 'Прайс-лист', icon: 'table', href: '#' },
+			{ label: 'Обратная связь', icon: 'message', href: '#' },
+			{ label: 'Сервисная служба', icon: 'message', href: '#' },
+			{ label: 'Акты сверки и УПД', icon: 'message', href: '#' },
+			{ label: 'Материалы для скачивания', icon: 'download', href: '#' },
+			{ label: 'Выйти', icon: 'logout', href: 'login.html' },
+		],
+		discount: 'Ваша скидка 10%',
+		manager: {
+			title: 'Персональный менеджер',
+			name: 'в процессе назначения',
+			phones: [
+				['+7 812 740-70-30', '+78127407030'],
+				['+7 495 640-50-20', '+74956405020'],
+				['8 800 500-33-36', '88005003336'],
+			],
+			email: 'artlight@artlight.ru',
+			write: 'Написать',
+			call: 'Заказать звонок',
+		},
+		cards: [
+			{ title: 'Профиль', text: 'Информация о вашем профиле', icon: 'user', href: 'profile.html' },
+			{ title: 'Избранное', text: '4 товара', icon: 'heart', href: '#' },
+			{ title: 'Заказы', text: 'Информация о ваших заказах', icon: 'list-check', href: 'orders.html' },
+			{ title: 'Обратная связь', text: 'Новое обращение', icon: 'message', href: '#' },
+			{ title: 'Материалы для скачивания', text: 'Файлы, сертификаты, каталоги', icon: 'download', href: '#' },
+			{ title: 'Прайс-лист', text: 'Розничный прайс-лист', icon: 'table', href: '#' },
+		],
+	};
+
+	//- Личный кабинет — заказы (orders.html) и заказ (order.html)
+	data.ordersPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Заказы' },
+		],
+		title: 'Заказы',
+		filters: [
+			{ name: 'Дата', options: ['За всё время', 'За последний месяц', 'За 3 месяца', 'За год'] },
+			{ name: 'Юр. лица', options: ['Все юр. лица', 'ООО «Артлайт»', 'ИП Иванов И. И.'] },
+		],
+		columns: ['Номер', 'Дата', 'Сумма заказа'],
+		orders: [
+			{ number: '1041', date: '20.09.2026', sum: '2 100,00 ₽', url: 'order.html' },
+			{ number: '1041', date: '20.09.2026', sum: '2 100,00 ₽', url: 'order.html' },
+			{ number: '1041', date: '20.09.2026', sum: '2 100,00 ₽', url: 'order.html' },
+			{ number: '1041', date: '20.09.2026', sum: '2 100,00 ₽', url: 'order.html' },
+		],
+	};
+
+	//- Личный кабинет — профиль (profile.html): профиль — десктоп node-id=129-11289, моб. node-id=129-12757;
+	//- контрагенты (#counterparties) — 129-12300 / 129-13380. «Контактные лица» и «Адреса доставки» — без макета
+	data.profilePage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Профиль' },
+		],
+		url: 'profile.html',
+		tabs: [
+			{ id: 'profile', label: 'Профиль' },
+			{ id: 'counterparties', label: 'Контрагенты' },
+			{ id: 'contacts', label: 'Контактные лица' },
+			{ id: 'addresses', label: 'Адреса доставки' },
+		],
+		profile: {
+			title: 'Профиль',
+			edit: 'Редактировать данные',
+			save: 'Сохранить данные',
+			type: { label: 'Тип профиля', value: 'Юридическое лицо' },
+			email: { label: 'Почта', value: 'test@test.ru' },
+			password: 'Новый пароль',
+			passwordConfirm: 'Подтверждение нового пароля',
+			passwordMismatch: 'Пароли не совпадают',
+			site: 'Сайт',
+			activity: { label: 'Ваша деятельность', value: 'Дизайн-студия', options: ['Дизайн-студия'].concat(data.aboutPage.cooperation.activities) },
+		},
+		counterparties: {
+			title: 'Контрагенты',
+			add: 'Добавить нового контрагента',
+			columns: ['Название компании / ИП', 'ИНН', 'НДС'],
+			items: [
+				['тест', '312413413513', 'с НДС'],
+			],
+		},
+		contacts: {
+			title: 'Контактные лица',
+			add: 'Добавить контактное лицо',
+		},
+		addresses: {
+			title: 'Адреса доставки',
+			add: 'Добавить адрес доставки',
+		},
+	};
+
+	data.orderPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Личный кабинет', url: 'account.html' },
+			{ name: 'Заказы', url: 'orders.html' },
+			{ name: 'Информация о заказе № 1041' },
+		],
+		back: { label: 'Вернуться к заказам', url: 'orders.html' },
+		title: 'Заказ 1041',
+		status: 'Принят, ожидается оплата',
+		exports: [
+			{ label: 'Экспорт в Excel', url: '#' },
+			{ label: 'Экспорт в Excel', url: '#' },
+		],
+		info: [
+			['Дата заказа', '20.09.2026'],
+			['Тип доставки', 'Самовывоз'],
+			['Комментарий к заказу', 'тест'],
+		],
+		columns: ['Фото', 'Артикул', 'Наименование', 'Стоимость', 'Ваша скидка', 'Стоимость со скидкой', 'Кол-во', 'Сумма'],
+		items: [
+			{ image: 'order-product', sku: 'ART-N-R-44100 (G9)', name: 'Светильник накладной', price: '2 100 ₽', discount: '-', priceDiscount: '2 100 ₽', count: '1', sum: '2 100 ₽' },
+			{ image: 'order-product', sku: 'ART-N-R-44100 (G9)', name: 'Светильник накладной', price: '2 100 ₽', discount: '-', priceDiscount: '2 100 ₽', count: '1', sum: '2 100 ₽' },
+		],
+		totals: [
+			['Товаров', '2'],
+			['Сумма заказа', '2 100 ₽'],
+			['Сумма заказа с учётом скидки', '2 100 ₽'],
+		],
 	};

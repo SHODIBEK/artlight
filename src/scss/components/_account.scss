@@ -1,0 +1,728 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Личный кабинет — главная: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=129-11069,
+// моб. node-id=129-12634, моб. меню node-id=129-12557.
+// < 1280 — кнопка «меню» (панель account-menu), менеджер и карточки в колонку; ≥ 1280 — меню слева 407, карточки справа
+.account {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12px;
+	gap: 30px;
+
+	&__aside {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	&__menu {
+		display: none;
+	}
+
+	&__menu-button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+
+		// 21/19 вместо 20/20: Chrome ставит Bold 15/18 на 1px выше, чем Figma
+		padding: 21px 15px 19px;
+		width: 100%;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal;
+		gap: 20px;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__menu-button-icon {
+		position: relative;
+		top: -1px;
+		flex-shrink: 0;
+		width: 32px;
+		height: 18px;
+	}
+
+	// в моб. макете плашки скидки нет
+	&__discount {
+		display: none;
+		margin: 0;
+		padding: 21px 15px 19px;
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+		color: var(--color-discount);
+		background-color: var(--color-discount-bg);
+	}
+
+	&__cards {
+		display: grid;
+		grid-template-columns: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		gap: 10px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 30px;
+
+		&__cards {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 20px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		flex-direction: row;
+		align-items: flex-start;
+		margin-top: 32px;
+		gap: 20px;
+
+		&__aside {
+			flex-shrink: 0;
+			width: 407px;
+			gap: 20px;
+		}
+
+		&__menu {
+			display: flex;
+		}
+
+		&__menu-button {
+			display: none;
+		}
+
+		&__discount {
+			display: block;
+		}
+
+		&__cards {
+			flex: 1 1 auto;
+		}
+	}
+
+	@media (min-width: #{$header-full}px) {
+		&__cards {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+}
+
+// карточка раздела: моб. 94, ≥ 1280 — 92 (2 ряда в блоке 204)
+.account-card {
+	display: flex;
+	align-items: center;
+	outline: none;
+	padding: 24px;
+	height: 100%;
+	text-decoration: none;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	gap: 12px;
+
+	@include state-hover {
+		.account-card__title {
+			color: var(--color-black-60);
+		}
+	}
+
+	@include state-focus {
+		@include stroke(2px, var(--color-black));
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		gap: 6px;
+	}
+
+	&__title {
+		font-size: 18px;
+		line-height: 22px;
+		transition: color $duration-normal;
+	}
+
+	&__note {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		padding-top: 23px;
+		padding-bottom: 23px;
+	}
+}
+
+// «Персональный менеджер»: раскрыт по умолчанию, шеврон вниз — раскрыт (как в макете), вверх — свёрнут
+.account-manager {
+	padding: 20px 15px;
+	background-color: var(--color-light-grey);
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		outline: none;
+
+		// Chrome ставит Bold 15/18 на 1px выше, чем Figma
+		padding-top: 1px;
+		width: 100%;
+		text-align: left;
+		color: var(--color-black);
+		gap: 12px;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: 15px;
+		line-height: 18px;
+		text-transform: uppercase;
+	}
+
+	&__chevron {
+		flex-shrink: 0;
+		margin-top: 10px;
+		width: 8px;
+		height: 5px;
+		color: var(--color-black-60);
+		transition: transform $duration-normal;
+
+		.is-open > .account-manager__head & {
+			transform: scaleY(-1);
+		}
+	}
+
+	&__body {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows $duration-normal;
+
+		.is-open > & {
+			grid-template-rows: 1fr;
+		}
+	}
+
+	&__inner {
+		overflow: hidden;
+		min-height: 0;
+	}
+
+	// 5 строк по 31 (в макете 15 × 2.1 = 31.5, блок 155); 19 — с учётом 1px сверху у заголовка
+	&__list {
+		list-style: none;
+		margin: 19px 0 0;
+		padding: 0;
+		font-size: 15px;
+		line-height: 31px;
+		color: var(--color-black);
+	}
+
+	&__link {
+		outline: none;
+		text-decoration: none;
+		color: inherit;
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		flex-wrap: wrap;
+		margin-top: 20px;
+		gap: 10px;
+	}
+
+	&__button {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		padding: 0 16px;
+		height: 40px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-decoration: none;
+		color: var(--color-black);
+		background-color: var(--color-white);
+		transition: background-color $duration-normal;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&--accent {
+			background-color: var(--color-accent);
+
+			@include state-hover {
+				background-color: var(--color-accent-hover);
+			}
+
+			@include state-pressed {
+				background-color: var(--color-accent-pressed);
+			}
+		}
+	}
+}
+
+// меню кабинета в панели (моб.): строки 24, между ними линия и по 18
+.account-nav {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+
+	&__link {
+		display: flex;
+		align-items: center;
+		outline: none;
+		border-bottom: 1px solid var(--color-divider);
+		padding-bottom: 18px;
+		font-size: 15px;
+		line-height: 18px;
+		text-decoration: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+		gap: 6px;
+
+		& + & {
+			padding-top: 18px;
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 24px;
+		height: 24px;
+	}
+
+	&__text {
+		flex: 1 1 auto;
+	}
+
+	&__chevron {
+		flex-shrink: 0;
+		width: 5px;
+		height: 8px;
+		color: var(--color-black-60);
+	}
+}
+
+// содержимое раздела кабинета справа от меню («Заказы», «Заказ»): блоки через 30
+.account__content {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+	gap: 30px;
+
+	@media (min-width: #{$header-desktop}px) {
+		flex: 1 1 auto;
+	}
+}
+
+.account__title {
+	margin: 0;
+	font-weight: 700;
+	font-size: 30px;
+	line-height: 36px;
+	text-transform: uppercase;
+	color: var(--color-black);
+
+	@media (min-width: #{$tablet}px) {
+		font-size: 34px;
+		line-height: 41px;
+	}
+}
+
+// фильтры заказов: моб. в колонку на всю ширину (шаг 20), ≥ 768 — в ряд по 310
+.account-filters {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	&__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		outline: none;
+		border-bottom: 1px solid var(--color-stroke);
+		padding: 0 20px;
+		width: 100%;
+		height: 70px;
+		font-size: 15px;
+		line-height: 18px;
+		text-align: left;
+		color: var(--color-black-60);
+		transition: border-color $duration-normal;
+		gap: 12px;
+
+		@include state-hover {
+			border-color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			border-color: var(--color-black);
+		}
+	}
+
+	&__value {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	// шеврон вниз; открыт — вверх
+	&__chevron {
+		flex-shrink: 0;
+		margin-top: 3px;
+		width: 8px;
+		height: 5px;
+		transform: scaleY(-1);
+		transition: transform $duration-normal;
+
+		.is-open > .account-filters__toggle & {
+			transform: none;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		flex-direction: row;
+
+		&__item {
+			width: 310px;
+		}
+
+		&__toggle {
+			padding: 0 30px;
+		}
+	}
+}
+
+// список заказов: строки 36, через одну на сером фоне; колонки поровну, шеврон 5 + поле 20 справа
+.account-orders {
+	display: flex;
+	flex-direction: column;
+
+	&__row {
+		display: flex;
+		align-items: center;
+		outline: none;
+		padding-right: 20px;
+		text-decoration: none;
+		color: var(--color-black);
+
+		&:nth-child(even) {
+			background-color: var(--color-light-grey);
+		}
+
+		&--head {
+			padding-right: 25px;
+			color: var(--color-black-60);
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__cell {
+		flex: 1 1 0;
+		overflow: hidden;
+		padding: 9px 10px;
+		min-width: 0;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		transition: color $duration-normal;
+	}
+
+	&__chevron {
+		flex-shrink: 0;
+		width: 5px;
+		height: 8px;
+		color: var(--color-black-60);
+	}
+}
+
+// заказ: шапка (назад, номер, статус, экспорт), сведения, таблица товаров, итоги
+.account-order {
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	// моб. шаг 12: в макете 20, строка 380 шире контейнера 370
+	&__heading {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px 12px;
+
+		@media (min-width: #{$tablet}px) {
+			gap: 4px 20px;
+		}
+	}
+
+	&__back {
+		display: flex;
+		flex-shrink: 0;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		border-radius: 50%;
+		width: 32px;
+		height: 32px;
+		color: var(--color-black-60);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__back-icon {
+		width: 5px;
+		height: 8px;
+		transform: scaleX(-1);
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 400;
+		font-size: 24px;
+		line-height: 29px;
+		color: var(--color-black);
+	}
+
+	&__status {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__exports {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__export {
+		display: flex;
+		flex: 1 1 0;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		padding: 0 16px;
+		height: 40px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-decoration: none;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal;
+		gap: 8px;
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__export-icon {
+		flex-shrink: 0;
+		width: 16px;
+		height: 16px;
+	}
+
+	// сведения: моб. по краям строки, ≥ 768 — через 70; итоги: моб. в колонку (20), ≥ 768 — 3 колонки поровну
+	&__info {
+		display: flex;
+		justify-content: space-between;
+		margin: 0;
+		gap: 20px;
+
+		&--totals {
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+	}
+
+	&__field {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		gap: 6px;
+	}
+
+	&__label {
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	&__value {
+		margin: 0;
+		font-size: 16px;
+		line-height: 19px;
+		color: var(--color-black);
+
+		&--total {
+			font-weight: 600;
+		}
+	}
+
+	// таблица шире колонки — прокрутка; моб./планшет — до краёв экрана; линия под таблицей — по её ширине
+	&__table-wrap {
+		overflow-x: auto;
+		margin: 0 calc(var(--gutter) * -1);
+		padding: 0 var(--gutter);
+		scrollbar-width: thin;
+	}
+
+	&__table-box {
+		border-bottom: 1px solid var(--color-stroke);
+		padding-bottom: 20px;
+		min-width: 1386px;
+	}
+
+	&__table {
+		table-layout: fixed;
+		border-collapse: collapse;
+		width: 100%;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		color: var(--color-black-60);
+
+		th {
+			padding: 9px 10px;
+			height: 36px;
+			font-weight: 400;
+			text-align: left;
+		}
+
+		td {
+			vertical-align: middle;
+			padding: 10px;
+		}
+
+		// серая строка в макете — состояние ховер
+		tbody tr {
+			transition: background-color $duration-normal;
+
+			@media (hover: hover) {
+				&:hover {
+					background-color: var(--color-light-grey);
+				}
+			}
+		}
+	}
+
+	&__image {
+		display: block;
+		width: 48px;
+		height: 48px;
+		object-fit: cover;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__head {
+			flex-flow: row wrap;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		&__export {
+			flex: none;
+		}
+
+		&__info {
+			justify-content: flex-start;
+			gap: 70px;
+
+			&--totals {
+				flex-direction: row;
+
+				// между линией и итогами 20 (между остальными блоками 30)
+				margin-top: -10px;
+				gap: 0;
+
+				.account-order__field {
+					flex: 1 1 0;
+				}
+			}
+		}
+
+		&__table-box {
+			min-width: 1261px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__table-wrap {
+			margin: 0;
+			padding: 0;
+		}
+	}
+}

@@ -1,0 +1,43 @@
+//- Личный кабинет — заказы: десктоп node-id=129-11174, моб. node-id=129-12694
+- var page = data.ordersPage
+- var accountCurrent = 'orders.html'
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		h2.account__title= page.title
+
+		//- фильтры: моб. в колонку на всю ширину, ≥ 768 — в ряд по 310
+		.account-filters
+			each filter in page.filters
+				+dropdown({ cls: 'account-filters__item' })
+					button.account-filters__toggle.js-dropdown-toggle(type="button" aria-expanded="false" aria-label=filter.name)
+						span.account-filters__value.js-dropdown-value= filter.name
+						+svg('chevron-up').account-filters__chevron
+					.dropdown__panel.dropdown__panel--check.dropdown__panel--narrow
+						ul.filter-options.filter-options--links.filter-options--check
+							each option in filter.options
+								li.filter-options__item
+									button.filter-options__link.js-dropdown-option(type="button")
+										+svg('check').filter-options__check
+										| #{option}
+
+		//- строки — ссылки на заказ, через одну на сером фоне
+		.account-orders(role="table" aria-label=page.title)
+			.account-orders__row.account-orders__row--head(role="row")
+				each column in page.columns
+					span.account-orders__cell(role="columnheader")= column
+			each order in page.orders
+				a.account-orders__row(href=order.url role="row")
+					span.account-orders__cell(role="cell")= order.number
+					span.account-orders__cell(role="cell")= order.date
+					span.account-orders__cell(role="cell")= order.sum
+					+svg('chevron-right').account-orders__chevron
+
+include ../components/account-menu-panel

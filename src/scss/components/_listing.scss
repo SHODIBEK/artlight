@@ -502,6 +502,11 @@
 		display: none;
 	}
 
+	// «Сбросить фильтры» — только ≥ 1280, вместо «Все фильтры»
+	&__filters &__reset {
+		display: none;
+	}
+
 	// моб. — в одну строку с прокруткой
 	&__tags {
 		display: flex;
@@ -569,8 +574,13 @@
 		}
 
 		// у плашки свой display — нужна специфичность выше .listing-chip
-		&__filters &__categories {
+		&__filters &__categories,
+		&__filters &__all--mobile {
 			display: none;
+		}
+
+		&__filters &__reset {
+			display: inline-flex;
 		}
 
 		&__row {

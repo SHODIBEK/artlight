@@ -109,7 +109,9 @@ section.listing-head.container
 						.dropdown__panel
 							+filterOptions(filter)
 				+listingChip(lights.allCategories, { icon: 'categories', cls: 'listing-toolbar__categories' })(data-open-panel="categories")
-				+listingChip(lights.allFilters, { icon: 'filter', cls: 'listing-toolbar__all' })(data-open-panel="filters")
+				+listingChip(lights.allFilters, { icon: 'filter', cls: ['listing-toolbar__all', lights.resetAll ? 'listing-toolbar__all--mobile' : null] })(data-open-panel="filters")
+				if lights.resetAll
+					+listingChip(lights.resetAll, { icon: 'filter-reset', cls: 'listing-toolbar__reset js-filters-reset' })
 
 			.listing-toolbar__row
 				.listing-toolbar__toggles

@@ -1,0 +1,14 @@
+//- Меню личного кабинета (моб., node-id=129-12557): на весь экран, ≥ 768 — справа шириной 402 (filters.js).
+//- Открывает кнопка «меню» [data-open-panel="account-menu"], на десктопе (≥ 1280) меню — колонка слева.
+//- accountMenu (с активным пунктом) — из account-aside
+.filter-panel.js-panel(data-panel-id="account-menu" aria-hidden="true" aria-label="Меню личного кабинета")
+	.filter-panel__dialog
+		.filter-panel__screen.is-active(data-screen="main")
+			button.filter-panel__back.js-panel-close(type="button" aria-label="Закрыть")
+				+svg('close').filter-panel__back-icon
+			nav.account-nav
+				each item in accountMenu
+					a.account-nav__link(href=item.href aria-current=(item.active ? 'page' : null))
+						+svg(item.icon).account-nav__icon
+						span.account-nav__text= item.label
+						+svg('chevron-right').account-nav__chevron

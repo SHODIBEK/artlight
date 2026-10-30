@@ -46,8 +46,9 @@ section.listing-head.container
 	h1.listing-head__title= page.title
 
 //- вся страница — одна форма: проверка — feedback-form.js (имя, телефон, почта, согласия — data-validate),
+//- после отправки — попап «Оформление запроса» (data-success, modal-request.pug);
 //- товары и «Сумма заказа» — cart.js, вкладки доставки и «Скрыть список» — checkout.js
-form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enctype="multipart/form-data" novalidate data-validate=".input__field, .js-checkout-agree .checkbox__input")
+form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enctype="multipart/form-data" novalidate data-success="request" data-validate=".input__field, .js-checkout-agree .checkbox__input")
 	section.checkout-section.checkout-info.container
 		.checkout-section__head
 			h2.checkout-section__title= page.info.title

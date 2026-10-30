@@ -7,6 +7,7 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 * - Экраны панели фильтров: плашка .js-filter-screen-open → экран [data-screen], .js-filter-screen-back — назад.
 * - Чекбоксы фильтра есть и в выпадающем списке (десктоп), и в панели: одинаковые name/value отмечаются вместе;
 *   плашки фильтра (.js-filter-chip) показывают «Название: N» и выделены (is-selected), крестик сбрасывает фильтр.
+* - «Сбросить фильтры» (.js-filters-reset, ≥ 1280) — сброс всех фильтров и переключателей.
 * - Переключатели «Хиты продаж» / «Распродажа» (.js-listing-toggle) — aria-pressed.
 */
 export default function filtersInit() {
@@ -58,9 +59,9 @@ export default function filtersInit() {
 		disableBodyScroll(panel.querySelector('.filter-panel__dialog') || panel, {reserveScrollBarGap: true});
 	};
 
-	// сайдбар на десктопе — обычная колонка: открытая панель «Все категории» закрывается
+	// сайдбар на десктопе — обычная колонка: открытые панели «Все категории» / меню кабинета закрываются
 	desktop.addEventListener('change', () => {
-		if (desktop.matches && current && current.dataset.panelId === 'categories') {
+		if (desktop.matches && current && ['categories', 'account-menu'].includes(current.dataset.panelId)) {
 			close();
 		}
 	});
@@ -119,6 +120,14 @@ export default function filtersInit() {
 				event.preventDefault();
 				open(panel, trigger);
 			}
+
+			return;
+		}
+
+		// «Сбросить фильтры» в тулбаре: все фильтры и переключатели «Хиты» / «Распродажа»
+		if (event.target.closest('.js-filters-reset')) {
+			document.querySelectorAll('.listing-toolbar .js-filter-chip').forEach((chip) => resetFilter(chip.dataset.filter));
+			document.querySelectorAll('.js-listing-toggle').forEach((item) => item.setAttribute('aria-pressed', 'false'));
 
 			return;
 		}

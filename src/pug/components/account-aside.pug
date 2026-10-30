@@ -1,0 +1,33 @@
+//- Колонка личного кабинета (общая для всех страниц кабинета): ≥ 1280 — меню слева (407), скидка, менеджер;
+//- < 1280 — кнопка «меню» (панель account-menu) и менеджер. accountCurrent — href активного пункта меню.
+//- managerClosedMobile — менеджер < 1280 свёрнут (в макетах «Заказов»), ≥ 1280 раскрыт (accordion.js, data-open-from)
+-
+	var accountPage = data.accountPage
+	var accountMenu = accountPage.menu.map(function (item) {
+		return Object.assign({}, item, { active: item.href === accountCurrent })
+	})
+	var manager = accountPage.manager
+
+aside.account__aside
+	+sidebar(accountMenu).account__menu(aria-label="Меню личного кабинета")
+	button.account__menu-button(type="button" data-open-panel="account-menu")
+		+svg('burger').account__menu-button-icon
+		span= accountPage.menuButton
+	p.account__discount= accountPage.discount
+
+	.account-manager.js-accordion-item(class=(managerClosedMobile ? null : 'is-open') data-open-from=(managerClosedMobile ? '1280' : null))
+		button.account-manager__head.js-accordion-toggle(type="button" aria-expanded=(managerClosedMobile ? 'false' : 'true'))
+			span.account-manager__title= manager.title
+			+svg('chevron-up').account-manager__chevron
+		.account-manager__body
+			.account-manager__inner
+				ul.account-manager__list
+					li= manager.name
+					each phone in manager.phones
+						li
+							a.account-manager__link(href=`tel:${phone[1]}`)= phone[0]
+					li
+						a.account-manager__link(href=`mailto:${manager.email}`)= manager.email
+				.account-manager__buttons
+					a.account-manager__button.account-manager__button--accent(href=`mailto:${manager.email}`)= manager.write
+					button.account-manager__button(type="button" data-modal="callback")= manager.call

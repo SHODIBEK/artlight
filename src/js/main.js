@@ -30,6 +30,8 @@ import brandsFilterInit from "./components/brands-filter";
 import cartInit from "./components/cart";
 import checkoutInit from "./components/checkout";
 import authInit from "./components/auth";
+import tabsAllInit from "./components/tabs";
+import profileInit from "./components/profile";
 
 ieFix();
 vhFix();
@@ -61,3 +63,5 @@ brandsFilterInit();
 cartInit();
 checkoutInit();
 authInit();
+tabsAllInit();
+profileInit();

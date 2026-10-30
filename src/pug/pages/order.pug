@@ -1,0 +1,59 @@
+//- Личный кабинет — заказ: десктоп node-id=129-12401, моб. node-id=129-13429
+- var page = data.orderPage
+- var accountCurrent = 'orders.html'
+- var managerClosedMobile = true
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content
+		.account-order__head
+			.account-order__heading
+				a.account-order__back(href=page.back.url aria-label=page.back.label)
+					+svg('chevron-right').account-order__back-icon
+				h2.account-order__title= page.title
+				span.account-order__status= page.status
+			.account-order__exports
+				each item in page.exports
+					a.account-order__export(href=item.url download)
+						+svg('table').account-order__export-icon
+						span= item.label
+
+		dl.account-order__info
+			each row in page.info
+				.account-order__field
+					dt.account-order__label= row[0]
+					dd.account-order__value= row[1]
+
+		//- таблица товаров: моб. шире экрана (1386) — прокрутка по горизонтали, до краёв экрана
+		.account-order__table-wrap
+			.account-order__table-box
+				table.account-order__table
+					thead
+						tr
+							each column in page.columns
+								th(scope="col")= column
+					tbody
+						each item in page.items
+							tr
+								td
+									img.account-order__image(src=`${baseDir}images/account/${item.image}.webp` alt=item.name width="48" height="48" loading="lazy")
+								td= item.sku
+								td= item.name
+								td= item.price
+								td= item.discount
+								td= item.priceDiscount
+								td= item.count
+								td= item.sum
+
+		dl.account-order__info.account-order__info--totals
+			each row in page.totals
+				.account-order__field
+					dt.account-order__label= row[0]
+					dd.account-order__value.account-order__value--total= row[1]
+
+include ../components/account-menu-panel

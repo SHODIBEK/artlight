@@ -1,0 +1,104 @@
+//- Личный кабинет — профиль: десктоп node-id=129-11289, моб. node-id=129-12757;
+//- вкладка «Контрагенты» (profile.html#counterparties) — десктоп node-id=129-12300, моб. node-id=129-13380.
+//- Вкладки — tabs.js (хеш = data-tab, у 1-й без хеша; последняя «крошка» — название вкладки), профиль — profile.js
+- var page = data.profilePage
+- var accountCurrent = page.url
+- var managerClosedMobile = true
+
+//- поле профиля: пустое — подпись по центру (как плейсхолдер), заполненное — подпись сверху, значение снизу.
+//- editable — поле открывается кнопкой «Редактировать данные» (profile.js), до этого только для чтения
+mixin profileField(opts)
+	- var o = opts
+	label.profile-field(class=o.cls)
+		if o.options
+			select.profile-field__control(name=o.name disabled=(o.editable ? true : null) data-editable=(o.editable ? '' : null))
+				each option in o.options
+					option(value=option selected=(option === o.value))= option
+			+svg('select-chevron').profile-field__chevron
+		else
+			input.profile-field__control(
+				type=(o.type || 'text')
+				name=o.name
+				value=o.value
+				placeholder=" "
+				autocomplete=o.autocomplete
+				readonly
+				data-editable=(o.editable ? '' : null)
+			)
+		span.profile-field__label= o.label
+		if o.type === 'password'
+			button.profile-field__eye.js-password-toggle(type="button" aria-label="Показать пароль" aria-pressed="false" data-show="Показать пароль" data-hide="Скрыть пароль")
+				+svg('eye').profile-field__eye-icon.profile-field__eye-icon--show
+				+svg('eye-off').profile-field__eye-icon.profile-field__eye-icon--hide
+
+//- «Добавить …» — пунктирная плашка на всю ширину (формы добавления в макете нет)
+mixin profileAdd(label)
+	a.profile-add(href="#")
+		+svg('add').profile-add__icon
+		span= label
+
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs.js-tabs-crumbs
+	h1.listing-head__title= data.accountPage.title
+
+section.account.container
+	include ../components/account-aside
+
+	.account__content.profile.js-tabs(data-crumbs=".js-tabs-crumbs")
+		.profile__tabs(role="tablist" aria-label=data.accountPage.title)
+			each tab, index in page.tabs
+				button.tab.js-tab(
+					class=(index ? null : 'is-active')
+					id=`profile-tab-${tab.id}`
+					type="button"
+					role="tab"
+					aria-selected=(index ? 'false' : 'true')
+					aria-controls=`profile-${tab.id}`
+					tabindex=(index ? '-1' : null)
+					data-tab=tab.id
+				)
+					span.tab__label= tab.label
+
+		//- Профиль: моб. — заголовок и «Редактировать» в строку, поля в колонку (30);
+		//- ≥ 768 — поля по 2 в ряд (20), кнопка под ними
+		- var profile = page.profile
+		form.profile__panel.profile-form.js-profile-form#profile-profile(action="#" method="post" novalidate role="tabpanel" aria-labelledby="profile-tab-profile")
+			h2.profile__title.profile-form__title= profile.title
+			.profile-form__fields
+				+profileField({ name: 'type', label: profile.type.label, value: profile.type.value })
+				+profileField({ name: 'email', type: 'email', label: profile.email.label, value: profile.email.value, autocomplete: 'email', editable: true })
+				+profileField({ name: 'password', type: 'password', label: profile.password, autocomplete: 'new-password', editable: true, cls: 'profile-field--password js-password' })
+				+profileField({ name: 'password_confirm', type: 'password', label: profile.passwordConfirm, autocomplete: 'new-password', editable: true, cls: 'profile-field--password js-password' })
+				+profileField({ name: 'site', type: 'url', label: profile.site, autocomplete: 'url', editable: true })
+				+profileField({ name: 'activity', label: profile.activity.label, value: profile.activity.value, options: profile.activity.options, editable: true, cls: 'profile-field--select' })
+			p.profile-form__error.js-profile-error(hidden)= profile.passwordMismatch
+			button.profile-form__edit.js-profile-edit(type="button" data-edit=profile.edit data-save=profile.save)
+				+svg('pen').profile-form__edit-icon
+				span.js-profile-edit-label= profile.edit
+
+		//- Контрагенты: таблица шире колонки на моб. (738) — прокрутка до краёв экрана
+		- var counterparties = page.counterparties
+		.profile__panel#profile-counterparties(role="tabpanel" aria-labelledby="profile-tab-counterparties" hidden)
+			h2.profile__title= counterparties.title
+			+profileAdd(counterparties.add)
+			.profile-table
+				.profile-table__box(role="table" aria-label=counterparties.title)
+					.profile-table__row.profile-table__row--head(role="row")
+						each column in counterparties.columns
+							span.profile-table__cell(role="columnheader")= column
+					each item in counterparties.items
+						.profile-table__row(role="row")
+							each value in item
+								span.profile-table__cell(role="cell")= value
+							span.profile-table__actions(role="cell")
+								button.profile-table__action.js-counterparty-remove(type="button" aria-label=`Удалить контрагента ${item[0]}`)
+									+svg('delete').profile-table__action-icon
+								a.profile-table__action(href="#" aria-label=`Редактировать контрагента ${item[0]}`)
+									+svg('pen').profile-table__action-icon
+
+		each key in ['contacts', 'addresses']
+			.profile__panel(id=`profile-${key}` role="tabpanel" aria-labelledby=`profile-tab-${key}` hidden)
+				h2.profile__title= page[key].title
+				+profileAdd(page[key].add)
+
+include ../components/account-menu-panel
