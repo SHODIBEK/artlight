@@ -1,0 +1,179 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Выбор периода — панель выпадающего списка «Дата» в ЛК «Заказы» (date-range.js). В макете нет: оформление сайта —
+// белая панель как у выпадающих списков, начало / конец — accent, дни между — --color-accent-bg, сегодня — обводка.
+// Моб. — 1 месяц на ширину плашки, ≥ 768 — 2 месяца (ячейка 40, между месяцами 30). Будущие дни — 30% прозрачности.
+.dropdown__panel--calendar {
+	overflow: visible;
+	padding: 20px;
+	min-width: 100%;
+	max-height: none;
+	scrollbar-gutter: auto;
+}
+
+.date-range {
+	$b: &;
+
+	&__head {
+		position: absolute;
+		left: 20px;
+		right: 20px;
+		top: 20px;
+		display: flex;
+		justify-content: space-between;
+		pointer-events: none;
+	}
+
+	&__arrow {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		width: 24px;
+		height: 24px;
+		color: var(--color-black);
+		transition: color $duration-normal;
+		pointer-events: auto;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		// дальше текущего месяца не листается
+		&:disabled {
+			opacity: 0.3;
+			pointer-events: none;
+		}
+	}
+
+	&__arrow-icon {
+		width: 8px;
+		height: 5px;
+
+		&--prev {
+			transform: rotate(-90deg);
+		}
+
+		&--next {
+			transform: rotate(90deg);
+		}
+	}
+
+	&__months {
+		display: flex;
+		gap: 30px;
+	}
+
+	&__month {
+		flex: 1 1 0;
+		min-width: 0;
+	}
+
+	&__title {
+		margin: 0 0 12px;
+		font-weight: 600;
+		font-size: 15px;
+		line-height: 24px;
+		text-align: center;
+		color: var(--color-black);
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: repeat(7, minmax(0, 1fr));
+		row-gap: 2px;
+	}
+
+	&__weekday {
+		padding-bottom: 6px;
+		font-size: 13px;
+		line-height: 16px;
+		text-align: center;
+		color: var(--color-black-60);
+	}
+
+	&__day {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		outline: none;
+		height: 40px;
+		font-family: var(--font-family);
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		background-color: transparent;
+		transition: background-color $duration-normal;
+
+		&[aria-current="date"] {
+			@include stroke(1px, var(--color-black-60));
+		}
+
+		&.is-in-range {
+			background-color: var(--color-accent-bg);
+		}
+
+		@include state-hover {
+			background-color: var(--color-grey-hover);
+		}
+
+		&.is-start,
+		&.is-end {
+			background-color: var(--color-accent);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+
+		&--empty {
+			pointer-events: none;
+		}
+
+		// будущие дни
+		&:disabled {
+			color: var(--color-black);
+			opacity: 0.3;
+			pointer-events: none;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 16px;
+		border-top: 1px solid var(--color-stroke);
+		padding-top: 16px;
+		gap: 20px;
+	}
+
+	&__reset {
+		outline: none;
+		font-family: var(--font-family);
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	&__apply {
+		padding: 0 30px;
+		height: 48px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		width: 630px;
+	}
+}

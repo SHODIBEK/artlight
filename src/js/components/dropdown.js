@@ -77,7 +77,8 @@ export default function dropdownInit() {
 			return;
 		}
 
-		if (current && !current.contains(event.target)) {
+		// isConnected — элемент, убранный из DOM перерисовкой (месяцы календаря), не считаем кликом мимо
+		if (current && event.target.isConnected && !current.contains(event.target)) {
 			close();
 		}
 	});

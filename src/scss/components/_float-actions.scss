@@ -37,7 +37,7 @@
 		line-height: normal;
 		white-space: nowrap;
 		color: var(--color-black);
-		background-color: var(--color-accent);
+		background-color: var(--color-float);
 		transition: background-color $duration-normal, box-shadow $duration-normal;
 		cursor: pointer;
 		pointer-events: auto;
@@ -58,7 +58,7 @@
 		// мессенджеры появляются снизу вверх (ближний к «Написать» — первым)
 		// фон светлее акцента; ховер — акцент (светлый ховер почти не отличался бы)
 		&--messenger {
-			background-color: var(--color-accent-light);
+			background-color: var(--color-float-light);
 
 			@include state-hover {
 				background-color: var(--color-accent);

@@ -81,8 +81,9 @@ mixin filterOptions(filter)
 				li.filter-options__item
 					a.filter-options__link(href=link.url)= link.name
 	else
+		- var options = filter.optionsFrom ? data.mobileMenu.submenus[filter.optionsFrom].map((item) => item.name) : filter.options
 		ul.filter-options
-			each option, index in filter.options
+			each option, index in options
 				li.filter-options__item
 					+checkbox({ name: `filter-${filter.id}`, value: String(index) }).checkbox--white.filter-options__checkbox(data-filter=filter.id)
 						span.checkbox__label= option

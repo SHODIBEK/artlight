@@ -1,7 +1,8 @@
 /**
-* Профиль личного кабинета: «Редактировать данные» открывает поля (data-editable) и меняется на «Сохранить данные»;
-* сохранение — проверка совпадения паролей, затем отправка формы на action (action="#" — без запроса, поля снова
-* только для чтения). Контрагенты: «Удалить» убирает строку.
+* Профиль личного кабинета: данные — просто текст (пустые — прочерк из data-empty в placeholder, пароли скрыты);
+* «Редактировать данные» открывает поля (data-editable, .is-editing — линии, поля пароля) и меняется на
+* «Сохранить изменения» (иконка сохранения); сохранение — проверка совпадения паролей, затем отправка формы на action
+* (action="#" — без запроса, снова просмотр). Контрагенты: «Удалить» убирает строку.
 */
 function setEditing(form, isEditing) {
 	const button = form.querySelector('.js-profile-edit');
@@ -12,6 +13,7 @@ function setEditing(form, isEditing) {
 			field.disabled = !isEditing;
 		} else {
 			field.readOnly = !isEditing;
+			field.placeholder = isEditing ? ' ' : field.dataset.empty;
 		}
 	});
 	button.querySelector('.js-profile-edit-label').textContent = isEditing ? button.dataset.save : button.dataset.edit;

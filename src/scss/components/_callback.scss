@@ -55,18 +55,16 @@
 	// поля моб. макета: паддинг 20, высота 59 (шаг полей в макете 71 = 59 + 12)
 	&__input {
 		--input-pad-x: 20px;
+		--input-pad-y: 20px;
 
-		padding: 20px 20px 21px;
-		height: auto;
+		height: 59px;
 
 		.input__field {
-			height: 18px;
 			line-height: 18px;
 		}
 	}
 
 	&__input--select {
-		padding: 0;
 		height: 59px;
 
 		.input__field {
@@ -214,17 +212,14 @@
 
 		&__input {
 			--input-pad-x: 30px;
+			--input-pad-y: 10px;
 
-			padding: 10px 30px;
 			height: 70px;
 		}
 
-		&__input--select {
-			padding: 0;
-		}
-
 		&__input--textarea {
-			padding: 30px;
+			--input-pad-y: 30px;
+
 			height: 125px;
 		}
 

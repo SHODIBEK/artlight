@@ -26,8 +26,20 @@
 		gap: 8px;
 	}
 
+	// ховер / нажатие вопроса — заливка всей карточки (как у серых плашек и вкладок)
 	&__item {
 		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal;
+
+		@media (hover: hover) {
+			&:has(> .faq__question:hover) {
+				background-color: var(--color-grey-hover);
+			}
+		}
+
+		&:has(> .faq__question:active) {
+			background-color: var(--color-stroke);
+		}
 	}
 
 	&__question {

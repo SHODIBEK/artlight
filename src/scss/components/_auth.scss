@@ -30,6 +30,19 @@
 		color: var(--color-black);
 	}
 
+	// «Восстановление пароля»: текст под заголовком (строки — как в макете попапа), 16/22 → 20/28
+	&__text {
+		margin: 0;
+		font-size: 16px;
+		line-height: 22px;
+		text-align: center;
+		color: var(--color-black);
+	}
+
+	&__line {
+		display: block;
+	}
+
 	&__tabs {
 		display: flex;
 		gap: 10px;
@@ -89,18 +102,15 @@
 	// поля: моб. 58 (паддинг 20), ≥ 768 — 70 (30)
 	&__input {
 		--input-pad-x: 20px;
+		--input-pad-y: 20px;
 
-		padding: 20px;
 		height: auto;
 
 		.input__field {
-			height: 18px;
 			line-height: 18px;
 		}
 
 		&.input--select {
-			padding: 0;
-
 			.input__field {
 				height: 58px;
 			}
@@ -123,12 +133,13 @@
 	}
 
 	// показать / скрыть пароль
+	// круг нажатия 10 вокруг иконки; иконка — в --input-pad-x от правого края поля
 	&__eye {
 		display: flex;
 		flex-shrink: 0;
 		align-items: center;
 		justify-content: center;
-		margin: -10px;
+		margin: -10px calc(var(--input-pad-x, 30px) - 10px) -10px -10px;
 		outline: none;
 		padding: 10px;
 		color: var(--color-black);
@@ -190,6 +201,12 @@
 		@include state-hover {
 			color: var(--color-black-60);
 		}
+	}
+
+	// «Вернуться на страницу входа»
+	&__link--back {
+		align-self: center;
+		text-align: center;
 	}
 
 	&__agreements {
@@ -264,6 +281,11 @@
 			line-height: 48px;
 		}
 
+		&__text {
+			font-size: 20px;
+			line-height: 28px;
+		}
+
 		&__tabs {
 			gap: 20px;
 		}
@@ -286,14 +308,12 @@
 
 		&__input {
 			--input-pad-x: 30px;
+			--input-pad-y: 10px;
 
-			padding: 10px 30px;
 			height: 70px;
 			background-color: var(--color-white);
 
 			&.input--select {
-				padding: 0;
-
 				.input__field {
 					height: 70px;
 				}

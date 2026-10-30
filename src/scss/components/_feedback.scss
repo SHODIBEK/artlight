@@ -64,12 +64,13 @@
 
 	// в форме поля без белой линии снизу (в макете обводка цвета фона)
 	&__input {
-		padding: 20px;
+		--input-pad-x: 20px;
+		--input-pad-y: 20px;
+
 		height: auto;
 		box-shadow: none;
 
 		.input__field {
-			height: 18px;
 			line-height: 18px;
 		}
 	}
@@ -202,12 +203,15 @@
 		margin-top: 150px;
 
 		&__input {
-			padding: 10px 30px;
+			--input-pad-x: 30px;
+			--input-pad-y: 10px;
+
 			height: 70px;
 		}
 
 		&__input--textarea {
-			padding: 30px;
+			--input-pad-y: 30px;
+
 			height: 125px;
 		}
 

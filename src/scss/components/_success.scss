@@ -54,36 +54,6 @@
 		padding: 0 10px;
 	}
 
-	// «Восстановление пароля» (node-id=145-14202 / 145-15104): текст 16/22, поле + кнопка через 12, ссылка «назад» 20/28
-	&--password &__text {
-		font-size: 16px;
-		line-height: 22px;
-	}
-
-	&__line {
-		display: block;
-	}
-
-	&__form {
-		display: grid;
-		grid-template-columns: minmax(0, 1fr);
-		width: 100%;
-		gap: 12px;
-	}
-
-	&__back {
-		font-family: var(--font-family);
-		font-size: 20px;
-		line-height: 28px;
-		color: var(--color-black);
-		transition: color $duration-normal;
-		text-wrap: balance;
-
-		@include state-hover {
-			color: var(--color-black-60);
-		}
-	}
-
 	@media (min-width: #{$tablet}px) {
 		gap: 30px;
 
@@ -102,8 +72,7 @@
 			gap: 20px;
 		}
 
-		&--request &__text,
-		&--password &__text {
+		&--request &__text {
 			font-size: 20px;
 			line-height: 28px;
 		}

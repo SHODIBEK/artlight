@@ -92,8 +92,10 @@
 		line-height: 22px;
 	}
 
+	// подписи — чёрные жирные (по просьбе заказчика; в макете — серые обычные)
 	&__label {
-		color: var(--color-black-60);
+		font-weight: 700;
+		color: var(--color-black);
 	}
 
 	&__price {

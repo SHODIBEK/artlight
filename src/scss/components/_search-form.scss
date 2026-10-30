@@ -11,6 +11,11 @@
 		height: 56px;
 	}
 
+	// поле запроса: при фокусе плейсхолдер пропадает, как в поиске шапки
+	&__field input:focus::placeholder {
+		color: transparent;
+	}
+
 	@media (min-width: #{$tablet}px) {
 		flex-direction: row;
 		margin-top: 30px;

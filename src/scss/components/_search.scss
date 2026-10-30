@@ -36,6 +36,11 @@
 			opacity: 1;
 		}
 
+		// при фокусе плейсхолдер пропадает
+		&:focus::placeholder {
+			color: transparent;
+		}
+
 		&::-webkit-search-cancel-button,
 		&::-webkit-search-decoration {
 			appearance: none;

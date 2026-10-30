@@ -20,12 +20,11 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	// моб. поля 58 (паддинг 20), ≥ 768 — 70 (30)
 	&__input {
 		--input-pad-x: 20px;
+		--input-pad-y: 20px;
 
-		padding: 20px;
 		height: auto;
 
 		.input__field {
-			height: 18px;
 			line-height: 18px;
 		}
 	}
@@ -53,9 +52,9 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 		}
 	}
 
-	// подсказка в 2 строки на моб. (76), в одну — с 768
+	// подсказка в 2 строки на моб. (76 = 36 + отступы 20), в одну — с 768
 	&__input--manager .input__field {
-		height: 36px;
+		height: 76px;
 	}
 
 	&__check {
@@ -70,8 +69,8 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	@media (min-width: #{$tablet}px) {
 		&__input {
 			--input-pad-x: 30px;
+			--input-pad-y: 10px;
 
-			padding: 10px 30px;
 			height: 70px;
 		}
 
@@ -89,16 +88,18 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 		}
 
 		&__input--comment {
-			padding: 30px;
+			--input-pad-y: 30px;
+
 			height: 125px;
 		}
 
 		&__input--manager {
+			--input-pad-y: 26px;
+
 			align-items: center;
-			padding: 26px 30px;
 
 			.input__field {
-				height: 18px;
+				height: 100%;
 			}
 		}
 	}

@@ -1,5 +1,7 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний (hover → pressed → focus → disabled)
 // Input / Name (по умолчанию) и Input / Email (модификатор --white + кнопка __action)
+// Поле (__field) — на всю площадь блока, кликабельно целиком: отступы — у самого поля, задаются переменными
+// --input-pad-y / --input-pad-x на блоке (10 / 30 по умолчанию). Кнопки справа от поля — в --input-pad-x от края.
 .input {
 	$b: &;
 
@@ -7,20 +9,19 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 10px 30px;
 	height: 70px;
 	box-shadow: inset 0 -1px 0 var(--color-white);
 	background-color: var(--color-light-grey);
 	transition: background-color $duration-normal, box-shadow $duration-normal;
-	gap: 16px;
 
 	&__field {
 		appearance: none;
 		flex: 1;
+		align-self: stretch;
 		outline: none;
 		border: 0;
 		border-radius: 0;
-		padding: 0;
+		padding: var(--input-pad-y, 10px) var(--input-pad-x, 30px);
 		height: 100%;
 		min-width: 0;
 		font-family: var(--font-family);
@@ -34,6 +35,13 @@
 			color: var(--color-black-60);
 			opacity: 1;
 		}
+	}
+
+	// кнопки справа от поля («показать пароль», отправка): поле до них, сами — в --input-pad-x от края
+	// :where — специфичность как у класса: место использования может задать свои отступы
+	> :where(#{$b}__field ~ :not(#{$b}__chevron)) {
+		flex-shrink: 0;
+		margin-right: var(--input-pad-x, 30px);
 	}
 
 	&__action {
@@ -85,7 +93,7 @@
 	&.is-focus {
 		background-color: var(--color-light-grey);
 
-		@include stroke(3px, var(--color-accent));
+		@include stroke(2px, var(--color-accent));
 	}
 
 	&.is-error:not(.is-disabled):not(.is-readonly) {
@@ -122,8 +130,9 @@
 
 	// многострочное поле: текст сверху, высоту задаёт место использования
 	&--textarea {
+		--input-pad-y: 30px;
+
 		align-items: flex-start;
-		padding: 30px;
 		height: 125px;
 
 		#{$b}__field {
@@ -136,8 +145,6 @@
 	// выпадающий список: select на всё поле (кликабельна вся площадь), шеврон поверх справа;
 	// --input-pad-x — горизонтальный паддинг поля (30 по умолчанию, 20 в мобильных формах)
 	&--select {
-		padding: 0;
-
 		#{$b}__field {
 			padding: 0 calc(var(--input-pad-x, 30px) + 25px) 0 var(--input-pad-x, 30px);
 			cursor: pointer;
@@ -178,7 +185,7 @@
 		&.is-focus {
 			background-color: var(--color-white);
 
-			@include stroke(3px, var(--color-accent));
+			@include stroke(2px, var(--color-accent));
 		}
 
 		&.is-error:not(.is-disabled):not(.is-readonly) {
@@ -191,8 +198,8 @@
 	// страница поиска: белое поле 56 с серой обводкой (в т. ч. заполненное), поля 24; шеврон 8×5 в 17 от края
 	&--outline {
 		--input-pad-x: 24px;
+		--input-pad-y: 0;
 
-		padding: 0 24px;
 		height: 56px;
 		background-color: var(--color-white);
 
@@ -200,10 +207,6 @@
 		&:has(#{$b}__field:not(:placeholder-shown)),
 		&.is-filled {
 			@include stroke(1px, var(--color-stroke));
-		}
-
-		&#{$b}--select {
-			padding: 0;
 		}
 
 		#{$b}__chevron {
@@ -216,7 +219,7 @@
 		&.is-focus {
 			background-color: var(--color-white);
 
-			@include stroke(3px, var(--color-accent));
+			@include stroke(2px, var(--color-accent));
 		}
 	}
 
@@ -239,7 +242,7 @@
 		&.is-focus {
 			background-color: var(--color-white);
 
-			@include stroke(3px, var(--color-accent));
+			@include stroke(2px, var(--color-accent));
 		}
 
 		&.is-error:not(.is-disabled):not(.is-readonly) {

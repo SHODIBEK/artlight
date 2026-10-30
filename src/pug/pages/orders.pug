@@ -13,20 +13,37 @@ section.account.container
 	.account__content
 		h2.account__title= page.title
 
-		//- фильтры: моб. в колонку на всю ширину, ≥ 768 — в ряд по 310
-		.account-filters
+		//- фильтры: моб. в колонку на всю ширину, ≥ 768 — в ряд по 310.
+		//- Форма GET на эту же страницу: «Применить» в «Дате» отправляет ?date_from=ГГГГ-ММ-ДД&date_to=ГГГГ-ММ-ДД
+		//- (date-range.js); бэкенд фильтрует заказы и подставляет даты в value скрытых полей
+		form.account-filters(method="get" action=page.filtersAction)
 			each filter in page.filters
 				+dropdown({ cls: 'account-filters__item' })
 					button.account-filters__toggle.js-dropdown-toggle(type="button" aria-expanded="false" aria-label=filter.name)
 						span.account-filters__value.js-dropdown-value= filter.name
 						+svg('chevron-up').account-filters__chevron
-					.dropdown__panel.dropdown__panel--check.dropdown__panel--narrow
-						ul.filter-options.filter-options--links.filter-options--check
-							each option in filter.options
-								li.filter-options__item
-									button.filter-options__link.js-dropdown-option(type="button")
-										+svg('check').filter-options__check
-										| #{option}
+					if filter.range
+						//- период: календарь (моб. 1 месяц, ≥ 768 — 2), date-range.js; value — выбранные даты (бэкенд)
+						.dropdown__panel.dropdown__panel--calendar.date-range.js-date-range(data-placeholder=filter.name)
+							input.js-date-range-from(type="hidden" name=filter.range.from value="")
+							input.js-date-range-to(type="hidden" name=filter.range.to value="")
+							.date-range__head
+								button.date-range__arrow.js-date-range-prev(type="button" aria-label="Предыдущий месяц")
+									+svg('chevron-up').date-range__arrow-icon.date-range__arrow-icon--prev
+								button.date-range__arrow.js-date-range-next(type="button" aria-label="Следующий месяц")
+									+svg('chevron-up').date-range__arrow-icon.date-range__arrow-icon--next
+							.date-range__months.js-date-range-months
+							.date-range__footer
+								button.date-range__reset.js-date-range-reset(type="button")= filter.range.reset
+								+button({ label: filter.range.apply, icon: false }).date-range__apply.js-date-range-apply
+					else
+						.dropdown__panel.dropdown__panel--check.dropdown__panel--narrow
+							ul.filter-options.filter-options--links.filter-options--check
+								each option in filter.options
+									li.filter-options__item
+										button.filter-options__link.js-dropdown-option(type="button")
+											+svg('check').filter-options__check
+											| #{option}
 
 		//- строки — ссылки на заказ, через одну на сером фоне
 		.account-orders(role="table" aria-label=page.title)

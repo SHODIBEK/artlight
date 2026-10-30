@@ -410,6 +410,11 @@
 		@include state-focus {
 			border-color: var(--color-black);
 		}
+
+		// выбран период (date-range.js) — подпись чёрная
+		&.is-selected {
+			color: var(--color-black);
+		}
 	}
 
 	&__value {

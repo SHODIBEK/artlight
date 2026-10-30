@@ -5,11 +5,11 @@
 - var accountCurrent = page.url
 - var managerClosedMobile = true
 
-//- поле профиля: пустое — подпись по центру (как плейсхолдер), заполненное — подпись сверху, значение снизу.
-//- editable — поле открывается кнопкой «Редактировать данные» (profile.js), до этого только для чтения
+//- поле профиля. Просмотр — просто текст (подпись сверху, значение снизу, без линии; пустое — прочерк, пароли скрыты).
+//- editable — поле открывается кнопкой «Редактировать данные» (profile.js); пустое — подпись на строке значения
 mixin profileField(opts)
 	- var o = opts
-	label.profile-field(class=o.cls)
+	label.profile-field(class=[o.cls, o.editable ? 'profile-field--editable' : null])
 		if o.options
 			select.profile-field__control(name=o.name disabled=(o.editable ? true : null) data-editable=(o.editable ? '' : null))
 				each option in o.options
@@ -20,10 +20,11 @@ mixin profileField(opts)
 				type=(o.type || 'text')
 				name=o.name
 				value=o.value
-				placeholder=" "
+				placeholder=(o.editable ? data.profilePage.profile.empty : ' ')
 				autocomplete=o.autocomplete
 				readonly
 				data-editable=(o.editable ? '' : null)
+				data-empty=(o.editable ? data.profilePage.profile.empty : null)
 			)
 		span.profile-field__label= o.label
 		if o.type === 'password'
@@ -73,7 +74,8 @@ section.account.container
 				+profileField({ name: 'activity', label: profile.activity.label, value: profile.activity.value, options: profile.activity.options, editable: true, cls: 'profile-field--select' })
 			p.profile-form__error.js-profile-error(hidden)= profile.passwordMismatch
 			button.profile-form__edit.js-profile-edit(type="button" data-edit=profile.edit data-save=profile.save)
-				+svg('pen').profile-form__edit-icon
+				+svg('pen').profile-form__edit-icon.profile-form__edit-icon--edit
+				+svg('save').profile-form__edit-icon.profile-form__edit-icon--save
 				span.js-profile-edit-label= profile.edit
 
 		//- Контрагенты: таблица шире колонки на моб. (738) — прокрутка до краёв экрана

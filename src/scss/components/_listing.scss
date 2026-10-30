@@ -335,6 +335,11 @@
 		min-height: 0;
 	}
 
+	// отступ от заголовка группы до списка (в свёрнутой группе обрезается вместе с ним)
+	&__group > &__body > &__inner > :first-child {
+		margin-top: 10px;
+	}
+
 	&__item {
 		display: flex;
 		align-items: center;

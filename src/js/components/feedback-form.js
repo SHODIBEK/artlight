@@ -92,6 +92,20 @@ export default function feedbackFormInit() {
 				return;
 			}
 
+			// data-redirect — страница после отправки («Восстановление пароля» → «Письмо отправлено»):
+			// форма уходит fetch'ем на action, при ответе 2xx — переход; action="#" (вёрстка) — сразу переход
+			if (form.dataset.redirect) {
+				event.preventDefault();
+				send(form).then(() => {
+					window.location.href = form.dataset.redirect;
+				}).catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Форма не отправлена:', error);
+				});
+
+				return;
+			}
+
 			// data-success — id попапа «Успешная отправка»: форма уходит fetch'ем на action (POST, FormData),
 			// при ответе 2xx очищается и открывается попап; action="#" (вёрстка) — без запроса, сразу попап
 			if (form.dataset.success) {

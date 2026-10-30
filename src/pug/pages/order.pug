@@ -20,7 +20,7 @@ section.account.container
 			.account-order__exports
 				each item in page.exports
 					a.account-order__export(href=item.url download)
-						+svg('table').account-order__export-icon
+						+svg(item.icon).account-order__export-icon
 						span= item.label
 
 		dl.account-order__info
