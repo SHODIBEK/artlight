@@ -46,7 +46,11 @@ body {
 }
 
 .site {
+	// clip, а не hidden: hidden делает .site контейнером прокрутки — position: sticky внутри не работает
+	// (сайдбар списка товаров, «Сумма заказа» в корзине); hidden — для старых браузеров без clip
 	overflow-x: hidden;
+	// stylelint-disable-next-line declaration-block-no-duplicate-properties
+	overflow-x: clip;
 }
 
 main {

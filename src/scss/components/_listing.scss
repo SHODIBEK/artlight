@@ -473,6 +473,8 @@
 	}
 
 	@media (min-width: #{$header-desktop}px) {
+		position: sticky;
+		top: calc(var(--header-height) + 20px); // точный top при прокрутке — sticky-aside.js
 		flex: 0 0 296px;
 		margin-bottom: -150px; // до SEO-текста — не меньше 150 от низа сайдбара (см. .listing__main)
 

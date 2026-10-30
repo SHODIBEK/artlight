@@ -44,7 +44,7 @@ section.listing-head.container
 
 .listing.container
 	//- ≥ 1280 — колонка слева, ниже — панель «Все категории» (filters.js)
-	aside.listing-aside.js-panel(data-panel-id="categories" aria-label=lights.allCategories)
+	aside.listing-aside.js-panel.js-sticky-aside(data-panel-id="categories" aria-label=lights.allCategories)
 		.listing-aside__bar
 			button.listing-aside__close.js-panel-close(type="button" aria-label="Закрыть")
 				+svg('back').listing-aside__close-icon
