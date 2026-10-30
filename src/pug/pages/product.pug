@@ -1,0 +1,172 @@
+//- Страница товара: десктоп node-id=145-16763, моб. node-id=145-15913
+- var page = data.productPage
+
+section.product-page.container
+	.product-page__top
+		+breadcrumbs(page.breadcrumbs).product-page__breadcrumbs
+		+linkBack(page.back.label, page.back.url).product-page__back
+
+	.product-page__layout
+		//- фото: слайдер Swiper (свайп) + 5 миниатюр (клик — слайд с этим фото)
+		.product-page__gallery.js-product-page-gallery
+			.product-page__photo
+				.product-page__slider.swiper.js-product-page-slider
+					.swiper-wrapper
+						each photo, index in page.photos
+							.product-page__slide.swiper-slide
+								img.product-page__image(src=`${baseDir}images/${photo.src}.webp` class=(photo.fit ? 'product-page__image--' + photo.fit : null) alt=(index ? '' : page.title) fetchpriority=(index ? null : 'high') loading=(index ? 'lazy' : null) draggable="false")
+				span.product-page__badge= page.badge
+			.product-page__thumbs
+				each photo, index in page.photos
+					button.product-page__thumb.js-product-page-thumb(type="button" class=(index ? null : 'is-active') aria-label=`Фото ${index + 1}` aria-current=(index ? null : 'true'))
+						img.product-page__thumb-image(src=`${baseDir}images/${photo.src}.webp` class=(photo.fit ? 'product-page__thumb-image--' + photo.fit : null) alt="" loading="lazy")
+
+		.product-page__info
+			.product-page__heading
+				h1.product-page__title= page.title
+				.product-page__actions
+					button.product-page__action.js-product-favorite(type="button" aria-label="В избранное" aria-pressed="false")
+						+svg('griddy-icons_heart').product-page__action-icon
+					button.product-page__action.js-product-share(type="button" aria-label="Поделиться")
+						+svg('share').product-page__action-icon
+
+			form.product-config.js-product-config(action="#")
+				.product-config__head
+					h2.product-config__title= page.configTitle
+					button.product-config__reset.js-product-config-reset(type="reset")= page.reset
+
+				.product-config__files
+					p.product-config__label= page.filesTitle
+					.product-config__cards
+						each file in page.files
+							a.product-config__card.product-config__card--file(href=file.url download)
+								+svg(file.icon).product-config__icon
+								span.product-config__card-text
+									span.product-config__card-name= file.name
+									span.product-config__card-note= file.type
+
+				.product-config__cards.product-config__cards--features
+					each feature in page.features
+						.product-config__card.product-config__card--feature
+							+svg(feature.icon).product-config__icon
+							span.product-config__card-text
+								span.product-config__card-name= feature.name
+								span.product-config__card-note= feature.text
+
+				each group in page.options
+					fieldset.product-config__group
+						legend.product-config__group-title= group.title
+						.product-config__options
+							each value in group.values
+								label.product-config__option
+									input.product-config__radio(type="radio" name=group.name value=value checked=(value === group.active))
+									span.product-config__chip= value
+						if group.note
+							p.product-config__note= group.note
+
+			p.product-page__question
+				+svg('chat').product-page__question-icon
+				span
+					= page.question.text + ' '
+					a.product-page__question-link.js-product-question(href=page.question.url)= page.question.link
+
+			.product-summary
+				p.product-summary__count= page.summary.count
+				.product-summary__row
+					p.product-summary__price= page.summary.price
+					.product-summary__buy
+						+productCounter().product-summary__counter
+						button.product-summary__button(type="button" data-modal="cart-added")= page.summary.button
+				p.product-summary__items
+					span= page.summary.items
+					span.product-summary__dot(aria-hidden="true") •
+					span= page.summary.term
+				p.product-summary__links
+					each link, index in page.summary.links
+						if index
+							span.product-summary__dot(aria-hidden="true") •
+						a.product-summary__link(href=link.url)= link.label
+
+		//- «Характеристики серии» / «Описание» — вкладки tabs.js
+		.product-specs.js-tabs
+			.product-specs__tabs(role="tablist")
+				each tab, index in page.tabs
+					button.product-specs__tab.js-tab(
+						type="button"
+						role="tab"
+						id=`product-tab-${tab.id}`
+						class=(index ? null : 'is-active')
+						data-tab=tab.id
+						aria-controls=`product-panel-${tab.id}`
+						aria-selected=(index ? 'false' : 'true')
+						tabindex=(index ? '-1' : null)
+					)= tab.label
+			.product-specs__panel(id="product-panel-specs" role="tabpanel" aria-labelledby="product-tab-specs")
+				dl.product-specs__list
+					each row in page.specs
+						.product-specs__row
+							dt.product-specs__name= row[0]
+							dd.product-specs__value= row[1]
+			.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
+				each paragraph in page.description
+					p= typo(paragraph)
+
+//- «Все модификации семейства»: таблица с прокруткой по горизонтали (< 1280), отмеченные строки — подсветка
+section.product-mods.container.js-product-mods
+	h2.product-mods__title= page.modificationsTitle
+	.product-mods__scroll
+		table.product-mods__table
+			thead
+				tr
+					th.product-mods__check-cell
+						span.visually-hidden Отметить
+					each column in page.columns
+						th= column
+					th
+						span.visually-hidden Купить
+			tbody
+				each item, index in page.modifications
+					tr.product-mods__row.js-product-mods-row(class=[item.checked ? 'is-checked' : null, index >= page.perPage ? 'js-product-mods-extra' : null] hidden=(index >= page.perPage))
+						td.product-mods__check-cell
+							+checkbox({ name: 'modification', value: item.sku, checked: !!item.checked, ariaLabel: `Отметить ${item.sku} ${item.power}` }).checkbox--sm.js-product-mods-check
+						td
+							span.product-mods__color
+								span.product-mods__swatch(class=(item.color === 'Белый' ? 'product-mods__swatch--white' : null) aria-hidden="true")
+								= item.color
+						td= item.power
+						td= item.temperature
+						td= item.cri
+						td= item.angle
+						td= item.dimming
+						td= item.sku
+						td= item.price
+						td= item.stock
+						td
+							+productCounter().product-mods__counter
+						td
+							button.product-mods__cart(type="button" data-modal="cart-added") В корзину
+	.product-mods__footer
+		button.product-mods__add.js-product-mods-add(type="button" data-modal="cart-added")
+			= page.addChecked + ' '
+			span.js-product-mods-count= page.modifications.filter(function (item) { return item.checked; }).length
+		- var moreCount = page.modifications.length - page.perPage
+		if moreCount > 0
+			button.product-mods__more.js-product-mods-more(type="button" aria-expanded="false" data-label=`${page.more.label} ${moreCount}` data-less=page.more.less)= `${page.more.label} ${moreCount}`
+
+include ../sections/projects
+
+each title in [page.familyTitle, page.relatedTitle]
+	section.product-slider(class=(compactSections ? 'product-slider--compact' : null))
+		.container
+			h2.product-slider__title.title.title--h2= title
+			.product-slider__slider.swiper.js-product-slider
+				.swiper-wrapper
+					each item in page.products
+						+productCard(item).product-card--slide.swiper-slide
+
+- var faqData = page.faq
+include ../sections/faq
+include ../sections/reviews
+//- «Напишите нам» ведёт сюда
+- var feedbackId = 'feedback'
+include ../sections/feedback

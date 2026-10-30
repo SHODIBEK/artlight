@@ -1,5 +1,6 @@
-//- projectsTitle — свой заголовок (страница проекта: «Похожие проекты»), sectionsGap — отступ между секциями
-section.projects(class=(typeof sectionsGap !== 'undefined' && sectionsGap ? 'projects--gap-' + sectionsGap : null))
+//- projectsTitle — свой заголовок (страница проекта: «Похожие проекты»), sectionsGap — отступ между секциями,
+//- compactSections — 60 на моб. (страница товара)
+section.projects(class=[typeof compactSections !== 'undefined' && compactSections ? 'projects--compact' : null, typeof sectionsGap !== 'undefined' && sectionsGap ? 'projects--gap-' + sectionsGap : null])
 	.container
 		h2.projects__title.title.title--h2= typeof projectsTitle !== 'undefined' ? projectsTitle : data.home.projects.title
 

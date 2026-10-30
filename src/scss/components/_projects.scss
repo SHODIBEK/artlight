@@ -6,6 +6,11 @@
 	overflow: hidden;
 	margin-top: 100px;
 
+	// страница товара: между секциями 60 на моб.
+	&--compact {
+		margin-top: 60px;
+	}
+
 	&__title {
 		font-size: 30px;
 		line-height: 36px;

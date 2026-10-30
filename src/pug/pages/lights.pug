@@ -152,20 +152,8 @@ section.seo-text.container
 
 include ../sections/projects
 
-section.faq.container
-	h2.faq__title= lights.faq.title
-	.faq__list.js-accordion(data-accordion-single)
-		each item in lights.faq.items
-			.faq__item.js-accordion-item(class=(item.open ? 'is-open' : null))
-				button.faq__question.js-accordion-toggle(type="button" aria-expanded=(item.open ? 'true' : 'false'))
-					span.faq__text= typo(item.question)
-					+svg('plus').faq__icon.faq__icon--plus
-					+svg('minus').faq__icon.faq__icon--minus
-				.faq__answer.js-accordion-body
-					.faq__inner
-						each paragraph in (item.answer || lights.seo)
-							p.faq__paragraph= typo(paragraph)
-	p.faq__note= typo(lights.faq.note)
+- var faqData = Object.assign({ answer: lights.seo }, lights.faq)
+include ../sections/faq
 
 include ../sections/reviews
 include ../sections/feedback

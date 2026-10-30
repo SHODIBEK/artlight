@@ -4,6 +4,11 @@
 	margin-top: 100px;
 	max-width: calc(900px + var(--gutter) * 2);
 
+	// страница товара: между секциями 60 на моб.
+	&--compact {
+		margin-top: 60px;
+	}
+
 	&__title {
 		margin: 0;
 		font-weight: 700;

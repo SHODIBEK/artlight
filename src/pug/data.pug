@@ -2224,3 +2224,129 @@
 			['Сумма заказа с учётом скидки', '2 100 ₽'],
 		],
 	};
+
+	// Страница товара (product.html): десктоп node-id=145-16763, моб. node-id=145-15913.
+	// options — группы «Собрать комплектацию» (active — выбранный вариант), specs — «Характеристики серии»,
+	// modifications — «Все модификации семейства» (checked — отмечена), summary — плашка «Отмечено…» (считает бэкенд)
+	data.productPage = {
+		breadcrumbs: [
+			{ name: 'Главная', url: 'home.html' },
+			{ name: 'Каталог', url: 'catalog.html' },
+			{ name: 'Трековые светильники', url: 'lights.html' },
+			{ name: 'ART-MV—314 LED светильник трековый' },
+		],
+		back: { label: 'Вернуться в каталог', url: 'catalog.html' },
+		title: 'ART-MV—314',
+		badge: 'Хит',
+		// фото — путь от images/ без .webp; fit — кадр на всю рамку: contain (белый фон) / cover (фото с фоном); без fit — кадр из макета
+		photos: [
+			{ src: 'product/product-photo' },
+			{ src: 'products/downlight', fit: 'contain' },
+			{ src: 'products/pendant', fit: 'cover' },
+			{ src: 'products/linear', fit: 'contain' },
+			{ src: 'account/order-product', fit: 'contain' },
+		],
+		configTitle: 'Собрать комплектацию',
+		reset: 'Сбросить все',
+		filesTitle: 'Файлы выбранной оптики 40°',
+		files: [
+			{ icon: 'document', name: 'Монтажная инструкция', type: 'PDF', url: '#' },
+			{ icon: 'file-code', name: 'IES / LDT', type: 'ZIP', url: '#' },
+			{ icon: 'cube-outline', name: '3D-модель', type: 'ZIP', url: '#' },
+		],
+		features: [
+			{ icon: 'shield', name: '5 лет гарантии', text: 'на LED модуль' },
+			{ icon: 'delivery', name: 'Самовывоз и доставка', text: 'Москва и СПБ' },
+			{ icon: 'factory', name: 'Свое производство', text: 'реестр Минпромторга' },
+		],
+		options: [
+			{ name: 'power', title: 'Мощность', values: ['15W', '20W', '25W', '30W', '35W', '40W'], active: '40W' },
+			{ name: 'temperature', title: 'Цветовая температура', values: ['2700', '3000K', '4000K', 'Light Pink 3700K', 'Bakery 2400K'], note: '2400K не выпускаются в 40W - смените мощность, чтобы открыть' },
+			{ name: 'cri', title: 'Индекс цветопередачи', values: ['>90Ra', '97Ra', 'Vivid'] },
+			{ name: 'angle', title: 'Угол рассеивания', values: ['20°', '40°', '60°'] },
+			{ name: 'dimming', title: 'Диммирование', values: ['A-DALLI', 'без димм'], active: 'без димм' },
+		],
+		// «Напишите нам» — ссылка на форму заявки внизу страницы (id секции — feedbackId в product.pug)
+		question: { text: 'Есть вопросы по товару?', link: 'Напишите нам', url: '#feedback' },
+		summary: {
+			count: 'Отмечено 4 позиции',
+			price: '40 395 ₽',
+			button: 'Добавить 4 позиции',
+			items: '20° × 1, 40° × 1, 60° × 1, белый 40° × 1',
+			term: 'срок по самой долгой позиции',
+			links: [
+				{ label: 'Скачать спецификацию отмеченного', url: '#' },
+				{ label: 'IES пакетом', url: '#' },
+			],
+		},
+		tabs: [
+			{ id: 'specs', label: 'Характеристики серии' },
+			{ id: 'description', label: 'Описание' },
+		],
+		specs: [
+			['Тип установки', 'на трехфазный шинопровод'],
+			['Степень защиты', 'IP20'],
+			['Форма', 'цилиндрическая'],
+			['Размеры, мм', 'Ø126 H122mm'],
+			['Диаметр, мм', '127'],
+			['Высота, мм', '187'],
+			['Длина, мм', '291'],
+		],
+		// в макете текста описания нет — заглушка
+		description: [
+			'ART-MV—314 — трековый светильник цилиндрической формы для трёхфазного шинопровода. Поворотный корпус позволяет направить свет на витрину, экспозицию или рабочую зону.',
+			'Светильник доступен в нескольких вариантах мощности, цветовой температуры и угла рассеивания — соберите нужную комплектацию в блоке справа.',
+		],
+		modificationsTitle: 'Все модификации семейства',
+		columns: ['Цвет', 'Мощность', 'Температура, К', 'Индекс Ra', 'Угол рассеивания', 'Диммирование', 'Артикул', 'Цена', 'Наличие', 'Кол-во'],
+		modifications: [
+			{ checked: true, color: 'Черный', power: '35W', temperature: '3000K', cri: '>90Ra', angle: '20°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '10 395 ₽', stock: 'под заказ 15-20 дней' },
+			{ color: 'Черный', power: '40W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 12 шт.' },
+			{ color: 'Черный', power: '25W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 4 шт.' },
+			{ color: 'Черный', power: '40W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 12 шт.' },
+			{ color: 'Черный', power: '25W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 4 шт.' },
+			{ color: 'Черный', power: '40W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 12 шт.' },
+			{ color: 'Черный', power: '25W', temperature: '2700K', cri: '>90Ra', angle: '40°', dimming: 'Без димм.', sku: 'ART-MV-314-40', price: '12 395 ₽', stock: 'в наличии 4 шт.' },
+		],
+		addChecked: 'Добавить отмеченные',
+		// видно perPage строк, остальные раскрывает «Показать еще N» (повторный клик — «Свернуть»)
+		perPage: 7,
+		more: { label: 'Показать еще', less: 'Свернуть' },
+		familyTitle: 'Другие товары семейства',
+		relatedTitle: 'Сопутствующие товары',
+		products: data.projectPage.products,
+		// вопросы — из «Встраиваемых светильников» (ответы — те же заглушки)
+		faq: {
+			title: data.lights.faq.title,
+			items: [1, 2, 3, 9, 11].map(function (index) {
+				return { question: data.lights.faq.items[index].question };
+			}),
+			note: data.lights.faq.note,
+			answer: data.lights.seo,
+		},
+	};
+
+	// ещё 42 модификации для «Показать еще» (заглушка: перебор мощности, температуры и угла)
+	;(function () {
+		var powers = ['15W', '20W', '25W', '30W', '35W', '40W', '15W']
+		var temperatures = ['2700K', '3000K', '4000K']
+		var angles = ['20°', '40°', '60°']
+		var prices = { '15W': '8 395 ₽', '20W': '9 195 ₽', '25W': '9 895 ₽', '30W': '10 695 ₽', '35W': '11 495 ₽', '40W': '12 395 ₽' }
+
+		for (var i = 0; i < 42; i++) {
+			var power = powers[i % powers.length]
+			var angle = angles[Math.floor(i / 7) % angles.length]
+
+			data.productPage.modifications.push({
+				color: i % 2 ? 'Белый' : 'Черный',
+				power: power,
+				temperature: temperatures[Math.floor(i / 14) % temperatures.length],
+				cri: i % 5 ? '>90Ra' : '97Ra',
+				angle: angle,
+				dimming: i % 4 ? 'Без димм.' : 'DALI',
+				sku: 'ART-MV-314-' + power.replace('W', '') + '-' + parseInt(angle, 10),
+				price: prices[power],
+				stock: i % 3 ? 'в наличии ' + (4 + (i % 9)) + ' шт.' : 'под заказ 15-20 дней',
+			})
+		}
+	})();

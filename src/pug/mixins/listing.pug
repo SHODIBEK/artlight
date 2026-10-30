@@ -99,7 +99,7 @@ mixin productCard(item, eager)
 	-
 		var lights = data.lights
 		var gallery = productGallery(item.image)
-	a.product-card(href=(item.url || '#'))&attributes(attributes)
+	a.product-card(href=(item.url || 'product.html'))&attributes(attributes)
 		span.product-card__picture.js-product-gallery
 			span.product-card__gallery
 				each name, index in gallery

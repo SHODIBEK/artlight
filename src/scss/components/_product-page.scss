@@ -1,0 +1,1006 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Страница товара: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=145-16763,
+// моб. node-id=145-15913.
+// < 1280 — в колонку: фото → «Собрать комплектацию» → характеристики; ≥ 1280 — 2 колонки по 824 (зазор 40):
+// слева фото и характеристики, справа заголовок, комплектация, «Есть вопросы» и плашка «Отмечено…».
+
+.product-page {
+	&__top {
+		margin-top: 16px;
+	}
+
+	// «Вернуться в каталог» — только на десктопе (в моб. макете нет)
+	&__back {
+		display: none;
+	}
+
+	&__layout {
+		display: grid;
+		grid-template-areas:
+			"gallery"
+			"info"
+			"specs";
+		grid-template-columns: minmax(0, 1fr);
+		margin-top: 30px;
+	}
+
+	// фото: рамка light-grey, исходник — квадрат (в макете вписан cover в кадр больше рамки), белый фон
+	// фото смешивается с рамкой (darken)
+	&__gallery {
+		grid-area: gallery;
+	}
+
+	&__photo {
+		position: relative;
+		overflow: hidden;
+		background-color: var(--color-light-grey);
+		aspect-ratio: 370 / 336;
+	}
+
+	// слайдер на всю рамку; у каждого слайда — своя рамка (фото обрезается по ней)
+	&__slider {
+		position: absolute;
+		cursor: grab;
+		inset: 0;
+
+		&:active {
+			cursor: grabbing;
+		}
+	}
+
+	&__slide {
+		position: relative;
+		overflow: hidden;
+		height: 100%;
+		background-color: var(--color-light-grey);
+	}
+
+	&__image {
+		position: absolute;
+		left: -13.78%;
+		top: -7.74%;
+		width: 136.2%;
+		max-width: none;
+		mix-blend-mode: darken;
+		aspect-ratio: 1;
+	}
+
+	&__badge {
+		position: absolute;
+		left: 20px;
+		top: 20px;
+		z-index: 1;
+		display: flex;
+		align-items: center;
+		padding: 0 20px;
+		height: 32px;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		background-color: var(--color-white);
+		pointer-events: none;
+	}
+
+	&__thumbs {
+		display: grid;
+		grid-template-columns: repeat(5, minmax(0, 1fr));
+		margin-top: 8px;
+		gap: 8px;
+	}
+
+	&__thumb {
+		position: relative;
+		overflow: hidden;
+		outline: none;
+		border: 0;
+		padding: 0;
+		background-color: var(--color-light-grey);
+		transition: box-shadow $duration-normal;
+		cursor: pointer;
+		aspect-ratio: 67.6 / 50;
+
+		&.is-active {
+			@include stroke(2px, var(--color-accent));
+		}
+
+		@include state-hover {
+			@include stroke(2px, var(--color-stroke));
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__thumb-image {
+		position: absolute;
+		left: -14.79%;
+		top: -32%;
+		width: 146.4%;
+		max-width: none;
+		mix-blend-mode: darken;
+		aspect-ratio: 1;
+	}
+
+	&__info {
+		grid-area: info;
+		margin-top: 32px;
+	}
+
+	&__heading {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+	}
+
+	&__title {
+		flex-grow: 1;
+		margin: 0;
+		font-weight: 700;
+		font-size: 28px;
+		line-height: 34px;
+		color: var(--color-black);
+	}
+
+	&__actions {
+		display: flex;
+		flex-shrink: 0;
+		gap: 8px;
+	}
+
+	&__action {
+		display: flex;
+		outline: none;
+		border: 0;
+		padding: 0;
+		width: 24px;
+		height: 24px;
+		color: var(--color-black);
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		&.is-active {
+			color: var(--color-red);
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&__action-icon {
+		width: 24px;
+		height: 24px;
+	}
+
+	// «Есть вопросы по товару? Напишите нам»
+	&__question {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin: 25px 0 0;
+		padding: 10px;
+		min-height: 60px;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 19px;
+		text-align: center;
+		color: var(--color-black);
+		background-color: var(--color-accent-bg);
+		gap: 10px;
+	}
+
+	&__question-icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__question-link {
+		outline: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		color: var(--color-link);
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		@include state-hover {
+			color: var(--color-link-hover);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__photo {
+			aspect-ratio: 824 / 675;
+		}
+
+		// в кадре 795×1013 (top −145) — квадрат 1013 по центру кадра
+		&__image {
+			left: -13.23%;
+			top: -21.48%;
+			width: 122.94%;
+		}
+
+		&__badge {
+			left: 30px;
+			top: 30px;
+		}
+
+		&__thumb {
+			aspect-ratio: 158.4 / 140;
+		}
+
+		// в кадре 197×251 (top −35) — квадрат 251
+		&__thumb-image {
+			left: -17.05%;
+			top: -25%;
+			width: 158.46%;
+		}
+
+		&__title {
+			flex-grow: 0;
+			font-size: 46px;
+			line-height: 55px;
+		}
+
+		&__question {
+			font-size: 20px;
+			line-height: 24px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__top {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			margin-top: 30px;
+			gap: 40px;
+		}
+
+		&__back {
+			display: inline-flex;
+			flex-shrink: 0;
+		}
+
+		&__layout {
+			column-gap: 40px;
+			grid-template:
+				"gallery info" auto
+				"specs info" 1fr / minmax(0, 1fr) minmax(0, 1fr); // repeat() с областями недопустим
+		}
+
+		&__info {
+			margin-top: 0;
+		}
+	}
+}
+
+// другие товары галереи — кадр на всю рамку (исходники разной формы);
+// после .product-page — перебивает кадр фото из макета и в медиа-запросах
+.product-page__image--contain,
+.product-page__image--cover,
+.product-page__thumb-image--contain,
+.product-page__thumb-image--cover {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	inset: 0;
+}
+
+// фото на белом фоне — целиком (белый фон смешивается с рамкой — darken)
+.product-page__image--contain,
+.product-page__thumb-image--contain {
+	object-fit: contain;
+}
+
+// «Собрать комплектацию»: файлы, преимущества, варианты (радио-плашки)
+.product-config {
+	margin-top: 24px;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		color: var(--color-black);
+	}
+
+	&__reset {
+		outline: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		font-size: 15px;
+		line-height: 18px;
+		letter-spacing: 0.3px;
+		color: var(--color-link);
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		@include state-hover {
+			color: var(--color-link-hover);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	&__files {
+		margin-top: 25px;
+	}
+
+	&__label {
+		margin: 0;
+		font-weight: 500;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+	}
+
+	&__cards {
+		display: grid;
+		margin-top: 12px;
+		gap: 9px;
+
+		&--features {
+			margin-top: 25px;
+		}
+	}
+
+	&__card {
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		gap: 4px;
+
+		&--file {
+			outline: none;
+			min-height: 64px;
+			text-decoration: none;
+			transition: box-shadow $duration-normal;
+
+			@include stroke(1px, var(--color-stroke));
+
+			@include state-hover {
+				@include stroke(1px, var(--color-black-60));
+			}
+
+			@include state-focus {
+				@include stroke(2px, var(--color-black));
+			}
+		}
+
+		&--feature {
+			min-height: 62px;
+			background-color: var(--color-light-grey);
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__card-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		gap: 2px;
+	}
+
+	&__card-note {
+		color: var(--color-black-60);
+	}
+
+	&__group {
+		margin: 25px 0 0;
+		border: 0;
+		padding: 0;
+		min-width: 0;
+	}
+
+	// legend не встаёт во flex — отступ до плашек margin-bottom
+	&__group-title {
+		float: left;
+		margin-bottom: 12px;
+		padding: 0;
+		width: 100%;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+		color: var(--color-black);
+	}
+
+	&__options {
+		display: flex;
+		flex-wrap: wrap;
+		clear: both;
+		gap: 4px;
+	}
+
+	&__option {
+		position: relative;
+		display: flex;
+		cursor: pointer;
+	}
+
+	&__radio {
+		position: absolute;
+		margin: 0;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+	}
+
+	&__chip {
+		display: flex;
+		align-items: center;
+		padding: 2px 16px 0;
+		height: 40px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		color: var(--color-black);
+		background-color: var(--color-light-grey);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+	}
+
+	&__option:hover &__chip {
+		background-color: var(--color-grey-hover);
+	}
+
+	&__radio:checked + &__chip {
+		background-color: var(--color-accent);
+	}
+
+	&__radio:focus-visible + &__chip {
+		@include stroke(2px, var(--color-black));
+	}
+
+	&__note {
+		margin: 12px 0 0;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black-60);
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__cards {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+}
+
+// плашка «Отмечено N позиций»: сумма, количество, «Добавить», состав и ссылки
+.product-summary {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-top: 25px;
+	padding: 20px;
+	font-size: 13px;
+	line-height: 16px;
+	color: var(--color-black);
+	background-color: var(--color-white);
+	gap: 10px;
+
+	@include stroke(2px, var(--color-accent));
+
+	&__count {
+		margin: 0;
+		font-weight: 500;
+	}
+
+	&__row {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+
+	&__price {
+		margin: 0;
+		font-weight: 600;
+		font-size: 36px;
+		line-height: 43px;
+		white-space: nowrap;
+	}
+
+	&__buy {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	&__button {
+		outline: none;
+		border: 0;
+		padding: 0 10px;
+		width: 200px;
+		height: 40px;
+		font: inherit;
+		font-size: 13px;
+		color: var(--color-black);
+		background-color: var(--color-accent);
+		transition: background-color $duration-normal;
+		cursor: pointer;
+
+		@include state-hover {
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-pressed {
+			background-color: var(--color-accent-pressed);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	// моб.: состав и срок — двумя строками без точки
+	&__items {
+		display: flex;
+		flex-direction: column;
+		margin: 0;
+		color: var(--color-black-60);
+		gap: 10px;
+
+		.product-summary__dot {
+			display: none;
+		}
+	}
+
+	&__links {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		margin: 0;
+		gap: 8px;
+	}
+
+	&__dot {
+		color: var(--color-black-60);
+	}
+
+	&__link {
+		text-decoration: none;
+		color: var(--color-link);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-link-hover);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		padding: 30px;
+		gap: 12px;
+
+		&__row {
+			flex-direction: row;
+			align-items: center;
+			gap: 40px;
+		}
+
+		&__items {
+			flex-flow: row wrap;
+			gap: 8px;
+
+			.product-summary__dot {
+				display: inline;
+			}
+		}
+
+		// ссылки — через 24 от блока выше (в макете gap 24 вместо 12)
+		&__links {
+			margin-top: 12px;
+		}
+	}
+}
+
+// счётчик «- 1 +»
+.product-counter {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	padding: 2px 8px 0;
+	height: 40px;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black);
+	background-color: var(--color-light-grey);
+	gap: 2px;
+
+	&__button {
+		outline: none;
+		border: 0;
+		padding: 0 4px;
+		height: 100%;
+		font: inherit;
+		color: inherit;
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		&:disabled {
+			color: var(--color-black-60);
+			cursor: default;
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: -2px;
+		}
+	}
+
+	&__value {
+		min-width: 10px;
+		text-align: center;
+	}
+}
+
+// «Характеристики серии» / «Описание»
+.product-specs {
+	grid-area: specs;
+	margin-top: 60px;
+
+	&__tabs {
+		display: flex;
+		gap: 11px;
+	}
+
+	&__tab {
+		outline: none;
+		border: 0;
+		padding: 0 0 7px;
+		font: inherit;
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 18px;
+		color: var(--color-black);
+		background: linear-gradient(var(--color-accent), var(--color-accent)) bottom / 0 3px no-repeat;
+		transition: color $duration-normal, background-size $duration-normal;
+		cursor: pointer;
+
+		&.is-active {
+			background-size: 100% 3px;
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&__panel {
+		margin-top: 11px;
+
+		&--text p {
+			margin: 0;
+			font-size: 16px;
+			line-height: 20px;
+			color: var(--color-black);
+		}
+
+		&--text p + p {
+			margin-top: 20px;
+		}
+	}
+
+	&__list {
+		margin: 0;
+	}
+
+	&__row {
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid var(--color-stroke);
+		padding: 10px 0;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--color-black);
+		gap: 10px;
+
+		&:nth-child(even) {
+			background-color: var(--color-light-grey);
+		}
+	}
+
+	// моб.: название — 150 (в макете колонка 380 шире экрана — таблица уезжает вправо)
+	&__name {
+		flex-shrink: 0;
+		width: 150px;
+	}
+
+	&__value {
+		margin: 0;
+		min-width: 0;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		&__row {
+			gap: 0;
+		}
+
+		&__name {
+			width: 380px;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		align-self: start;
+		margin-top: 32px;
+	}
+}
+
+// «Все модификации семейства»: < 1280 таблица (мин. 1328, колонки по содержимому) с прокруткой,
+// полоса прокрутки — accent, как в макете
+.product-mods {
+	margin-top: 60px;
+	scroll-margin-top: calc(var(--header-height) + 20px); // «Свернуть» возвращает к заголовку таблицы
+
+	&__title {
+		margin: 0;
+		font-weight: 600;
+		font-size: 15px;
+		line-height: 15px;
+		color: var(--color-black);
+	}
+
+	// relative — иначе .visually-hidden (absolute) в шапке таблицы вылезает из прокрутки и растягивает страницу
+	&__scroll {
+		position: relative;
+		overflow-x: auto;
+		margin: 45px calc(var(--gutter) * -1) 0;
+		padding: 0 var(--gutter) 16px;
+		scrollbar-color: var(--color-accent) transparent;
+
+		&::-webkit-scrollbar {
+			height: 10px;
+		}
+
+		&::-webkit-scrollbar-button {
+			display: none;
+		}
+
+		&::-webkit-scrollbar-track {
+			margin: 0 var(--gutter);
+			background: transparent;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			border-radius: 5px;
+			background-color: var(--color-accent);
+		}
+	}
+
+	&__table {
+		table-layout: auto; // < 1280 колонки по содержимому (таблица с прокруткой), с 1280 — поровну, как в макете
+		border: 1px solid var(--color-light-grey);
+		border-bottom: 0;
+		border-collapse: collapse;
+		width: 100%;
+		min-width: 1328px;
+		font-size: 15px;
+		line-height: 18px;
+		white-space: nowrap;
+		text-align: center;
+		color: var(--color-black);
+
+		th,
+		td {
+			border-bottom: 1px solid var(--color-stroke);
+			padding: 0 10px;
+			height: 39px;
+		}
+
+		th {
+			font-weight: 400;
+		}
+	}
+
+	&__check-cell {
+		width: 40px;
+
+		.product-mods__table & {
+			padding: 0 8px;
+		}
+	}
+
+	&__row.is-checked {
+		background-color: var(--color-accent-bg);
+	}
+
+	&__color {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	&__swatch {
+		flex-shrink: 0;
+		border-radius: 50%;
+		width: 8px;
+		height: 8px;
+		background-color: var(--color-black);
+
+		&--white {
+			background-color: var(--color-white);
+
+			@include stroke(1px, var(--color-black));
+		}
+	}
+
+	&__counter {
+		height: 32px;
+	}
+
+	&__row.is-checked &__counter {
+		background-color: var(--color-white);
+	}
+
+	&__cart,
+	&__add {
+		outline: none;
+		border: 0;
+		height: 32px;
+		font: inherit;
+		color: var(--color-black);
+		background: none;
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+		cursor: pointer;
+
+		@include stroke(1px, var(--color-black));
+
+		@include state-hover {
+			background-color: var(--color-light-grey);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__cart {
+		padding: 0;
+		width: 112px;
+		max-width: 100%;
+	}
+
+	&__row.is-checked &__cart {
+		box-shadow: none;
+		background-color: var(--color-accent);
+
+		@include state-hover {
+			background-color: var(--color-accent-hover);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__add {
+		padding: 0 14px;
+
+		&:disabled {
+			color: var(--color-black-60);
+			cursor: default;
+			pointer-events: none;
+
+			@include stroke(1px, var(--color-stroke));
+		}
+	}
+
+	&__footer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	&__more {
+		outline: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		font-size: 15px;
+		line-height: 18px;
+		text-decoration: none;
+		color: var(--color-link);
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		@include state-hover {
+			color: var(--color-link-hover);
+		}
+
+		@include state-focus {
+			text-decoration: underline;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 150px;
+	}
+
+	// ≥ 1280 — на всю ширину, 11 колонок поровну (как в макете); ниже — прокрутка.
+	// 1280–1727 колонки ~109–148: длинный текст («под заказ 15-20 дней») переносится, а не налезает на соседей
+	@media (min-width: #{$header-desktop}px) {
+		&__scroll {
+			overflow: visible;
+			margin: 45px 0 0;
+			padding: 0 0 16px;
+		}
+
+		&__table {
+			table-layout: fixed;
+			min-width: 0;
+			white-space: normal;
+
+			// текст по центру — боковые поля не нужны (на 1728 «под заказ 15-20 дней» занимает почти всю колонку 150)
+			th,
+			td {
+				padding: 0 2px;
+			}
+		}
+	}
+
+	// как в макете — в одну строку: с ширины макета 1728 (колонка 150); уже — «под заказ 15-20 дней» не влезает
+	@media (min-width: 1728px) {
+		&__table {
+			white-space: nowrap;
+		}
+	}
+}
+
+// чекбокс 24 в таблице модификаций (белый, обводка stroke)
+.checkbox--sm {
+	.checkbox__box {
+		width: 24px;
+		height: 24px;
+		background-color: var(--color-white);
+	}
+}

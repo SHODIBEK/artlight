@@ -1,0 +1,6 @@
+//- Счётчик количества «- 1 +» (страница товара: плашка «Отмечено…», таблица модификаций) — product-page.js
+mixin productCounter(count)
+	.product-counter.js-product-counter&attributes(attributes)
+		button.product-counter__button.js-product-counter-minus(type="button" aria-label="Уменьшить количество") -
+		span.product-counter__value.js-product-counter-value(aria-live="polite")= count || 1
+		button.product-counter__button.js-product-counter-plus(type="button" aria-label="Увеличить количество") +

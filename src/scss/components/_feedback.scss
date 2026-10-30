@@ -7,6 +7,7 @@
 	padding: 40px 0;
 	color: var(--color-white);
 	background: #1e1e1e center / cover no-repeat;
+	scroll-margin-top: var(--header-height); // якорь (feedbackId) — под фиксированной шапкой
 
 	// фото фона — лениво: lazy-bg.js ставит is-bg-loaded, когда секция подходит к экрану (до этого — тёмный фон)
 	&.is-bg-loaded {
@@ -304,8 +305,6 @@
 	&.is-bg-loaded {
 		background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../images/about/form-bg.webp");
 	}
-
-	scroll-margin-top: var(--header-height);
 
 	.feedback__input--select {
 		--input-pad-x: 20px;

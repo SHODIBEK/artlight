@@ -32,6 +32,7 @@ import checkoutInit from "./components/checkout";
 import authInit from "./components/auth";
 import tabsAllInit from "./components/tabs";
 import profileInit from "./components/profile";
+import productPageInit from "./components/product-page";
 
 ieFix();
 vhFix();
@@ -65,3 +66,4 @@ checkoutInit();
 authInit();
 tabsAllInit();
 profileInit();
+productPageInit();
