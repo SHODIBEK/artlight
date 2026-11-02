@@ -27,7 +27,7 @@ export default function accordionInit() {
 
 		if (isOpen && accordion && accordion.hasAttribute('data-accordion-single')) {
 			[...accordion.querySelectorAll(':scope > .js-accordion-item.is-open')].forEach((other) => {
-				if (other !== item) {
+				if (!other.contains(item)) { // не сам пункт и не группа, в которой он лежит
 					other.classList.remove('is-open');
 					other.querySelector('.js-accordion-toggle').setAttribute('aria-expanded', 'false');
 				}

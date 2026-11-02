@@ -185,7 +185,33 @@
 		left: 50%;
 		top: 50%;
 		display: flex;
+		overflow: hidden;
 		transform: translate(-50%, -50%);
+
+		// ховер — блик: белая косая полоса проходит по логотипу слева направо (фон шапки белый — вне букв не видна)
+		&::after {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: -50%;
+			width: 40%;
+			height: 200%;
+			background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.85) 50%, rgba(255, 255, 255, 0));
+			transform: translateX(-150%) skewX(-20deg);
+			pointer-events: none;
+		}
+
+		@include state-hover {
+			&::after {
+				animation: header-logo-shine 0.8s ease-in-out;
+			}
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			&::after {
+				display: none;
+			}
+		}
 	}
 
 	&__logo-img {
@@ -354,5 +380,11 @@
 			margin-left: 32px;
 			width: 254px;
 		}
+	}
+}
+
+@keyframes header-logo-shine {
+	to {
+		transform: translateX(300%) skewX(-20deg);
 	}
 }

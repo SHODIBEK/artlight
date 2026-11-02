@@ -9,6 +9,7 @@ const media = window.matchMedia('(min-width: 1280px)');
 
 export default function stickyAsideInit() {
 	document.querySelectorAll('.js-sticky-aside').forEach((aside) => {
+		const stop = aside.dataset.stickyStop ? aside.parentElement.querySelector(aside.dataset.stickyStop) : null;
 		let top = null;
 		let lastY = window.scrollY;
 
@@ -30,7 +31,11 @@ export default function stickyAsideInit() {
 			const minTop = Math.min(maxTop, window.innerHeight - aside.offsetHeight - GAP);
 
 			top = Math.max(minTop, Math.min(maxTop, (top === null ? maxTop : top) - delta));
-			aside.style.top = `${top}px`;
+
+			// низ меню — не ниже низа data-sticky-stop (кнопка «Показать ещё»): дальше едет вверх со страницей
+			const limit = stop ? stop.getBoundingClientRect().bottom - aside.offsetHeight : Infinity;
+
+			aside.style.top = `${Math.min(top, limit)}px`;
 		};
 
 		update();

@@ -44,12 +44,13 @@ section.listing-head.container
 
 .listing.container
 	//- ≥ 1280 — колонка слева, ниже — панель «Все категории» (filters.js)
-	aside.listing-aside.js-panel.js-sticky-aside(data-panel-id="categories" aria-label=lights.allCategories)
+	aside.listing-aside.js-panel.js-sticky-aside(data-panel-id="categories" data-sticky-stop=".listing__more" aria-label=lights.allCategories)
 		.listing-aside__bar
 			button.listing-aside__close.js-panel-close(type="button" aria-label="Закрыть")
 				+svg('back').listing-aside__close-icon
 
-		.listing-aside__groups.js-accordion
+		//- открыта одна группа — меню не длиннее списка товаров
+		.listing-aside__groups.js-accordion(data-accordion-single)
 			each group in lights.aside.groups
 				.listing-aside__group.js-accordion-item(class=(group.open ? 'is-open' : null))
 					button.listing-aside__head.js-accordion-toggle(type="button" aria-expanded=(group.open ? 'true' : 'false'))

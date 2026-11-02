@@ -262,6 +262,18 @@
 // блок содержания курса — аккордеон (accordion.js), плюс / минус справа
 .course-block {
 	background-color: var(--color-light-grey);
+	transition: background-color $duration-normal;
+
+	// ховер / нажатие заголовка — заливка всей карточки, как у FAQ
+	@media (hover: hover) {
+		&:has(> .course-block__head:hover) {
+			background-color: var(--color-grey-hover);
+		}
+	}
+
+	&:has(> .course-block__head:active) {
+		background-color: var(--color-stroke);
+	}
 
 	&__head {
 		display: flex;

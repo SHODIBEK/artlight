@@ -360,3 +360,8 @@
 .footer--gap-none {
 	margin-top: 0;
 }
+
+// после формы заявки — вплотную (по просьбе заказчика); на страницах без формы отступ остаётся
+.main:has(> .feedback:last-child) + .footer {
+	margin-top: 0;
+}
