@@ -643,6 +643,7 @@
 		}
 	}
 
+	// колонки по содержимому (поровну, как в макете, — длинные тексты налезали на соседние), между ними 30;
 	// таблица шире колонки — прокрутка; моб./планшет — до краёв экрана; линия под таблицей — по её ширине
 	&__table-wrap {
 		overflow-x: auto;
@@ -654,11 +655,11 @@
 	&__table-box {
 		border-bottom: 1px solid var(--color-stroke);
 		padding-bottom: 20px;
-		min-width: 1386px;
+		width: max-content;
+		min-width: 100%;
 	}
 
 	&__table {
-		table-layout: fixed;
 		border-collapse: collapse;
 		width: 100%;
 		font-size: 15px;
@@ -667,7 +668,7 @@
 		color: var(--color-black-60);
 
 		th {
-			padding: 9px 10px;
+			padding: 9px 15px;
 			height: 36px;
 			font-weight: 400;
 			text-align: left;
@@ -675,7 +676,18 @@
 
 		td {
 			vertical-align: middle;
-			padding: 10px;
+			padding: 10px 15px;
+		}
+
+		// фото — по своей ширине, остальное место — «Наименованию»
+		th:first-child,
+		td:first-child {
+			width: 1%;
+		}
+
+		th:nth-child(3),
+		td:nth-child(3) {
+			width: 100%;
 		}
 
 		// серая строка в макете — состояние ховер
@@ -723,10 +735,6 @@
 					flex: 1 1 0;
 				}
 			}
-		}
-
-		&__table-box {
-			min-width: 1261px;
 		}
 	}
 
