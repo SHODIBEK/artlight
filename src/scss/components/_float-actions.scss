@@ -56,8 +56,10 @@
 		}
 
 		// мессенджеры появляются снизу вверх (ближний к «Написать» — первым)
-		// фон — как у остальных кнопок; ховер — акцент
+		// фон светлее остальных кнопок; ховер — акцент
 		&--messenger {
+			background-color: var(--color-float-light);
+
 			@include state-hover {
 				background-color: var(--color-accent);
 			}
