@@ -137,6 +137,14 @@ mixin input(opts)
 			)&attributes(o.attrs || {})
 		if o.label
 			span.input__label(aria-hidden="true")= o.label
+				if o.required
+					span.input__required
+		//- обязательное поле — красный кружок справа сверху от плейсхолдера (с текстом — скрыт): прозрачная копия
+		//- плейсхолдера + кружок; положение и текст (телефон — пример номера страны) уточняет input-mark.js
+		else if o.required && o.mark !== false
+			span.input__mark(aria-hidden="true")
+				span.input__mark-text= o.placeholder
+				span.input__required
 		//- содержимое блока — справа от поля (кнопка «показать пароль»)
 		if block
 			block

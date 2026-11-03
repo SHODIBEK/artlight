@@ -27,7 +27,7 @@ mixin profileField(opts)
 				data-empty=(o.editable ? data.profilePage.profile.empty : null)
 			)
 		span.profile-field__label= o.label
-		if o.type === 'password'
+		if o.type === 'password' && o.name
 			button.profile-field__eye.js-password-toggle(type="button" aria-label="Показать пароль" aria-pressed="false" data-show="Показать пароль" data-hide="Скрыть пароль")
 				+svg('eye').profile-field__eye-icon.profile-field__eye-icon--show
 				+svg('eye-off').profile-field__eye-icon.profile-field__eye-icon--hide
@@ -68,6 +68,12 @@ section.account.container
 			.profile-form__fields
 				+profileField({ name: 'type', label: profile.type.label, value: profile.type.value })
 				+profileField({ name: 'email', type: 'email', label: profile.email.label, value: profile.email.value, autocomplete: 'email', editable: true })
+				+profileField({ name: 'last_name', label: profile.lastName.label, value: profile.lastName.value, autocomplete: 'family-name', editable: true })
+				+profileField({ name: 'first_name', label: profile.firstName.label, value: profile.firstName.value, autocomplete: 'given-name', editable: true })
+				+profileField({ name: 'phone', type: 'tel', label: profile.phone.label, value: profile.phone.value, autocomplete: 'tel', editable: true })
+				+profileField({ name: 'city', label: profile.city.label, value: profile.city.value, autocomplete: 'address-level2', editable: true })
+				//- пароль в просмотре — точками (без name — не отправляется); при редактировании вместо него — новый пароль и подтверждение
+				+profileField({ type: 'password', label: profile.passwordCurrent.label, value: profile.passwordCurrent.value, cls: 'profile-field--password-view' })
 				+profileField({ name: 'password', type: 'password', label: profile.password, autocomplete: 'new-password', editable: true, cls: 'profile-field--password js-password' })
 				+profileField({ name: 'password_confirm', type: 'password', label: profile.passwordConfirm, autocomplete: 'new-password', editable: true, cls: 'profile-field--password js-password' })
 				+profileField({ name: 'site', type: 'url', label: profile.site, autocomplete: 'url', editable: true })

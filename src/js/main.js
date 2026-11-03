@@ -35,6 +35,8 @@ import authInit from "./components/auth";
 import tabsAllInit from "./components/tabs";
 import profileInit from "./components/profile";
 import productPageInit from "./components/product-page";
+import accountDocumentsInit from "./components/account-documents";
+import inputMarkInit from "./components/input-mark";
 
 ieFix();
 vhFix();
@@ -71,3 +73,5 @@ authInit();
 tabsAllInit();
 profileInit();
 productPageInit();
+accountDocumentsInit();
+inputMarkInit();

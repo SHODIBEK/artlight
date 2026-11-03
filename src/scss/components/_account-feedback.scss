@@ -141,6 +141,19 @@
 		}
 	}
 
+	// поля скрытого вида документа
+	.account-feedback__fields[hidden] {
+		display: none;
+	}
+
+	// ≥ 1280 поля и кнопка — в половину колонки (по просьбе заказчика)
+	@media (min-width: #{$header-desktop}px) {
+		.account-feedback__fields,
+		.account-feedback__submit {
+			max-width: calc(50% - 10px);
+		}
+	}
+
 	&__toggle {
 		overflow: hidden;
 		white-space: nowrap;
@@ -153,6 +166,11 @@
 		&.is-selected {
 			color: var(--color-black);
 		}
+	}
+
+	// звёздочка обязательной даты — пока дата не выбрана
+	.is-selected &__required {
+		display: none;
 	}
 
 	&__chevron {

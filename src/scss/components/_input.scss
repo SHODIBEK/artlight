@@ -196,6 +196,43 @@
 		pointer-events: none;
 	}
 
+	// обязательное поле: красный кружок справа сверху от плейсхолдера — прозрачная копия его текста + кружок
+	// поверх поля (left / шрифт / top у textarea уточняет input-mark.js); с текстом / выбранным вариантом — скрыт
+	&__mark {
+		position: absolute;
+		left: var(--input-pad-x, 30px);
+		right: var(--input-pad-x, 30px);
+		top: 50%;
+		overflow: hidden;
+		font-size: 15px;
+		line-height: 1.2;
+		white-space: nowrap;
+		color: transparent;
+		transform: translateY(-50%);
+		pointer-events: none;
+	}
+
+	&--textarea #{$b}__mark {
+		top: var(--input-pad-y, 30px);
+		transform: none;
+	}
+
+	&:has(input#{$b}__field:not(:placeholder-shown)) #{$b}__mark,
+	&:has(textarea#{$b}__field:not(:placeholder-shown)) #{$b}__mark,
+	&:has(select#{$b}__field:valid) #{$b}__mark {
+		display: none;
+	}
+
+	&__required {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 2px;
+		border-radius: 50%;
+		width: 3px;
+		height: 3px;
+		background-color: var(--error-color);
+	}
+
 	&__field:placeholder-shown:not(:focus) ~ #{$b}__label,
 	&__field:has(option[value=""]:checked) ~ #{$b}__label {
 		top: 26px;
@@ -289,5 +326,11 @@
 	// при фокусе плейсхолдер пропадает (как в поиске); после модификаторов — перекрывает их цвет
 	#{$b}__field:focus::placeholder {
 		color: transparent;
+	}
+
+	// вместе с плейсхолдером пропадает и кружок обязательного поля (у select плейсхолдер — пункт, остаётся)
+	&:has(input#{$b}__field:focus) #{$b}__mark,
+	&:has(textarea#{$b}__field:focus) #{$b}__mark {
+		display: none;
 	}
 }

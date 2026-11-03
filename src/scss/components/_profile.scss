@@ -49,9 +49,9 @@
 		grid-column: 1 / -1;
 	}
 
+	// ряды полей вплотную (по просьбе заказчика; в макете 30 / 20)
 	&__fields {
 		display: grid;
-		gap: 30px;
 	}
 
 	&__error {
@@ -119,7 +119,7 @@
 		&__fields {
 			align-self: stretch;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			gap: 20px;
+			column-gap: 20px;
 		}
 
 		&__error {
@@ -168,6 +168,11 @@
 
 	// новый пароль — только при редактировании
 	.profile-form:not(.is-editing) &--password {
+		display: none;
+	}
+
+	// пароль точками — только в просмотре
+	.profile-form.is-editing &--password-view {
 		display: none;
 	}
 
