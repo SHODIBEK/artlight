@@ -297,32 +297,38 @@
 		color: var(--color-black);
 	}
 
+	// «Итого»: подпись капсом (серая) над значением; моб. и колонка корзины ≥ 1280 — 2 × 2, ≥ 768 — 4 в ряд
 	&__list {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
 		margin: 0;
-		gap: 21px;
+		gap: 20px;
 	}
 
-	&__row {
+	// подпись в 2 строки — значения ряда всё равно на одной линии (по низу)
+	&__item {
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 		justify-content: space-between;
-		font-size: 15px;
-		line-height: 18px;
-		color: var(--color-black);
-		gap: 20px;
+		gap: 6px;
+	}
+
+	&__label {
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 15px;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		color: var(--color-black-60);
 	}
 
 	&__value {
 		margin: 0;
-		font-weight: 500;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
 		white-space: nowrap;
-	}
-
-	&__total {
-		font-size: 18px;
-		line-height: 21px;
+		color: var(--color-black);
 	}
 
 	&__button {
@@ -342,9 +348,13 @@
 			line-height: 26px;
 		}
 
-		&__total {
-			font-size: 22px;
-			line-height: 26px;
+		&__list {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+
+		&__value {
+			font-size: 24px;
+			line-height: 29px;
 		}
 	}
 
@@ -354,5 +364,10 @@
 		flex-shrink: 0;
 		margin-top: 0;
 		width: 542px;
+
+		// колонка корзины 542 — 2 × 2 (на оформлении «Итого» на ширину списка — 4 в ряд)
+		&:not(.checkout-summary) &__list {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 	}
 }

@@ -3,9 +3,6 @@
 - var page = data.checkoutPage
 - var cart = data.cartPage
 - var delivery = page.delivery
-- var money = (value, cents) => value.toLocaleString('ru-RU', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 }).replace(/\s/g, ' ') + ' ₽'
-- var cartTotal = cart.items.reduce((sum, item) => sum + item.price * item.count, 0)
-- var cartCount = cart.items.reduce((sum, item) => sum + item.count, 0)
 
 //- вариант-карточка с круглой отметкой (транспортная компания, способ получения)
 mixin choice(name, label, opts)
@@ -85,18 +82,8 @@ form.checkout.js-feedback-form.js-cart.js-checkout(action="#" method="post" enct
 					p.cart__empty-text= cart.empty
 					+button({ label: cart.emptyLink.name, href: cart.emptyLink.url }).cart__empty-button
 
-				aside.cart-summary.checkout-summary.js-cart-summary
-					h3.cart-summary__title= cart.summary.title
-					dl.cart-summary__list
-						.cart-summary__row
-							dt= cart.summary.goods
-							dd.cart-summary__value.js-cart-total-count= cartCount + ' шт.'
-						.cart-summary__row
-							dt= cart.summary.delivery
-							dd.cart-summary__value= cart.summary.deliveryValue
-						.cart-summary__row.cart-summary__row--total
-							dt= cart.summary.total
-							dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
+				+cartSummary(cart, { tag: 'h3' }).checkout-summary
+				p.checkout-summary-note.js-cart-filled= typo(page.confirm.note)
 
 	section.checkout-delivery.container.js-checkout-delivery
 		h2.checkout-section__title= delivery.title

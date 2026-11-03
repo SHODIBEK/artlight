@@ -1,8 +1,5 @@
 //- Корзина: десктоп node-id=2-7577, моб. node-id=2-21397
 - var page = data.cartPage
-- var money = (value, cents) => value.toLocaleString('ru-RU', { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 }).replace(/\s/g, ' ') + ' ₽'
-- var cartTotal = page.items.reduce((sum, item) => sum + item.price * item.count, 0)
-- var cartCount = page.items.reduce((sum, item) => sum + item.count, 0)
 
 section.listing-head.container
 	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
@@ -27,17 +24,6 @@ section.cart.container.js-cart
 			p.cart__empty-text= page.empty
 			+button({ label: page.emptyLink.name, href: page.emptyLink.url }).cart__empty-button
 
-	aside.cart-summary.js-cart-summary
-		h2.cart-summary__title= page.summary.title
-		dl.cart-summary__list
-			.cart-summary__row
-				dt= page.summary.goods
-				dd.cart-summary__value.js-cart-total-count= cartCount + ' шт.'
-			.cart-summary__row
-				dt= page.summary.delivery
-				dd.cart-summary__value= page.summary.deliveryValue
-			.cart-summary__row.cart-summary__row--total
-				dt= page.summary.total
-				dd.cart-summary__value.cart-summary__total.js-cart-total= money(cartTotal, true)
+	+cartSummary(page)
 		+button({ label: page.summary.order }).cart-summary__button.js-cart-order(data-href=page.summary.orderUrl)
 		+button({ label: page.summary.login, view: 'secondary', href: 'login.html' }).cart-summary__button.cart-summary__button--login

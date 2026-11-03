@@ -27,3 +27,31 @@ mixin cartItem(item, index, opts)
 					span.cart-item__count.js-cart-count(aria-live="polite")= item.count
 					button.cart-item__count-button.js-cart-plus(type="button" aria-label="Увеличить количество")
 						+svg('cart-plus').cart-item__count-icon
+
+//- «Итого» (корзина, оформление запроса): товаров, сумма заказа, скидка (summary.discount, %), сумма с учётом скидки —
+//- по выбранным товарам пересчитывает cart.js (data-discount). Суммы — без «₽» (₽ в подписи). Заголовок — tag (h2 / h3)
+mixin cartSummary(cart, opts)
+	-
+		var o = opts || {}
+		var s = cart.summary
+		var sum = cart.items.reduce((acc, item) => acc + item.price * item.count, 0)
+		var count = cart.items.reduce((acc, item) => acc + item.count, 0)
+		var discount = Math.round(sum * s.discount) / 100
+		var num = (value) => value.toLocaleString('ru-RU', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).replace(/\s/g, ' ')
+	aside.cart-summary.js-cart-summary(data-discount=s.discount)&attributes(attributes)
+		#{o.tag || 'h2'}.cart-summary__title= s.title
+		dl.cart-summary__list
+			.cart-summary__item
+				dt.cart-summary__label= s.goods
+				dd.cart-summary__value.js-cart-total-count= count
+			.cart-summary__item
+				dt.cart-summary__label= s.sum
+				dd.cart-summary__value.js-cart-sum= num(sum)
+			.cart-summary__item
+				dt.cart-summary__label= s.discountLabel
+				dd.cart-summary__value.js-cart-discount= num(discount)
+			.cart-summary__item
+				dt.cart-summary__label= s.total
+				dd.cart-summary__value.js-cart-total= num(sum - discount)
+		if block
+			block

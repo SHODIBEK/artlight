@@ -1,13 +1,15 @@
 /**
 * Корзина: количество (− / +), удаление товара и выбранных, «Выбрать все» (частичный выбор — indeterminate),
-* «Сумма заказа» — по выбранным товарам. Пустая корзина — сообщение со ссылкой в каталог.
+* «Итого» — по выбранным товарам: товаров, сумма, скидка (data-discount у .js-cart-summary, %), сумма с учётом
+* скидки. Пустая корзина — сообщение со ссылкой в каталог.
 * Те же товары на «Оформлении запроса» (без панели «Выбрать все» и кнопки «Оформить»; .js-cart-filled — скрыть,
 * когда корзина пуста).
 */
-const formatMoney = (value, cents) => `${value.toLocaleString('ru-RU', {
+const formatNumber = (value, cents) => value.toLocaleString('ru-RU', {
 	minimumFractionDigits: cents ? 2 : 0,
 	maximumFractionDigits: cents ? 2 : 0,
-}).replace(/\s/g, ' ')} ₽`;
+}).replace(/\s/g, ' ');
+const formatMoney = (value) => `${formatNumber(value)} ₽`;
 
 export default function cartInit() {
 	const cart = document.querySelector('.js-cart');
@@ -19,11 +21,14 @@ export default function cartInit() {
 	const list = cart.querySelector('.js-cart-list');
 	const allInput = cart.querySelector('.js-cart-all .checkbox__input');
 	const totalCount = cart.querySelector('.js-cart-total-count');
+	const sumValue = cart.querySelector('.js-cart-sum');
+	const discountValue = cart.querySelector('.js-cart-discount');
 	const total = cart.querySelector('.js-cart-total');
 	const order = cart.querySelector('.js-cart-order');
 	const empty = cart.querySelector('.js-cart-empty');
 	const toolbar = cart.querySelector('.cart__toolbar');
 	const summary = cart.querySelector('.js-cart-summary');
+	const discountPercent = Number(summary.dataset.discount) || 0;
 
 	const getItems = () => [...list.querySelectorAll('.js-cart-item')];
 	const getCheck = (item) => item.querySelector('.js-cart-check .checkbox__input');
@@ -48,8 +53,12 @@ export default function cartInit() {
 			}
 		});
 
-		totalCount.textContent = `${count} шт.`;
-		total.textContent = formatMoney(sum, true);
+		const discount = Math.round(sum * discountPercent) / 100;
+
+		totalCount.textContent = count;
+		sumValue.textContent = formatNumber(sum, true);
+		discountValue.textContent = formatNumber(discount, true);
+		total.textContent = formatNumber(sum - discount, true);
 		if (order) {
 			order.disabled = !selected.length;
 		}

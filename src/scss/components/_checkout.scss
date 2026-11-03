@@ -257,6 +257,14 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	}
 }
 
+// под «Итого» (по просьбе заказчика, в макете нет)
+.checkout-summary-note {
+	margin: 20px 0 0;
+	font-size: 15px;
+	line-height: 18px;
+	color: var(--color-black-60);
+}
+
 // «Доставка»: табы — моб. в строку с прокруткой до краёв (40), ≥ 768 — на всю ширину поровну (60)
 .checkout-delivery {
 	&__tabs {
