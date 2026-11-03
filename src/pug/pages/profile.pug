@@ -1,17 +1,23 @@
 //- Личный кабинет — профиль: десктоп node-id=129-11289, моб. node-id=129-12757;
-//- вкладка «Контрагенты» (profile.html#counterparties) — десктоп node-id=129-12300, моб. node-id=129-13380.
+//- вкладка «Контрагенты» (profile.html#counterparties) — десктоп node-id=129-12300, моб. node-id=129-13380;
+//- редактирование контрагента (#counterparties/edit, новый — #counterparties/new; экраны вкладки — tabs.js) —
+//- десктоп node-id=2-9929, моб. node-id=2-22498; «Контактные лица» (#contacts) — node-id=172-17772,
+//- форма контактного лица (#contacts/edit, #contacts/new) — без макета, как у контрагентов;
+//- «Адреса доставки» (#addresses) — node-id=172-17879, новый адрес (#addresses/new, #addresses/edit) — node-id=172-18111.
 //- Вкладки — tabs.js (хеш = data-tab, у 1-й без хеша; последняя «крошка» — название вкладки), профиль — profile.js
 - var page = data.profilePage
 - var accountCurrent = page.url
 - var managerClosedMobile = true
 
 //- поле профиля. Просмотр — просто текст (подпись сверху, значение снизу, без линии; пустое — прочерк, пароли скрыты).
-//- editable — поле открывается кнопкой «Редактировать данные» (profile.js); пустое — подпись на строке значения
+//- editable — поле открывается кнопкой «Редактировать данные» (profile.js); пустое — подпись на строке значения.
+//- open — всегда открыто (формы контрагента / контактного лица, .is-editing у формы); required — красный кружок в подписи
 mixin profileField(opts)
 	- var o = opts
-	label.profile-field(class=[o.cls, o.editable ? 'profile-field--editable' : null])
+	- var locked = o.editable && !o.open
+	label.profile-field(class=[o.cls, o.editable || o.open ? 'profile-field--editable' : null])
 		if o.options
-			select.profile-field__control(name=o.name disabled=(o.editable ? true : null) data-editable=(o.editable ? '' : null))
+			select.profile-field__control(name=o.name disabled=(locked ? true : null) required=o.required data-editable=(locked ? '' : null))
 				each option in o.options
 					option(value=option selected=(option === o.value))= option
 			+svg('select-chevron').profile-field__chevron
@@ -20,23 +26,79 @@ mixin profileField(opts)
 				type=(o.type || 'text')
 				name=o.name
 				value=o.value
-				placeholder=(o.editable ? data.profilePage.profile.empty : ' ')
+				placeholder=(locked ? data.profilePage.profile.empty : ' ')
 				autocomplete=o.autocomplete
-				readonly
-				data-editable=(o.editable ? '' : null)
-				data-empty=(o.editable ? data.profilePage.profile.empty : null)
+				readonly=(o.open ? null : true)
+				required=o.required
+				inputmode=o.inputmode
+				data-editable=(locked ? '' : null)
+				data-empty=(locked ? data.profilePage.profile.empty : null)
 			)
-		span.profile-field__label= o.label
+		span.profile-field__label
+			| #{o.label}
+			if o.required
+				span.profile-field__required
 		if o.type === 'password' && o.name
 			button.profile-field__eye.js-password-toggle(type="button" aria-label="Показать пароль" aria-pressed="false" data-show="Показать пароль" data-hide="Скрыть пароль")
 				+svg('eye').profile-field__eye-icon.profile-field__eye-icon--show
 				+svg('eye-off').profile-field__eye-icon.profile-field__eye-icon--hide
 
-//- «Добавить …» — пунктирная плашка на всю ширину (формы добавления в макете нет)
-mixin profileAdd(label)
-	a.profile-add(href="#")
-		+svg('add').profile-add__icon
-		span= label
+//- строка таблицы (контрагенты, контактные лица, адреса): значения + «удалить» / «редактировать» (экран #<вкладка>/edit).
+//- data-field ячейки — имя поля формы (list.cells; без него — поля формы в порядке колонок)
+mixin profileRow(item, key, list)
+	- var names = list.cells || list.form.fields.map(function (field) { return field.name })
+	.profile-table__row(role="row")
+		each value, index in item
+			span.profile-table__cell(role="cell" data-field=names[index])= value
+		span.profile-table__actions(role="cell")
+			button.profile-table__action.js-profile-remove(type="button" aria-label=`${list.remove} ${item[0]}` data-label=list.remove)
+				+svg('delete').profile-table__action-icon
+			a.profile-table__action.js-profile-edit(href=`#${key}/edit` aria-label=`${list.edit} ${item[0]}` data-label=list.edit)
+				+svg('pen').profile-table__action-icon
+
+//- вкладка-список: заголовок, «Добавить…», таблица и экраны формы (tabs.js): #<вкладка>/edit — «редактировать» в строке
+//- (profile.js подставляет значения ячеек в поля по data-field; по прямой ссылке — 1-я строка), #<вкладка>/new — «Добавить…».
+//- Отправка — feedback-form.js (data-sent: fetch на action, при 2xx — событие form:sent → profile.js обновляет таблицу)
+mixin profileList(key)
+	- var list = page[key]
+	- var form = list.form
+	- var names = list.cells || form.fields.map(function (field) { return field.name })
+	.profile__panel(id=`profile-${key}` role="tabpanel" aria-labelledby=`profile-tab-${key}` hidden)
+		.profile__screen.js-tab-screen(data-screen="")
+			h2.profile__title= list.title
+			a.profile-add.js-profile-add(href=`#${key}/new`)
+				+svg('add').profile-add__icon
+				span= list.add
+			.profile-table(class=list.tableCls)
+				.profile-table__box.js-profile-list(role="table" aria-label=list.title)
+					.profile-table__row.profile-table__row--head(role="row")
+						each column in list.columns
+							span.profile-table__cell(role="columnheader")= column
+					each item in list.items
+						+profileRow(item, key, list)
+			//- строка новой записи — profile.js после сохранения формы
+			template.js-profile-row
+				+profileRow(names.map(function () { return '' }), key, list)
+
+		each mode in ['edit', 'new']
+			.profile__screen.js-tab-screen(data-screen=mode data-screen-title=form[mode].crumb hidden)
+				form.profile-record.is-editing.js-feedback-form.js-profile-record(action=form.action method="post" novalidate data-validate=".profile-field__control" data-sent data-mode=mode)
+					if mode === 'edit'
+						input(type="hidden" name="id" value="1")
+					.profile-record__head
+						a.account-order__back.js-tab-back(href=`#${key}` aria-label=form.back)
+							+svg('chevron-right').account-order__back-icon
+						h3.profile-record__title= form[mode].title
+					.profile-record__fields
+						each field, index in form.fields
+							- var column = names.indexOf(field.name)
+							- var value = mode === 'edit' && column > -1 ? list.items[0][column] : (field.options ? field.options[0] : '')
+							+profileField(Object.assign({}, field, { value: value, open: true }))
+					.profile-record__buttons
+						button.profile-form__edit.profile-record__save(type="submit")
+							+svg('save').profile-form__edit-icon
+							span= form.save
+						a.profile-record__cancel.js-tab-back(href=`#${key}`)= form.cancel
 
 section.listing-head.container
 	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs.js-tabs-crumbs
@@ -84,29 +146,12 @@ section.account.container
 				+svg('save').profile-form__edit-icon.profile-form__edit-icon--save
 				span.js-profile-edit-label= profile.edit
 
-		//- Контрагенты: таблица шире колонки на моб. (738) — прокрутка до краёв экрана
-		- var counterparties = page.counterparties
-		.profile__panel#profile-counterparties(role="tabpanel" aria-labelledby="profile-tab-counterparties" hidden)
-			h2.profile__title= counterparties.title
-			+profileAdd(counterparties.add)
-			.profile-table
-				.profile-table__box(role="table" aria-label=counterparties.title)
-					.profile-table__row.profile-table__row--head(role="row")
-						each column in counterparties.columns
-							span.profile-table__cell(role="columnheader")= column
-					each item in counterparties.items
-						.profile-table__row(role="row")
-							each value in item
-								span.profile-table__cell(role="cell")= value
-							span.profile-table__actions(role="cell")
-								button.profile-table__action.js-counterparty-remove(type="button" aria-label=`Удалить контрагента ${item[0]}`)
-									+svg('delete').profile-table__action-icon
-								a.profile-table__action(href="#" aria-label=`Редактировать контрагента ${item[0]}`)
-									+svg('pen').profile-table__action-icon
+		//- Контрагенты (форма — десктоп node-id=2-9929, моб. 2-22498), контактные лица (таблица — node-id=172-17772,
+		//- формы в макете нет — как у контрагентов), адреса доставки (таблица — 172-17879, форма — 172-18111):
+		//- таблица шире колонки — прокрутка (< 1280 до краёв экрана)
+		+profileList('counterparties')
+		+profileList('contacts')
 
-		each key in ['contacts', 'addresses']
-			.profile__panel(id=`profile-${key}` role="tabpanel" aria-labelledby=`profile-tab-${key}` hidden)
-				h2.profile__title= page[key].title
-				+profileAdd(page[key].add)
+		+profileList('addresses')
 
 include ../components/account-menu-panel

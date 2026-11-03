@@ -1,5 +1,7 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
 // Личный кабинет — избранное: «Все товары» — десктоп node-id=129-16998, моб. node-id=129-18412;
 // (моб. node-id=129-18412), «Группы товаров» node-id=129-17803 (моб. node-id=129-18935).
+// Группа (#groups/<id>) — десктоп node-id=2-9677, моб. node-id=2-22254: назад + название + «⋮», товары — та же сетка.
 // Моб. — блоки через 30, ≥ 768 — 20; товары — сетка «Встраиваемых», группы — карточки главной кабинета
 .favorites {
 	&__tabs {
@@ -8,7 +10,8 @@
 		gap: 8px 8.5px;
 	}
 
-	&__panel {
+	&__panel,
+	&__screen {
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
@@ -42,7 +45,8 @@
 	@media (min-width: #{$tablet}px) {
 		gap: 20px;
 
-		&__panel {
+		&__panel,
+		&__screen {
 			gap: 20px;
 		}
 
@@ -88,5 +92,59 @@
 		&__groups {
 			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
+	}
+}
+
+// шапка группы: назад (круг 32), название Medium 24/29, «⋮» 16; моб. через 16, ≥ 768 — 20
+.favorites-group {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	&__title {
+		overflow: hidden;
+		margin: 0;
+		min-width: 0;
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 29px;
+		text-overflow: ellipsis;
+		color: var(--color-black);
+	}
+
+	&__menu {
+		flex-shrink: 0;
+	}
+
+	// кнопка 16 — область нажатия шире на 8 с каждой стороны
+	&__more {
+		position: relative;
+		display: flex;
+		outline: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		&::before {
+			content: "";
+			position: absolute;
+			inset: -8px;
+		}
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	&__more-icon {
+		width: 16px;
+		height: 16px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
 	}
 }

@@ -24,7 +24,7 @@ function isFieldValid(field) {
 }
 
 function setError(field, isError) {
-	const wrapper = field.closest('.input, .checkbox');
+	const wrapper = field.closest('.input, .checkbox, .profile-field');
 
 	if (wrapper) {
 		wrapper.classList.toggle('is-error', isError);
@@ -98,6 +98,20 @@ export default function feedbackFormInit() {
 				event.preventDefault();
 				send(form).then(() => {
 					window.location.href = form.dataset.redirect;
+				}).catch((error) => {
+					// eslint-disable-next-line no-console
+					console.error('Форма не отправлена:', error);
+				});
+
+				return;
+			}
+
+			// data-sent — без попапа и перехода (форма контрагента в профиле): fetch на action, при ответе 2xx —
+			// событие form:sent на форме; action="#" (вёрстка) — сразу событие
+			if ('sent' in form.dataset) {
+				event.preventDefault();
+				send(form).then(() => {
+					form.dispatchEvent(new CustomEvent('form:sent', {bubbles: true}));
 				}).catch((error) => {
 					// eslint-disable-next-line no-console
 					console.error('Форма не отправлена:', error);

@@ -1,5 +1,6 @@
 //- Личный кабинет — избранное: «Все товары» — десктоп node-id=129-16998, моб. node-id=129-18412;
-//- «Группы товаров» (favorites.html#groups) — десктоп node-id=129-17803, моб. node-id=129-18935.
+//- «Группы товаров» (favorites.html#groups) — десктоп node-id=129-17803, моб. node-id=129-18935;
+//- группа (favorites.html#groups/<id>, экран вкладки — tabs.js) — десктоп node-id=2-9677, моб. node-id=2-22254.
 //- Вкладки — tabs.js (data-crumbs-all — название вкладки в крошках и у 1-й: «Избранное / Все товары»)
 - var page = data.favoritesPage
 - var accountCurrent = page.url
@@ -36,18 +37,39 @@ section.account.container
 					+productCard(item, index < 4)
 			+pagination(page.pagination.current, page.pagination.total).favorites__pagination
 
-		//- группы: карточки как на главной кабинета (1 / 2 (768+) / 3 (1600+)), формы добавления в макете нет
+		//- группы: карточки как на главной кабинета (1 / 2 (768+) / 3 (1600+)), формы добавления в макете нет.
+		//- Карточка — ссылка на экран группы #groups/<id> (tabs.js): назад, название, меню «⋮», товары — сетка «Всех товаров»
 		.favorites__panel#favorites-groups(role="tabpanel" aria-labelledby="favorites-tab-groups" hidden)
-			a.profile-add(href="#")
-				+svg('add').profile-add__icon
-				span= page.add
-			ul.favorites__groups
-				each group in page.groups
-					li
-						a.account-card.account-card--group(href=group.href)
-							+svg('box').account-card__icon
-							span.account-card__text
-								span.account-card__title= group.title
-								span.account-card__note= group.text
+			.favorites__screen.js-tab-screen(data-screen="")
+				a.profile-add(href="#")
+					+svg('add').profile-add__icon
+					span= page.add
+				ul.favorites__groups
+					each group in page.groups
+						li
+							a.account-card.account-card--group(href=`#groups/${group.id}`)
+								+svg('box').account-card__icon
+								span.account-card__text
+									span.account-card__title= group.title
+									span.account-card__note= group.text
+
+			each group in page.groups
+				.favorites__screen.js-tab-screen(data-screen=group.id data-screen-title=group.title hidden)
+					.favorites-group
+						a.account-order__back.js-tab-back(href="#groups" aria-label=page.groupBack)
+							+svg('chevron-right').account-order__back-icon
+						h3.favorites-group__title= group.title
+						+dropdown({ cls: 'favorites-group__menu' })
+							button.favorites-group__more.js-dropdown-toggle(type="button" aria-expanded="false" aria-label=page.groupMenu.label)
+								+svg('dots-vertical').favorites-group__more-icon
+							.dropdown__panel
+								ul.filter-options.filter-options--links
+									each action in page.groupMenu.items
+										li.filter-options__item
+											a.filter-options__link(href=action.href)= action.label
+					.favorites__grid
+						each item in group.products
+							+productCard(item)
+					+pagination(page.pagination.current, page.pagination.total).favorites__pagination
 
 include ../components/account-menu-panel

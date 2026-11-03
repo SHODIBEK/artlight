@@ -1,6 +1,7 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
 // Личный кабинет — профиль: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=129-11289,
-// моб. node-id=129-12757; вкладка «Контрагенты» — 129-12300 / 129-13380.
+// моб. node-id=129-12757; вкладка «Контрагенты» — 129-12300 / 129-13380; форма контрагента — 2-9929 / 2-22498;
+// «Контактные лица» — 172-17772 (форма — как у контрагента); «Адреса доставки» — 172-17879, новый адрес — 172-18111.
 // Моб. — блоки через 30, вкладки с переносом (8); ≥ 768 — через 20
 .profile {
 	&__tabs {
@@ -9,7 +10,8 @@
 		gap: 8px 8.5px;
 	}
 
-	&__panel {
+	&__panel,
+	&__screen {
 		display: flex;
 		flex-direction: column;
 		gap: 30px;
@@ -31,7 +33,8 @@
 	@media (min-width: #{$tablet}px) {
 		gap: 20px;
 
-		&__panel {
+		&__panel,
+		&__screen {
 			gap: 20px;
 		}
 	}
@@ -117,9 +120,9 @@
 		align-items: flex-start;
 
 		&__fields {
+			column-gap: 20px;
 			align-self: stretch;
 			grid-template-columns: repeat(2, minmax(0, 1fr));
-			column-gap: 20px;
 		}
 
 		&__error {
@@ -187,6 +190,17 @@
 		color: var(--color-black-60);
 		transition: top $duration-normal;
 		pointer-events: none;
+	}
+
+	// обязательное поле — красный кружок 3px справа сверху от подписи, как у +input
+	&__required {
+		display: inline-block;
+		vertical-align: top;
+		margin-left: 2px;
+		border-radius: 50%;
+		width: 3px;
+		height: 3px;
+		background-color: var(--error-color);
 	}
 
 	// редактирование: пусто и не в фокусе — подпись на строке значения (38, вровень со значениями соседних полей),
@@ -313,6 +327,105 @@
 	}
 }
 
+// форма записи — контрагента / контактного лица (экраны #<вкладка>/edit / new): назад + заголовок, поля,
+// «Сохранить» / «Отменить».
+// Моб. — блоки через 30, поля в колонку, кнопки по 50%;
+// ≥ 768 — через 20, поля по 2 в ряд (__wide — во всю ширину, __narrow — мелкие поля адреса).
+// Ряды полей вплотную, как в профиле (в макете 30 / 20); поля всегда открыты (.is-editing — линии)
+.profile-record {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&__head {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+
+	// в макете 15 Medium — как заголовок экрана «Нового обращения» и группы избранного (24/29)
+	&__title {
+		margin: 0;
+		font-weight: 500;
+		font-size: 24px;
+		line-height: 29px;
+		color: var(--color-black);
+	}
+
+	&__fields {
+		display: grid;
+	}
+
+	&__buttons {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&__save {
+		flex: 1 1 0;
+	}
+
+	&__cancel {
+		flex: 1 1 0;
+		outline: none;
+		font-size: 15px;
+		line-height: 18px;
+		text-align: center;
+		text-decoration: none;
+		color: var(--color-black);
+		transition: color $duration-normal;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		gap: 20px;
+
+		&__head {
+			gap: 20px;
+		}
+
+		// сетка 6 колонок: поле — половина (3), мелкое (адрес: улица … тип объекта) — тоже половина,
+		// с 1280 — треть, с 1600 — шестая часть, как в макете; __wide — во всю ширину
+		&__fields {
+			column-gap: 20px;
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+
+			> * {
+				grid-column: span 3;
+			}
+		}
+
+		&__fields > &__wide {
+			grid-column: 1 / -1;
+		}
+
+		&__save,
+		&__cancel {
+			flex: none;
+		}
+	}
+
+	@media (min-width: #{$header-desktop}px) {
+		&__fields > &__narrow {
+			grid-column: span 2;
+		}
+	}
+
+	@media (min-width: #{$header-full}px) {
+		&__fields > &__narrow {
+			grid-column: span 1;
+		}
+	}
+}
+
 // «Добавить …» — пунктирная рамка 56, плюс 24 + 3 + текст по центру
 .profile-add {
 	display: flex;
@@ -355,6 +468,11 @@
 
 	&__box {
 		min-width: 738px;
+	}
+
+	// 8 колонок (адреса доставки) — уже 1000 не сжимаем, прокрутка и на десктопе
+	&--wide &__box {
+		min-width: 1000px;
 	}
 
 	&__row {

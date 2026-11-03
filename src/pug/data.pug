@@ -2203,15 +2203,87 @@
 			items: [
 				['тест', '312413413513', 'с НДС'],
 			],
+			remove: 'Удалить контрагента',
+			edit: 'Редактировать контрагента',
+			// форма контрагента — экраны #counterparties/edit / #counterparties/new
+			// (десктоп node-id=2-9929, моб. 2-22498); значения «Системы налогообложения» — как в колонке «НДС»
+			form: {
+				action: '#',
+				back: 'Вернуться к контрагентам',
+				edit: { title: 'Редактировать контрагента', crumb: 'Редактирование контрагента' },
+				new: { title: 'Новый контрагент', crumb: 'Новый контрагент' },
+				// поля — в порядке колонок таблицы
+				fields: [
+					{ name: 'name', label: 'Название компании', required: true, autocomplete: 'organization' },
+					{ name: 'inn', label: 'ИНН', required: true, inputmode: 'numeric' },
+					{ name: 'tax', label: 'Система налогообложения', options: ['с НДС', 'без НДС'], cls: 'profile-field--select profile-record__wide' },
+				],
+				save: 'Сохранить',
+				cancel: 'Отменить',
+			},
 		},
+		// контактные лица (#contacts): таблица — десктоп node-id=172-17772; формы в макете нет — как у контрагентов
 		contacts: {
 			title: 'Контактные лица',
-			add: 'Добавить контактное лицо',
+			add: 'Добавить новое контактное лицо',
+			columns: ['Фамилия имя', 'Email', 'Телефон', 'Контрагент'],
+			// в макете почта «test» — у нас адрес, чтобы форма редактирования проходила проверку
+			items: [
+				['тест', 'test@test.ru', '978222222222', 'тест'],
+			],
+			remove: 'Удалить контактное лицо',
+			edit: 'Редактировать контактное лицо',
+			form: {
+				action: '#',
+				back: 'Вернуться к контактным лицам',
+				edit: { title: 'Редактировать контактное лицо', crumb: 'Редактирование контактного лица' },
+				new: { title: 'Новое контактное лицо', crumb: 'Новое контактное лицо' },
+				fields: [
+					{ name: 'name', label: 'Фамилия имя', required: true, autocomplete: 'name' },
+					{ name: 'email', label: 'Email', type: 'email', autocomplete: 'email' },
+					{ name: 'phone', label: 'Телефон', type: 'tel', required: true, autocomplete: 'tel', inputmode: 'tel' },
+					// контрагенты — из таблицы «Контрагенты»
+					{ name: 'counterparty', label: 'Контрагент', options: ['тест'], cls: 'profile-field--select' },
+				],
+				save: 'Сохранить',
+				cancel: 'Отменить',
+			},
 		},
+		// адреса доставки (#addresses): таблица — десктоп node-id=172-17879, новый адрес — 172-18111 (моб. макетов нет)
 		addresses: {
 			title: 'Адреса доставки',
 			add: 'Добавить адрес доставки',
+			columns: ['Город', 'Улица', 'Дом', 'Этаж', 'Офис', 'Индекс', 'Тип', 'Комментарий'],
+			// поля формы для колонок (порядок полей формы — другой, «Литеры» в таблице нет)
+			cells: ['city', 'street', 'house', 'floor', 'office', 'index', 'type', 'comment'],
+			tableCls: 'profile-table--wide',
+			items: [
+				['тест', 'test', '2', 'тест', '2', '2', '2', '2'],
+			],
+			remove: 'Удалить адрес',
+			edit: 'Редактировать адрес',
+			form: {
+				action: '#',
+				back: 'Вернуться к адресам доставки',
+				edit: { title: 'Редактировать адрес доставки', crumb: 'Редактирование адреса доставки' },
+				new: { title: 'Новый адрес доставки', crumb: 'Новый адрес доставки' },
+				// ≥ 768: индекс и город — по 2 в ряд, улица … тип объекта — мелкие (__narrow), комментарий — во всю ширину
+				fields: [
+					{ name: 'index', label: 'Индекс', inputmode: 'numeric', autocomplete: 'postal-code' },
+					{ name: 'city', label: 'Город', required: true, autocomplete: 'address-level2' },
+					{ name: 'street', label: 'Улица', required: true, cls: 'profile-record__narrow' },
+					{ name: 'house', label: 'Дом', required: true, cls: 'profile-record__narrow' },
+					{ name: 'letter', label: 'Литера', cls: 'profile-record__narrow' },
+					{ name: 'floor', label: 'Этаж', inputmode: 'numeric', cls: 'profile-record__narrow' },
+					{ name: 'office', label: 'Кв/офис', cls: 'profile-record__narrow' },
+					{ name: 'type', label: 'Тип объекта', cls: 'profile-record__narrow' },
+					{ name: 'comment', label: 'Комментарий', cls: 'profile-record__wide' },
+				],
+				save: 'Сохранить',
+				cancel: 'Отменить',
+			},
 		},
+
 	};
 
 	// Личный кабинет — избранное (favorites.html): вкладки «Все товары» / «Группы товаров» (favorites.html#groups)
@@ -2231,11 +2303,21 @@
 		pagination: { current: 1, total: 3 },
 		// в макете «Добавить нового контрагента» — копия с «Контрагентов»
 		add: 'Добавить новую группу',
+		// группа — экран вкладки favorites.html#groups/<id> (десктоп node-id=2-9677, моб. 2-22254); товары — заглушка
 		groups: [
-			{ title: 'Светильники', text: '10 товаров', href: '#' },
-			{ title: 'Группа 1', text: '10 товаров', href: '#' },
-			{ title: 'Группа 2', text: '10 товаров', href: '#' },
+			{ id: 'lights', title: 'Светильники', text: '10 товаров', products: data.searchPage.products },
+			{ id: 'group-1', title: 'Группа 1', text: '10 товаров', products: data.searchPage.products },
+			{ id: 'group-2', title: 'Группа 2', text: '10 товаров', products: data.searchPage.products },
 		],
+		groupBack: 'Вернуться к группам',
+		// меню «⋮» у названия группы — в макете без открытого состояния, пункты придуманы
+		groupMenu: {
+			label: 'Действия с группой',
+			items: [
+				{ label: 'Переименовать группу', href: '#' },
+				{ label: 'Удалить группу', href: '#' },
+			],
+		},
 	};
 
 	data.orderPage = {
