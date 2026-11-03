@@ -9,7 +9,7 @@ const formatNumber = (value, cents) => value.toLocaleString('ru-RU', {
 	minimumFractionDigits: cents ? 2 : 0,
 	maximumFractionDigits: cents ? 2 : 0,
 }).replace(/\s/g, ' ');
-const formatMoney = (value) => `${formatNumber(value)} ₽`;
+const formatMoney = (value, cents) => `${formatNumber(value, cents)} ₽`;
 
 export default function cartInit() {
 	const cart = document.querySelector('.js-cart');
@@ -56,9 +56,9 @@ export default function cartInit() {
 		const discount = Math.round(sum * discountPercent) / 100;
 
 		totalCount.textContent = count;
-		sumValue.textContent = formatNumber(sum, true);
-		discountValue.textContent = formatNumber(discount, true);
-		total.textContent = formatNumber(sum - discount, true);
+		sumValue.textContent = formatMoney(sum, true);
+		discountValue.textContent = formatMoney(discount, true);
+		total.textContent = formatMoney(sum - discount, true);
 		if (order) {
 			order.disabled = !selected.length;
 		}

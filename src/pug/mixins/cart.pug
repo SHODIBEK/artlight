@@ -4,7 +4,7 @@ mixin cartItem(item, index, opts)
 	-
 		var o = opts || {}
 		var isEager = !index && o.eager !== false
-		var money = (value) => value.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽'
+		var money = (value) => value.toLocaleString('ru-RU').replace(/\s/g, ' ') + ' ₽'
 	li.cart-item.js-cart-item(data-price=item.price)&attributes(attributes)
 		.cart-item__picture
 			img.cart-item__image(src=`${baseDir}images/cart/${item.image}.webp` width="160" height="160" alt=item.name)&attributes(isEager ? { fetchpriority: 'high' } : { loading: 'lazy' })
@@ -29,7 +29,7 @@ mixin cartItem(item, index, opts)
 						+svg('cart-plus').cart-item__count-icon
 
 //- «Итого» (корзина, оформление запроса): товаров, сумма заказа, скидка (summary.discount, %), сумма с учётом скидки —
-//- по выбранным товарам пересчитывает cart.js (data-discount). Суммы — без «₽» (₽ в подписи). Заголовок — tag (h2 / h3)
+//- по выбранным товарам пересчитывает cart.js (data-discount). Суммы — с «₽» через неразрывный пробел. Заголовок — tag (h2 / h3)
 mixin cartSummary(cart, opts)
 	-
 		var o = opts || {}
@@ -46,12 +46,12 @@ mixin cartSummary(cart, opts)
 				dd.cart-summary__value.js-cart-total-count= count
 			.cart-summary__item
 				dt.cart-summary__label= s.sum
-				dd.cart-summary__value.js-cart-sum= num(sum)
+				dd.cart-summary__value.js-cart-sum= num(sum) + ' ₽'
 			.cart-summary__item
 				dt.cart-summary__label= s.discountLabel
-				dd.cart-summary__value.js-cart-discount= num(discount)
+				dd.cart-summary__value.js-cart-discount= num(discount) + ' ₽'
 			.cart-summary__item
 				dt.cart-summary__label= s.total
-				dd.cart-summary__value.js-cart-total= num(sum - discount)
+				dd.cart-summary__value.js-cart-total= num(sum - discount) + ' ₽'
 		if block
 			block
