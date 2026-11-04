@@ -6,7 +6,7 @@
 	"scripts": {
 		"prepare": "husky install || exit 0",
 		"pre-commit": "lint-staged",
-		"deploy": "npm run build && gh-pages -d build",
+		"deploy": "gulp build --ci && gh-pages -d build --nojekyll",
 		"build": "webpack --mode production"
 	},
 	"author": "Ninelines Agency <info@ninelines.agency>",
