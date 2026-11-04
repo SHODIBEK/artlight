@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+		<meta name="description" content="Описания">
+		<meta name="keywords" content="keywords">
+		<meta name="format-detection" content="telephone=no">
+		<title>ARTLIGHT | IES/LDT файлы</title><!-- Styles Section  -->
+		<link rel="stylesheet" href="./css/main.css?v=1793802670902">
+	</head>
+	<body>
+		<div class="preloader js-preloader" aria-hidden="true">
+			<div class="preloader__logo"><svg width="163" height="24" viewBox="0 0 163 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M86.1122 21.1596V2.79603H89.1443V18.8287H99.1035V21.1596H86.1122ZM101.348 21.1596V2.79603H104.38V21.1596H101.348ZM107.807 11.9927C107.807 6.49332 111.644 2.58876 117.071 2.58876C121.078 2.58876 124.33 4.76311 125.444 8.01195L122.605 8.90454C121.995 6.52293 119.824 5.00004 117.071 5.00004C113.401 5.00004 110.867 7.77508 110.867 11.9927C110.867 16.2102 113.396 19.0657 116.985 19.0657C120.13 19.0657 122.578 17.1789 122.578 14.1924V13.799H116.766V11.4681H125.611V21.1596H123.162L122.771 18.6722C121.518 20.2967 119.488 21.4219 116.653 21.4219C111.505 21.4219 107.807 17.5174 107.807 11.9927ZM129.003 21.1596V2.79603H132.035V10.7066H141.715V2.79603H144.748V21.1596H141.715V13.0375H132.035V21.1596H129.003ZM153.795 21.1596V5.10154H147.619V2.79603H163V5.10154H156.823V21.1596H153.791H153.795Z" fill="currentColor"/>
+<path d="M31.1567 21.1681L38.7801 2.80449H42.2302L49.8536 21.1681H46.7362L44.9842 16.8744H35.9994L34.2744 21.1681H31.1567ZM36.9697 14.5393H44.0363L40.5052 5.92218L36.9743 14.5393H36.9697ZM64.054 21.1681L59.1302 13.9386H55.4601V21.1681H52.4275V2.80449H60.078C67.3374 2.80449 68.0877 11.7092 62.3604 13.5959L67.4772 21.1681H64.054ZM55.4601 11.5823H59.9119C64.3054 11.5823 64.3054 5.13961 59.9119 5.13961H55.4601V11.5823ZM74.7996 21.1681V5.11H68.6227V2.80449H84.004V5.11H77.8271V21.1681H74.795H74.7996Z" fill="currentColor"/>
+<path d="M0 0H25.4866V24H0V0Z" fill="#7BDE00"/>
+<path d="M5.80695 0H8.76248V9.66909H5.80695V0Z" fill="#1E1E1E"/>
+<path d="M5.80695 14.3091H8.77955V24H5.80695V14.3091Z" fill="#1E1E1E"/>
+<path d="M0 13.4157V10.6165H4.74355V13.4157H0Z" fill="#1E1E1E"/>
+<path d="M9.72834 13.4157V10.6165H25.4866V13.4157H9.72834Z" fill="#1E1E1E"/>
+</svg>
+
+			</div>
+		</div>
+		<noscript>
+			<style>.preloader { display: none; }</style>
+		</noscript>
+		<div class="site"><!-- Header Section  -->
+			<header class="header js-header">
+				<div class="header__container container">
+					<button class="header__burger js-mobile-menu-open" type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
+						<svg class="header__burger-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#burger"></use>
+						</svg>
+					</button>
+					<button class="header__search-toggle js-header-search-toggle" type="button" aria-label="Поиск" aria-expanded="false">
+						<svg class="header__search-toggle-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#loupe"></use>
+						</svg>
+					</button><a class="header__catalog" href="catalog.html">
+						<svg class="header__catalog-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#burger-catalog"></use>
+						</svg><span class="header__catalog-text">Каталог</span></a>
+					<nav class="header__nav js-header-nav" aria-label="Основное меню">
+						<ul class="header__menu">
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="sale.html">Распродажа</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="design.html">Проектирование</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="services.html">Услуги</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="projects.html">Проекты</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="contacts.html">Контакты</a></li>
+							<li class="header__menu-item header__menu-item--more">
+								<button class="header__link header__more" type="button" aria-haspopup="true" aria-expanded="false">Еще
+									<svg class="header__more-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#chevron-more"></use>
+									</svg>
+								</button>
+								<div class="header__dropdown">
+									<ul class="header__dropdown-list">
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="sale.html">Распродажа</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="design.html">Проектирование</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="services.html">Услуги</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="projects.html">Проекты</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="contacts.html">Контакты</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="cooperation.html">Сотрудничество</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="services.html">Услуги</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="warranty.html">Гарантия</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="delivery.html">Доставка</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="reviews.html">Отзывы</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="order.html">Оформление заказа</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="projects.html">Реализованные проекты</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="blog.html">Блог</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="education.html">Обучение</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="vacancies.html">Вакансии</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav><a class="header__logo" href="home.html" aria-label="ARTLIGHT — на главную">
+						<svg class="header__logo-img" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#logo"></use>
+						</svg></a>
+					<div class="header__phones"><a class="header__phone" href="tel:+78005003336"><span class="header__phone-number">8 800 500 33 36</span> <span class="header__phone-label">бесплатно по РФ</span></a><a class="header__phone" href="tel:+78127407030"><span class="header__phone-number">8 812 740 70 30</span> <span class="header__phone-label">СПБ</span></a><a class="header__phone" href="tel:+74956405020"><span class="header__phone-number">8 495 640 50 20</span> <span class="header__phone-label">МСК</span></a>
+					</div>
+					<form class="search header__search js-header-search" action="search.html" method="get" role="search">
+						<input class="search__field" type="search" name="q" placeholder="Поиск по ARTLIGHT" aria-label="Поиск по ARTLIGHT"/>
+						<button class="search__button" type="submit" aria-label="Найти">
+							<svg class="search__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#search"></use>
+							</svg>
+						</button>
+					</form>
+					<div class="header__actions"><a class="header__action" href="login.html" aria-label="Личный кабинет">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#heroicons-outline_user"></use>
+							</svg></a><a class="header__action" href="favorites.html" aria-label="Избранное">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#heart"></use>
+							</svg></a><a class="header__action header__action--cart" href="cart.html" aria-label="Корзина, товаров: 3">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#bytesize_bag"></use>
+							</svg><span class="header__badge">3</span></a></div>
+				</div>
+			</header>
+			<div class="mobile-menu js-mobile-menu" id="mobile-menu" aria-hidden="true">
+				<div class="mobile-menu__overlay js-mobile-menu-close"></div>
+				<div class="mobile-menu__body">
+					<div class="mobile-menu__panel mobile-menu__panel--main js-mobile-menu-panel" data-panel="main">
+						<button class="mobile-menu__icon-button js-mobile-menu-close" type="button" aria-label="Закрыть меню">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#close"></use>
+							</svg>
+						</button>
+						<nav class="mobile-menu__nav" aria-label="Мобильное меню">
+							<ul class="mobile-menu__list">
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="catalog"><span>Каталог</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="design.html"><span>Проектирование</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="projects.html"><span>Проекты</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="services.html"><span>Услуги</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="sale.html"><span>Распродажа</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="buyer"><span>Для покупателя</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="contacts.html"><span>Контакты</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="download"><span>Скачать</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+							</ul>
+						</nav>
+						<div class="mobile-menu__contacts">
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+78005003336">8 (800) 500-33-36</a>
+								<p class="mobile-menu__note">Бесплатный звонок по России</p>
+							</div>
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+78127407030">8 (812) 740 70 30</a>
+								<p class="mobile-menu__note">197101, Санкт-Петербург, метро &quot;Петроградская&quot;, ул. Ленина, д. 12/36 (вход с ул. Ленина)</p>
+							</div>
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+74956405020">8 (495) 640 50 20</a>
+								<p class="mobile-menu__note">105005, Москва, метро &quot;Бауманская&quot;, ул. Бауманская, 33/2, стр. 1, подъезд 2, 2 этаж</p>
+							</div>
+						</div>
+						<ul class="mobile-menu__socials">
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#vk"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#telegram"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#pinterest"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#yandex"></use>
+									</svg></a></li>
+						</ul>
+						<button class="button button--main mobile-menu__button" type="button" data-modal="callback"><span class="button__text">Заказать звонок</span><span class="button__circle">
+								<svg class="button__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+								</svg></span>
+						</button>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="catalog" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Трековые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Встраиваемые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Шинопровод и комплектующие</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Магнитная система</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Индивидуальные</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Профильная система освещения</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Подвесные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Декоративные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Декоративные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Модульные системы освещения</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Настенные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Напольные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Карданные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Гипсовые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Экспозиционные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Светодиодные ленты и комплектующие</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Источники питания и системы управления</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Источники света</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Комплексные системы безопасности</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Распродажи</a></li>
+						</ul>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="buyer" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="about.html">О компании</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="cooperation.html">Сотрудничество</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="services.html">Услуги</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="warranty.html">Гарантия</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="delivery.html">Доставка</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="reviews.html">Отзывы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="order.html">Оформление заказа</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="projects.html">Реализованные проекты</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="blog.html">Блог</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="education.html">Обучение</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="vacancies.html">Вакансии</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="contacts.html">Контакты</a></li>
+						</ul>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="download" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">IES/LDT файлы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Монтажные инструкции</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">BIM файлы (Revit)</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Каталог №11 - pdf</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">3D файлы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Катало 2023 - pdf</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Сертификаты</a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- Main Section  -->
+			<main class="main">
+				<section class="listing-head container">
+					<nav class="breadcrumbs listing-head__breadcrumbs" aria-label="Хлебные крошки">
+						<ol class="breadcrumbs__list">
+							<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="home.html">Главная</a>
+							</li>
+							<li class="breadcrumbs__item"><span class="breadcrumbs__separator" aria-hidden="true"> / </span><span class="breadcrumbs__current" aria-current="page">Дополнительные материалы</span>
+							</li>
+							<li class="breadcrumbs__item"><span class="breadcrumbs__separator" aria-hidden="true"> / </span><span class="breadcrumbs__current" aria-current="page">IES и LDT -файлы</span>
+							</li>
+						</ol>
+					</nav>
+					<h1 class="listing-head__title">IES/LDT файлы</h1>
+				</section>
+				<div class="ies container js-ies">
+					<div class="ies__intro">
+						<p class="ies__paragraph">Перед приобретением светодиодного светильника необходимо узнать распределение его светового потока — для этого используются IES файлы или файлы в формате.LDT (существуют и другие форматы, но они распространены гораздо меньше). Такие файлы содержат в себе фотометрические данные осветительного прибора, которые обязательно потребуются для грамотного расчёта освещения или для 3D моделирования пространств.</p>
+						<p class="ies__paragraph">Формат IES считается международным и часто используется для светотехнических расчётов профессиональными светотехниками и светодизайнерами. Информация в IES файлах позволяет программе DIALux или других программах для расчёта освещённости RELUX максимально реалистично воплощать, рассчитывать и создавать светотехнические проекты по освещению любых объектов.</p>
+						<p class="ies__paragraph">Компания ARTLIGHT располагает всеми возможностями для создания IES файлов данных на высоком уровне, чтобы предоставить вам качественное воспроизведение светотехнических проектов. Корректность файлов данных базируется на достоверности и точности измеренных характеристик осветительного прибора.</p>
+					</div>
+					<div class="ies__files">
+						<p class="ies__lead">В этом разделе Вы сможете скачать IES файлы светильников производства ARTLIGHT:</p>
+						<div class="ies__search-bar">
+							<form class="search ies__search js-ies-search" method="get" role="search">
+								<input class="search__field" type="search" name="q" placeholder="Поиск" aria-label="Поиск"/>
+								<button class="search__button" type="submit" aria-label="Найти">
+									<svg class="search__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#search"></use>
+									</svg>
+								</button>
+							</form>
+						</div>
+						<ul class="ies__list">
+							<li class="ies__item js-ies-item" data-name="art-08_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/2fe/vlyy6oh0loti31su3bu7o4natjesx816/ART-08_IES.7z" target="_blank" rel="noopener">ART-08_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_08/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-1012_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e69/264akay7na2nfnf0cnoc2r4ektuh9pn2/ART-1012_IES.7z" target="_blank" rel="noopener">ART-1012_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_1012/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-1013_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e69/264akay7na2nfnf0cnoc2r4ektuh9pn2/ART-1012_IES.7z" target="_blank" rel="noopener">ART-1013_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_1013/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-1033_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e69/264akay7na2nfnf0cnoc2r4ektuh9pn2/ART-1012_IES.7z" target="_blank" rel="noopener">ART-1033_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_1033/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-1712_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d14/7z40ggvf06hejv9w4dm16vhwmt3yu8lk/ART-1712_IES.7z" target="_blank" rel="noopener">ART-1712_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_1712/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-1733_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/9fb/qqt9brmy1lsvtspikvj0cuz1txn1hyqh/ART-1733_IES.7z" target="_blank" rel="noopener">ART-1733_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_1733/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-2912 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/737/yy1f0aj8a11l4dcg5txd6h9t7qdixuei/ART-2912_IES.7z" target="_blank" rel="noopener">ART-2912 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_2912_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-2912_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/737/yy1f0aj8a11l4dcg5txd6h9t7qdixuei/ART-2912_IES.7z" target="_blank" rel="noopener">ART-2912_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_2912__hsp322_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-3252 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/bb3/zxeztnhvliiheuyidr95xkro2i4tqtqv/ART-3252_IES.7z" target="_blank" rel="noopener">ART-3252 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_3252_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-3252_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/bb3/zxeztnhvliiheuyidr95xkro2i4tqtqv/ART-3252_IES.7z" target="_blank" rel="noopener">ART-3252_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_3252/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-3664 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/725/xlsdov0ji62ny2ptw6peoezzt6c2iomr/ART-3664_IES.7z" target="_blank" rel="noopener">ART-3664 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_3664_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-3664_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/725/xlsdov0ji62ny2ptw6peoezzt6c2iomr/ART-3664_IES.7z" target="_blank" rel="noopener">ART-3664_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_3664/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-block100 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/ca3/4opc7xdih93r10ki08gocj3z11am8hp0/ART-BLOCK100_IES.7z" target="_blank" rel="noopener">ART-BLOCK100 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_block100_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-block100_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/ca3/4opc7xdih93r10ki08gocj3z11am8hp0/ART-BLOCK100_IES.7z" target="_blank" rel="noopener">ART-BLOCK100_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_block100/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-cafe ontrack 3-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b36/1i99ppyl1v2ka8955potki2tr8eyl8le/ART-CAFE_IES.7z" target="_blank" rel="noopener">ART-CAFE onTrack 3-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_cafe_ontrack_3_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-cafe_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b36/1i99ppyl1v2ka8955potki2tr8eyl8le/ART-CAFE_IES.7z" target="_blank" rel="noopener">ART-CAFE_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_cafe/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-cube100_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/105/hfgz9msapwbf49jbtf1e90tvxg1wgbvv/ART-CUBE100_IES.7z" target="_blank" rel="noopener">ART-CUBE100_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_cube100/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-e-110_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/41c/43elnniz9z1cf2dqwmq4t6nruim24kyy/ART-E-110_IES.7z" target="_blank" rel="noopener">ART-E-110_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_e_110/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-e-140_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e8d/thfctv221u76gax7t8jwqwmjyiu103uw/ART-E-140_IES.7z" target="_blank" rel="noopener">ART-E-140_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_e_140/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-e-174_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/1e1/xajrn24n5o1zfdcgjhzdeqgd6xeyhui4/ART-E-174_IES.7z" target="_blank" rel="noopener">ART-E-174_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_e_174/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-e-186_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/f0c/9p490gsfk0ia21f33po5spic8as40x13/ART-E-186_IES.7z" target="_blank" rel="noopener">ART-E-186_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_e_186/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-e-205_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/9c5/k2pw34r1c3pq4e9qbrmafxv62p35r4qs/ART-E-205_IES.7z" target="_blank" rel="noopener">ART-E-205_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_e_205/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus101 in_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/24d/jn4efl0fv1lvc3gjxo8mpfw9un2k15c0/ART-FOCUS101_IES.7z" target="_blank" rel="noopener">ART-FOCUS101 IN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_focus101_in/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus101 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/24d/jn4efl0fv1lvc3gjxo8mpfw9un2k15c0/ART-FOCUS101_IES.7z" target="_blank" rel="noopener">ART-FOCUS101 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_focus101_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus101_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/24d/jn4efl0fv1lvc3gjxo8mpfw9un2k15c0/ART-FOCUS101_IES.7z" target="_blank" rel="noopener">ART-FOCUS101_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_focus101/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus66 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/cdb/gqrtlhx3un80wrxs0ilzwvg1oez4487c/ART-FOCUS66_IES.7z" target="_blank" rel="noopener">ART-FOCUS66 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_focus66_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus66 in_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/cdb/gqrtlhx3un80wrxs0ilzwvg1oez4487c/ART-FOCUS66_IES.7z" target="_blank" rel="noopener">ART-FOCUS66 IN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_focus66_in/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus66 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/cdb/gqrtlhx3un80wrxs0ilzwvg1oez4487c/ART-FOCUS66_IES.7z" target="_blank" rel="noopener">ART-FOCUS66 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_focus66_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus66_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/cdb/gqrtlhx3un80wrxs0ilzwvg1oez4487c/ART-FOCUS66_IES.7z" target="_blank" rel="noopener">ART-FOCUS66_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_focus66/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus88 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/349/hpj9h7tt8o1v1cevoc3du2ikxfnvv2qi/ART-FOCUS88_IES.7z" target="_blank" rel="noopener">ART-FOCUS88 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_focus88_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus88 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/349/hpj9h7tt8o1v1cevoc3du2ikxfnvv2qi/ART-FOCUS88_IES.7z" target="_blank" rel="noopener">ART-FOCUS88 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_focus88_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-focus88_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/349/hpj9h7tt8o1v1cevoc3du2ikxfnvv2qi/ART-FOCUS88_IES.7z" target="_blank" rel="noopener">ART-FOCUS88_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_focus88/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gobo l_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/b21/t0klnx73f9yjwlbl1xga6ocknkh4k5ex/ART-GOBO%20L_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-GOBO L_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_gobo_l/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gobo m_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/ecf/bxmqhzuz3rf46pfw5fxar6n86r7zllyp/ART-MAG25-GOBO%20M_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-GOBO M_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_gobo_m/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gobo s_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/a8e/7omcut6ejl8dlou8kl2sajuas9zopxvb/ART-MAG25-GOBO%20S_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-GOBO S_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_gobo_s/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44 x10_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/d43/xwdwiben26o3kqi5l6zqy3xong3all7m/ART-GR44%20x10_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44 x10_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_x10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44 x2_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cfd/vymvsc0cwbtnxpzpdq6411832s0r7tri/ART-GR44%20x2_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44 x2_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_x2/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44 x3_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/687/pl111ppz44aroeau6ne4o8oos30xlb6l/ART-GR44%20x3_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44 x3_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_x3/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44 x5_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/38b/045ol2rm4ru4diyxsuttnx3q9ekl6pl7/ART-GR44%20x5_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44 x5_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_x5/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44+tube20 x2_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/1fc/itanbuohg53ognaerccb0tn89bw180je/ART-GR44-TUBE20%20x2_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44+TUBE20 x2_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_tube20_x2_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44-tube20 x2_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/1fc/itanbuohg53ognaerccb0tn89bw180je/ART-GR44-TUBE20%20x2_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44-TUBE20 x2_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_tube20_x2/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44-tube20 x3_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/aca/6q3fgy6l21gsj12dx2egxkpvlyqm9wnk/ART-GR44-TUBE20%20x3_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44-TUBE20 x3_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_tube20_x3/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44-tube20_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/6bd/d99bcz31h1rv2w1mr4krvnj879hmqtf1/ART-GR44-TUBE20_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-GR44-TUBE20_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44_tube20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-gr44_ies_(ot_10.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/767/y7sn3h4oqjvaour7cs06v2mdwe0ihw60/ART-GR44_IES_(ot_10.23).7z" target="_blank" rel="noopener">ART-GR44_IES_(ot_10.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_gr44/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-ipr-168_ies_(ot_08.22)"><a class="ies__link" href="https://artlight.ru/upload/iblock/897/epzilvwo7ebh24ybignzqlksaudjuiwe/ART-IPR-168_IES.7z" target="_blank" rel="noopener">ART-IPR-168_IES_(ot_08.22)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_ipr_168/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-ipr-172_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/6d1/p22j98cvx0pwgtuff81z8ixxb47wk0k4/ART-IPR-172_IES.7z" target="_blank" rel="noopener">ART-IPR-172_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_ipr_172/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-ipr-215_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/62a/zxilgw7cjb1tvbxh9pkpqdxt9puug4e0/ART-IPR-215_IES.7z" target="_blank" rel="noopener">ART-IPR-215_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_ipr_215/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-ipre-157_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/a28/57f0pk1td1gqz1rdykdawhsoujk5xsj6/ART-IPRE-157_IES.7z" target="_blank" rel="noopener">ART-IPRE-157_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_ipre_157/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-ipse-196_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/ede/8axkfvfy6ombhfr8ei0t4h97viqkktll/ART-IPSE-196_IES.7z" target="_blank" rel="noopener">ART-IPSE-196_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_ipse_196/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line2090-s down_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/031/rd6ewtty3b1iz1ghcifcfiulmi0r4zom/ART-LINE2090-WL%20UP-DOWN_IES.7z" target="_blank" rel="noopener">ART-LINE2090-S DOWN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line2090/art_line2090_s_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line2090-s up-down glass_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/031/rd6ewtty3b1iz1ghcifcfiulmi0r4zom/ART-LINE2090-WL%20UP-DOWN_IES.7z" target="_blank" rel="noopener">ART-LINE2090-S UP-DOWN GLASS_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line2090/art_line2090_s_up_down_glass/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line2090-s up-down_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/031/rd6ewtty3b1iz1ghcifcfiulmi0r4zom/ART-LINE2090-WL%20UP-DOWN_IES.7z" target="_blank" rel="noopener">ART-LINE2090-S UP-DOWN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line2090/art_line2090_s_up_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line2090-wl up-down_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/031/rd6ewtty3b1iz1ghcifcfiulmi0r4zom/ART-LINE2090-WL%20UP-DOWN_IES.7z" target="_blank" rel="noopener">ART-LINE2090-WL UP-DOWN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line2090/art_line2090_wl_up_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line35-s set_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/efb/ma837lvv6nls3rqcwgtoy5xiagc6m7qh/ART-PROF35-N%20RECTANGLE_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE35-S SET_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line35/art_line35_s_set/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line35-s_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/efb/ma837lvv6nls3rqcwgtoy5xiagc6m7qh/ART-PROF35-N%20RECTANGLE_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE35-S_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line35/art_line35_s/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-n_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-N_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-s up-down_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-S UP-DOWN_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_s_up_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-s up_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-S UP_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_s_up/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-s_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-S_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_s/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-wl down_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-WL DOWN_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_wl_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-wl up-down_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-WL UP-DOWN_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_wl_up_down/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line40-wl_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE40-WL_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_line40_wl_up_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line4074-s optic_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/8e8/4zriw9a0sg7jtmeylv963xyaddr7qaov/ART-LINE4074-S%20OPTIC_IES.7z" target="_blank" rel="noopener">ART-LINE4074-S OPTIC_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line4074_/art_line4074_s_optic/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-n eco_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-N ECO_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_n_eco/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-n ip65_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-N IP65_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_n_ip/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-n_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-N_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-s eco_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-S ECO_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_s_eco/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-s fito_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-S FITO_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_s_fito/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-line50-s_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-LINE50-S_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_line50_s/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-line_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4a6/61bejii7dlp88p1hj7hl4wofunpf4l24/ART-MAG15-LINE_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-MAG15-LINE_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_line/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-lineo_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/eef/tzmhrkq1qz41pybl5gl7wck1hvq1b19b/ART-MAG15-LineO_IES.7z" target="_blank" rel="noopener">ART-MAG15-LineO_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_lineo/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-n-ball_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/840/1p8jk5rxpfa1wxlr11zqfb7v3q56v72g/ART-MAG15-N-BALL_IES.7z" target="_blank" rel="noopener">ART-MAG15-N-BALL_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_n_ball/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-optic-rs_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/f3f/ap1y2ek1ujxie6axj03q5e3p9emp2z8t/ART-MAG15-OPTIC-RS_IES.7z" target="_blank" rel="noopener">ART-MAG15-OPTIC-RS_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_optic_rs/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-s-bell_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/774/2con3tk33ai2ui60d0jt0llfwa9kh46i/ART-MAG15-S-BELL_IES.7z" target="_blank" rel="noopener">ART-MAG15-S-BELL_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_s_bell/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-tube22_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4ee/f5837qij7f4l5brtucv4d9d1m8tovc8q/ART-MAG15-TUBE22_IES.7z" target="_blank" rel="noopener">ART-MAG15-TUBE22_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_tube22/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-tube22_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4ee/f5837qij7f4l5brtucv4d9d1m8tovc8q/ART-MAG15-TUBE22_IES.7z" target="_blank" rel="noopener">ART-MAG15-TUBE22_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_tube22_twin/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-tube32_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/fc2/n0xy3r06676uuvicvopfxts3zsybnlgk/ART-MAG15-TUBE32_IES.7z" target="_blank" rel="noopener">ART-MAG15-TUBE32_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_tube32/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag15-tube32_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/fc2/n0xy3r06676uuvicvopfxts3zsybnlgk/ART-MAG15-TUBE32_IES.7z" target="_blank" rel="noopener">ART-MAG15-TUBE32_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_in_mag15/art_mag15_tube32_twin/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-gobo m_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/ecf/bxmqhzuz3rf46pfw5fxar6n86r7zllyp/ART-MAG25-GOBO%20M_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-MAG25-GOBO M_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_gobo_m/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-gobo s_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/a8e/7omcut6ejl8dlou8kl2sajuas9zopxvb/ART-MAG25-GOBO%20S_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-MAG25-GOBO S_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_gobo_s/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-line dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/6b2/vzwxgs413ajrtmznd17d1iv354j3msbe/ART-MAG25-LINE%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-LINE DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_line_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-line-rs dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/570/z6klktxytebqix0e7xan2lhgy490mci4/ART-MAG25-LINE-RS%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-LINE-RS DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_line_rs_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-line-rs_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/570/z6klktxytebqix0e7xan2lhgy490mci4/ART-MAG25-LINE-RS%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-LINE-RS_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_line_rs/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-line_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/6b2/vzwxgs413ajrtmznd17d1iv354j3msbe/ART-MAG25-LINE%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-LINE_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_line/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-optic dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/221/nez22fqee6ghcp1cr0ho4w019qq9h1ka/ART-MAG25-OPTIC%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-OPTIC DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_optic_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-optic-rs dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e8c/yf0qanve4douak73m3fnl3mdzqs2n3i8/ART-MAG25-OPTIC-RS%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-OPTIC-RS DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_optic_rs_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-optic-rs_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e8c/yf0qanve4douak73m3fnl3mdzqs2n3i8/ART-MAG25-OPTIC-RS%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-OPTIC-RS_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_optic_rs/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-optic-sq_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/134/uzoah7phcdt2hdi2z0p5uz2hhnq1eavm/ART-MAG25-OPTIC-SQ_IES.7z" target="_blank" rel="noopener">ART-MAG25-OPTIC-SQ_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_optic_sq/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-optic_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/605/bs7snzmng5asl7bxicxje29mks91kf5i/ART-MAG25-OPTIC_IES.7z" target="_blank" rel="noopener">ART-MAG25-OPTIC_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_optic/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-puck80_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0b3/91ci3ln4un3juwl0dkuz41zlprb7s444/ART-MAG25-PUCK80%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-PUCK80_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_puck80_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-puck80_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0b3/91ci3ln4un3juwl0dkuz41zlprb7s444/ART-MAG25-PUCK80%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-PUCK80_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_puck80/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-s-ball_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/3b1/vuthu0r7d9r58tohavbo8km79ekz3jji/ART-MAG25-S-BALL_IES.7z" target="_blank" rel="noopener">ART-MAG25-S-BALL_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_s_ball/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-s-tube34 dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/267/m989vohfxygmeoo2wbmmeqvb10lps0ho/ART-MAG25-S-TUBE34%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-S-TUBE34 DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_s_tube34_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-s-tube34_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/267/m989vohfxygmeoo2wbmmeqvb10lps0ho/ART-MAG25-S-TUBE34%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-S-TUBE34_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_s_tube34/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube30_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/687/x6pajygl38ysw3q5g1tcp7yfwwflvojk/ART-MAG25-TUBE30_IES.7z" target="_blank" rel="noopener">ART-MAG25-TUBE30_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube30/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube34 custom_ies_(ot_02.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7bf/0c00e3whjo7rrykh8abx96u1wtuvr3nk/ART-MAG25-TUBE34%20Custom_IES_(ot_02.25).7z" target="_blank" rel="noopener">ART-MAG25-TUBE34 Custom_IES_(ot_02.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube34_custom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube34 dali_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/66d/3cx7som70vmp6fdxh51rp7qo2pepz3p3/ART-MAG25-TUBE34%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-TUBE34 DALI_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube34_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube34_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/66d/3cx7som70vmp6fdxh51rp7qo2pepz3p3/ART-MAG25-TUBE34%20DALI_IES.7z" target="_blank" rel="noopener">ART-MAG25-TUBE34_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube34/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube55 dali_ies_(ot_09.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/0b5/nvy2mz8l29jpc41nbpu53j6x2vr526dd/ART-MAG25-TUBE55_IES_(ot_09.25).7z" target="_blank" rel="noopener">ART-MAG25-TUBE55 DALI_IES_(ot_09.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube55_dali/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mag25-tube55_ies_(ot_09.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/0b5/nvy2mz8l29jpc41nbpu53j6x2vr526dd/ART-MAG25-TUBE55_IES_(ot_09.25).7z" target="_blank" rel="noopener">ART-MAG25-TUBE55_IES_(ot_09.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/magnitnaya_sistema_seriya_art_mag25/art_mag25_tube55/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mg20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0c0/6oyk4g0nsq7qak8vcp4cz8l8qx5yjm7s/ART-MG20_IES.7z" target="_blank" rel="noopener">ART-MG20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/ekspozitsionnaya_magnitnaya_sistema/art_mg20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mg22_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/596/zm267y2s59tfkcbka1oyiimn1iim8ck5/ART-MG22_IES.7z" target="_blank" rel="noopener">ART-MG22_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/ekspozitsionnaya_magnitnaya_sistema/art_mg22/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mg23_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/621/lqxozj83opl1gdkrq0bgae3qphqqjik0/ART-MG23_IES.7z" target="_blank" rel="noopener">ART-MG23_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/ekspozitsionnaya_magnitnaya_sistema/art_mg23/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mg24_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/798/kpizs1hoxm1xuvcnncb2l18oxszq61la/ART-MG24_IES.7z" target="_blank" rel="noopener">ART-MG24_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/ekspozitsionnaya_magnitnaya_sistema/art_mg24/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mg25_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0e2/bvst7zvkuko1u3xv4vbh8p0rzsfspilf/ART-MG25_IES.7z" target="_blank" rel="noopener">ART-MG25_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/ekspozitsionnaya_magnitnaya_sistema/art_mg25/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mv-234_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/3c8/o5h32okoevnlwseyodlhshr8dw309lw9/ART-MV-234%20N_IES.7z" target="_blank" rel="noopener">ART-MV-234_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_mv_234/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mv-314_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/54f/ocjh3u3ohafcrlt7t40u0bnjitb1v380/ART-MV-314_IES.7z" target="_blank" rel="noopener">ART-MV-314_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_mv_314/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mv-324_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/2cb/3l0cb94s6cghtk6e745v034df9z6sal4/ART-MV-324_IES.7z" target="_blank" rel="noopener">ART-MV-324_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_mv_324/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mv-334_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/f16/6o1x1twc872mpf7zqevi6ljrm0ugmj71/ART-MV-334_IES.7z" target="_blank" rel="noopener">ART-MV-334_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_mv_334/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-mv-813_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/449/c2nm4p793uhflyy2trcjt9ip164347rx/ART-MV-813_IES.7z" target="_blank" rel="noopener">ART-MV-813_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_mv_813/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-413_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/f01/0q9en2r8w72i5ldcu3zxy6zfa98womp5/ART-N-413_IES.7z" target="_blank" rel="noopener">ART-N-413_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_413/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-462_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/343/igk5sba3q4fe9fn7r35uhwp7uxcw9h1l/ART-N-462_IES.7z" target="_blank" rel="noopener">ART-N-462_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_462/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-613_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/15d/kjvry50w00iqe4a95jz9mn73r15zzyjm/ART-N-613_IES.7z" target="_blank" rel="noopener">ART-N-613_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_613/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-643_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d93/z1zqoznrnsmjdkcqk0amgt69gf5z316u/ART-N-643_IES.7z" target="_blank" rel="noopener">ART-N-643_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_643/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-cup_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/bf1/hp25sfa3slwz7cx9ovqbsynpzayxv7k3/ART-N-CUP_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-CUP_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_cup/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-flute cut gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/481/jl5sxmxf3yimjfc9nusfqdofzb7j6iph/ART-N-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-FLUTE CUT GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_flute_cut_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-flute cut_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7bd/eayiyx4vwbgn08inojhspru0khjv089u/ART-N-FLUTE%20CUT_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-FLUTE CUT_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_flute_cut/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-flute gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4d0/c99zxqgbqkwawdod71olz5aplx5p98yd/ART-S-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-FLUTE GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_flute_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-flute100_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/227/x1bxkha9ygizvw9gkawkz40v8l1shidp/ART-S-FLUTE100_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-FLUTE100_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_flute100_ip20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-flute_ies_(ot_10.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/66d/zip4dvjms59n6jonkkwrc6k2vhreht6w/ART-N-FLUTE_IES_(ot_10.25).7z" target="_blank" rel="noopener">ART-N-FLUTE_IES_(ot_10.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_flute/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-prom_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/da7/czqijvo9k2og6gepmgds9b4blhbti2au/ART-N-PROM_IES.7z" target="_blank" rel="noopener">ART-N-PROM_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_prom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-roll15_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/a7a/77am7yw2yzux29lrzd5l4uwp5ebwehcg/ART-S-ROLL15%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-N-ROLL15_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_roll15/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-roll20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d95/tq6e3si5gb1rr4hv2sjblu22kqcw00up/ART-S-ROLL20%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-N-ROLL20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_roll20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-round l flex_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cab/li5qrxmewwtj1v0g30u3sn2lyoqte1y7/ART-N-ROUND%20L%20FLEX_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-ROUND L FLEX_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetilniki_individualnogo_izgotovleniya/art_n_round_l_flex/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-round print flex_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/42e/1zgv06em7hvyv06klv9q1a9t18h25qsm/ART-S-ROUND%20FLEX_IES.7z" target="_blank" rel="noopener">ART-N-ROUND PRINT FLEX_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/svetilniki_individualnogo_izgotovleniya/art_n_round_print_flex/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-round stw flex_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cab/li5qrxmewwtj1v0g30u3sn2lyoqte1y7/ART-N-ROUND%20L%20FLEX_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-N-ROUND STW FLEX_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetilniki_individualnogo_izgotovleniya/art_n_round_stw_flex/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-n-round_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/42e/1zgv06em7hvyv06klv9q1a9t18h25qsm/ART-S-ROUND%20FLEX_IES.7z" target="_blank" rel="noopener">ART-N-ROUND_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_n_round/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-pg20 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/1af/0l2gwaafm8yh1u25k5l6uvwwyuxz9wkq/ART-PG20%20N_IES.7z" target="_blank" rel="noopener">ART-PG20 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_pg20_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-pg20 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/1af/0l2gwaafm8yh1u25k5l6uvwwyuxz9wkq/ART-PG20%20N_IES.7z" target="_blank" rel="noopener">ART-PG20 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_pg20_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-pg20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/1af/0l2gwaafm8yh1u25k5l6uvwwyuxz9wkq/ART-PG20%20N_IES.7z" target="_blank" rel="noopener">ART-PG20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_pg20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof35-s rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/efb/ma837lvv6nls3rqcwgtoy5xiagc6m7qh/ART-PROF35-N%20RECTANGLE_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF35-S RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line35/art_prof35_s_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof35-s square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/efb/ma837lvv6nls3rqcwgtoy5xiagc6m7qh/ART-PROF35-N%20RECTANGLE_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF35-S SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line35/art_prof35_s_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-fl_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-FL_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_fl/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-n corner 90_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-N CORNER 90_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_n_corner_90_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-n corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-N CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_n_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-n rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-N RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_n_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-n trackin mag mini_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/21d/r8dvb1kqiuh97sy5p4p2a9ou8oo8zccj/ART-LINE40-S%20UP-DOWN_IES.7z" target="_blank" rel="noopener">ART-PROF40-N TRACKIN MAG mini_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_n_trackin_mag_mini/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-n x_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-N X_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_n_x/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s hexagon_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S HEXAGON_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_hexagon/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s up rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S UP RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_up_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s up square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S UP SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_up_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s up-down corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S UP-DOWN CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_up_down_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s up-down square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S UP-DOWN SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_up_down_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s up-down triangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S UP-DOWN TRIANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_up_down_triangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s x_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S X_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_x/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s y_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S Y_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_y/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof40-s-twins_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF40-S-TWINS_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_prof40_s_twins/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof4074-n optic rectangle_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d34/2gqu1d0mrpxj3frsmsthd1tlqdi1lghs/ART-PROF4074-N%20OPTIC%20RECTANGLE_IES.7z" target="_blank" rel="noopener">ART-PROF4074-N OPTIC RECTANGLE_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line4074_/art_prof4074_n_optic_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof4074-s optic rectangle_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/33f/mg40bf1vnnkzm4wltp184hkguly0ws95/ART-PROF4074-S%20OPTIC%20RECTANGLE_IES.7z" target="_blank" rel="noopener">ART-PROF4074-S OPTIC RECTANGLE_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line4074_/art_prof4074_s_optic_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50 balance_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50 BALANCE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_balance/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n custom_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N CUSTOM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_custom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n hexagon_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N HEXAGON_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_hexagon/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n octagon_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N OCTAGON_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_octagon/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n triangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N TRIANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_triangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n y_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N Y_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_y/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n ontrack 1-ph_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N onTRACK 1-ph_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_ontrack_1_ph_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-n ontrack 3-ph_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-N onTRACK 3-ph_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_n_ontrack_3_ph_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s corner 90_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S CORNER 90_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_corner_90_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s hexagon_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S HEXAGON_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_hexagon/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s market_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S Market_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_market/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s octagon_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S OCTAGON_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_octagon/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s x_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S X_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_x/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s y_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S Y_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_y/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prof50-s ontrack 3-ph_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-PROF50-S onTRACK 3-ph_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_prof50_s_ontrack_3_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-prom-s_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/da7/czqijvo9k2og6gepmgds9b4blhbti2au/ART-N-PROM_IES.7z" target="_blank" rel="noopener">ART-PROM-S_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_prom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-puck110_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/5ee/gtu0047swyc93gkq3ghx8jr74cdxjvhx/ART-PUCK110_IES.7z" target="_blank" rel="noopener">ART-PUCK110_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_puck110/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-puck130 z_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/825/naxkw6ja6s32m6srh4h9bc65zrxqt5f6/ART-PUCK130%20Z_IES.7z" target="_blank" rel="noopener">ART-PUCK130 Z_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_puck130_z/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-035_ies_(ot_01.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/805/n6rwuyuruqlur3tkuewsmtgbh6jmkh4c/ART-R-035_IES_(ot_01.25).7z" target="_blank" rel="noopener">ART-R-035_IES_(ot_01.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_035/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-038_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/941/b3tkfryo515oughl6nw5mzw4ovgh1p66/ART-R-038_IES.7z" target="_blank" rel="noopener">ART-R-038_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_038/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-042_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/213/1ocrpi1uv8qec29jd2fhnbv1k7rtucju/ART-R-042_IES.7z" target="_blank" rel="noopener">ART-R-042_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_042/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-045_ies_(ot_05.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/398/dhzsqoljfdpdz68m55wnpsv7oktvzotx/ART-R-045_IES_(ot_05.24).7z" target="_blank" rel="noopener">ART-R-045_IES_(ot_05.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_045/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-081_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/c77/oq2yiyxtmmbs7ivb0u2skhi38yxdwx0u/ART-R-081_IES.7z" target="_blank" rel="noopener">ART-R-081_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_081/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-107_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/808/upfgq0ixkeap4gdy4ahei9tzz02bupvk/ART-R-107_IES.7z" target="_blank" rel="noopener">ART-R-107_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_107/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-123_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/824/3swlcnqeqqrs84qfiyv1w74qln87jiey/ART-R-123_IES.7z" target="_blank" rel="noopener">ART-R-123_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_123/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-145_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4c0/o75aszb71pilyi3onrocbc0ifkw1lvnk/ART-R-145_IES.7z" target="_blank" rel="noopener">ART-R-145_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_145/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-147_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/41a/rezvvt4jz483mwjl31bjy6ngvwimu2pk/ART-R-147_IES.7z" target="_blank" rel="noopener">ART-R-147_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_147/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-154_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/631/9596gmz5wo3nakxacygfkvg7tzac1fi2/ART-R-154_IES.7z" target="_blank" rel="noopener">ART-R-154_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_154/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-194_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d07/o1xhj22err7hacrggkzdgxm22ez6aqfh/ART-R-194_IES.7z" target="_blank" rel="noopener">ART-R-194_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_194/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-211_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/61c/0e9nvf31q3pamfqggryqaizhx7xacdqw/ART-R-211_IES.7z" target="_blank" rel="noopener">ART-R-211_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_211/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-297_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/c77/c96zq2a28rzvq2hpn01qey3zmf1iid6s/ART-R-297_IES.7z" target="_blank" rel="noopener">ART-R-297_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_297/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-315_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/f8e/niscxppykbbnjeohlmud94e10ow75flr/ART-R-315_IES.7z" target="_blank" rel="noopener">ART-R-315_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_315/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-85_ies_(ot_08.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/95d/dgg5l3oc201422wmat2fxjteb31y5ufb/ART-R-85_IES_(ot_08.24).7z" target="_blank" rel="noopener">ART-R-85_IES_(ot_08.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_85/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r-87_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/802/4tlzpq06zdz4yofb1r8a33oafsl1nj9g/ART-R-87_IES.7z" target="_blank" rel="noopener">ART-R-87_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r_87/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-r16_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d64/scw61eltrqbqu42s7q5gkenvx5koakn3/ART-R16_IES.7z" target="_blank" rel="noopener">ART-R16_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_r16/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rd-214_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/6f4/j3fwnypvf0dq6vxfknk70q9kz22pij3s/ART-RD-214_IES.7z" target="_blank" rel="noopener">ART-RD-214_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rd_214/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rd-319_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e6f/kkcekqw3bspcgf79rvcrroobnn7ge51y/ART-RD-319_IES.7z" target="_blank" rel="noopener">ART-RD-319_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rd_319/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rd-623_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/c68/o3hazvlucfd2kkifqh1r947anaw5gul7/ART-RD-623_IES.7z" target="_blank" rel="noopener">ART-RD-623_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rd_623/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-112_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b70/5btb57600u1uvf22y9uhrmq59kbhf81m/ART-RE-112_IES.7z" target="_blank" rel="noopener">ART-RE-112_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_112/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-122_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/905/9wqdfk0e0c2x3fii63fui8haokv00ezt/ART-RE-122_IES.7z" target="_blank" rel="noopener">ART-RE-122_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_122/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-142_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/429/rh1vaf64iovntlcc7k5vkn4deprp5wt0/ART-RE-142_IES.7z" target="_blank" rel="noopener">ART-RE-142_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_142/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-143_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e63/axkfdacrfikkpu4ug2dmq3v0z2ry0bns/ART-RE-143_IES.7z" target="_blank" rel="noopener">ART-RE-143_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_143/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-164_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/bfb/j64hcx058x96gxeql4d1xyq3k1sm6jky/ART-RE-164_IES.7z" target="_blank" rel="noopener">ART-RE-164_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_164/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-194_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0d6/as18v0h3x3bgsdv417vw06xi03m6mson/ART-RE-194_IES.7z" target="_blank" rel="noopener">ART-RE-194_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_194/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-279_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b22/hwzoib450lb5uo6eak4g5bq3v7uy1mj1/ART-RE-279_IES.7z" target="_blank" rel="noopener">ART-RE-279_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_279/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-re-315_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0b7/x0uu1muynu0z03xigr31ws26ka3ec7wd/ART-RE-315_IES.7z" target="_blank" rel="noopener">ART-RE-315_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_re_315/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-035_ies_(ot_01.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/805/n6rwuyuruqlur3tkuewsmtgbh6jmkh4c/ART-R-035_IES_(ot_01.25).7z" target="_blank" rel="noopener">ART-RF-035_IES_(ot_01.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_035/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-045_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/1d8/ye1zoyngb87q2so9sjrji3272pxv5a23/ART-RF-045_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-RF-045_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_045/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-058_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4eb/3233qtren7owu4f7aer5mjjeb645yfzv/ART-RF-058_IES.7z" target="_blank" rel="noopener">ART-RF-058_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_058/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-061_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/749/7o64takfak6t65osy6qokuoiv978jjfz/ART-RF-061_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-RF-061_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_061/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-115_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/2a9/qzhksc0d1gi8gkulhu82frm9eutbdm2g/ART-RF-115_IES.7z" target="_blank" rel="noopener">ART-RF-115_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_115/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-150_ies_(ot_02.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/b7b/aerw3xl2arq4650b59doe9bi33wa2e10/ART-RF-150_IES_(ot_02.24).7z" target="_blank" rel="noopener">ART-RF-150_IES_(ot_02.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_150/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rf-211_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4aa/rwbfwlfl4iq9o2i1tgvle62pe6dik2wt/ART-RF-211_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-RF-211_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rf_211/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rs100_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/0a6/77itmmncz16luv96go5gddqcpslraeip/ART-RS100_IES.7z" target="_blank" rel="noopener">ART-RS100_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rs100/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rs150_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/2ad/yw07gf3hb2jzyn14mupne2y3cuorzu02/ART-RS150_IES.7z" target="_blank" rel="noopener">ART-RS150_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rs150/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-rs190_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/c99/gj4xfltftoy2ohjthykul4r796v1yf0m/ART-RS190_IES.7z" target="_blank" rel="noopener">ART-RS190_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_rs190/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-cup_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/b53/vbacj31qlj36hb12ftipwtcxkw2a84ls/ART-S-CUP_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-CUP_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_cup/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute cut gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4d0/c99zxqgbqkwawdod71olz5aplx5p98yd/ART-S-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE CUT GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_flute_cut_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute cut_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/c52/kex17n6tn3i9m2kp6c84f39gesat1054/ART-S-FLUTE_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE CUT_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_flute_cut/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute gu10 ontrack 1-ph_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4d0/c99zxqgbqkwawdod71olz5aplx5p98yd/ART-S-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE GU10 onTrack 1-ph_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_s_flute_gu10_ontrack_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute gu10 ontrack 3-ph_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4d0/c99zxqgbqkwawdod71olz5aplx5p98yd/ART-S-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE GU10 onTrack 3-ph_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_s_flute_gu10_ontrack_3_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/4d0/c99zxqgbqkwawdod71olz5aplx5p98yd/ART-S-FLUTE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_flute_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute100_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/227/x1bxkha9ygizvw9gkawkz40v8l1shidp/ART-S-FLUTE100_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-FLUTE100_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_flute100/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-flute_ies_(ot_10.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/499/x1qt1t1pdoc488l237436t1fh2x4v86h/ART-S-FLUTE_IES_(ot_10.25).7z" target="_blank" rel="noopener">ART-S-FLUTE_IES_(ot_10.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_flute/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-globo 15_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/916/asiuvpyz2esbv06w1vgpw627wlizdmcg/ART-S-GLOBO%2015_IES.7z" target="_blank" rel="noopener">ART-S-GLOBO 15_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_globo15/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-globo 20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/e38/kcgsip3e91z3kjrcg9680ciy7zid5xwx/ART-S-GLOBO%2020_IES.7z" target="_blank" rel="noopener">ART-S-GLOBO 20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_globo15/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-phyto_ies_(ot_03.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/0f3/cbqdtqdoqfvqnwspg9lw90ka8vn0pohp/ART-S-PHYTO_IES_(ot_03.24).7z" target="_blank" rel="noopener">ART-S-PHYTO_IES_(ot_03.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line45/art_line45_s_fito/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-ring 120_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/480/zpc9twk1b92r7bq7ehye6l5wymtqi9p9/ART-S-RING%20120_IES.7z" target="_blank" rel="noopener">ART-S-RING 120_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_ring/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-ring 60_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/356/lfcre8f5bnt3bmvcgvuu96okjzz0u6ht/ART-S-RING%2060_IES.7z" target="_blank" rel="noopener">ART-S-RING 60_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_ring/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-ring 90_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/3ab/cf8p0il6pnev0035yqs2ijpxukva2qlh/ART-S-RING%2090_IES.7z" target="_blank" rel="noopener">ART-S-RING 90_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_ring/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-roll15 ontrack 3-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/a7a/77am7yw2yzux29lrzd5l4uwp5ebwehcg/ART-S-ROLL15%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-S-ROLL15 onTrack 3-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_s_roll15_ontrack_3_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-roll15_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/a7a/77am7yw2yzux29lrzd5l4uwp5ebwehcg/ART-S-ROLL15%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-S-ROLL15_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_roll15/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-roll20 ontrack 3-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d95/tq6e3si5gb1rr4hv2sjblu22kqcw00up/ART-S-ROLL20%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-S-ROLL20 onTrack 3-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_s_roll20_ontrack_3_ph_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-roll20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d95/tq6e3si5gb1rr4hv2sjblu22kqcw00up/ART-S-ROLL20%20onTrack%203-ph_IES.7z" target="_blank" rel="noopener">ART-S-ROLL20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_roll20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-round l flex_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/486/4q4lp1idr2j4bdc0lbzm66wjk2176aqb/ART-S-ROUND%20L%20FLEX_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-ROUND L FLEX_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetilniki_individualnogo_izgotovleniya/art_s_round_l_flex/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-round stw flex_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/486/4q4lp1idr2j4bdc0lbzm66wjk2176aqb/ART-S-ROUND%20L%20FLEX_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-S-ROUND STW FLEX_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetilniki_individualnogo_izgotovleniya/art_s_round_stw_flex/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-round_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/42e/1zgv06em7hvyv06klv9q1a9t18h25qsm/ART-S-ROUND%20FLEX_IES.7z" target="_blank" rel="noopener">ART-S-ROUND_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_round/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-round_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/42e/1zgv06em7hvyv06klv9q1a9t18h25qsm/ART-S-ROUND%20FLEX_IES.7z" target="_blank" rel="noopener">ART-S-ROUND_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_round/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-sfera_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/d6f/sn9t9j0xkjgbglyeq201qg5wf0eh7snb/ART-S-SFERA_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-S-SFERA_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_sfera/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-tuba 120_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b2c/fos2kjkglnp03qbfwmyk3ffzz45ugemh/ART-S-TUBA%20120_IES.7z" target="_blank" rel="noopener">ART-S-TUBA 120_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_tuba_120/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-tuba 60 ru_ies_(ot_04.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/b03/xkvub13m7nyrnm9o0i1ae8aruts4s6kt/ART-S-TUBA%2060_IES.7z" target="_blank" rel="noopener">ART-S-TUBA 60 RU_IES_(ot_04.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_tuba_60_ru/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-s-tuba 60_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b03/xkvub13m7nyrnm9o0i1ae8aruts4s6kt/ART-S-TUBA%2060_IES.7z" target="_blank" rel="noopener">ART-S-TUBA 60_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/art_s_tuba_60_cn/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sq-174_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/48f/9jksfk1cza6c2tnakyx83ey5n654f2ph/ART-SQ-174_IES.7z" target="_blank" rel="noopener">ART-SQ-174_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sq_174/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sq-180_ies_(ot_09.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/f3a/dgtc9hdfcg66pivm3xjx73w7neys18f4/ART-SQ-180_IES_(ot_09.23).7z" target="_blank" rel="noopener">ART-SQ-180_IES_(ot_09.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sq_180/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sq-180x2_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/434/vjjrshu3ib54sxg82lxfim5jtxjntmvh/ART-SQ-180x2_IES.7z" target="_blank" rel="noopener">ART-SQ-180x2_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sq_180x2/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sq-205_ies_(ot_05.23)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cee/ytder5m8u5pzc06ka2tvtvv9mlu5glpg/ART-SQ-205_IES_(ot_05.23).7z" target="_blank" rel="noopener">ART-SQ-205_IES_(ot_05.23)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sq_205/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sq-223_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/25e/s68i1bf9acef4foijbhz6ikhz6z2o4ag/ART-SQ-223_IES.7z" target="_blank" rel="noopener">ART-SQ-223_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sq_223/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sqf-180_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/434/vjjrshu3ib54sxg82lxfim5jtxjntmvh/ART-SQ-180x2_IES.7z" target="_blank" rel="noopener">ART-SQF-180_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sqf_180/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-sqf-180x2_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/434/vjjrshu3ib54sxg82lxfim5jtxjntmvh/ART-SQ-180x2_IES.7z" target="_blank" rel="noopener">ART-SQF-180x2_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_sqf_180x2/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-strip-dw_ies_(ot_01.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cb2/xd6yfqzxdy20y4w84eye48gd5rgujsya/ART-STRIP-WW_IES_(ot_01.24).7z" target="_blank" rel="noopener">ART-STRIP-DW_IES_(ot_01.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetodiodnye_lenty_i_komplektuyushchie/art_strip_dw/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-strip-rgb_ies_(ot_01.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cb2/xd6yfqzxdy20y4w84eye48gd5rgujsya/ART-STRIP-WW_IES_(ot_01.24).7z" target="_blank" rel="noopener">ART-STRIP-RGB_IES_(ot_01.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetodiodnye_lenty_i_komplektuyushchie/art_strip_rgb/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-strip-ww_ies_(ot_01.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/cb2/xd6yfqzxdy20y4w84eye48gd5rgujsya/ART-STRIP-WW_IES_(ot_01.24).7z" target="_blank" rel="noopener">ART-STRIP-WW_IES_(ot_01.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/svetodiodnye_lenty_i_komplektuyushchie/art_strip_ww/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube55 1-ph_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/717/ord6uu8twu4pn20tdd3rwni2eg47ud5u/ART-TUBE55%201-ph_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-TUBE55 1-ph_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_tube55_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube55 n_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/717/ord6uu8twu4pn20tdd3rwni2eg47ud5u/ART-TUBE55%201-ph_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-TUBE55 N_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_tube55_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube55_ies_(ot_08.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/717/ord6uu8twu4pn20tdd3rwni2eg47ud5u/ART-TUBE55%201-ph_IES_(ot_08.25).7z" target="_blank" rel="noopener">ART-TUBE55_IES_(ot_08.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_tube55/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube74 1-ph_ies_(ot_04.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/f99/nzvc441mv6lw7w4q6qk4rh3bv52325d1/ART-TUBE74%20IN_IES_(ot_04.25).7z" target="_blank" rel="noopener">ART-TUBE74 1-ph_IES_(ot_04.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_tube74_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube74 in_ies_(ot_04.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/f99/nzvc441mv6lw7w4q6qk4rh3bv52325d1/ART-TUBE74%20IN_IES_(ot_04.25).7z" target="_blank" rel="noopener">ART-TUBE74 IN_IES_(ot_04.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_tube74_in/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube74 n_ies_(ot_04.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/f99/nzvc441mv6lw7w4q6qk4rh3bv52325d1/ART-TUBE74%20IN_IES_(ot_04.25).7z" target="_blank" rel="noopener">ART-TUBE74 N_IES_(ot_04.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_tube74_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube74_ies_(ot_04.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/f99/nzvc441mv6lw7w4q6qk4rh3bv52325d1/ART-TUBE74%20IN_IES_(ot_04.25).7z" target="_blank" rel="noopener">ART-TUBE74_IES_(ot_04.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_tube74/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube90 in_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/61d/lvebdr9j7rhu7zcc1b9o4545uwhvkv7x/ART-TUBE90%20IN_IES.7z" target="_blank" rel="noopener">ART-TUBE90 IN_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/art_tube90_in/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube90 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/61d/lvebdr9j7rhu7zcc1b9o4545uwhvkv7x/ART-TUBE90%20IN_IES.7z" target="_blank" rel="noopener">ART-TUBE90 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/art_tube90_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-tube90_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/61d/lvebdr9j7rhu7zcc1b9o4545uwhvkv7x/ART-TUBE90%20IN_IES.7z" target="_blank" rel="noopener">ART-TUBE90_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_tube90/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-wl-double cut gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/bc3/qjp8keg7ge102kwda8y2org1ibmu75hb/ART-WL-DOUBLE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-WL-DOUBLE CUT GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nastennye_svetilniki/art_wl_double_cut_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-wl-double gu10_ies_(ot_05.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/bc3/qjp8keg7ge102kwda8y2org1ibmu75hb/ART-WL-DOUBLE%20CUT%20GU10_IES_(ot_05.25).7z" target="_blank" rel="noopener">ART-WL-DOUBLE GU10_IES_(ot_05.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/nastennye_svetilniki/art_wl_double_gu10/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-wl-dr_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/ab9/mg8nw1odo7cefmme3k0y2k3ckfw3t2ka/ART-WL-DR_IES.7z" target="_blank" rel="noopener">ART-WL-DR_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nastennye_svetilniki/art_wl_dr/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-wl-r_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/804/ionqgqa3w49r72ychz5duplnkjw9saw8/ART-WL-R_IES.7z" target="_blank" rel="noopener">ART-WL-R_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nastennye_svetilniki/art_wl_r/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-wl-sq_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/01d/tl3qazexgwu6ml6a7vap7uqtvdwt8sfj/ART-WL-SQ_IES.7z" target="_blank" rel="noopener">ART-WL-SQ_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nastennye_svetilniki/art_wl_sq/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline107 corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/761/tax9oyg4mwcg9bdpgo2ykmkznngt12q3/ART-inLINE107_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE107 CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line107/art_inline107_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline107_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/761/tax9oyg4mwcg9bdpgo2ykmkznngt12q3/ART-inLINE107_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE107_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line107/art_inline107/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline40-prof corner 90_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE40-PROF CORNER 90_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_inline40_prof_corner_90_/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline40-prof corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE40-PROF CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_inline40_prof_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline40-prof rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE40-PROF RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_inline40_prof_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline40-prof square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE40-PROF SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_inline40_prof_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline40_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/80e/1oi8ss209hbyjp7p2qedu9lfq0e6m8nt/ART-PROF40-S%20X_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE40_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line40/art_inline40/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50-prof corner system_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE50-PROF CORNER SYSTEM_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50_prof_corner_system/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50-prof custom_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/55b/sens59oa3aaugv8x13o7634yvru5uytl/ART-PROF50-S%20onTRACK%203-ph_IES.7z" target="_blank" rel="noopener">ART-inLINE50-PROF CUSTOM_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50_prof_custom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50-prof custom_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/55b/sens59oa3aaugv8x13o7634yvru5uytl/ART-PROF50-S%20onTRACK%203-ph_IES.7z" target="_blank" rel="noopener">ART-inLINE50-PROF CUSTOM_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50_prof_custom/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50-prof rectangle_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE50-PROF RECTANGLE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50_prof_rectangle/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50-prof square_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE50-PROF SQUARE_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50_prof_square/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inline50_ies_(ot_07.25)"><a class="ies__link" href="https://artlight.ru/upload/iblock/7b9/qwx2fnbzqr0obh8009u0mvx203wac3ea/ART-PROF50-S%20Y_IES_(ot_07.25).7z" target="_blank" rel="noopener">ART-inLINE50_IES_(ot_07.25)</a> <a class="ies__link" href="https://artlight.ru/catalog/profilnaya_sistema_seriya_art_line50/art_inline50/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inpuck110_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/5ee/gtu0047swyc93gkq3ghx8jr74cdxjvhx/ART-PUCK110_IES.7z" target="_blank" rel="noopener">ART-inPUCK110_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_inpuck110/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-inpuck80_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/a32/6shvnrmw0ci92x089c7kaag3xeycq4ae/ART-inPUCK80_IES.7z" target="_blank" rel="noopener">ART-inPUCK80_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_inpuck80/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-intrack100_ies_(ot_08.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/325/brqxx9d0al63r3sfwwvcy7j5ea7tsnpe/ART-inTRACK100_IES_(ot_08.24).7z" target="_blank" rel="noopener">ART-inTRACK100_IES_(ot_08.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_intrack100/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-intrack60_ies_(ot_12.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/247/x9x1g84pmpsh2q3t9m507ug8q2alr1h8/ART-inTRACK60_IES_(ot_12.24).7z" target="_blank" rel="noopener">ART-inTRACK60_IES_(ot_12.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_intrack60/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-intrack74_ies_(ot_08.24)"><a class="ies__link" href="https://artlight.ru/upload/iblock/1a1/loii79kaqgh96vnyftvmre2wf8qg1lkf/ART-inTRACK74_IES_(ot_08.24).7z" target="_blank" rel="noopener">ART-inTRACK74_IES_(ot_08.24)</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_intrack74/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="art-intrack90_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/9f9/0azvf45g3j9j7x842kowcr5xd35ttdhp/ART-inTRACK90_IES.7z" target="_blank" rel="noopener">ART-inTRACK90_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/art_intrack90/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-197_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/69e/s82igbgz4ollubwkrlumir7qxvw04ror/ARTLED-197%20N_IES.7z" target="_blank" rel="noopener">ARTLED-197_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_197/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-254 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/561/mp4okojefgisa3jwy1in2n9sjgslmsxp/ARTLED-254_IES.7z" target="_blank" rel="noopener">ARTLED-254 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_254_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-254 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/561/mp4okojefgisa3jwy1in2n9sjgslmsxp/ARTLED-254_IES.7z" target="_blank" rel="noopener">ARTLED-254 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/artled_254_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-254_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/561/mp4okojefgisa3jwy1in2n9sjgslmsxp/ARTLED-254_IES.7z" target="_blank" rel="noopener">ARTLED-254_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_254/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-289_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/de1/yjttsq6a64a2r3dv9e8a4h4ri2v7z6a4/ARTLED-289_IES.7z" target="_blank" rel="noopener">ARTLED-289_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_289/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-293_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/8a4/r8razho9et2uas0vyqn7sje0bs3wr640/ARTLED-293_IES.7z" target="_blank" rel="noopener">ARTLED-293_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_293/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-7102_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/07d/l0vg62bmefl8ma1po0wxbwvm4h5i28hf/ARTLED-7102_IES.7z" target="_blank" rel="noopener">ARTLED-7102_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_7102/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-7809_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/003/i5gk6zhkhdb0hj90y1dulgo0yvfes4k9/ARTLED-7809_IES.7z" target="_blank" rel="noopener">ARTLED-7809_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_7809/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-7911_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d80/216l382mrfld2788wknklspgfte9sdiu/ARTLED-7911_IES.7z" target="_blank" rel="noopener">ARTLED-7911_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_7911/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-804_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/510/cciahd1n9zfaaml2r31j5fzcwlsciz8c/ARTLED-804_IES.7z" target="_blank" rel="noopener">ARTLED-804_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/artled_804/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-805_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/52d/elhk2yf5dmvxcvgf68mqihfch4pe9yit/ARTLED-805_IES.7z" target="_blank" rel="noopener">ARTLED-805_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/artled_805/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-8350_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/598/jp4y5adig8lofwj245neymavcccszuwa/ARTLED-8350_IES.7z" target="_blank" rel="noopener">ARTLED-8350_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_8350/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-gd147_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/6d9/ade15e1b3d4d67463kbxk2lz0e45hvn7/ARTLED-GD147_IES.7z" target="_blank" rel="noopener">ARTLED-GD147_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_gd147/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-gd20 n_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4da/0yc5eeopyc4xl2mqxpehlzopvyezrrlk/ARTLED-GD20%20N_IES.7z" target="_blank" rel="noopener">ARTLED-GD20 N_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/artled_gd20_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="artled-gd20_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/4da/0yc5eeopyc4xl2mqxpehlzopvyezrrlk/ARTLED-GD20%20N_IES.7z" target="_blank" rel="noopener">ARTLED-GD20_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/artled_gd20/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="jf-1re_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/34e/u0jrvawg327c5mw7qzsr0zm8kmukamkl/JF-1RE_IES.7z" target="_blank" rel="noopener">JF-1RE_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/jf_1re/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="jfled-111g_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/143/rggtwypls9hzntu3xrq6mo40cifnlq07/JFLED-111G_IES.7z" target="_blank" rel="noopener">JFLED-111G_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/jfled_111g/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)921a_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/bd7/6d6yojo89326jizrzv96ri81gs1zd1si/MX(MD)921A_IES.7z" target="_blank" rel="noopener">MX(MD)921A_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_921a/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)921a_led_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d68/dgdobj2erqfb2zuroso0hry8cz7p9itd/MX(MD)921A_LED_IES.7z" target="_blank" rel="noopener">MX(MD)921A_LED_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_921a_led/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)921b_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/bd7/6d6yojo89326jizrzv96ri81gs1zd1si/MX(MD)921A_IES.7z" target="_blank" rel="noopener">MX(MD)921B_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_921b/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)921b_led_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d68/dgdobj2erqfb2zuroso0hry8cz7p9itd/MX(MD)921A_LED_IES.7z" target="_blank" rel="noopener">MX(MD)921B_LED_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_921b_led/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)936a led_ies.7z"><a class="ies__link" href="https://artlight.ru/upload/iblock/1c5/mm6z70lbic63s34modzyiddai9177cid/MX(MD)936A%20LED_IES.7z.7z" target="_blank" rel="noopener">MX(MD)936A LED_IES.7z</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_936a_led/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)936a_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/57d/euez02k9lwa4wt3quks1m8oeqcj3dcfb/MX(MD)936A_IES.7z" target="_blank" rel="noopener">MX(MD)936A_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_936a/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)936b_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/22c/5hvnaiojs5u7u0u4a9y5bwcbj90zd4d4/MX(MD)936B_IES.7z" target="_blank" rel="noopener">MX(MD)936B_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_936b/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="mx(md)936b_led_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/57d/euez02k9lwa4wt3quks1m8oeqcj3dcfb/MX(MD)936A_IES.7z" target="_blank" rel="noopener">MX(MD)936B_LED_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/podvesnye_svetilniki/mx_md_936b_led/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="par-20 adapter 1-ph_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d00/b44w846ma83ki9vrkt07fguo2nglmivh/PAR-20_IES.7z" target="_blank" rel="noopener">PAR-20 adapter 1-ph_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/trekovye_svetilniki/par_20_1_ph/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="par-20 base_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/d00/b44w846ma83ki9vrkt07fguo2nglmivh/PAR-20_IES.7z" target="_blank" rel="noopener">PAR-20 base_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/nakladnye_svetilniki/par_20_n/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="sdl-cb-1180f led_ies"><a class="ies__link" href="https://artlight.ru/upload/iblock/b25/69zx18a7rpzy3sibc17a4kvd173lghh5/SDL-CB-1180F%20LED_IES.7z" target="_blank" rel="noopener">SDL-CB-1180F LED_IES</a> <a class="ies__link" href="https://artlight.ru/catalog/vstraivaemye_svetilniki/sdl_cb_1180f_led/" target="_blank" rel="noopener">подробнее</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="лампа накаливания 60ватт"><a class="ies__link" href="https://artlight.ru/doc/ies/60W%20incandescent.ldt" target="_blank" rel="noopener">Лампа накаливания 60Ватт</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="светодиод smd 5630"><a class="ies__link" href="https://artlight.ru/doc/ies/smd%205630.ldt" target="_blank" rel="noopener">Светодиод smd 5630</a>
+							</li>
+							<li class="ies__item js-ies-item" data-name="светодиодный модуль cob 13.5x13.5.ldt"><a class="ies__link" href="https://artlight.ru/doc/ies/COB%2013.5x13.5.ldt" target="_blank" rel="noopener">Светодиодный модуль COB 13.5x13.5.ldt</a>
+							</li>
+						</ul>
+						<p class="ies__empty js-ies-empty" hidden>Ничего не найдено</p>
+					</div>
+					<p class="ies__note">Если вы не нашли IES-файл на интересующий вас светильник, напишите нам на почту <a class="ies__mail" href="mailto:studio@artlight.ru">studio@artlight.ru</a>, указав необходимую вам модель (возможно, данный файл уже у нас подготовлен, но ещё не выложен на сайте).</p>
+				</div>
+				<section class="reviews reviews--gap-93">
+					<div class="container">
+						<h2 class="reviews__title title title--h2">отзывы</h2>
+						<div class="reviews__slider swiper js-reviews-slider">
+							<div class="swiper-wrapper">
+								<article class="reviews__item swiper-slide">
+									<div class="reviews__head"><span class="reviews__rating">
+											<svg class="reviews__star" aria-hidden="true" focusable="false">
+												<use xlink:href="./images/sprites.svg#star"></use>
+											</svg>5.0</span>
+										<time class="reviews__date" datetime="2026-08-08">8 августа</time>
+									</div>
+									<p class="reviews__text">Отличные светильники, идеально вписались в проект лофта. Качество сборки на высоте, свет ровный и без мерцания</p>
+									<div class="reviews__author"><img class="reviews__avatar" src="./images/home/review-avatar-1@2x.webp" width="30" height="30" alt="" loading="lazy" draggable="false"><span class="reviews__name">Алла В</span></div>
+								</article>
+								<article class="reviews__item swiper-slide">
+									<div class="reviews__head"><span class="reviews__rating">
+											<svg class="reviews__star" aria-hidden="true" focusable="false">
+												<use xlink:href="./images/sprites.svg#star"></use>
+											</svg>5.0</span>
+										<time class="reviews__date" datetime="2026-08-08">8 августа</time>
+									</div>
+									<p class="reviews__text">Удобно, что можно быстро выбрать нужную температуру света и цвет корпуса прямо при заказе. Доставили вовремя, всё работает без нареканий</p>
+									<div class="reviews__author"><img class="reviews__avatar" src="./images/home/review-avatar-2@2x.webp" width="30" height="30" alt="" loading="lazy" draggable="false"><span class="reviews__name">Мария С.</span></div>
+								</article>
+								<article class="reviews__item swiper-slide">
+									<div class="reviews__head"><span class="reviews__rating">
+											<svg class="reviews__star" aria-hidden="true" focusable="false">
+												<use xlink:href="./images/sprites.svg#star"></use>
+											</svg>5.0</span>
+										<time class="reviews__date" datetime="2026-08-08">8 августа</time>
+									</div>
+									<p class="reviews__text">Искал минималистичный дизайн для акцентной подсветки витрин. Эта модель подошла идеально. Монтаж на шинопровод занял минимум времени</p>
+									<div class="reviews__author"><img class="reviews__avatar" src="./images/home/review-avatar-3@2x.webp" width="30" height="30" alt="" loading="lazy" draggable="false"><span class="reviews__name">Олег</span></div>
+								</article>
+								<article class="reviews__item swiper-slide">
+									<div class="reviews__head"><span class="reviews__rating">
+											<svg class="reviews__star" aria-hidden="true" focusable="false">
+												<use xlink:href="./images/sprites.svg#star"></use>
+											</svg>5.0</span>
+										<time class="reviews__date" datetime="2026-08-08">8 августа</time>
+									</div>
+									<p class="reviews__text">Стильный матовый корпус, смотрятся очень дорого. Заказываю здесь освещение уже не в первый раз — всегда отличный сервис</p>
+									<div class="reviews__author"><img class="reviews__avatar" src="./images/home/review-avatar-4@2x.webp" width="30" height="30" alt="" loading="lazy" draggable="false"><span class="reviews__name">Елена</span></div>
+								</article>
+								<article class="reviews__item swiper-slide">
+									<div class="reviews__head"><span class="reviews__rating">
+											<svg class="reviews__star" aria-hidden="true" focusable="false">
+												<use xlink:href="./images/sprites.svg#star"></use>
+											</svg>5.0</span>
+										<time class="reviews__date" datetime="2026-08-08">8 августа</time>
+									</div>
+									<p class="reviews__text">Стильный матовый корпус, смотрятся очень дорого. Заказываю здесь освещение уже не в первый раз — всегда отличный сервис</p>
+									<div class="reviews__author"><img class="reviews__avatar" src="./images/home/review-avatar-5@2x.webp" width="30" height="30" alt="" loading="lazy" draggable="false"><span class="reviews__name">Дмитрий</span></div>
+								</article>
+							</div>
+						</div>
+						<div class="reviews__sources"><a class="reviews__source" href="https://2gis.ru/" target="_blank" rel="noopener"><span class="reviews__source-name">2ГИС</span>
+								<svg class="reviews__star" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#star"></use>
+								</svg>5.0
+								<svg class="reviews__source-arrow" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right-sm"></use>
+								</svg></a><a class="reviews__source" href="https://yandex.ru/maps/" target="_blank" rel="noopener"><span class="reviews__source-name">Яндекс.Карты</span>
+								<svg class="reviews__star" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#star"></use>
+								</svg>5.0
+								<svg class="reviews__source-arrow" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right-sm"></use>
+								</svg></a>
+						</div>
+					</div>
+				</section>
+				<section class="feedback js-lazy-bg feedback--gap-93">
+					<div class="container feedback__container">
+						<div class="feedback__intro">
+							<h2 class="feedback__title">Вам требуются светильники для проекта?</h2>
+							<p class="feedback__text">Начните с простого — напишите нам и расскажите о нем! Наши специалисты разработают проект освещения — индивидуальное решение, которое подчеркнёт все преимущества вашего объекта</p>
+						</div>
+						<form class="feedback__form js-feedback-form" action="#" method="post" enctype="multipart/form-data" novalidate data-success="success">
+							<div class="feedback__fields">
+								<div class="input feedback__input">
+									<input class="input__field" type="text" name="name" placeholder="Имя" required="required" aria-label="Имя" autocomplete="name"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Имя</span><span class="input__required"></span></span>
+								</div>
+								<div class="input feedback__input feedback__input--phone">
+									<input class="input__field js-phone" type="tel" name="phone" required="required" autocomplete="tel"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text"></span><span class="input__required"></span></span>
+								</div>
+								<div class="input feedback__input">
+									<input class="input__field" type="email" name="email" placeholder="Почта" aria-label="Почта" autocomplete="email"/>
+								</div>
+								<div class="input input--textarea feedback__input feedback__input--textarea">
+									<textarea class="input__field" name="comment" placeholder="Дополнительная информация" aria-label="Дополнительная информация"></textarea>
+								</div>
+								<label class="feedback__file">
+									<input class="feedback__file-input js-feedback-file" type="file" name="files[]" multiple>
+									<svg class="feedback__file-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#attach"></use>
+									</svg><span class="feedback__file-text js-feedback-file-text" data-empty="Прикрепить файл">Прикрепить файл</span>
+								</label>
+							</div>
+							<div class="feedback__agreements">
+								<label class="checkbox checkbox--dark feedback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_terms" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Я принимаю условия пользовательского соглашения и политики конфиденциальности</span>
+								</label>
+								<label class="checkbox checkbox--dark feedback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_personal" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю согласие на обработку персональных данных</span>
+								</label>
+							</div>
+							<button class="button button--main feedback__submit" type="submit"><span class="button__text">Отправить заявку</span><span class="button__circle">
+									<svg class="button__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+									</svg></span>
+							</button>
+						</form>
+						<div class="feedback__social">
+							<p class="feedback__social-title">Приглашаем в наши социальные сети:</p>
+							<ul class="feedback__social-list">
+								<li><a class="feedback__social-link" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+										<svg class="feedback__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#vk"></use>
+										</svg></a></li>
+								<li><a class="feedback__social-link" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+										<svg class="feedback__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#telegram"></use>
+										</svg></a></li>
+								<li><a class="feedback__social-link" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+										<svg class="feedback__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#pinterest"></use>
+										</svg></a></li>
+								<li><a class="feedback__social-link" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+										<svg class="feedback__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#yandex"></use>
+										</svg></a></li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</main><!-- Footer Section  -->
+			<footer class="footer footer--gap-93">
+				<div class="container footer__container">
+					<div class="footer__top">
+						<nav class="footer__nav" aria-label="Меню в подвале">
+							<div class="footer__col footer__col--catalog">
+								<p class="footer__title">Каталог</p>
+								<div class="footer__catalog">
+									<ul class="footer__list">
+										<li><a class="footer__link" href="#">Встраиваемые светильники</a></li>
+										<li><a class="footer__link" href="#">Трековые светильники</a></li>
+										<li><a class="footer__link" href="#">Шинопровод и комплектующие</a></li>
+										<li><a class="footer__link" href="#">Магнитная система</a></li>
+										<li><a class="footer__link" href="#">Индивидуальные</a></li>
+										<li><a class="footer__link" href="#">Профильная система освещения</a></li>
+										<li><a class="footer__link" href="#">Подвесные светильники</a></li>
+										<li><a class="footer__link" href="#">Декоративные светильники</a></li>
+										<li><a class="footer__link" href="#">Декоративные светильники</a></li>
+										<li><a class="footer__link" href="#">Модульные системы освещения</a></li>
+										<li><a class="footer__link" href="#">Настенные светильники</a></li>
+										<li><a class="footer__link" href="#">Напольные светильники</a></li>
+									</ul>
+									<ul class="footer__list">
+										<li><a class="footer__link" href="#">Карданные светильники</a></li>
+										<li><a class="footer__link" href="#">Гипсовые светильники</a></li>
+										<li><a class="footer__link" href="#">Экспозиционные светильники</a></li>
+										<li><a class="footer__link" href="#">Светодиодные ленты и комплектующие</a></li>
+										<li><a class="footer__link" href="#">Источники питания и системы управления</a></li>
+										<li><a class="footer__link" href="#">Источники света</a></li>
+										<li><a class="footer__link" href="#">Комплексные системы безопасности</a></li>
+										<li><a class="footer__link" href="#">Распродажи</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="footer__col">
+								<p class="footer__title">Для покупателя</p>
+								<ul class="footer__list">
+									<li><a class="footer__link" href="about.html">О компании</a></li>
+									<li><a class="footer__link" href="cooperation.html">Сотрудничество</a></li>
+									<li><a class="footer__link" href="services.html">Услуги</a></li>
+									<li><a class="footer__link" href="warranty.html">Гарантия</a></li>
+									<li><a class="footer__link" href="delivery.html">Доставка</a></li>
+									<li><a class="footer__link" href="reviews.html">Отзывы</a></li>
+									<li><a class="footer__link" href="order.html">Оформление заказа</a></li>
+									<li><a class="footer__link" href="projects.html">Реализованные проекты</a></li>
+									<li><a class="footer__link" href="blog.html">Блог</a></li>
+									<li><a class="footer__link" href="education.html">Обучение</a></li>
+									<li><a class="footer__link" href="vacancies.html">Вакансии</a></li>
+									<li><a class="footer__link" href="contacts.html">Контакты</a></li>
+								</ul>
+							</div>
+							<div class="footer__col footer__col--download">
+								<p class="footer__title">Скачать</p>
+								<ul class="footer__list">
+									<li><a class="footer__link" href="#">IES/LDT файлы</a></li>
+									<li><a class="footer__link" href="#">Монтажные инструкции</a></li>
+									<li><a class="footer__link" href="#">BIM файлы (Revit)</a></li>
+									<li><a class="footer__link" href="#">Каталог №11 - pdf</a></li>
+									<li><a class="footer__link" href="#">3D файлы</a></li>
+									<li><a class="footer__link" href="#">Катало 2023 - pdf</a></li>
+									<li><a class="footer__link" href="#">Сертификаты</a></li>
+								</ul>
+							</div>
+						</nav>
+						<div class="footer__aside">
+							<div class="footer__contacts">
+								<div class="footer__contact"><a class="footer__phone" href="tel:+78005003336"><span class="footer__phone-number footer__phone-number--desktop">8 (800) 500-33-36</span><span class="footer__phone-number footer__phone-number--mobile">8 800 500-33-36</span></a>
+									<p class="footer__note">Бесплатный звонок по России</p>
+								</div>
+								<div class="footer__contact"><a class="footer__phone" href="tel:+78127407030"><span class="footer__phone-number footer__phone-number--desktop">8 (812) 740-70-30</span><span class="footer__phone-number footer__phone-number--mobile">+7 812 740-70-30</span></a>
+									<p class="footer__note">197101, Санкт-Петербург, метро «Петроградская»,<br>ул. Ленина, д. 12/36 (вход с ул. Ленина)</p>
+								</div>
+								<div class="footer__contact"><a class="footer__phone" href="tel:+74956405020"><span class="footer__phone-number footer__phone-number--desktop">8 (495) 640-50-20</span><span class="footer__phone-number footer__phone-number--mobile">+7 495 640-50-20</span></a>
+									<p class="footer__note">105005, Москва, метро «Бауманская», ул. Бауманская,<br>33/2, стр. 1, подъезд 2, 2 этаж</p>
+								</div>
+							</div>
+							<form class="footer__subscribe" action="#" method="post" novalidate>
+								<p class="footer__title">Будьте в курсе всех новых событий!</p>
+								<div class="input input--white footer__input">
+									<input class="input__field" type="email" name="email" placeholder="Почта" required="required" aria-label="Почта" autocomplete="email"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Почта</span><span class="input__required"></span></span>
+									<button class="input__action" type="submit" aria-label="Подписаться">
+										<svg class="input__icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#arrow-right"></use>
+										</svg>
+									</button>
+								</div>
+								<label class="checkbox footer__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_ads" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю Согласие на получение рекламных и информационных рассылок</span>
+								</label>
+								<label class="checkbox footer__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_personal" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю Согласие на <a class="footer__agreement-link" href="consent.html">обработку персональных данных</a></span>
+								</label>
+							</form>
+							<ul class="footer__socials">
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#vk"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#telegram"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#pinterest"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#yandex"></use>
+										</svg></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="footer__bottom">
+						<ul class="footer__awards">
+							<li class="footer__award footer__award--gisp">
+								<svg class="footer__award-icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-gisp"></use>
+								</svg>
+								<p class="footer__award-text">Государственная информационная система промышленности</p>
+							</li>
+							<li class="footer__award footer__award--star">
+								<svg class="footer__award-icon footer__award-icon--desktop" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-star"></use>
+								</svg>
+								<svg class="footer__award-icon footer__award-icon--mobile" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-star-sm"></use>
+								</svg>
+								<p class="footer__award-text">Лучшее предприятие отрасли 2024</p>
+							</li>
+							<li class="footer__award footer__award--trophy">
+								<svg class="footer__award-icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-trophy"></use>
+								</svg>
+								<p class="footer__award-text">Победитель<br>Евразийская Премия «Золотой Фотон»</p>
+							</li>
+						</ul>
+						<div class="footer__legal">
+							<p class="footer__copyright">© ООО «Компания Артлайт» 1996-2026, все права защищены</p><a class="footer__legal-link" href="#">Юридическая информация</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<div class="float-actions js-float-actions">
+			<div class="float-actions__messengers" id="float-messengers" aria-hidden="true"><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в WhatsApp">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-whatsapp"></use>
+					</svg><span class="float-actions__text">WhatsApp</span></a><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в Max">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-max"></use>
+					</svg><span class="float-actions__text">Max</span></a><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в Telegram">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-telegram"></use>
+					</svg><span class="float-actions__text">Telegram</span></a>
+			</div><a class="float-actions__item" href="tel:+78005003336">
+				<svg class="float-actions__icon float-actions__icon--phone" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-phone"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--phone-sm" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-phone-sm"></use>
+				</svg><span class="float-actions__text">Позвонить</span></a>
+			<button class="float-actions__item float-actions__toggle js-float-actions-toggle" type="button" aria-expanded="false" aria-controls="float-messengers" aria-label="Написать">
+				<svg class="float-actions__icon float-actions__icon--message" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-message"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--message-sm" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-message-sm"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--close" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-close"></use>
+				</svg><span class="float-actions__text">Написать</span>
+			</button><a class="float-actions__item" href="#" data-modal="callback">
+				<svg class="float-actions__icon float-actions__icon--pencil" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#pencil"></use>
+				</svg><span class="float-actions__text">Оставить заявку</span></a>
+		</div>
+		<div class="modal js-modal" data-modal-id="callback" role="dialog" aria-modal="true" aria-labelledby="callback-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="callback">
+					<div class="callback__main">
+						<div class="callback__intro">
+							<h2 class="callback__title title title--h2" id="callback-title">Обратный звонок</h2>
+							<div class="callback__description">
+								<p class="callback__text">Оставьте свой номер телефона, и наш менеджер свяжется с Вами в ближайшее* время!</p>
+								<p class="callback__text">* согласно <a class="callback__link" href="contacts.html" target="_blank">режиму работы компании</a></p>
+							</div>
+						</div>
+						<form class="callback__form js-feedback-form" action="#" method="post" enctype="multipart/form-data" novalidate data-success="success">
+							<div class="callback__fields">
+								<div class="input input--line callback__input">
+									<input class="input__field" type="text" name="name" placeholder="Имя" required="required" aria-label="Имя" autocomplete="name"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Имя</span><span class="input__required"></span></span>
+								</div>
+								<div class="input input--line callback__input callback__input--phone">
+									<input class="input__field js-phone" type="tel" name="phone" required="required" autocomplete="tel"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text"></span><span class="input__required"></span></span>
+								</div>
+								<div class="input input--line input--select callback__input callback__input--select">
+									<select class="input__field" name="topic" aria-label="Тема обращения">
+										<option value="" selected="selected" disabled="disabled" hidden="hidden">Тема обращения</option>
+										<option value="Консультация по продукции">Консультация по продукции</option>
+										<option value="Светотехническое проектирование">Светотехническое проектирование</option>
+										<option value="Оформление заказа">Оформление заказа</option>
+										<option value="Доставка">Доставка</option>
+										<option value="Гарантия и сервис">Гарантия и сервис</option>
+										<option value="Сотрудничество">Сотрудничество</option>
+										<option value="Другое">Другое</option>
+									</select>
+									<svg class="input__chevron" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#select-chevron"></use>
+									</svg>
+								</div>
+								<div class="input input--line input--textarea callback__input callback__input--textarea">
+									<textarea class="input__field" name="message" placeholder="Ваше сообщение" aria-label="Ваше сообщение"></textarea>
+								</div>
+								<label class="callback__file">
+									<input class="callback__file-input js-feedback-file" type="file" name="files[]" multiple>
+									<svg class="callback__file-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#attach"></use>
+									</svg><span class="callback__file-text js-feedback-file-text" data-empty="Прикрепить файл">Прикрепить файл</span>
+								</label>
+							</div>
+							<div class="callback__agreements">
+								<label class="checkbox checkbox--light callback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_terms" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Я принимаю условия пользовательского соглашения и политики конфиденциальности</span>
+								</label>
+								<label class="checkbox checkbox--light callback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_personal" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю согласие на обработку персональных данных</span>
+								</label>
+							</div>
+							<button class="button button--main callback__submit" type="submit"><span class="button__text">Заказать звонок</span><span class="button__circle">
+									<svg class="button__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+									</svg></span>
+							</button>
+						</form>
+					</div>
+					<div class="callback__social">
+						<p class="callback__social-title">Приглашаем в наши социальные сети:</p>
+						<ul class="callback__social-list">
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#vk"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#telegram"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#pinterest"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#yandex"></use>
+									</svg></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal js-modal" data-modal-id="success" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="success">
+					<svg class="success__icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#success-check"></use>
+					</svg>
+					<h2 class="success__title" id="success-title">Благодарим Вас за обращение в нашу компанию!</h2>
+					<p class="success__text">Мы свяжемся с Вами в ближайшее время! *согласно режиму работы компании</p>
+					<button class="button button--main success__button js-modal-close" type="button"><span class="button__text">Хорошо</span><span class="button__circle">
+							<svg class="button__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+							</svg></span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal js-modal" data-modal-id="cart-added" role="dialog" aria-modal="true" aria-labelledby="cart-added-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="success">
+					<svg class="success__icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#success-check"></use>
+					</svg>
+					<h2 class="success__title" id="cart-added-title">Товар добавлен в корзину</h2>
+					<div class="success__buttons">
+						<button class="button button--grey success__button js-modal-close" type="button"><span class="button__text">Продолжить выбор</span>
+						</button><a class="button button--main success__button" href="cart.html"><span class="button__text">Перейти в корзину</span><span class="button__circle">
+								<svg class="button__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+								</svg></span></a>
+					</div>
+				</div>
+			</div>
+		</div><!-- Scripts Section  -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="./js/vendor.js?v=1793802670907"></script>
+		<script src="./js/main.js?v=1793802670907"></script>
+	</body>
+</html>

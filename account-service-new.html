@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+		<meta name="description" content="Описания">
+		<meta name="keywords" content="keywords">
+		<meta name="format-detection" content="telephone=no">
+		<title>ARTLIGHT | Личный кабинет — новое обращение в сервисную службу</title><!-- Styles Section  -->
+		<link rel="stylesheet" href="./css/main.css?v=1793802665124">
+	</head>
+	<body>
+		<div class="site"><!-- Header Section  -->
+			<header class="header js-header">
+				<div class="header__container container">
+					<button class="header__burger js-mobile-menu-open" type="button" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
+						<svg class="header__burger-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#burger"></use>
+						</svg>
+					</button>
+					<button class="header__search-toggle js-header-search-toggle" type="button" aria-label="Поиск" aria-expanded="false">
+						<svg class="header__search-toggle-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#loupe"></use>
+						</svg>
+					</button><a class="header__catalog" href="catalog.html">
+						<svg class="header__catalog-icon" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#burger-catalog"></use>
+						</svg><span class="header__catalog-text">Каталог</span></a>
+					<nav class="header__nav js-header-nav" aria-label="Основное меню">
+						<ul class="header__menu">
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="sale.html">Распродажа</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="design.html">Проектирование</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="services.html">Услуги</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="projects.html">Проекты</a></li>
+							<li class="header__menu-item js-header-menu-item"><a class="header__link" href="contacts.html">Контакты</a></li>
+							<li class="header__menu-item header__menu-item--more">
+								<button class="header__link header__more" type="button" aria-haspopup="true" aria-expanded="false">Еще
+									<svg class="header__more-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#chevron-more"></use>
+									</svg>
+								</button>
+								<div class="header__dropdown">
+									<ul class="header__dropdown-list">
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="sale.html">Распродажа</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="design.html">Проектирование</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="services.html">Услуги</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="projects.html">Проекты</a></li>
+										<li class="header__dropdown-item js-header-overflow" hidden><a class="header__dropdown-link" href="contacts.html">Контакты</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="cooperation.html">Сотрудничество</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="services.html">Услуги</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="warranty.html">Гарантия</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="delivery.html">Доставка</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="reviews.html">Отзывы</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="order.html">Оформление заказа</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="projects.html">Реализованные проекты</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="blog.html">Блог</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="education.html">Обучение</a></li>
+										<li class="header__dropdown-item"><a class="header__dropdown-link" href="vacancies.html">Вакансии</a></li>
+									</ul>
+								</div>
+							</li>
+						</ul>
+					</nav><a class="header__logo" href="home.html" aria-label="ARTLIGHT — на главную">
+						<svg class="header__logo-img" aria-hidden="true" focusable="false">
+							<use xlink:href="./images/sprites.svg#logo"></use>
+						</svg></a>
+					<div class="header__phones"><a class="header__phone" href="tel:+78005003336"><span class="header__phone-number">8 800 500 33 36</span> <span class="header__phone-label">бесплатно по РФ</span></a><a class="header__phone" href="tel:+78127407030"><span class="header__phone-number">8 812 740 70 30</span> <span class="header__phone-label">СПБ</span></a><a class="header__phone" href="tel:+74956405020"><span class="header__phone-number">8 495 640 50 20</span> <span class="header__phone-label">МСК</span></a>
+					</div>
+					<form class="search header__search js-header-search" action="search.html" method="get" role="search">
+						<input class="search__field" type="search" name="q" placeholder="Поиск по ARTLIGHT" aria-label="Поиск по ARTLIGHT"/>
+						<button class="search__button" type="submit" aria-label="Найти">
+							<svg class="search__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#search"></use>
+							</svg>
+						</button>
+					</form>
+					<div class="header__actions"><a class="header__action" href="login.html" aria-label="Личный кабинет">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#heroicons-outline_user"></use>
+							</svg></a><a class="header__action" href="favorites.html" aria-label="Избранное">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#heart"></use>
+							</svg></a><a class="header__action header__action--cart" href="cart.html" aria-label="Корзина, товаров: 3">
+							<svg class="header__action-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#bytesize_bag"></use>
+							</svg><span class="header__badge">3</span></a></div>
+				</div>
+			</header>
+			<div class="mobile-menu js-mobile-menu" id="mobile-menu" aria-hidden="true">
+				<div class="mobile-menu__overlay js-mobile-menu-close"></div>
+				<div class="mobile-menu__body">
+					<div class="mobile-menu__panel mobile-menu__panel--main js-mobile-menu-panel" data-panel="main">
+						<button class="mobile-menu__icon-button js-mobile-menu-close" type="button" aria-label="Закрыть меню">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#close"></use>
+							</svg>
+						</button>
+						<nav class="mobile-menu__nav" aria-label="Мобильное меню">
+							<ul class="mobile-menu__list">
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="catalog"><span>Каталог</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="design.html"><span>Проектирование</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="projects.html"><span>Проекты</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="services.html"><span>Услуги</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="sale.html"><span>Распродажа</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="buyer"><span>Для покупателя</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+								<li class="mobile-menu__item"><a class="mobile-menu__link" href="contacts.html"><span>Контакты</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg></a>
+								</li>
+								<li class="mobile-menu__item">
+									<button class="mobile-menu__link js-mobile-menu-next" type="button" data-target="download"><span>Скачать</span>
+										<svg class="mobile-menu__chevron" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#chevron-right"></use>
+										</svg>
+									</button>
+								</li>
+							</ul>
+						</nav>
+						<div class="mobile-menu__contacts">
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+78005003336">8 (800) 500-33-36</a>
+								<p class="mobile-menu__note">Бесплатный звонок по России</p>
+							</div>
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+78127407030">8 (812) 740 70 30</a>
+								<p class="mobile-menu__note">197101, Санкт-Петербург, метро &quot;Петроградская&quot;, ул. Ленина, д. 12/36 (вход с ул. Ленина)</p>
+							</div>
+							<div class="mobile-menu__contact"><a class="mobile-menu__phone" href="tel:+74956405020">8 (495) 640 50 20</a>
+								<p class="mobile-menu__note">105005, Москва, метро &quot;Бауманская&quot;, ул. Бауманская, 33/2, стр. 1, подъезд 2, 2 этаж</p>
+							</div>
+						</div>
+						<ul class="mobile-menu__socials">
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#vk"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#telegram"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#pinterest"></use>
+									</svg></a></li>
+							<li><a class="mobile-menu__social" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+									<svg class="mobile-menu__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#yandex"></use>
+									</svg></a></li>
+						</ul>
+						<button class="button button--main mobile-menu__button" type="button" data-modal="callback"><span class="button__text">Заказать звонок</span><span class="button__circle">
+								<svg class="button__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+								</svg></span>
+						</button>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="catalog" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Трековые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Встраиваемые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Шинопровод и комплектующие</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Магнитная система</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Индивидуальные</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Профильная система освещения</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Подвесные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Декоративные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Декоративные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Модульные системы освещения</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Настенные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Напольные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Карданные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Гипсовые светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Экспозиционные светильники</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Светодиодные ленты и комплектующие</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Источники питания и системы управления</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Источники света</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Комплексные системы безопасности</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Распродажи</a></li>
+						</ul>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="buyer" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="about.html">О компании</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="cooperation.html">Сотрудничество</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="services.html">Услуги</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="warranty.html">Гарантия</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="delivery.html">Доставка</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="reviews.html">Отзывы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="order.html">Оформление заказа</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="projects.html">Реализованные проекты</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="blog.html">Блог</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="education.html">Обучение</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="vacancies.html">Вакансии</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="contacts.html">Контакты</a></li>
+						</ul>
+					</div>
+					<div class="mobile-menu__panel mobile-menu__panel--sub js-mobile-menu-panel" data-panel="download" aria-hidden="true">
+						<button class="mobile-menu__icon-button js-mobile-menu-back" type="button" aria-label="Назад">
+							<svg class="mobile-menu__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#back"></use>
+							</svg>
+						</button>
+						<ul class="mobile-menu__sublist">
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">IES/LDT файлы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Монтажные инструкции</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">BIM файлы (Revit)</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Каталог №11 - pdf</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">3D файлы</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Катало 2023 - pdf</a></li>
+							<li class="mobile-menu__subitem"><a class="mobile-menu__sublink" href="#">Сертификаты</a></li>
+						</ul>
+					</div>
+				</div>
+			</div><!-- Main Section  -->
+			<main class="main">
+				<section class="listing-head container">
+					<nav class="breadcrumbs listing-head__breadcrumbs" aria-label="Хлебные крошки">
+						<ol class="breadcrumbs__list">
+							<li class="breadcrumbs__item"><a class="breadcrumbs__link" href="home.html">Главная</a>
+							</li>
+							<li class="breadcrumbs__item"><span class="breadcrumbs__separator" aria-hidden="true"> / </span><a class="breadcrumbs__link" href="account.html">Личный кабинет</a>
+							</li>
+							<li class="breadcrumbs__item"><span class="breadcrumbs__separator" aria-hidden="true"> / </span><a class="breadcrumbs__link" href="account-service.html">Сервисная служба</a>
+							</li>
+							<li class="breadcrumbs__item"><span class="breadcrumbs__separator" aria-hidden="true"> / </span><span class="breadcrumbs__current" aria-current="page">Новое обращение</span>
+							</li>
+						</ol>
+					</nav>
+					<h1 class="listing-head__title">Личный кабинет</h1>
+				</section>
+				<section class="account container">
+					<aside class="account__aside">
+						<nav class="sidebar account__menu" aria-label="Меню личного кабинета"><a class="sidebar__item" href="account.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#cube"></use>
+								</svg><span class="sidebar__text">Главная</span></a><a class="sidebar__item" href="orders.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#list-check"></use>
+								</svg><span class="sidebar__text">Заказы</span></a><a class="sidebar__item" href="profile.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#user"></use>
+								</svg><span class="sidebar__text">Профиль</span></a><a class="sidebar__item" href="favorites.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#heart"></use>
+								</svg><span class="sidebar__text">Избранное</span></a><a class="sidebar__item" href="pricelist.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#table"></use>
+								</svg><span class="sidebar__text">Прайс-лист</span></a><a class="sidebar__item" href="account-feedback.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#message"></use>
+								</svg><span class="sidebar__text">Обратная связь</span></a><a class="sidebar__item is-active" href="account-service.html" aria-current="page">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#message"></use>
+								</svg><span class="sidebar__text">Сервисная служба</span></a><a class="sidebar__item" href="account-documents.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#message"></use>
+								</svg><span class="sidebar__text">Акты сверки и УПД</span></a><a class="sidebar__item" href="downloads.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#download"></use>
+								</svg><span class="sidebar__text">Материалы для скачивания</span></a><a class="sidebar__item" href="login.html">
+								<svg class="sidebar__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#logout"></use>
+								</svg><span class="sidebar__text">Выйти</span></a>
+						</nav>
+						<button class="account__menu-button" type="button" data-open-panel="account-menu">
+							<svg class="account__menu-button-icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#burger"></use>
+							</svg><span>меню</span>
+						</button>
+						<p class="account__discount">Ваша скидка 10%</p>
+						<div class="account-manager js-accordion-item" data-open-from="1280">
+							<button class="account-manager__head js-accordion-toggle" type="button" aria-expanded="false"><span class="account-manager__title">Персональный менеджер</span>
+								<svg class="account-manager__chevron" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#chevron-up"></use>
+								</svg>
+							</button>
+							<div class="account-manager__body">
+								<div class="account-manager__inner">
+									<ul class="account-manager__list">
+										<li>в процессе назначения</li>
+										<li><a class="account-manager__link" href="tel:+78127407030">+7 812 740-70-30</a></li>
+										<li><a class="account-manager__link" href="tel:+74956405020">+7 495 640-50-20</a></li>
+										<li><a class="account-manager__link" href="tel:88005003336">8 800 500-33-36</a></li>
+										<li><a class="account-manager__link" href="mailto:artlight@artlight.ru">artlight@artlight.ru</a></li>
+									</ul>
+									<div class="account-manager__buttons"><a class="account-manager__button account-manager__button--accent" href="mailto:artlight@artlight.ru">Написать</a>
+										<button class="account-manager__button" type="button" data-modal="callback">Заказать звонок</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</aside>
+					<div class="account__content">
+						<form class="account-feedback account-feedback--service js-feedback-form" action="#" method="post" enctype="multipart/form-data" novalidate data-success="success">
+							<div class="account-feedback__head"><a class="account-order__back" href="account-service.html" aria-label="Вернуться в сервисную службу">
+									<svg class="account-order__back-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#chevron-right"></use>
+									</svg></a>
+								<h2 class="account-feedback__heading">Новое обращение</h2>
+							</div>
+							<div class="account-feedback__intro">
+								<p>Если у вас возникли технические проблемы с продукцией торговой марки ARTLIGHT или светотехническим оборудованием других производителей, приобретённым в нашей компании, вы можете обратиться в нашу сервисную службу. Для этого вам необходимо заполнить форму, расположенную ниже.</p>
+								<p>После проверки данных Вашему обращению будет присвоен номер, Диспетчер нашей сервисной службы свяжется с вами и расскажет, каким образом вы можете передать нам неисправное оборудование.</p>
+							</div>
+							<div class="account-feedback__fields">
+								<div class="input input--label input--select account-feedback__input">
+									<select class="input__field" name="counterparty" aria-label="Контрагенты">
+										<option value="" selected="selected" disabled="disabled" hidden="hidden"></option>
+										<option value="ООО «Артлайт»">ООО «Артлайт»</option>
+										<option value="ИП Иванов И. И.">ИП Иванов И. И.</option>
+									</select>
+									<svg class="input__chevron" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#select-chevron"></use>
+									</svg><span class="input__label" aria-hidden="true">Контрагенты</span>
+								</div>
+								<div class="input input--label input--select account-feedback__input">
+									<select class="input__field" name="contact" aria-label="Контактное лицо">
+										<option value="тест" selected="selected">тест</option>
+									</select>
+									<svg class="input__chevron" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#select-chevron"></use>
+									</svg><span class="input__label" aria-hidden="true">Контактное лицо</span>
+								</div>
+								<div class="input input--label input--select account-feedback__input">
+									<select class="input__field" name="inn" aria-label="Инн">
+										<option value="тест" selected="selected">тест</option>
+									</select>
+									<svg class="input__chevron" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#select-chevron"></use>
+									</svg><span class="input__label" aria-hidden="true">Инн</span>
+								</div>
+								<div class="input input--label account-feedback__input">
+									<input class="input__field" type="email" name="email" placeholder=" " value="test@test.com" aria-label="Почта" autocomplete="email"/><span class="input__label" aria-hidden="true">Почта</span>
+								</div>
+								<div class="input account-feedback__input account-feedback__input--wide">
+									<input class="input__field js-phone" type="tel" name="phone" value="+7 912 345-67-89" required="required" autocomplete="tel"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text"></span><span class="input__required"></span></span>
+								</div>
+								<div class="input account-feedback__input">
+									<input class="input__field" type="text" name="order" placeholder="Номер заказа или счета на оплату заказа" aria-label="Номер заказа или счета на оплату заказа"/>
+								</div>
+								<div class="input account-feedback__input">
+									<input class="input__field" type="text" name="article" placeholder="Артикул товара" aria-label="Артикул товара"/>
+								</div>
+								<div class="input account-feedback__input">
+									<input class="input__field" type="text" name="build" placeholder="Номер сборки" aria-label="Номер сборки"/>
+								</div>
+								<div class="input account-feedback__input">
+									<input class="input__field" type="number" name="quantity" placeholder="Количество" aria-label="Количество" min="1" inputmode="numeric"/>
+								</div>
+								<div class="input input--textarea account-feedback__input account-feedback__input--wide">
+									<textarea class="input__field" name="message" placeholder="Описание неисправности" required="required" aria-label="Описание неисправности"></textarea><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Описание неисправности</span><span class="input__required"></span></span>
+								</div>
+							</div>
+							<label class="checkout-file account-feedback__file">
+								<input class="checkout-file__input js-feedback-file" type="file" name="files[]" multiple accept=".pdf,.png,.jpg,.jpeg,.mp4,.avi,.txt,.doc,.odt,.docx">
+								<svg class="checkout-file__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#attach"></use>
+								</svg><span class="checkout-file__text js-feedback-file-text" data-empty="Прикрепить файл">Прикрепить файл</span>
+							</label>
+							<p class="account-feedback__hint">Вы можете добавить до 10 фотографий до 15 мб в сумме или 1 видео-файл размером 15 мб Разрешённые расширения загружаемых файлов — pdf, png, jpg, jpeg, mp4, avi, txt, doc, odt, docx</p>
+							<div class="account-feedback__buttons"><a class="button button--tertiary" href="account-service.html"><span class="button__text">отмена</span></a>
+								<button class="button button--main" type="submit"><span class="button__text">Отправить сообщение</span><span class="button__circle">
+										<svg class="button__icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+										</svg></span>
+								</button>
+							</div>
+						</form>
+					</div>
+				</section>
+			</main><!-- Footer Section  -->
+			<footer class="footer">
+				<div class="container footer__container">
+					<div class="footer__top">
+						<nav class="footer__nav" aria-label="Меню в подвале">
+							<div class="footer__col footer__col--catalog">
+								<p class="footer__title">Каталог</p>
+								<div class="footer__catalog">
+									<ul class="footer__list">
+										<li><a class="footer__link" href="#">Встраиваемые светильники</a></li>
+										<li><a class="footer__link" href="#">Трековые светильники</a></li>
+										<li><a class="footer__link" href="#">Шинопровод и комплектующие</a></li>
+										<li><a class="footer__link" href="#">Магнитная система</a></li>
+										<li><a class="footer__link" href="#">Индивидуальные</a></li>
+										<li><a class="footer__link" href="#">Профильная система освещения</a></li>
+										<li><a class="footer__link" href="#">Подвесные светильники</a></li>
+										<li><a class="footer__link" href="#">Декоративные светильники</a></li>
+										<li><a class="footer__link" href="#">Декоративные светильники</a></li>
+										<li><a class="footer__link" href="#">Модульные системы освещения</a></li>
+										<li><a class="footer__link" href="#">Настенные светильники</a></li>
+										<li><a class="footer__link" href="#">Напольные светильники</a></li>
+									</ul>
+									<ul class="footer__list">
+										<li><a class="footer__link" href="#">Карданные светильники</a></li>
+										<li><a class="footer__link" href="#">Гипсовые светильники</a></li>
+										<li><a class="footer__link" href="#">Экспозиционные светильники</a></li>
+										<li><a class="footer__link" href="#">Светодиодные ленты и комплектующие</a></li>
+										<li><a class="footer__link" href="#">Источники питания и системы управления</a></li>
+										<li><a class="footer__link" href="#">Источники света</a></li>
+										<li><a class="footer__link" href="#">Комплексные системы безопасности</a></li>
+										<li><a class="footer__link" href="#">Распродажи</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="footer__col">
+								<p class="footer__title">Для покупателя</p>
+								<ul class="footer__list">
+									<li><a class="footer__link" href="about.html">О компании</a></li>
+									<li><a class="footer__link" href="cooperation.html">Сотрудничество</a></li>
+									<li><a class="footer__link" href="services.html">Услуги</a></li>
+									<li><a class="footer__link" href="warranty.html">Гарантия</a></li>
+									<li><a class="footer__link" href="delivery.html">Доставка</a></li>
+									<li><a class="footer__link" href="reviews.html">Отзывы</a></li>
+									<li><a class="footer__link" href="order.html">Оформление заказа</a></li>
+									<li><a class="footer__link" href="projects.html">Реализованные проекты</a></li>
+									<li><a class="footer__link" href="blog.html">Блог</a></li>
+									<li><a class="footer__link" href="education.html">Обучение</a></li>
+									<li><a class="footer__link" href="vacancies.html">Вакансии</a></li>
+									<li><a class="footer__link" href="contacts.html">Контакты</a></li>
+								</ul>
+							</div>
+							<div class="footer__col footer__col--download">
+								<p class="footer__title">Скачать</p>
+								<ul class="footer__list">
+									<li><a class="footer__link" href="#">IES/LDT файлы</a></li>
+									<li><a class="footer__link" href="#">Монтажные инструкции</a></li>
+									<li><a class="footer__link" href="#">BIM файлы (Revit)</a></li>
+									<li><a class="footer__link" href="#">Каталог №11 - pdf</a></li>
+									<li><a class="footer__link" href="#">3D файлы</a></li>
+									<li><a class="footer__link" href="#">Катало 2023 - pdf</a></li>
+									<li><a class="footer__link" href="#">Сертификаты</a></li>
+								</ul>
+							</div>
+						</nav>
+						<div class="footer__aside">
+							<div class="footer__contacts">
+								<div class="footer__contact"><a class="footer__phone" href="tel:+78005003336"><span class="footer__phone-number footer__phone-number--desktop">8 (800) 500-33-36</span><span class="footer__phone-number footer__phone-number--mobile">8 800 500-33-36</span></a>
+									<p class="footer__note">Бесплатный звонок по России</p>
+								</div>
+								<div class="footer__contact"><a class="footer__phone" href="tel:+78127407030"><span class="footer__phone-number footer__phone-number--desktop">8 (812) 740-70-30</span><span class="footer__phone-number footer__phone-number--mobile">+7 812 740-70-30</span></a>
+									<p class="footer__note">197101, Санкт-Петербург, метро «Петроградская»,<br>ул. Ленина, д. 12/36 (вход с ул. Ленина)</p>
+								</div>
+								<div class="footer__contact"><a class="footer__phone" href="tel:+74956405020"><span class="footer__phone-number footer__phone-number--desktop">8 (495) 640-50-20</span><span class="footer__phone-number footer__phone-number--mobile">+7 495 640-50-20</span></a>
+									<p class="footer__note">105005, Москва, метро «Бауманская», ул. Бауманская,<br>33/2, стр. 1, подъезд 2, 2 этаж</p>
+								</div>
+							</div>
+							<form class="footer__subscribe" action="#" method="post" novalidate>
+								<p class="footer__title">Будьте в курсе всех новых событий!</p>
+								<div class="input input--white footer__input">
+									<input class="input__field" type="email" name="email" placeholder="Почта" required="required" aria-label="Почта" autocomplete="email"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Почта</span><span class="input__required"></span></span>
+									<button class="input__action" type="submit" aria-label="Подписаться">
+										<svg class="input__icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#arrow-right"></use>
+										</svg>
+									</button>
+								</div>
+								<label class="checkbox footer__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_ads" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю Согласие на получение рекламных и информационных рассылок</span>
+								</label>
+								<label class="checkbox footer__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_personal" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю Согласие на <a class="footer__agreement-link" href="consent.html">обработку персональных данных</a></span>
+								</label>
+							</form>
+							<ul class="footer__socials">
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#vk"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#telegram"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#pinterest"></use>
+										</svg></a></li>
+								<li><a class="footer__social" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+										<svg class="footer__social-icon" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#yandex"></use>
+										</svg></a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="footer__bottom">
+						<ul class="footer__awards">
+							<li class="footer__award footer__award--gisp">
+								<svg class="footer__award-icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-gisp"></use>
+								</svg>
+								<p class="footer__award-text">Государственная информационная система промышленности</p>
+							</li>
+							<li class="footer__award footer__award--star">
+								<svg class="footer__award-icon footer__award-icon--desktop" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-star"></use>
+								</svg>
+								<svg class="footer__award-icon footer__award-icon--mobile" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-star-sm"></use>
+								</svg>
+								<p class="footer__award-text">Лучшее предприятие отрасли 2024</p>
+							</li>
+							<li class="footer__award footer__award--trophy">
+								<svg class="footer__award-icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#footer-trophy"></use>
+								</svg>
+								<p class="footer__award-text">Победитель<br>Евразийская Премия «Золотой Фотон»</p>
+							</li>
+						</ul>
+						<div class="footer__legal">
+							<p class="footer__copyright">© ООО «Компания Артлайт» 1996-2026, все права защищены</p><a class="footer__legal-link" href="#">Юридическая информация</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<div class="float-actions js-float-actions">
+			<div class="float-actions__messengers" id="float-messengers" aria-hidden="true"><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в WhatsApp">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-whatsapp"></use>
+					</svg><span class="float-actions__text">WhatsApp</span></a><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в Max">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-max"></use>
+					</svg><span class="float-actions__text">Max</span></a><a class="float-actions__item float-actions__item--messenger" href="#" target="_blank" rel="noopener" tabindex="-1" aria-label="Написать в Telegram">
+					<svg class="float-actions__icon float-actions__icon--messenger" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#float-telegram"></use>
+					</svg><span class="float-actions__text">Telegram</span></a>
+			</div><a class="float-actions__item" href="tel:+78005003336">
+				<svg class="float-actions__icon float-actions__icon--phone" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-phone"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--phone-sm" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-phone-sm"></use>
+				</svg><span class="float-actions__text">Позвонить</span></a>
+			<button class="float-actions__item float-actions__toggle js-float-actions-toggle" type="button" aria-expanded="false" aria-controls="float-messengers" aria-label="Написать">
+				<svg class="float-actions__icon float-actions__icon--message" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-message"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--message-sm" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-message-sm"></use>
+				</svg>
+				<svg class="float-actions__icon float-actions__icon--close" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#float-close"></use>
+				</svg><span class="float-actions__text">Написать</span>
+			</button><a class="float-actions__item" href="#" data-modal="callback">
+				<svg class="float-actions__icon float-actions__icon--pencil" aria-hidden="true" focusable="false">
+					<use xlink:href="./images/sprites.svg#pencil"></use>
+				</svg><span class="float-actions__text">Оставить заявку</span></a>
+		</div>
+		<div class="modal js-modal" data-modal-id="callback" role="dialog" aria-modal="true" aria-labelledby="callback-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="callback">
+					<div class="callback__main">
+						<div class="callback__intro">
+							<h2 class="callback__title title title--h2" id="callback-title">Обратный звонок</h2>
+							<div class="callback__description">
+								<p class="callback__text">Оставьте свой номер телефона, и наш менеджер свяжется с Вами в ближайшее* время!</p>
+								<p class="callback__text">* согласно <a class="callback__link" href="contacts.html" target="_blank">режиму работы компании</a></p>
+							</div>
+						</div>
+						<form class="callback__form js-feedback-form" action="#" method="post" enctype="multipart/form-data" novalidate data-success="success">
+							<div class="callback__fields">
+								<div class="input input--line callback__input">
+									<input class="input__field" type="text" name="name" placeholder="Имя" required="required" aria-label="Имя" autocomplete="name"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text">Имя</span><span class="input__required"></span></span>
+								</div>
+								<div class="input input--line callback__input callback__input--phone">
+									<input class="input__field js-phone" type="tel" name="phone" required="required" autocomplete="tel"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text"></span><span class="input__required"></span></span>
+								</div>
+								<div class="input input--line input--select callback__input callback__input--select">
+									<select class="input__field" name="topic" aria-label="Тема обращения">
+										<option value="" selected="selected" disabled="disabled" hidden="hidden">Тема обращения</option>
+										<option value="Консультация по продукции">Консультация по продукции</option>
+										<option value="Светотехническое проектирование">Светотехническое проектирование</option>
+										<option value="Оформление заказа">Оформление заказа</option>
+										<option value="Доставка">Доставка</option>
+										<option value="Гарантия и сервис">Гарантия и сервис</option>
+										<option value="Сотрудничество">Сотрудничество</option>
+										<option value="Другое">Другое</option>
+									</select>
+									<svg class="input__chevron" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#select-chevron"></use>
+									</svg>
+								</div>
+								<div class="input input--line input--textarea callback__input callback__input--textarea">
+									<textarea class="input__field" name="message" placeholder="Ваше сообщение" aria-label="Ваше сообщение"></textarea>
+								</div>
+								<label class="callback__file">
+									<input class="callback__file-input js-feedback-file" type="file" name="files[]" multiple>
+									<svg class="callback__file-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#attach"></use>
+									</svg><span class="callback__file-text js-feedback-file-text" data-empty="Прикрепить файл">Прикрепить файл</span>
+								</label>
+							</div>
+							<div class="callback__agreements">
+								<label class="checkbox checkbox--light callback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_terms" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Я принимаю условия пользовательского соглашения и политики конфиденциальности</span>
+								</label>
+								<label class="checkbox checkbox--light callback__checkbox">
+									<input class="checkbox__input" type="checkbox" name="agree_personal" value="y"/><span class="checkbox__box">
+										<svg class="checkbox__check" aria-hidden="true" focusable="false">
+											<use xlink:href="./images/sprites.svg#check"></use>
+										</svg><span class="checkbox__dash"></span></span><span class="checkbox__label">Даю согласие на обработку персональных данных</span>
+								</label>
+							</div>
+							<button class="button button--main callback__submit" type="submit"><span class="button__text">Заказать звонок</span><span class="button__circle">
+									<svg class="button__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+									</svg></span>
+							</button>
+						</form>
+					</div>
+					<div class="callback__social">
+						<p class="callback__social-title">Приглашаем в наши социальные сети:</p>
+						<ul class="callback__social-list">
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="ВКонтакте">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#vk"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#telegram"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Pinterest">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#pinterest"></use>
+									</svg></a></li>
+							<li><a class="callback__social-link" href="#" target="_blank" rel="noopener" aria-label="Яндекс">
+									<svg class="callback__social-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#yandex"></use>
+									</svg></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal js-modal" data-modal-id="success" role="dialog" aria-modal="true" aria-labelledby="success-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="success">
+					<svg class="success__icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#success-check"></use>
+					</svg>
+					<h2 class="success__title" id="success-title">Благодарим Вас за обращение в нашу компанию!</h2>
+					<p class="success__text">Мы свяжемся с Вами в ближайшее время! *согласно режиму работы компании</p>
+					<button class="button button--main success__button js-modal-close" type="button"><span class="button__text">Хорошо</span><span class="button__circle">
+							<svg class="button__icon" aria-hidden="true" focusable="false">
+								<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+							</svg></span>
+					</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal js-modal" data-modal-id="cart-added" role="dialog" aria-modal="true" aria-labelledby="cart-added-title" aria-hidden="true">
+			<div class="modal__dialog">
+				<button class="modal__close js-modal-close" type="button" aria-label="Закрыть">
+					<svg class="modal__close-icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#popup-close"></use>
+					</svg>
+				</button>
+				<div class="success">
+					<svg class="success__icon" aria-hidden="true" focusable="false">
+						<use xlink:href="./images/sprites.svg#success-check"></use>
+					</svg>
+					<h2 class="success__title" id="cart-added-title">Товар добавлен в корзину</h2>
+					<div class="success__buttons">
+						<button class="button button--grey success__button js-modal-close" type="button"><span class="button__text">Продолжить выбор</span>
+						</button><a class="button button--main success__button" href="cart.html"><span class="button__text">Перейти в корзину</span><span class="button__circle">
+								<svg class="button__icon" aria-hidden="true" focusable="false">
+									<use xlink:href="./images/sprites.svg#arrow-up-right"></use>
+								</svg></span></a>
+					</div>
+				</div>
+			</div>
+		</div><!-- Scripts Section  -->
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="./js/vendor.js?v=1793802665131"></script>
+		<script src="./js/main.js?v=1793802665131"></script>
+	</body>
+</html>
