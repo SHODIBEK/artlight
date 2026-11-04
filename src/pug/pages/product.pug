@@ -16,6 +16,9 @@ section.product-page.container
 							.product-page__slide.swiper-slide
 								img.product-page__image(src=`${baseDir}images/${photo.src}.webp` class=(photo.fit ? 'product-page__image--' + photo.fit : null) alt=(index ? '' : page.title) fetchpriority=(index ? null : 'high') loading=(index ? 'lazy' : null) draggable="false")
 				span.product-page__badge= page.badge
+				+button({ view: 'arrow', ariaLabel: 'Предыдущее фото' }).product-page__arrow.product-page__arrow--prev.js-product-page-prev
+				+button({ view: 'arrow', ariaLabel: 'Следующее фото' }).product-page__arrow.product-page__arrow--next.js-product-page-next
+				.product-page__bullets.js-product-page-bullets
 			.product-page__thumbs
 				each photo, index in page.photos
 					button.product-page__thumb.js-product-page-thumb(type="button" class=(index ? null : 'is-active') aria-label=`Фото ${index + 1}` aria-current=(index ? null : 'true'))
@@ -29,6 +32,7 @@ section.product-page.container
 						+svg('griddy-icons_heart').product-page__action-icon
 					button.product-page__action.js-product-share(type="button" aria-label="Поделиться")
 						+svg('share').product-page__action-icon
+			p.product-page__subtitle= page.subtitle
 
 			form.product-config.js-product-config(action="#")
 				.product-config__head

@@ -81,6 +81,76 @@
 		pointer-events: none;
 	}
 
+	// стрелки по краям фото, по центру высоты (как в «Контактах»)
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		z-index: 2;
+		transform: translateY(-50%);
+
+		// отражаем всю кнопку: иконке на ховере анимация (button-nudge) задаёт свой transform
+		&--prev {
+			left: 20px;
+			transform: translateY(-50%) scaleX(-1);
+		}
+
+		&--next {
+			right: 20px;
+		}
+
+		&.swiper-button-disabled {
+			display: none;
+		}
+	}
+
+	// буллеты — серая плашка с белыми точками, текущее фото — accent
+	&__bullets {
+		position: absolute;
+		left: 50%;
+		bottom: 20px;
+		z-index: 2;
+		display: flex;
+		border-radius: 14px;
+		padding: 0 4px;
+		height: 30px;
+		background-color: rgba(0, 0, 0, 0.3);
+		transform: translateX(-50%);
+		gap: 0;
+
+		&.swiper-pagination-lock {
+			display: none;
+		}
+	}
+
+	&__bullet {
+		position: relative;
+		flex-shrink: 0;
+		outline: none;
+		border: 0;
+		padding: 0;
+		width: 20px;
+		height: 100%;
+		background: none;
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			border-radius: 50%;
+			width: 12px;
+			height: 12px;
+			background-color: var(--color-white);
+			transform: translate(-50%, -50%);
+			transition: background-color $duration-normal;
+		}
+
+		&.is-active::before {
+			background-color: var(--color-accent);
+		}
+	}
+
 	&__thumbs {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -140,6 +210,14 @@
 		font-size: 28px;
 		line-height: 34px;
 		color: var(--color-black);
+	}
+
+	&__subtitle {
+		margin: 6px 0 0;
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 20px;
+		color: var(--color-black-60);
 	}
 
 	&__actions {
@@ -238,6 +316,18 @@
 			top: 30px;
 		}
 
+		&__arrow--prev {
+			left: 30px;
+		}
+
+		&__arrow--next {
+			right: 30px;
+		}
+
+		&__bullets {
+			bottom: 30px;
+		}
+
 		&__thumb {
 			aspect-ratio: 158.4 / 140;
 		}
@@ -253,6 +343,12 @@
 			flex-grow: 0;
 			font-size: 46px;
 			line-height: 55px;
+		}
+
+		&__subtitle {
+			margin-top: 8px;
+			font-size: 20px;
+			line-height: 24px;
 		}
 
 		&__question {

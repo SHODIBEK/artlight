@@ -1,4 +1,5 @@
 import Swiper from 'swiper';
+import {Navigation, Pagination} from 'swiper/modules';
 
 /**
 * Страница товара: слайдер фото (свайп, миниатюры), «в избранное» / «поделиться», счётчики «- 1 +»,
@@ -21,7 +22,19 @@ function galleryInit() {
 		};
 
 		const slider = new Swiper(gallery.querySelector('.js-product-page-slider'), {
+			modules: [Navigation, Pagination],
 			speed: 600,
+			navigation: {
+				prevEl: gallery.querySelector('.js-product-page-prev'),
+				nextEl: gallery.querySelector('.js-product-page-next'),
+			},
+			pagination: {
+				el: gallery.querySelector('.js-product-page-bullets'),
+				clickable: true,
+				bulletElement: 'button',
+				bulletClass: 'product-page__bullet',
+				bulletActiveClass: 'is-active',
+			},
 			grabCursor: true,
 			resistanceRatio: 0.6,
 			on: {
