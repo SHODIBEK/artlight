@@ -93,6 +93,78 @@
 		gap: 35px;
 	}
 
+	// Физическое / Юридическое лицо: подписи по краям, переключатель по центру (≥ 768 — в строку через 20)
+	&__person {
+		display: grid;
+		align-items: center;
+		grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+		gap: 12px;
+	}
+
+	&__person-label {
+		outline: none;
+		border: 0;
+		padding: 0;
+		font: inherit;
+		font-size: 15px;
+		line-height: 18px;
+		text-align: left;
+		color: var(--color-black-60);
+		background: none;
+		transition: color $duration-normal;
+		cursor: pointer;
+
+		&:last-child {
+			text-align: right;
+		}
+
+		&.is-active {
+			color: var(--color-black);
+			cursor: default;
+		}
+
+		@include state-hover {
+			color: var(--color-black);
+		}
+	}
+
+	&__switch {
+		appearance: none;
+		position: relative;
+		flex-shrink: 0;
+		margin: 0;
+		border-radius: 12px;
+		width: 40px;
+		height: 24px;
+		background-color: var(--color-stroke);
+		transition: background-color $duration-normal, box-shadow $duration-normal;
+		cursor: pointer;
+
+		&::before {
+			content: "";
+			position: absolute;
+			left: 3px;
+			top: 3px;
+			border-radius: 50%;
+			width: 18px;
+			height: 18px;
+			background-color: var(--color-white);
+			transition: transform $duration-normal;
+		}
+
+		&:checked {
+			background-color: var(--color-accent);
+
+			&::before {
+				transform: translateX(16px);
+			}
+		}
+
+		@include state-focus {
+			@include stroke(2px, var(--color-black));
+		}
+	}
+
 	&__fields {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
@@ -300,6 +372,16 @@
 			@include state-pressed {
 				background-color: var(--color-stroke);
 			}
+		}
+
+		&__person {
+			display: flex;
+			gap: 20px;
+		}
+
+		&__person-label {
+			font-size: 18px;
+			line-height: 22px;
 		}
 
 		&__fields--grid {

@@ -4,9 +4,8 @@
 section.listing-head.container
 	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
 	h1.listing-head__title= page.title
-	//- моб.: число проектов и кнопка панели типов (≥ 768 — табы)
+	//- моб.: кнопка панели типов (≥ 768 — табы); число проектов убрано по просьбе заказчика
 	.listing-head__mobile
-		p.listing-head__count= page.count
 		+listingChip(page.chooseType, { icon: 'filter-square', cls: 'listing-head__choose' })(data-open-panel="project-types")
 
 .project-list.container

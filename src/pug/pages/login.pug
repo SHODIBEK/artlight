@@ -30,19 +30,24 @@ section.auth.container.js-auth
 
 		//- Регистрация
 		form.auth__form.auth__form--register.js-feedback-form#auth-register(action="#" method="post" novalidate role="tabpanel" aria-labelledby="auth-tab-register" data-validate=".input__field, .js-auth-agree .checkbox__input" hidden)
+			//- Физическое / Юридическое лицо — по просьбе заказчика (в макете нет); у физ. лица поля компании (.js-auth-legal) скрыты и disabled — auth.js
+			.auth__person.js-auth-person
+				button.auth__person-label.js-auth-person-side(type="button" data-legal="false" tabindex="-1")= page.register.person.individual
+				input.auth__switch.js-auth-person-switch(type="checkbox" name="legal" value="y" role="switch" checked aria-label=page.register.person.legal)
+				button.auth__person-label.is-active.js-auth-person-side(type="button" data-legal="true" tabindex="-1")= page.register.person.legal
 			.auth__fields.auth__fields--grid
 				+input({ name: 'surname', placeholder: 'Фамилия', attrs: { autocomplete: 'family-name' } }).auth__input
 				+input({ name: 'name', placeholder: 'Имя', required: true, attrs: { autocomplete: 'given-name' } }).auth__input
 				+input({ name: 'email', type: 'email', placeholder: 'Почта', required: true, attrs: { autocomplete: 'email' } }).auth__input
 				+input({ name: 'phone', type: 'tel', required: true, attrs: { autocomplete: 'tel', class: 'js-phone' } }).auth__input.auth__input--phone
-				+input({ name: 'company', placeholder: 'Название компании', attrs: { autocomplete: 'organization' } }).auth__input
-				+input({ name: 'inn', placeholder: 'ИНН', attrs: { inputmode: 'numeric', pattern: '\\d{10}|\\d{12}' } }).auth__input
-				+input({ name: 'tax', placeholder: 'Система налогообложения', options: page.register.taxes }).auth__input
-				+input({ name: 'position', placeholder: 'Должность', attrs: { autocomplete: 'organization-title' } }).auth__input
+				+input({ name: 'company', placeholder: 'Название компании', attrs: { autocomplete: 'organization' } }).auth__input.js-auth-legal
+				+input({ name: 'inn', placeholder: 'ИНН', attrs: { inputmode: 'numeric', pattern: '\\d{10}|\\d{12}' } }).auth__input.js-auth-legal
+				+input({ name: 'tax', placeholder: 'Система налогообложения', options: page.register.taxes }).auth__input.js-auth-legal
+				+input({ name: 'position', placeholder: 'Должность', attrs: { autocomplete: 'organization-title' } }).auth__input.js-auth-legal
 				+input({ name: 'city', placeholder: 'Город', attrs: { autocomplete: 'address-level2' } }).auth__input
-				+input({ name: 'site', type: 'url', placeholder: 'Сайт', attrs: { autocomplete: 'url' } }).auth__input
+				+input({ name: 'site', type: 'url', placeholder: 'Сайт', attrs: { autocomplete: 'url' } }).auth__input.js-auth-legal
 				+passwordInput('password', 'new-password')(class="auth__input--wide")
-				+input({ name: 'activity', placeholder: 'Вид деятельности', options: page.register.activities }).auth__input.auth__input--wide.auth__input--activity
+				+input({ name: 'activity', placeholder: 'Вид деятельности', options: page.register.activities }).auth__input.auth__input--wide.auth__input--activity.js-auth-legal
 			.auth__agreements
 				each item in page.register.agreements
 					+checkbox({ name: item.name, value: 'y' }).checkbox--white.auth__check(class=(item.name === 'agree_ads' ? null : 'js-auth-agree'))

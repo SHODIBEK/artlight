@@ -18,7 +18,38 @@ function passwordsInit() {
 	});
 }
 
+// регистрация: Физическое / Юридическое лицо — у физ. лица поля компании скрыты и disabled (не проверяются и не уходят)
+function personInit() {
+	document.querySelectorAll('.js-auth-person').forEach((root) => {
+		const form = root.closest('form');
+		const toggle = root.querySelector('.js-auth-person-switch');
+		const sides = root.querySelectorAll('.js-auth-person-side');
+		const fields = form.querySelectorAll('.js-auth-legal');
+
+		const update = () => {
+			const isLegal = toggle.checked;
+
+			sides.forEach((side) => side.classList.toggle('is-active', side.dataset.legal === 'true' === isLegal));
+			fields.forEach((field) => {
+				field.hidden = !isLegal;
+				field.querySelectorAll('input, select, textarea').forEach((control) => {
+					control.disabled = !isLegal;
+				});
+			});
+		};
+
+		toggle.addEventListener('change', update);
+		sides.forEach((side) => side.addEventListener('click', () => {
+			toggle.checked = side.dataset.legal === 'true';
+			update();
+		}));
+		form.addEventListener('reset', () => setTimeout(update));
+		update();
+	});
+}
+
 export default function authInit() {
+	personInit();
 	document.querySelectorAll('.js-auth').forEach((root) => tabsInit(root, '.js-auth-tab'));
 	passwordsInit();
 }
