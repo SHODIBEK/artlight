@@ -46,7 +46,7 @@ section.auth.container.js-auth
 			.auth__agreements
 				each item in page.register.agreements
 					+checkbox({ name: item.name, value: 'y' }).checkbox--white.auth__check(class=(item.name === 'agree_ads' ? null : 'js-auth-agree'))
-						span.checkbox__label= typo(item.text)
+						span.checkbox__label!= agreementText(item.text)
 			.auth__benefits
 				h2.auth__benefits-title= page.register.benefitsTitle
 				ul.auth__benefits-list

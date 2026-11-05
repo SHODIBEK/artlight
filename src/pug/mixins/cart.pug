@@ -14,9 +14,8 @@ mixin cartItem(item, index, opts)
 				.cart-item__info
 					p.cart-item__name= typo(item.name)
 					p.cart-item__specs= item.specs
+				//- «В избранное» убрана по просьбе заказчика (в макете есть)
 				.cart-item__actions
-					button.cart-item__action(type="button" aria-label="В избранное" aria-pressed="false")
-						+svg('heart').cart-item__action-icon
 					button.cart-item__action.js-cart-remove(type="button" aria-label="Удалить из корзины")
 						+svg('cart-remove').cart-item__action-icon
 			.cart-item__bottom

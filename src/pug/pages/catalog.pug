@@ -54,7 +54,7 @@ mixin catalogCard(item, proportional, eager)
 				img.catalog-card__image(src=`${baseDir}images/catalog/${item.img.name}.webp` alt="" loading=(eager ? null : 'lazy') draggable="false")
 
 mixin catalogStatus(item)
-	a.catalog-status(href=(item.url || '#'))
+	a.catalog-status(href=(item.url || '#') class=(item.below ? 'catalog-status--below' : null))
 		span.catalog-status__title= item.name
 		span.catalog-status__circle
 			+svg('arrow-up-right').catalog-status__icon

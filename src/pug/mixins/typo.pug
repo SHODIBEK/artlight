@@ -3,3 +3,14 @@
 	function typo(text) {
 		return String(text).replace(/(?<=^|[\s ])(в|во|и|а|но|на|не|по|от|до|за|из|к|с|со|у|о|об|вне|вы|мы|для|без|при|над|под|про|что|как|где|или)\s/gi, '$1 ');
 	}
+
+	// текст согласия в формах (после typo) — HTML со ссылками на документы (data.agreementLinks), выводить через !=
+	function agreementText(text) {
+		var html = typo(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		data.agreementLinks.forEach(function (link) {
+			html = html.replace(link.pattern, function (match) {
+				return '<a class="checkbox__link" href="' + link.url + '" target="_blank">' + match + '</a>';
+			});
+		});
+		return html;
+	}

@@ -2,7 +2,7 @@ import Swiper from 'swiper';
 import {Navigation, Pagination} from 'swiper/modules';
 
 /**
-* Страница товара: слайдер фото (свайп, миниатюры), «в избранное» / «поделиться», счётчики «- 1 +»,
+* Страница товара: слайдер фото (по кругу, свайп, миниатюры), «в избранное» / «поделиться», счётчики «- 1 +»,
 * отметка модификаций (подсветка строки и число в «Добавить отмеченные N»).
 * «Сбросить все» — form reset (варианты возвращаются к выбранным по умолчанию).
 */
@@ -24,6 +24,7 @@ function galleryInit() {
 		const slider = new Swiper(gallery.querySelector('.js-product-page-slider'), {
 			modules: [Navigation, Pagination],
 			speed: 600,
+			loop: true,
 			navigation: {
 				prevEl: gallery.querySelector('.js-product-page-prev'),
 				nextEl: gallery.querySelector('.js-product-page-next'),
@@ -38,7 +39,7 @@ function galleryInit() {
 			grabCursor: true,
 			resistanceRatio: 0.6,
 			on: {
-				slideChange: (swiper) => setActive(swiper.activeIndex),
+				slideChange: (swiper) => setActive(swiper.realIndex),
 			},
 		});
 
@@ -57,7 +58,7 @@ function galleryInit() {
 		});
 
 		thumbs.forEach((thumb, index) => {
-			thumb.addEventListener('click', () => slider.slideTo(index));
+			thumb.addEventListener('click', () => slider.slideToLoop(index));
 		});
 	});
 }

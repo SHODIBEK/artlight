@@ -64,7 +64,7 @@ section.feedback.js-lazy-bg(id=(typeof feedbackId !== 'undefined' ? feedbackId :
 			.feedback__agreements
 				each item in feedback.agreements
 					+checkbox({ name: item.name, value: 'y' }).checkbox--dark.feedback__checkbox
-						span.checkbox__label= typo(item.text)
+						span.checkbox__label!= agreementText(item.text)
 
 			+button({ view: 'main', type: 'submit', label: 'Отправить заявку' }).feedback__submit
 

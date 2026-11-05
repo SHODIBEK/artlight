@@ -334,7 +334,8 @@ $catalog-nav-bar: 60px;
 	justify-content: center;
 	outline: none;
 	padding: 30px;
-	height: 136px;
+	min-height: 136px;
+	text-align: center;
 	color: var(--color-black);
 	background-color: var(--color-light-grey);
 	transition:
@@ -346,7 +347,6 @@ $catalog-nav-bar: 60px;
 		font-weight: 700;
 		font-size: 22px;
 		line-height: 26px;
-		white-space: nowrap;
 		text-transform: uppercase;
 	}
 
@@ -368,6 +368,13 @@ $catalog-nav-bar: 60px;
 		flex-shrink: 0;
 		width: 16px;
 		height: 16px;
+	}
+
+	// «Снятые с производства» (в макете нет): отдельным рядом ниже, ширина — как у карточки ряда из 4 (шаг 20)
+	@media (min-width: #{$header-desktop}px) {
+		&--below {
+			flex: 0 0 calc((100% - 60px) / 4);
+		}
 	}
 
 	@include state-hover {

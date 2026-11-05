@@ -16,6 +16,18 @@
 		line-height: 18px;
 	}
 
+	// ссылки в тексте согласия (agreementText): клик по ссылке не переключает отметку
+	&__link {
+		text-decoration: underline;
+		transition: opacity $duration-normal;
+		text-underline-offset: 2px;
+
+		// формы бывают на тёмном фоне — прозрачность вместо цвета
+		@include state-hover {
+			opacity: 0.6;
+		}
+	}
+
 	&__input {
 		position: absolute;
 		left: 0;
