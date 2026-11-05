@@ -116,8 +116,8 @@ section.product-page.container
 								span.product-tiles__note= file.type
 
 //- «Все модификации серии»: таблица с прокруткой по горизонтали (< 1280), отмеченные строки — подсветка
-//- таблица скрыта по просьбе заказчика (hidden)
-section.product-mods.container.js-product-mods
+//- раздел и таблица скрыты по просьбе заказчика (hidden) — может пригодиться, показать — убрать hidden
+section.product-mods.container.js-product-mods(hidden)
 	h2.product-mods__title= page.modificationsTitle
 	.product-mods__scroll
 		table.product-mods__table(hidden)
