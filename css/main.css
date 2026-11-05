@@ -7055,6 +7055,19 @@ iframe {
   font-size: 15px;
   line-height: 18px;
 }
+.checkbox__link {
+  text-decoration: underline;
+  transition: opacity 0.3s;
+  text-underline-offset: 2px;
+}
+@media (hover: hover) {
+  .checkbox__link:not(:disabled):not(.is-disabled):hover {
+    opacity: 0.6;
+  }
+}
+.checkbox__link.is-hover {
+  opacity: 0.6;
+}
 .checkbox__input {
   position: absolute;
   left: 0;
@@ -9157,7 +9170,7 @@ html.is-preloading {
   line-height: 36px;
 }
 .projects__slider {
-  clip-path: inset(0 -100vw 0 0);
+  clip-path: inset(0 -100vw);
   overflow: visible;
   margin-top: 30px;
 }
@@ -10301,7 +10314,8 @@ html.is-preloading {
   justify-content: center;
   outline: none;
   padding: 30px;
-  height: 136px;
+  min-height: 136px;
+  text-align: center;
   color: var(--color-black);
   background-color: var(--color-light-grey);
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -10311,7 +10325,6 @@ html.is-preloading {
   font-weight: 700;
   font-size: 22px;
   line-height: 26px;
-  white-space: nowrap;
   text-transform: uppercase;
 }
 .catalog-status__circle {
@@ -10330,6 +10343,11 @@ html.is-preloading {
   flex-shrink: 0;
   width: 16px;
   height: 16px;
+}
+@media (min-width: 1280px) {
+  .catalog-status--below {
+    flex: 0 0 calc((100% - 60px) / 4);
+  }
 }
 @media (hover: hover) {
   .catalog-status:not(:disabled):not(.is-disabled):hover {
@@ -12026,7 +12044,7 @@ html.is-preloading {
   line-height: 36px;
 }
 .product-slider__slider {
-  clip-path: inset(0 -100vw 0 0);
+  clip-path: inset(0 -100vw);
   overflow: visible;
   margin-top: 17.5px;
   margin-bottom: -2.5px;
@@ -12438,7 +12456,7 @@ html.is-preloading {
   line-height: 36px;
 }
 .news-similar__slider {
-  clip-path: inset(0 -100vw 0 0);
+  clip-path: inset(0 -100vw);
   overflow: visible;
   margin-top: 22.5px;
 }
