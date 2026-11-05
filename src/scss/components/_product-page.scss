@@ -151,6 +151,11 @@
 		}
 	}
 
+	// преимущества под миниатюрами
+	&__features {
+		margin-top: 20px;
+	}
+
 	&__thumbs {
 		display: grid;
 		grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -443,77 +448,6 @@
 		}
 	}
 
-	&__files {
-		margin-top: 25px;
-	}
-
-	&__label {
-		margin: 0;
-		font-weight: 500;
-		font-size: 15px;
-		line-height: 18px;
-		color: var(--color-black);
-	}
-
-	&__cards {
-		display: grid;
-		margin-top: 12px;
-		gap: 9px;
-
-		&--features {
-			margin-top: 25px;
-		}
-	}
-
-	&__card {
-		display: flex;
-		align-items: center;
-		padding: 12px;
-		font-size: 15px;
-		line-height: 18px;
-		color: var(--color-black);
-		gap: 4px;
-
-		&--file {
-			outline: none;
-			min-height: 64px;
-			text-decoration: none;
-			transition: box-shadow $duration-normal;
-
-			@include stroke(1px, var(--color-stroke));
-
-			@include state-hover {
-				@include stroke(1px, var(--color-black-60));
-			}
-
-			@include state-focus {
-				@include stroke(2px, var(--color-black));
-			}
-		}
-
-		&--feature {
-			min-height: 62px;
-			background-color: var(--color-light-grey);
-		}
-	}
-
-	&__icon {
-		flex-shrink: 0;
-		width: 20px;
-		height: 20px;
-	}
-
-	&__card-text {
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		gap: 2px;
-	}
-
-	&__card-note {
-		color: var(--color-black-60);
-	}
-
 	&__group {
 		margin: 25px 0 0;
 		border: 0;
@@ -585,11 +519,64 @@
 		line-height: 18px;
 		color: var(--color-black-60);
 	}
+}
+
+// карточки-плашки: файлы (вкладка «Файлы» в характеристиках) и преимущества (под миниатюрами фото)
+.product-tiles {
+	display: grid;
+	gap: 9px;
+
+	&__item {
+		display: flex;
+		align-items: center;
+		padding: 12px;
+		font-size: 15px;
+		line-height: 18px;
+		color: var(--color-black);
+		gap: 4px;
+
+		&--file {
+			outline: none;
+			min-height: 64px;
+			text-decoration: none;
+			transition: box-shadow $duration-normal;
+
+			@include stroke(1px, var(--color-stroke));
+
+			@include state-hover {
+				@include stroke(1px, var(--color-black-60));
+			}
+
+			@include state-focus {
+				@include stroke(2px, var(--color-black));
+			}
+		}
+
+		&--feature {
+			min-height: 62px;
+			background-color: var(--color-light-grey);
+		}
+	}
+
+	&__icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+	}
+
+	&__text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+		gap: 2px;
+	}
+
+	&__note {
+		color: var(--color-black-60);
+	}
 
 	@media (min-width: #{$tablet}px) {
-		&__cards {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
+		grid-template-columns: repeat(3, minmax(0, 1fr));
 	}
 }
 
@@ -626,6 +613,12 @@
 		font-size: 36px;
 		line-height: 43px;
 		white-space: nowrap;
+	}
+
+	// «от» перед ценой — мельче
+	&__from {
+		font-size: 20px;
+		line-height: 24px;
 	}
 
 	&__buy {
@@ -810,6 +803,10 @@
 
 	&__panel {
 		margin-top: 11px;
+
+		&:has(> .product-tiles) {
+			margin-top: 20px;
+		}
 
 		&--text p {
 			margin: 0;

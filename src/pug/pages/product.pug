@@ -23,6 +23,14 @@ section.product-page.container
 				each photo, index in page.photos
 					button.product-page__thumb.js-product-page-thumb(type="button" class=(index ? null : 'is-active') aria-label=`Фото ${index + 1}` aria-current=(index ? null : 'true'))
 						img.product-page__thumb-image(src=`${baseDir}images/${photo.src}.webp` class=(photo.fit ? 'product-page__thumb-image--' + photo.fit : null) alt="" loading="lazy")
+			//- преимущества — под миниатюрами
+			.product-tiles.product-page__features
+				each feature in page.features
+					.product-tiles__item.product-tiles__item--feature
+						+svg(feature.icon).product-tiles__icon
+						span.product-tiles__text
+							span.product-tiles__name= feature.name
+							span.product-tiles__note= feature.text
 
 		.product-page__info
 			.product-page__heading
@@ -38,24 +46,6 @@ section.product-page.container
 				.product-config__head
 					h2.product-config__title= page.configTitle
 					button.product-config__reset.js-product-config-reset(type="reset")= page.reset
-
-				.product-config__files
-					p.product-config__label= page.filesTitle
-					.product-config__cards
-						each file in page.files
-							a.product-config__card.product-config__card--file(href=file.url download)
-								+svg(file.icon).product-config__icon
-								span.product-config__card-text
-									span.product-config__card-name= file.name
-									span.product-config__card-note= file.type
-
-				.product-config__cards.product-config__cards--features
-					each feature in page.features
-						.product-config__card.product-config__card--feature
-							+svg(feature.icon).product-config__icon
-							span.product-config__card-text
-								span.product-config__card-name= feature.name
-								span.product-config__card-note= feature.text
 
 				each group in page.options
 					fieldset.product-config__group
@@ -77,7 +67,9 @@ section.product-page.container
 			.product-summary
 				p.product-summary__count= page.summary.count
 				.product-summary__row
-					p.product-summary__price= page.summary.price
+					p.product-summary__price
+						span.product-summary__from= page.summary.from + ' '
+						= page.summary.price
 					.product-summary__buy
 						+productCounter().product-summary__counter
 						button.product-summary__button(type="button" data-modal="cart-added")= page.summary.button
@@ -114,12 +106,21 @@ section.product-page.container
 			.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
 				each paragraph in page.description
 					p= typo(paragraph)
+			.product-specs__panel(id="product-panel-files" role="tabpanel" aria-labelledby="product-tab-files" hidden)
+				.product-tiles
+					each file in page.files
+						a.product-tiles__item.product-tiles__item--file(href=file.url download)
+							+svg(file.icon).product-tiles__icon
+							span.product-tiles__text
+								span.product-tiles__name= file.name
+								span.product-tiles__note= file.type
 
 //- «Все модификации серии»: таблица с прокруткой по горизонтали (< 1280), отмеченные строки — подсветка
+//- таблица скрыта по просьбе заказчика (hidden)
 section.product-mods.container.js-product-mods
 	h2.product-mods__title= page.modificationsTitle
 	.product-mods__scroll
-		table.product-mods__table
+		table.product-mods__table(hidden)
 			thead
 				tr
 					th.product-mods__check-cell
