@@ -8,7 +8,7 @@
 		<meta name="keywords" content="keywords">
 		<meta name="format-detection" content="telephone=no">
 		<title>ARTLIGHT | Вход и регистрация</title><!-- Styles Section  -->
-		<link rel="stylesheet" href="./css/main.css?v=1793882186548">
+		<link rel="stylesheet" href="./css/main.css?v=1793897632318">
 	</head>
 	<body>
 		<div class="site"><!-- Header Section  -->
@@ -289,6 +289,11 @@
 							</button>
 						</form>
 						<form class="auth__form auth__form--register js-feedback-form" id="auth-register" action="#" method="post" novalidate role="tabpanel" aria-labelledby="auth-tab-register" data-validate=".input__field, .js-auth-agree .checkbox__input" hidden>
+							<div class="auth__person js-auth-person">
+								<button class="auth__person-label js-auth-person-side" type="button" data-legal="false" tabindex="-1">Физическое лицо</button>
+								<input class="auth__switch js-auth-person-switch" type="checkbox" name="legal" value="y" role="switch" checked aria-label="Юридическое лицо">
+								<button class="auth__person-label is-active js-auth-person-side" type="button" data-legal="true" tabindex="-1">Юридическое лицо</button>
+							</div>
 							<div class="auth__fields auth__fields--grid">
 								<div class="input auth__input">
 									<input class="input__field" type="text" name="surname" placeholder="Фамилия" aria-label="Фамилия" autocomplete="family-name"/>
@@ -302,13 +307,13 @@
 								<div class="input auth__input auth__input--phone">
 									<input class="input__field js-phone" type="tel" name="phone" required="required" autocomplete="tel"/><span class="input__mark" aria-hidden="true"><span class="input__mark-text"></span><span class="input__required"></span></span>
 								</div>
-								<div class="input auth__input">
+								<div class="input auth__input js-auth-legal">
 									<input class="input__field" type="text" name="company" placeholder="Название компании" aria-label="Название компании" autocomplete="organization"/>
 								</div>
-								<div class="input auth__input">
+								<div class="input auth__input js-auth-legal">
 									<input class="input__field" type="text" name="inn" placeholder="ИНН" aria-label="ИНН" inputmode="numeric" pattern="\d{10}|\d{12}"/>
 								</div>
-								<div class="input input--select auth__input">
+								<div class="input input--select auth__input js-auth-legal">
 									<select class="input__field" name="tax" aria-label="Система налогообложения">
 										<option value="" selected="selected" disabled="disabled" hidden="hidden">Система налогообложения</option>
 										<option value="ОСНО">ОСНО</option>
@@ -322,13 +327,13 @@
 										<use xlink:href="./images/sprites.svg#select-chevron"></use>
 									</svg>
 								</div>
-								<div class="input auth__input">
+								<div class="input auth__input js-auth-legal">
 									<input class="input__field" type="text" name="position" placeholder="Должность" aria-label="Должность" autocomplete="organization-title"/>
 								</div>
 								<div class="input auth__input">
 									<input class="input__field" type="text" name="city" placeholder="Город" aria-label="Город" autocomplete="address-level2"/>
 								</div>
-								<div class="input auth__input">
+								<div class="input auth__input js-auth-legal">
 									<input class="input__field" type="url" name="site" placeholder="Сайт" aria-label="Сайт" autocomplete="url"/>
 								</div>
 												<div class="input auth__input js-password auth__input--wide">
@@ -342,7 +347,7 @@
 														</svg>
 													</button>
 												</div>
-								<div class="input input--select auth__input auth__input--wide auth__input--activity">
+								<div class="input input--select auth__input auth__input--wide auth__input--activity js-auth-legal">
 									<select class="input__field" name="activity" aria-label="Вид деятельности">
 										<option value="" selected="selected" disabled="disabled" hidden="hidden">Вид деятельности</option>
 										<option value="Дизайн интерьера">Дизайн интерьера</option>
@@ -736,7 +741,7 @@
 			</div>
 		</div><!-- Scripts Section  -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script src="./js/vendor.js?v=1793882186558"></script>
-		<script src="./js/main.js?v=1793882186558"></script>
+		<script src="./js/vendor.js?v=1793897632322"></script>
+		<script src="./js/main.js?v=1793897632322"></script>
 	</body>
 </html>
