@@ -12,6 +12,20 @@
 		gap: 8px 8.5px;
 	}
 
+	// подтипы выбранного типа (projects-sub.html) — под линией, на всех ширинах (моб. типы — в панели)
+	&__subtypes {
+		display: flex;
+		flex-wrap: wrap;
+		margin-bottom: 20px;
+		border-top: 1px solid var(--color-stroke);
+		padding-top: 20px;
+		gap: 8px 8.5px;
+
+		&[hidden] {
+			display: none;
+		}
+	}
+
 	&__grid {
 		display: grid;
 		grid-template-columns: minmax(0, 1fr);
@@ -40,6 +54,11 @@
 
 		&__types {
 			display: flex;
+		}
+
+		&__subtypes {
+			margin: 30px 0 0;
+			padding-top: 30px;
 		}
 
 		&__grid {

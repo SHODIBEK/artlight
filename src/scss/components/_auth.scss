@@ -136,8 +136,8 @@
 		border-radius: 12px;
 		width: 40px;
 		height: 24px;
-		background-color: var(--color-stroke);
-		transition: background-color $duration-normal, box-shadow $duration-normal;
+		background-color: var(--color-accent); // зелёный в обоих положениях — по просьбе заказчика
+		transition: box-shadow $duration-normal;
 		cursor: pointer;
 
 		&::before {
@@ -153,8 +153,6 @@
 		}
 
 		&:checked {
-			background-color: var(--color-accent);
-
 			&::before {
 				transform: translateX(16px);
 			}

@@ -65,7 +65,10 @@ section.product-page.container
 					a.product-page__question-link.js-product-question(href=page.question.url)= page.question.link
 
 			.product-summary
-				p.product-summary__count= page.summary.count
+				each line in page.summary.info
+					p.product-summary__info
+						span.product-summary__label= line.label + ': '
+						b.product-summary__value= line.value
 				.product-summary__row
 					p.product-summary__price
 						span.product-summary__from= page.summary.from + ' '
@@ -73,10 +76,6 @@ section.product-page.container
 					.product-summary__buy
 						+productCounter().product-summary__counter
 						button.product-summary__button(type="button" data-modal="cart-added")= page.summary.button
-				p.product-summary__items
-					span= page.summary.items
-					span.product-summary__dot(aria-hidden="true") •
-					span= page.summary.term
 				p.product-summary__links
 					each link, index in page.summary.links
 						if index
@@ -103,9 +102,10 @@ section.product-page.container
 						.product-specs__row
 							dt.product-specs__name= row[0]
 							dd.product-specs__value= row[1]
-			.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
-				each paragraph in page.description
-					p= typo(paragraph)
+			if page.tabs.some((tab) => tab.id === 'description')
+				.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
+					each paragraph in page.description
+						p= typo(paragraph)
 			.product-specs__panel(id="product-panel-files" role="tabpanel" aria-labelledby="product-tab-files" hidden)
 				.product-tiles
 					each file in page.files

@@ -418,11 +418,12 @@
 		gap: 20px;
 	}
 
+	// крупнее и жирнее макета (16 Semibold) — по просьбе заказчика
 	&__title {
 		margin: 0;
-		font-weight: 600;
-		font-size: 16px;
-		line-height: 16px;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
 		color: var(--color-black);
 	}
 
@@ -595,9 +596,18 @@
 
 	@include stroke(2px, var(--color-accent));
 
-	&__count {
+	// «Выбранная комплектация: …», «Наличие: …» — подпись серым, значение жирным чёрным
+	&__info {
 		margin: 0;
-		font-weight: 500;
+	}
+
+	&__label {
+		color: var(--color-black-60);
+	}
+
+	&__value {
+		font-weight: 700;
+		color: var(--color-black);
 	}
 
 	&__row {
@@ -653,19 +663,6 @@
 		}
 	}
 
-	// моб.: состав и срок — двумя строками без точки
-	&__items {
-		display: flex;
-		flex-direction: column;
-		margin: 0;
-		color: var(--color-black-60);
-		gap: 10px;
-
-		.product-summary__dot {
-			display: none;
-		}
-	}
-
 	&__links {
 		display: flex;
 		flex-wrap: wrap;
@@ -700,15 +697,6 @@
 			flex-direction: row;
 			align-items: center;
 			gap: 40px;
-		}
-
-		&__items {
-			flex-flow: row wrap;
-			gap: 8px;
-
-			.product-summary__dot {
-				display: inline;
-			}
 		}
 
 		// ссылки — через 24 от блока выше (в макете gap 24 вместо 12)

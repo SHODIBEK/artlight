@@ -1,5 +1,7 @@
 //- «Реализованные проекты»: десктоп node-id=2-2689, моб. node-id=2-16656 (панель «Выбрать тип проекта» — 2-23562)
-- var page = data.projectsPage
+//- projectsData — другие данные (projects-sub.html: подтипы — subtypes, activeType / activeSubtype)
+- var page = typeof projectsData !== 'undefined' ? projectsData : data.projectsPage
+- var activeType = page.activeType || page.types[0]
 
 section.listing-head.container
 	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
@@ -10,8 +12,15 @@ section.listing-head.container
 
 .project-list.container
 	nav.project-list__types(aria-label="Типы проектов")
-		each type, index in page.types
-			+tab(type, { active: index === 0 }).js-project-type(data-value=type)
+		each type in page.types
+			+tab(type, { active: type === activeType }).js-project-type(data-value=type)
+
+	//- подтипы выбранного типа — вторым рядом под линией (на всех ширинах), project-types.js
+	if page.subtypes
+		each subtypes, type in page.subtypes
+			nav.project-list__subtypes.js-project-subtypes(aria-label=type data-type=type hidden=(type !== activeType))
+				each subtype in subtypes
+					+tab(subtype, { active: subtype === page.activeSubtype }).js-project-subtype(data-value=subtype)
 
 	.project-list__grid
 		each item, index in page.items
