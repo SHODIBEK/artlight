@@ -1,0 +1,83 @@
+// stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
+// Текст статьи из блоков данных (миксин +richText, mixins/rich-text.pug): абзацы и список — через пустую строку
+// (отступ = шаг строк). Medium; моб. 16/19, ≥ 768 — 15/18; --lead — ≥ 768 20/24; --small — 15/18 везде.
+
+.rich-text {
+	--lh: 19px;
+	--subtitle-gap: 19px; // после подзаголовка — пустая строка шрифта абзаца (у --lead на десктопе — 24px)
+
+	font-weight: 500;
+	font-size: 16px;
+	line-height: var(--lh);
+	color: var(--color-black);
+
+	:where(p, ul) {
+		margin: 0;
+	}
+
+	> * + * {
+		margin-top: var(--lh);
+	}
+
+	&__subtitle {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 24px;
+
+		+ * {
+			margin-top: var(--subtitle-gap); // правило ниже «> * + *» — перебивает его
+		}
+	}
+
+	// li — у li в _base.scss list-style: none
+	&__list {
+		padding-left: 22.5px;
+
+		li {
+			list-style: disc;
+		}
+	}
+
+	&__link {
+		outline: none;
+		text-decoration: underline;
+		text-underline-position: from-font;
+		color: inherit;
+		transition: color $duration-normal;
+		text-decoration-skip-ink: none;
+		text-decoration-thickness: from-font;
+
+		@include state-hover {
+			color: var(--color-black-60);
+		}
+
+		@include state-focus {
+			outline: 2px solid var(--color-black);
+			outline-offset: 2px;
+		}
+	}
+
+	&--small {
+		--lh: 18px;
+
+		font-size: 15px;
+	}
+
+	@media (min-width: #{$tablet}px) {
+		--lh: 18px;
+
+		font-size: 15px;
+
+		&--lead {
+			--lh: 24px;
+			--subtitle-gap: 26px; // в макете пустая строка 24px — шаг «normal» 26
+
+			font-size: 20px;
+		}
+
+		&__subtitle {
+			font-size: 24px;
+			line-height: 29px;
+		}
+	}
+}

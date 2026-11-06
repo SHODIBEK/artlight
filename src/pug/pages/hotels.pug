@@ -1,0 +1,83 @@
+//- «Освещение отелей и гостиниц» (статья): десктоп node-id=179-14309, моб. node-id=179-14519
+- var page = data.hotelsPage
+- var hotelsImg = function (name) { return `${baseDir}images/hotels/${name}.webp` }
+
+//- слайдер фото: свайп, стрелки по краям, точки снизу (в макете — у «Норм» и зон)
+mixin photoSlider(photos, alt)
+	.photo-slider.js-photo-slider&attributes(attributes)
+		.photo-slider__slider.swiper
+			.swiper-wrapper
+				each photo in photos
+					.photo-slider__slide.swiper-slide
+						img.photo-slider__image(src=hotelsImg(photo) alt=alt loading="lazy" draggable="false")
+		+button({ view: 'arrow', ariaLabel: 'Предыдущее фото' }).photo-slider__arrow.photo-slider__arrow--prev.js-photo-slider-prev
+		+button({ view: 'arrow', ariaLabel: 'Следующее фото' }).photo-slider__arrow.photo-slider__arrow--next.js-photo-slider-next
+		.photo-slider__dots.js-photo-slider-dots
+
+//- шапка — как у страницы новости
+section.listing-head.container
+	+breadcrumbs(page.breadcrumbs).listing-head__breadcrumbs
+	h1.listing-head__title.listing-head__title--news= typo(page.title)
+	.news-meta
+		span.news-meta__tag= page.tag
+		time.news-meta__date(datetime=page.datetime)
+			+svg('calendar').news-meta__icon
+			span.news-meta__value= page.date
+
+.news-cover.hotels-cover
+	img.news-cover__photo(src=hotelsImg(page.cover) alt=page.title fetchpriority="high")
+	span.news-cover__watermark(aria-hidden="true")= page.watermark
+
+article.hotels
+	//- вступление и «Особенности…»: колонка 814 по центру
+	section.hotels-intro.container
+		+richText(page.lead).rich-text--lead
+		.hotels-intro__section
+			h2.hotels-title.hotels-title--small= typo(page.formats.title)
+			+richText(page.formats.text).rich-text--lead
+
+	//- светильники: 1 / 2 (768+) / 3 (1280+) колонки, в макете 2 ряда
+	section.hotels-products.container
+		each product in [...page.products, ...page.products]
+			.hotels-product
+				.hotels-product__picture
+					img.hotels-product__image(src=hotelsImg('product-' + product.image) alt=product.name loading="lazy")
+				.hotels-product__body
+					.hotels-product__head
+						h3.hotels-product__name= product.name
+						p.hotels-product__text= product.text
+					ul.hotels-product__list
+						each item in product.list
+							li= typo(item)
+
+	//- нормы: < 1280 — слайдер над текстом, ≥ 1280 — слайдер слева на высоту текста
+	section.hotels-norms.container
+		+photoSlider(page.photos, page.norms.title).hotels-norms__slider
+		.hotels-norms__content
+			h2.hotels-title= typo(page.norms.title)
+			+richText(page.norms.text)
+
+	//- зоны: 1 / 2 (768+) / 3 (1280+) колонки
+	section.hotels-zones.container
+		each zone in page.zones
+			.hotels-zone
+				+photoSlider(page.photos, zone.title).hotels-zone__slider
+				.hotels-zone__content
+					h2.hotels-title.hotels-title--medium= typo(zone.title)
+					+richText(zone.text).rich-text--small
+
+	section.hotels-restaurants.container
+		h2.hotels-title.hotels-title--medium= typo(page.restaurants.title)
+		+richText(page.restaurants.text, page.restaurants.links)
+
+	//- лента фото: по центру — 3-е фото, стрелки в зазорах между фото
+	.photo-strip.js-photo-strip
+		.photo-strip__slider.swiper
+			.swiper-wrapper
+				each photo in page.gallery
+					.photo-strip__slide.swiper-slide
+						img.photo-strip__image(src=hotelsImg(photo) alt="" loading="lazy" draggable="false")
+		+button({ view: 'arrow', ariaLabel: 'Предыдущие фото' }).photo-strip__arrow.photo-strip__arrow--prev.js-photo-strip-prev
+		+button({ view: 'arrow', ariaLabel: 'Следующие фото' }).photo-strip__arrow.photo-strip__arrow--next.js-photo-strip-next
+
+include ../sections/projects

@@ -65,7 +65,8 @@ block vars
 		}
 	-
 		var link = {
-			appleTouchIcon: null,
+			// favicon — знак логотипа (src/resources/favicon/, копируется в build/favicon/)
+			appleTouchIcon: `${baseDir}favicon/apple-touch-icon.png`,
 			appleTouchIcon40x40: null,
 			appleTouchIcon57x57: null,
 			appleTouchIcon58x58: null,
@@ -97,7 +98,8 @@ block vars
 			appleTouchIconPrecomposed167x167: null,
 			appleTouchIconPrecomposed180x180: null,
 			appleTouchIconPrecomposed1024x1024: null,
-			icon: null,
+			icon: `${baseDir}favicon/favicon.ico`,
+			iconSvg: `${baseDir}favicon/favicon.svg`,
 			icon16x16: null,
 			icon32x32: null,
 			icon96x96: null,
@@ -106,7 +108,7 @@ block vars
 			icon194x194: null,
 			icon196x196: null,
 			imageSrc: image,
-			manifest: null,
+			manifest: `${baseDir}favicon/site.webmanifest`,
 			maskIcon: {
 				href: null,
 				color: null
@@ -256,7 +258,9 @@ html(class=html.classList)&attributes(html.attrs)
 			if link.appleTouchIcon1024x1024 !== null
 				link(rel="apple-touch-icon" href!=link.appleTouchIcon1024x1024 sizes="1024x1024")
 			if link.icon !== null
-				link(rel="icon" href!=link.icon)
+				link(rel="icon" href!=link.icon sizes="32x32")
+			if link.iconSvg !== null
+				link(rel="icon" href!=link.iconSvg type="image/svg+xml")
 			if link.icon16x16 !== null
 				link(rel="icon" href!=link.icon16x16 sizes="16x16")
 			if link.icon32x32 !== null

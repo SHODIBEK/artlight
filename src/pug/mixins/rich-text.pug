@@ -1,0 +1,29 @@
+//- Текст статьи из блоков данных (страница «Освещение отелей»):
+//- строка — абзац, { lines: [...] } — абзац с переносами строк, { subtitle } — подзаголовок, { list: [...] } — список.
+//- links — [{ text, url }]: эти слова в тексте становятся ссылками (в новой вкладке). Абзацы — через пустую строку (CSS).
+-
+	function richLine(text, links) {
+		var html = typo(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+		(links || []).forEach(function (link) {
+			html = html.split(link.text).join('<a class="rich-text__link" href="' + link.url + '" target="_blank" rel="noopener noreferrer">' + link.text + '</a>');
+		});
+		return html;
+	}
+
+mixin richText(blocks, links)
+	.rich-text&attributes(attributes)
+		each block in blocks
+			if typeof block === 'string'
+				p!= richLine(block, links)
+			else if block.subtitle
+				p.rich-text__subtitle= typo(block.subtitle)
+			else if block.lines
+				p
+					each line, index in block.lines
+						if index
+							br
+						| !{richLine(line, links)}
+			else if block.list
+				ul.rich-text__list
+					each item in block.list
+						li!= richLine(item, links)
