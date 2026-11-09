@@ -1,4 +1,4 @@
-//- Колонка личного кабинета (общая для всех страниц кабинета): ≥ 1280 — меню слева (407), скидка, менеджер;
+//- Колонка личного кабинета (общая для всех страниц кабинета): ≥ 1280 — скидка, меню слева (407), менеджер;
 //- < 1280 — кнопка «меню» (панель account-menu) и менеджер. accountCurrent — href активного пункта меню.
 //- managerClosedMobile — менеджер < 1280 свёрнут (в макетах «Заказов»), ≥ 1280 раскрыт (accordion.js, data-open-from)
 -
@@ -9,9 +9,9 @@
 	var manager = accountPage.manager
 
 aside.account__aside
-	+sidebar(accountMenu).account__menu(aria-label="Меню личного кабинета")
-	//- ≥ 1280 — под меню, < 1280 — над кнопкой «меню» (меню скрыто, кнопка — следом)
+	//- над меню (≥ 1280) / над кнопкой «меню» (< 1280) — по просьбе заказчика (в макете под меню)
 	p.account__discount= accountPage.discount
+	+sidebar(accountMenu).account__menu(aria-label="Меню личного кабинета")
 	button.account__menu-button(type="button" data-open-panel="account-menu")
 		+svg('burger').account__menu-button-icon
 		span= accountPage.menuButton

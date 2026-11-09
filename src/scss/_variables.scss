@@ -77,8 +77,8 @@ $header-full: 1600; // шапка как в макете 1728: поле поис
 	--color-float-light: #c7fd8e; // мессенджеры (WhatsApp / Max / Telegram)
 	--color-grey-hover: #e8e8e8;
 	--color-grey-button: #e3e3e3; // серая кнопка попапа «Товар добавлен в корзину»
-	--color-discount-bg: #eaffd1; // плашка «Ваша скидка» в личном кабинете
-	--color-discount: #559c00;
+	--color-discount-bg: var(--color-black); // плашка «Ваша скидка» в личном кабинете (по просьбе заказчика; в макете #eaffd1 / #559c00)
+	--color-discount: var(--color-accent);
 	--color-accent-bg: #e4ffc5; // страница товара: «Есть вопросы…», отмеченная модификация
 	--color-text-disabled: #6b7280;
 	--color-link: #07f;
