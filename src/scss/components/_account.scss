@@ -53,9 +53,8 @@
 		height: 18px;
 	}
 
-	// в моб. макете плашки скидки нет
+	// в моб. макете плашки скидки нет — показываем по просьбе заказчика
 	&__discount {
-		display: none;
 		margin: 0;
 		padding: 21px 15px 19px;
 		font-weight: 700;
@@ -102,10 +101,6 @@
 
 		&__menu-button {
 			display: none;
-		}
-
-		&__discount {
-			display: block;
 		}
 
 		&__cards {

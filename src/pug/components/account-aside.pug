@@ -10,10 +10,11 @@
 
 aside.account__aside
 	+sidebar(accountMenu).account__menu(aria-label="Меню личного кабинета")
+	//- ≥ 1280 — под меню, < 1280 — над кнопкой «меню» (меню скрыто, кнопка — следом)
+	p.account__discount= accountPage.discount
 	button.account__menu-button(type="button" data-open-panel="account-menu")
 		+svg('burger').account__menu-button-icon
 		span= accountPage.menuButton
-	p.account__discount= accountPage.discount
 
 	.account-manager.js-accordion-item(class=(managerClosedMobile ? null : 'is-open') data-open-from=(managerClosedMobile ? '1280' : null))
 		button.account-manager__head.js-accordion-toggle(type="button" aria-expanded=(managerClosedMobile ? 'false' : 'true'))
