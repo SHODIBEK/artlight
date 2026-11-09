@@ -12503,7 +12503,7 @@ html.is-preloading {
 }
 @media (min-width: 1280px) {
   .blog-card--slide {
-    width: calc((100% - 60px) / 4);
+    width: calc((100% - 40px) / 3);
   }
 }
 
