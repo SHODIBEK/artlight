@@ -12705,17 +12705,6 @@ html.is-preloading {
   flex-direction: column;
   gap: 40px;
 }
-.ies-cards-intro__text {
-  padding-bottom: 18px;
-  font-size: 15px;
-  line-height: 18px;
-}
-.ies-cards-intro__paragraph {
-  margin: 0;
-}
-.ies-cards-intro__paragraph + .ies-cards-intro__paragraph {
-  margin-top: 18px;
-}
 .ies-cards-intro__note {
   margin: 0;
   font-weight: 500;
@@ -12745,6 +12734,28 @@ html.is-preloading {
     margin-top: 40px;
   }
   .ies-cards-intro__inner {
+    max-width: 888px;
+  }
+}
+
+.ies-cards-text {
+  margin-top: 100px;
+  font-size: 15px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--color-black-60);
+}
+.ies-cards-text__paragraph {
+  margin: 0;
+}
+.ies-cards-text__paragraph + .ies-cards-text__paragraph {
+  margin-top: 18px;
+}
+@media (min-width: 768px) {
+  .ies-cards-text {
+    margin-top: 93px;
+  }
+  .ies-cards-text__inner {
     margin: 0 auto;
     max-width: 888px;
   }
