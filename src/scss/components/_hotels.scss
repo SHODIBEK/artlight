@@ -28,7 +28,7 @@
 	}
 }
 
-// вступление: колонка 814 по центру
+// вступление: колонка 1178 по центру
 .hotels-intro {
 	display: flex;
 	flex-direction: column;
@@ -47,7 +47,7 @@
 
 		> * {
 			width: 100%;
-			max-width: 814px;
+			max-width: 1178px; // как разделы текста новости (по просьбе заказчика; в макете 814)
 			margin-inline: auto;
 		}
 
@@ -145,7 +145,7 @@
 	}
 }
 
-// нормы: < 1280 — слайдер (420 / 500) над текстом, ≥ 1280 — 2 колонки, слайдер на высоту текста
+// нормы: < 1280 — слайдер (420 / 500) над текстом, ≥ 1280 — 2 колонки, слайдер 500 по верху
 .hotels-norms {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr);
@@ -166,19 +166,10 @@
 		}
 	}
 
+	// слайдер — 500, по верху текста (по просьбе заказчика не тянется на высоту текста, как в макете)
 	@media (min-width: #{$header-desktop}px) {
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-
-		// высота — по тексту: сам слайдер вынут из потока, иначе его растягивают фото
-		&__slider {
-			height: auto;
-			min-height: 500px;
-
-			.photo-slider__slider {
-				position: absolute;
-				inset: 0;
-			}
-		}
+		align-items: start;
 	}
 }
 
@@ -227,7 +218,7 @@
 	}
 }
 
-// рестораны: колонка 814 по центру, ниже — лента фото (100 / 50)
+// рестораны: колонка 1178 по центру, ниже — лента фото (100 / 50)
 .hotels-restaurants {
 	display: flex;
 	flex-direction: column;
@@ -241,7 +232,7 @@
 	@media (min-width: #{$tablet}px) {
 		> * {
 			width: 100%;
-			max-width: 814px;
+			max-width: 1178px; // как разделы текста новости (по просьбе заказчика; в макете 814)
 			margin-inline: auto;
 		}
 

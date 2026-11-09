@@ -50,12 +50,12 @@ article.hotels
 						each item in product.list
 							li= typo(item)
 
-	//- нормы: < 1280 — слайдер над текстом, ≥ 1280 — слайдер слева на высоту текста
+	//- нормы: < 1280 — слайдер над текстом, ≥ 1280 — слайдер слева (500, не тянется по тексту)
 	section.hotels-norms.container
 		+photoSlider(page.photos, page.norms.title).hotels-norms__slider
 		.hotels-norms__content
 			h2.hotels-title= typo(page.norms.title)
-			+richText(page.norms.text)
+			+richText(page.norms.text).rich-text--lead
 
 	//- зоны: 1 / 2 (768+) / 3 (1280+) колонки
 	section.hotels-zones.container
@@ -68,7 +68,7 @@ article.hotels
 
 	section.hotels-restaurants.container
 		h2.hotels-title.hotels-title--medium= typo(page.restaurants.title)
-		+richText(page.restaurants.text, page.restaurants.links)
+		+richText(page.restaurants.text, page.restaurants.links).rich-text--lead
 
 	//- лента фото: по центру — 3-е фото, стрелки в зазорах между фото
 	.photo-strip.js-photo-strip
