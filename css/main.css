@@ -177,8 +177,8 @@
   --color-float-light: #c7fd8e;
   --color-grey-hover: #e8e8e8;
   --color-grey-button: #e3e3e3;
-  --color-discount-bg: #eaffd1;
-  --color-discount: #559c00;
+  --color-discount-bg: var(--color-black);
+  --color-discount: var(--color-accent);
   --color-accent-bg: #e4ffc5;
   --color-text-disabled: #6b7280;
   --color-link: #07f;
