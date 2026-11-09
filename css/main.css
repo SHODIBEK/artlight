@@ -13302,14 +13302,20 @@ html.is-preloading {
     height: 400px;
   }
   .about-video__text {
-    margin: 80px auto 0;
-    max-width: 900px;
-    text-align: center;
+    margin-top: 80px;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .about-video__text p + p {
+    margin-top: 24px;
   }
 }
 @media (min-width: 1280px) {
   .about-video__player {
     height: 497px;
+  }
+  .about-video__text {
+    width: 50%;
   }
 }
 
