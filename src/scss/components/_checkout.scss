@@ -663,7 +663,7 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 1px dashed var(--color-light-grey);
+	border: 1px dashed rgba(30, 30, 30, 0.4); // в макете light-grey — почти не видно, темнее по просьбе заказчика
 	padding: 10px;
 	height: 56px;
 	font-size: 15px;
@@ -720,5 +720,12 @@ $checkout-field-bg: #f7f7f7; // поля формы в макете светле
 	&__submit {
 		margin-top: 35px;
 		width: 100%;
+	}
+
+	// ≥ 1280 — заголовок сверху, содержимое под ним слева в половину ширины (по просьбе заказчика)
+	@media (min-width: #{$header-desktop}px) {
+		.checkout-section__body {
+			width: calc(50% - 10px);
+		}
 	}
 }
