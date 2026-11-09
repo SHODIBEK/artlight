@@ -20097,7 +20097,7 @@ html.is-preloading {
   }
   .hotels-intro > * {
     width: 100%;
-    max-width: 814px;
+    max-width: 1178px;
     margin-inline: auto;
   }
   .hotels-intro__section {
@@ -20206,14 +20206,7 @@ html.is-preloading {
 @media (min-width: 1280px) {
   .hotels-norms {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .hotels-norms__slider {
-    height: auto;
-    min-height: 500px;
-  }
-  .hotels-norms__slider .photo-slider__slider {
-    position: absolute;
-    inset: 0;
+    align-items: start;
   }
 }
 
@@ -20273,7 +20266,7 @@ html.is-preloading {
 @media (min-width: 768px) {
   .hotels-restaurants > * {
     width: 100%;
-    max-width: 814px;
+    max-width: 1178px;
     margin-inline: auto;
   }
   .hotels-restaurants + .photo-strip {
