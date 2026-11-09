@@ -16027,7 +16027,7 @@ html.is-preloading {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px dashed var(--color-light-grey);
+  border: 1px dashed rgba(30, 30, 30, 0.4);
   padding: 10px;
   height: 56px;
   font-size: 15px;
@@ -16081,6 +16081,11 @@ html.is-preloading {
 .checkout-confirm__submit {
   margin-top: 35px;
   width: 100%;
+}
+@media (min-width: 1280px) {
+  .checkout-confirm .checkout-section__body {
+    width: calc(50% - 10px);
+  }
 }
 
 .auth {
