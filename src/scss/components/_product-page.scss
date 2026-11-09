@@ -597,8 +597,11 @@
 	@include stroke(2px, var(--color-accent));
 
 	// «Выбранная комплектация: …», «Наличие: …» — подпись серым, значение жирным чёрным
+	// 16/18 — по просьбе заказчика (в макете 13/16)
 	&__info {
 		margin: 0;
+		font-size: 16px;
+		line-height: 18px;
 	}
 
 	&__label {
@@ -644,7 +647,8 @@
 		width: 200px;
 		height: 40px;
 		font: inherit;
-		font-size: 13px;
+		font-weight: 500; // 16 Medium — по просьбе заказчика (в макете 13)
+		font-size: 16px;
 		color: var(--color-black);
 		background-color: var(--color-accent);
 		transition: background-color $duration-normal;
