@@ -19077,6 +19077,8 @@ html.is-preloading {
 }
 .product-summary__info {
   margin: 0;
+  font-size: 16px;
+  line-height: 18px;
 }
 .product-summary__label {
   color: var(--color-black-60);
@@ -19114,7 +19116,8 @@ html.is-preloading {
   width: 200px;
   height: 40px;
   font: inherit;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 16px;
   color: var(--color-black);
   background-color: var(--color-accent);
   transition: background-color 0.3s;
