@@ -6,11 +6,9 @@ section.listing-head.container
 	h1.listing-head__title= page.title
 
 .js-ies
+	//- «Если вы не нашли…» и поиск — как в макете, над карточками; вводный текст — под карточками серым по центру (по просьбе заказчика)
 	.ies-cards-intro.container
 		.ies-cards-intro__inner
-			.ies-cards-intro__text
-				each paragraph in page.intro
-					p.ies-cards-intro__paragraph= typo(paragraph)
 			p.ies-cards-intro__note
 				| #{typo(page.note.before)}#{' '}
 				a.ies-cards-intro__mail(href=`mailto:${page.note.email}`)= page.note.email
@@ -26,6 +24,11 @@ section.listing-head.container
 							img.ies-card__image(src=`images/ies/ies-${card.image}.webp` alt=card.name width="644" height="836" loading="lazy")
 						span.ies-card__name= card.name
 		p.ies-cards__empty.js-ies-empty(hidden)= page.empty
+
+	.ies-cards-text.container
+		.ies-cards-text__inner
+			each paragraph in page.intro
+				p.ies-cards-text__paragraph= typo(paragraph)
 
 - var feedbackData = page.feedback
 include ../sections/feedback

@@ -1,7 +1,8 @@
 // stylelint-disable order/order -- порядок state-миксинов задаёт каскад состояний
 // «IES/LDT файлы» с карточками: десктоп https://www.figma.com/design/BBlv4Y6Hjn3vuFhWGffGIm/art-light?node-id=2-5567,
-// моб. node-id=2-18986. Текст колонкой 888 по центру (≥ 768), под ним сетка карточек файлов:
+// моб. node-id=2-18986. Колонка 888 слева (≥ 768): «Если вы не нашли…» и поиск, под ней сетка карточек файлов:
 // 2 / 5 (768+) / 8 (1280+) / 10 (1600+) в ряд, шаг 20; моб. — 20 карточек, ≥ 768 — 30.
+// Вводный текст — под карточками, серым по центру (по просьбе заказчика; в макете над «Если вы не нашли…», чёрный, слева).
 .ies-cards-intro {
 	margin-top: 30px;
 	color: var(--color-black);
@@ -10,21 +11,6 @@
 		display: flex;
 		flex-direction: column;
 		gap: 40px;
-	}
-
-	// в макете абзацы через пустую строку, после текста — ещё одна (18) и отступ 40
-	&__text {
-		padding-bottom: 18px;
-		font-size: 15px;
-		line-height: 18px;
-	}
-
-	&__paragraph {
-		margin: 0;
-
-		& + & {
-			margin-top: 18px;
-		}
 	}
 
 	&__note {
@@ -52,6 +38,32 @@
 
 	@media (min-width: #{$tablet}px) {
 		margin-top: 40px;
+
+		// слева, по краю контейнера (по просьбе заказчика; в макете по центру)
+		&__inner {
+			max-width: 888px;
+		}
+	}
+}
+
+// вводный текст под карточками: серый, по центру, колонка 888; абзацы через пустую строку
+.ies-cards-text {
+	margin-top: 100px;
+	font-size: 15px;
+	line-height: 18px;
+	text-align: center;
+	color: var(--color-black-60);
+
+	&__paragraph {
+		margin: 0;
+
+		& + & {
+			margin-top: 18px;
+		}
+	}
+
+	@media (min-width: #{$tablet}px) {
+		margin-top: 93px;
 
 		&__inner {
 			margin: 0 auto;
