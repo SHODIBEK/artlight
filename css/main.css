@@ -18614,11 +18614,8 @@ html.is-preloading {
 }
 .product-page__slider {
   position: absolute;
-  cursor: grab;
+  cursor: zoom-in;
   inset: 0;
-}
-.product-page__slider:active {
-  cursor: grabbing;
 }
 .product-page__slide {
   position: relative;
