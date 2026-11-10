@@ -20,6 +20,15 @@ function isFieldValid(field) {
 		return false;
 	}
 
+	// data-match — имя поля, с которым значение должно совпадать (подтверждение пароля)
+	if (field.dataset.match && field.form) {
+		const target = field.form.elements[field.dataset.match];
+
+		if (target && target.value !== field.value) {
+			return false;
+		}
+	}
+
 	return field.checkValidity();
 }
 

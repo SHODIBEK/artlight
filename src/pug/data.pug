@@ -1360,6 +1360,16 @@
 			redirect: 'password-sent.html',
 		},
 
+		// страница «Новый пароль» (password-new.html) — по ссылке из письма восстановления пароля
+		passwordNewPage: {
+			title: 'Восстановление пароля',
+			fields: { password: 'Введите новый пароль', confirm: 'Подтвердите новый пароль' },
+			submit: 'Сохранить новый пароль',
+			back: { name: 'Вернуться на страницу входа', url: 'login.html' },
+			action: '#',
+			redirect: 'login.html#login',
+		},
+
 		// страница «Письмо отправлено» (password-sent.html) — после отправки формы «Восстановления пароля»
 		passwordSentPage: {
 			title: 'Восстановление пароля',
