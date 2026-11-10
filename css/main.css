@@ -13417,6 +13417,7 @@ html.is-preloading {
 }
 .about-gallery__text {
   margin: 0;
+  max-width: 721px;
   font-size: 16px;
   line-height: 20px;
   color: var(--color-black);
@@ -13669,9 +13670,16 @@ html.is-preloading {
   }
   .legal-text__inner {
     margin: 0 auto;
-    max-width: 888px;
+    max-width: 1178px;
     font-size: 20px;
     line-height: 24px;
+  }
+}
+
+@media (min-width: 768px) {
+  .listing-head__title--legal {
+    font-size: 44px;
+    line-height: 47px;
   }
 }
 
@@ -20079,10 +20087,6 @@ html.is-preloading {
   .hotels-title {
     font-size: 46px;
     line-height: 55px;
-  }
-  .hotels-title--medium {
-    font-size: 32px;
-    line-height: 38px;
   }
   .hotels-title--small {
     font-size: 24px;
