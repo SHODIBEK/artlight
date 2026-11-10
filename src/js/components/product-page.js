@@ -1,5 +1,113 @@
 import Swiper from 'swiper';
+import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 import {Navigation, Pagination} from 'swiper/modules';
+
+/**
+* Лайтбокс: клик по большому фото (не протягивание — событие click Swiper) открывает его на весь экран.
+* Стрелки, ← → на клавиатуре, свайп; закрытие — крестик, клик мимо фото, Esc. При закрытии слайдер встаёт на то же фото.
+*/
+function lightboxInit(gallery, slider) {
+	const lightbox = gallery.querySelector('.js-lightbox');
+
+	if (!lightbox) {
+		return;
+	}
+
+	const image = lightbox.querySelector('.js-lightbox-image');
+	const counter = lightbox.querySelector('.js-lightbox-counter');
+	const sources = [...gallery.querySelectorAll('.js-product-page-slider .product-page__image')]
+		.sort((a, b) => a.closest('[data-swiper-slide-index]').dataset.swiperSlideIndex - b.closest('[data-swiper-slide-index]').dataset.swiperSlideIndex)
+		.map((item) => item.getAttribute('src'));
+	let current = 0;
+	let opener = null;
+
+	const show = (index) => {
+		current = (index + sources.length) % sources.length;
+		image.src = sources[current];
+
+		if (counter) {
+			counter.textContent = `${current + 1} / ${sources.length}`;
+		}
+	};
+
+	const open = (index) => {
+		opener = document.activeElement;
+		show(index);
+		lightbox.classList.add('is-open');
+		lightbox.setAttribute('aria-hidden', 'false');
+		disableBodyScroll(lightbox, {reserveScrollBarGap: true});
+		lightbox.focus({preventScroll: true});
+	};
+
+	const close = () => {
+		if (!lightbox.classList.contains('is-open')) {
+			return;
+		}
+
+		lightbox.classList.remove('is-open');
+		lightbox.setAttribute('aria-hidden', 'true');
+		enableBodyScroll(lightbox);
+		slider.slideToLoop(current, 0);
+
+		if (opener && opener.focus) {
+			opener.focus({preventScroll: true});
+		}
+	};
+
+	slider.on('click', (swiper) => {
+		const slide = swiper.clickedSlide;
+
+		if (slide) {
+			open(Number(slide.dataset.swiperSlideIndex) || 0);
+		}
+	});
+
+	lightbox.querySelector('.js-lightbox-close').addEventListener('click', close);
+	lightbox.querySelector('.js-lightbox-prev')?.addEventListener('click', () => show(current - 1));
+	lightbox.querySelector('.js-lightbox-next')?.addEventListener('click', () => show(current + 1));
+
+	// клик мимо фото и кнопок — закрыть
+	lightbox.addEventListener('click', (event) => {
+		if (event.target === lightbox || event.target.classList.contains('js-lightbox-stage')) {
+			close();
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (!lightbox.classList.contains('is-open')) {
+			return;
+		}
+
+		if (event.key === 'Escape') {
+			close();
+		} else if (event.key === 'ArrowLeft' && sources.length > 1) {
+			show(current - 1);
+		} else if (event.key === 'ArrowRight' && sources.length > 1) {
+			show(current + 1);
+		}
+	});
+
+	// свайп по фото
+	let startX = null;
+
+	lightbox.addEventListener('pointerdown', (event) => {
+		startX = event.clientX;
+	});
+
+	lightbox.addEventListener('pointerup', (event) => {
+		if (startX === null || sources.length < 2) {
+			return;
+		}
+
+		const delta = event.clientX - startX;
+
+		startX = null;
+
+		if (Math.abs(delta) > 50) {
+			show(current + (delta < 0 ? 1 : -1));
+		}
+	});
+}
 
 /**
 * Страница товара: слайдер фото (по кругу, свайп, миниатюры), «в избранное» / «поделиться», счётчики «- 1 +»,
@@ -60,6 +168,8 @@ function galleryInit() {
 		thumbs.forEach((thumb, index) => {
 			thumb.addEventListener('click', () => slider.slideToLoop(index));
 		});
+
+		lightboxInit(gallery, slider);
 	});
 }
 

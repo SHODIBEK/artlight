@@ -23,6 +23,16 @@ section.product-page.container
 				each photo, index in page.photos
 					button.product-page__thumb.js-product-page-thumb(type="button" class=(index ? null : 'is-active') aria-label=`Фото ${index + 1}` aria-current=(index ? null : 'true'))
 						img.product-page__thumb-image(src=`${baseDir}images/${photo.src}.webp` class=(photo.fit ? 'product-page__thumb-image--' + photo.fit : null) alt="" loading="lazy")
+			//- лайтбокс: клик по большому фото — на весь экран (product-page.js)
+			.lightbox.js-lightbox(role="dialog" aria-modal="true" aria-label="Фото товара" aria-hidden="true" tabindex="-1")
+				button.lightbox__close.js-lightbox-close(type="button" aria-label="Закрыть")
+					+svg('popup-close').lightbox__close-icon
+				.lightbox__stage.js-lightbox-stage
+					img.lightbox__image.js-lightbox-image(alt=page.title draggable="false")
+				if page.photos.length > 1
+					+button({ view: 'arrow', ariaLabel: 'Предыдущее фото' }).lightbox__arrow.lightbox__arrow--prev.js-lightbox-prev
+					+button({ view: 'arrow', ariaLabel: 'Следующее фото' }).lightbox__arrow.lightbox__arrow--next.js-lightbox-next
+					.lightbox__counter.js-lightbox-counter
 			//- преимущества — под миниатюрами
 			.product-tiles.product-page__features
 				each feature in page.features

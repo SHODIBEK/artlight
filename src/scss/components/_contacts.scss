@@ -93,8 +93,8 @@
 	&__note {
 		margin-top: 28px;
 		font-weight: 500;
-		font-size: 15px;
-		line-height: 18px;
+		font-size: 16px; // как строки контактов (по просьбе заказчика)
+		line-height: 19px;
 		color: var(--color-black);
 		text-wrap: balance;
 
@@ -103,7 +103,16 @@
 		}
 
 		p + p {
-			margin-top: 18px; // пустая строка
+			margin-top: 19px; // пустая строка
+		}
+
+		@media (min-width: #{$tablet}px) {
+			font-size: 20px;
+			line-height: 24px;
+
+			p + p {
+				margin-top: 24px;
+			}
 		}
 	}
 
