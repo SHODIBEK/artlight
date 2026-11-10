@@ -34,9 +34,17 @@
 
 		&__inner {
 			margin: 0 auto;
-			max-width: 888px;
+			max-width: 1178px; // как разделы новости (по просьбе заказчика; в макете 888)
 			font-size: 20px;
 			line-height: 24px;
 		}
+	}
+}
+
+// заголовок юридической страницы ≥ 768 — 44/47 (по просьбе заказчика)
+.listing-head__title--legal {
+	@media (min-width: #{$tablet}px) {
+		font-size: 44px;
+		line-height: 47px;
 	}
 }

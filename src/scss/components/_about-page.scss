@@ -529,8 +529,10 @@
 	margin-top: 100px;
 	gap: 30px;
 
+	// ширина — как у текста «Комплектующих» выше (по просьбе заказчика; в макете в одну строку)
 	&__text {
 		margin: 0;
+		max-width: 721px;
 		font-size: 16px;
 		line-height: 20px;
 		color: var(--color-black);

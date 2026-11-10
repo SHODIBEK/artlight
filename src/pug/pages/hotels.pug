@@ -54,7 +54,7 @@ article.hotels
 	section.hotels-norms.container
 		+photoSlider(page.photos, page.norms.title).hotels-norms__slider
 		.hotels-norms__content
-			h2.hotels-title= typo(page.norms.title)
+			h2.hotels-title.hotels-title--small= typo(page.norms.title)
 			+richText(page.norms.text).rich-text--lead
 
 	//- зоны: 1 / 2 (768+) / 3 (1280+) колонки
@@ -63,11 +63,11 @@ article.hotels
 			.hotels-zone
 				+photoSlider(page.photos, zone.title).hotels-zone__slider
 				.hotels-zone__content
-					h2.hotels-title.hotels-title--medium= typo(zone.title)
+					h2.hotels-title.hotels-title--small= typo(zone.title)
 					+richText(zone.text).rich-text--small
 
 	section.hotels-restaurants.container
-		h2.hotels-title.hotels-title--medium= typo(page.restaurants.title)
+		h2.hotels-title.hotels-title--small= typo(page.restaurants.title)
 		+richText(page.restaurants.text, page.restaurants.links).rich-text--lead
 
 	//- лента фото: по центру — 3-е фото, стрелки в зазорах между фото

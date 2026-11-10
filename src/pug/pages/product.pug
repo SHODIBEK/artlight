@@ -158,8 +158,6 @@ section.product-mods.container.js-product-mods(hidden)
 		if moreCount > 0
 			button.product-mods__more.js-product-mods-more(type="button" aria-expanded="false" data-label=`${page.more.label} ${moreCount}` data-less=page.more.less)= `${page.more.label} ${moreCount}`
 
-include ../sections/projects
-
 each title in [page.familyTitle, page.relatedTitle]
 	section.product-slider(class=(compactSections ? 'product-slider--compact' : null))
 		.container
@@ -168,6 +166,9 @@ each title in [page.familyTitle, page.relatedTitle]
 				.swiper-wrapper
 					each item in page.products
 						+productCard(item).product-card--slide.swiper-slide
+
+//- «Реализованные проекты» — под «Сопутствующими товарами» (по просьбе заказчика)
+include ../sections/projects
 
 - var faqData = page.faq
 include ../sections/faq
