@@ -144,7 +144,6 @@ function galleryInit() {
 				bulletClass: 'product-page__bullet',
 				bulletActiveClass: 'is-active',
 			},
-			grabCursor: true,
 			resistanceRatio: 0.6,
 			on: {
 				slideChange: (swiper) => setActive(swiper.realIndex),

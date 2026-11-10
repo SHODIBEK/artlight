@@ -40,12 +40,8 @@
 	// слайдер на всю рамку; у каждого слайда — своя рамка (фото обрезается по ней)
 	&__slider {
 		position: absolute;
-		cursor: grab;
+		cursor: zoom-in; // клик — лайтбокс (по просьбе заказчика; было grab)
 		inset: 0;
-
-		&:active {
-			cursor: grabbing;
-		}
 	}
 
 	&__slide {
