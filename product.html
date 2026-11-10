@@ -12,7 +12,7 @@
 		<link rel="icon" href="./favicon/favicon.ico" sizes="32x32">
 		<link rel="icon" href="./favicon/favicon.svg" type="image/svg+xml">
 		<link rel="manifest" href="./favicon/site.webmanifest"><!-- Styles Section  -->
-		<link rel="stylesheet" href="./css/main.css?v=1794310874824">
+		<link rel="stylesheet" href="./css/main.css?v=1794325530167">
 	</head>
 	<body>
 		<div class="preloader js-preloader" aria-hidden="true">
@@ -319,6 +319,25 @@
 								<button class="product-page__thumb js-product-page-thumb" type="button" aria-label="Фото 4"><img class="product-page__thumb-image product-page__thumb-image--contain" src="./images/products/linear.webp" alt="" loading="lazy"></button>
 								<button class="product-page__thumb js-product-page-thumb" type="button" aria-label="Фото 5"><img class="product-page__thumb-image product-page__thumb-image--contain" src="./images/account/order-product.webp" alt="" loading="lazy"></button>
 							</div>
+							<div class="lightbox js-lightbox" role="dialog" aria-modal="true" aria-label="Фото товара" aria-hidden="true" tabindex="-1">
+								<button class="lightbox__close js-lightbox-close" type="button" aria-label="Закрыть">
+									<svg class="lightbox__close-icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#popup-close"></use>
+									</svg>
+								</button>
+								<div class="lightbox__stage js-lightbox-stage"><img class="lightbox__image js-lightbox-image" alt="ART-MV—314" draggable="false"></div>
+								<button class="button button--arrow lightbox__arrow lightbox__arrow--prev js-lightbox-prev" type="button" aria-label="Предыдущее фото">
+									<svg class="button__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#arrow-right"></use>
+									</svg>
+								</button>
+								<button class="button button--arrow lightbox__arrow lightbox__arrow--next js-lightbox-next" type="button" aria-label="Следующее фото">
+									<svg class="button__icon" aria-hidden="true" focusable="false">
+										<use xlink:href="./images/sprites.svg#arrow-right"></use>
+									</svg>
+								</button>
+								<div class="lightbox__counter js-lightbox-counter"></div>
+							</div>
 							<div class="product-tiles product-page__features">
 								<div class="product-tiles__item product-tiles__item--feature">
 									<svg class="product-tiles__icon" aria-hidden="true" focusable="false">
@@ -434,7 +453,7 @@
 									<legend class="product-config__group-title">Диммирование</legend>
 									<div class="product-config__options">
 										<label class="product-config__option">
-											<input class="product-config__radio" type="radio" name="dimming" value="A-DALLI"><span class="product-config__chip">A-DALLI</span>
+											<input class="product-config__radio" type="radio" name="dimming" value="A-DALI"><span class="product-config__chip">A-DALI</span>
 										</label>
 										<label class="product-config__option">
 											<input class="product-config__radio" type="radio" name="dimming" value="без димм" checked><span class="product-config__chip">без димм</span>
@@ -2522,7 +2541,7 @@
 			</div>
 		</div><!-- Scripts Section  -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script src="./js/vendor.js?v=1794310874837"></script>
-		<script src="./js/main.js?v=1794310874837"></script>
+		<script src="./js/vendor.js?v=1794325530176"></script>
+		<script src="./js/main.js?v=1794325530176"></script>
 	</body>
 </html>
