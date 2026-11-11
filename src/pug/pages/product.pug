@@ -1,6 +1,16 @@
 //- Страница товара: десктоп node-id=145-16763, моб. node-id=145-15913
 - var page = data.productPage
 
+//- преимущества (5 лет гарантии, доставка, производство)
+mixin productFeatures(mod)
+	.product-tiles.product-page__features(class=`product-page__features--${mod}`)
+		each feature in page.features
+			.product-tiles__item.product-tiles__item--feature
+				+svg(feature.icon).product-tiles__icon
+				span.product-tiles__text
+					span.product-tiles__name= feature.name
+					span.product-tiles__note= feature.text
+
 section.product-page.container
 	.product-page__top
 		+breadcrumbs(page.breadcrumbs).product-page__breadcrumbs
@@ -33,14 +43,8 @@ section.product-page.container
 					+button({ view: 'arrow', ariaLabel: 'Предыдущее фото' }).lightbox__arrow.lightbox__arrow--prev.js-lightbox-prev
 					+button({ view: 'arrow', ariaLabel: 'Следующее фото' }).lightbox__arrow.lightbox__arrow--next.js-lightbox-next
 					.lightbox__counter.js-lightbox-counter
-			//- преимущества — под миниатюрами
-			.product-tiles.product-page__features
-				each feature in page.features
-					.product-tiles__item.product-tiles__item--feature
-						+svg(feature.icon).product-tiles__icon
-						span.product-tiles__text
-							span.product-tiles__name= feature.name
-							span.product-tiles__note= feature.text
+			//- преимущества — под миниатюрами (≥ 768); моб. — под характеристиками (по просьбе заказчика)
+			+productFeatures('gallery')
 
 		.product-page__info
 			.product-page__heading
@@ -124,6 +128,8 @@ section.product-page.container
 							span.product-tiles__text
 								span.product-tiles__name= file.name
 								span.product-tiles__note= file.type
+
+		+productFeatures('bottom')
 
 //- «Все модификации серии»: таблица с прокруткой по горизонтали (< 1280), отмеченные строки — подсветка
 //- раздел и таблица скрыты по просьбе заказчика (hidden) — может пригодиться, показать — убрать hidden
