@@ -97,37 +97,40 @@ section.product-page.container
 						a.product-summary__link(href=link.url)= link.label
 
 		//- «Характеристики серии» / «Описание» — вкладки tabs.js
-		.product-specs.js-tabs
-			.product-specs__tabs(role="tablist")
-				each tab, index in page.tabs
-					button.product-specs__tab.js-tab(
-						type="button"
-						role="tab"
-						id=`product-tab-${tab.id}`
-						class=(index ? null : 'is-active')
-						data-tab=tab.id
-						aria-controls=`product-panel-${tab.id}`
-						aria-selected=(index ? 'false' : 'true')
-						tabindex=(index ? '-1' : null)
-					)= tab.label
-			.product-specs__panel(id="product-panel-specs" role="tabpanel" aria-labelledby="product-tab-specs")
-				dl.product-specs__list
-					each row in page.specs
-						.product-specs__row
-							dt.product-specs__name= row[0]
-							dd.product-specs__value= row[1]
-			if page.tabs.some((tab) => tab.id === 'description')
-				.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
-					each paragraph in page.description
-						p= typo(paragraph)
-			.product-specs__panel(id="product-panel-files" role="tabpanel" aria-labelledby="product-tab-files" hidden)
-				.product-tiles
+		.product-specs
+			//- «Файлы» — над характеристиками, отдельным блоком (по просьбе заказчика; было вкладкой)
+			.product-specs__files
+				h2.product-specs__title= page.filesTitle
+				.product-tiles.product-specs__files-list
 					each file in page.files
 						a.product-tiles__item.product-tiles__item--file(href=file.url download)
 							+svg(file.icon).product-tiles__icon
 							span.product-tiles__text
 								span.product-tiles__name= file.name
 								span.product-tiles__note= file.type
+			.product-specs__body.js-tabs
+				.product-specs__tabs(role="tablist")
+					each tab, index in page.tabs
+						button.product-specs__tab.js-tab(
+							type="button"
+							role="tab"
+							id=`product-tab-${tab.id}`
+							class=(index ? null : 'is-active')
+							data-tab=tab.id
+							aria-controls=`product-panel-${tab.id}`
+							aria-selected=(index ? 'false' : 'true')
+							tabindex=(index ? '-1' : null)
+						)= tab.label
+				.product-specs__panel(id="product-panel-specs" role="tabpanel" aria-labelledby="product-tab-specs")
+					dl.product-specs__list
+						each row in page.specs
+							.product-specs__row
+								dt.product-specs__name= row[0]
+								dd.product-specs__value= row[1]
+				if page.tabs.some((tab) => tab.id === 'description')
+					.product-specs__panel.product-specs__panel--text(id="product-panel-description" role="tabpanel" aria-labelledby="product-tab-description" hidden)
+						each paragraph in page.description
+							p= typo(paragraph)
 
 		+productFeatures('bottom')
 

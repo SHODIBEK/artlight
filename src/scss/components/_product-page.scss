@@ -778,6 +778,23 @@
 	grid-area: specs;
 	margin-top: 60px;
 
+	// «Файлы» над характеристиками; заголовок — как «Собрать комплектацию»
+	&__title {
+		margin: 0;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 24px;
+		color: var(--color-black);
+	}
+
+	&__files-list {
+		margin-top: 20px;
+	}
+
+	&__body {
+		margin-top: 40px;
+	}
+
 	&__tabs {
 		display: flex;
 		gap: 11px;
