@@ -12,7 +12,7 @@
 		<link rel="icon" href="./favicon/favicon.ico" sizes="32x32">
 		<link rel="icon" href="./favicon/favicon.svg" type="image/svg+xml">
 		<link rel="manifest" href="./favicon/site.webmanifest"><!-- Styles Section  -->
-		<link rel="stylesheet" href="./css/main.css?v=1794390371458">
+		<link rel="stylesheet" href="./css/main.css?v=1794391324364">
 	</head>
 	<body>
 		<div class="preloader js-preloader" aria-hidden="true">
@@ -484,45 +484,10 @@
 								</p>
 							</div>
 						</div>
-						<div class="product-specs js-tabs">
-							<div class="product-specs__tabs" role="tablist">
-								<button class="product-specs__tab js-tab is-active" type="button" role="tab" id="product-tab-specs" data-tab="specs" aria-controls="product-panel-specs" aria-selected="true">Характеристики серии</button>
-								<button class="product-specs__tab js-tab" type="button" role="tab" id="product-tab-files" data-tab="files" aria-controls="product-panel-files" aria-selected="false" tabindex="-1">Файлы</button>
-							</div>
-							<div class="product-specs__panel" id="product-panel-specs" role="tabpanel" aria-labelledby="product-tab-specs">
-								<dl class="product-specs__list">
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Тип установки</dt>
-										<dd class="product-specs__value">на трехфазный шинопровод</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Степень защиты</dt>
-										<dd class="product-specs__value">IP20</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Форма</dt>
-										<dd class="product-specs__value">цилиндрическая</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Размеры, мм</dt>
-										<dd class="product-specs__value">Ø126 H122mm</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Диаметр, мм</dt>
-										<dd class="product-specs__value">127</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Высота, мм</dt>
-										<dd class="product-specs__value">187</dd>
-									</div>
-									<div class="product-specs__row">
-										<dt class="product-specs__name">Длина, мм</dt>
-										<dd class="product-specs__value">291</dd>
-									</div>
-								</dl>
-							</div>
-							<div class="product-specs__panel" id="product-panel-files" role="tabpanel" aria-labelledby="product-tab-files" hidden>
-								<div class="product-tiles"><a class="product-tiles__item product-tiles__item--file" href="#" download>
+						<div class="product-specs">
+							<div class="product-specs__files">
+								<h2 class="product-specs__title">Файлы</h2>
+								<div class="product-tiles product-specs__files-list"><a class="product-tiles__item product-tiles__item--file" href="#" download>
 										<svg class="product-tiles__icon" aria-hidden="true" focusable="false">
 											<use xlink:href="./images/sprites.svg#document"></use>
 										</svg><span class="product-tiles__text"><span class="product-tiles__name">Монтажная инструкция</span><span class="product-tiles__note">PDF</span></span></a><a class="product-tiles__item product-tiles__item--file" href="#" download>
@@ -532,6 +497,43 @@
 										<svg class="product-tiles__icon" aria-hidden="true" focusable="false">
 											<use xlink:href="./images/sprites.svg#cube-outline"></use>
 										</svg><span class="product-tiles__text"><span class="product-tiles__name">3D-модель</span><span class="product-tiles__note">ZIP</span></span></a>
+								</div>
+							</div>
+							<div class="product-specs__body js-tabs">
+								<div class="product-specs__tabs" role="tablist">
+									<button class="product-specs__tab js-tab is-active" type="button" role="tab" id="product-tab-specs" data-tab="specs" aria-controls="product-panel-specs" aria-selected="true">Характеристики серии</button>
+								</div>
+								<div class="product-specs__panel" id="product-panel-specs" role="tabpanel" aria-labelledby="product-tab-specs">
+									<dl class="product-specs__list">
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Тип установки</dt>
+											<dd class="product-specs__value">на трехфазный шинопровод</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Степень защиты</dt>
+											<dd class="product-specs__value">IP20</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Форма</dt>
+											<dd class="product-specs__value">цилиндрическая</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Размеры, мм</dt>
+											<dd class="product-specs__value">Ø126 H122mm</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Диаметр, мм</dt>
+											<dd class="product-specs__value">127</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Высота, мм</dt>
+											<dd class="product-specs__value">187</dd>
+										</div>
+										<div class="product-specs__row">
+											<dt class="product-specs__name">Длина, мм</dt>
+											<dd class="product-specs__value">291</dd>
+										</div>
+									</dl>
 								</div>
 							</div>
 						</div>
@@ -2558,7 +2560,7 @@
 			</div>
 		</div><!-- Scripts Section  -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script src="./js/vendor.js?v=1794390371466"></script>
-		<script src="./js/main.js?v=1794390371466"></script>
+		<script src="./js/vendor.js?v=1794391324379"></script>
+		<script src="./js/main.js?v=1794391324379"></script>
 	</body>
 </html>
