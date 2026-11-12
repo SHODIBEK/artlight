@@ -87,16 +87,47 @@
 
 		// отражаем всю кнопку: иконке на ховере анимация (button-nudge) задаёт свой transform
 		&--prev {
-			left: 20px;
+			left: 4px;
 			transform: translateY(-50%) scaleX(-1);
 		}
 
 		&--next {
-			right: 20px;
+			right: 4px;
 		}
 
 		&.swiper-button-disabled {
 			display: none;
+		}
+
+		// без кружка, у края; белая стрелка с difference — на светлом фоне чёрная, на тёмном белая (по просьбе заказчика)
+		&.button--arrow {
+			width: 40px;
+			height: 40px;
+			box-shadow: none;
+			color: var(--color-white);
+			background: none;
+			mix-blend-mode: difference;
+			transition: opacity $duration-normal;
+
+			.button__icon {
+				width: 24px;
+				height: 24px;
+			}
+
+			@include state-hover {
+				background: none;
+				opacity: 0.6;
+			}
+
+			@include state-pressed {
+				background: none;
+			}
+
+			@include state-focus {
+				outline: 2px solid currentColor;
+				box-shadow: none;
+				background: none;
+			}
 		}
 	}
 
@@ -339,11 +370,11 @@
 		}
 
 		&__arrow--prev {
-			left: 30px;
+			left: 10px;
 		}
 
 		&__arrow--next {
-			right: 30px;
+			right: 10px;
 		}
 
 		&__bullets {
