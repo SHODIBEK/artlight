@@ -18663,6 +18663,53 @@ html.is-preloading {
 .product-page__arrow.swiper-button-disabled {
   display: none;
 }
+@media (max-width: 767px) {
+  .product-page__arrow--prev {
+    left: 4px;
+  }
+  .product-page__arrow--next {
+    right: 4px;
+  }
+}
+@media (max-width: 767px) {
+  .product-page__arrow.button--arrow {
+    width: 40px;
+    height: 40px;
+    box-shadow: none;
+    color: var(--color-white);
+    background: none;
+    mix-blend-mode: difference;
+    transition: opacity 0.3s;
+  }
+  .product-page__arrow.button--arrow .button__icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+@media (max-width: 767px) and (hover: hover) {
+  .product-page__arrow.button--arrow:not(:disabled):not(.is-disabled):hover {
+    background: none;
+    opacity: 0.6;
+  }
+}
+@media (max-width: 767px) {
+  .product-page__arrow.button--arrow.is-hover {
+    background: none;
+    opacity: 0.6;
+  }
+}
+@media (max-width: 767px) {
+  .product-page__arrow.button--arrow:not(:disabled):not(.is-disabled):active, .product-page__arrow.button--arrow.is-pressed {
+    background: none;
+  }
+}
+@media (max-width: 767px) {
+  .product-page__arrow.button--arrow:not(:disabled):not(.is-disabled):focus-visible, .product-page__arrow.button--arrow.is-focus {
+    outline: 2px solid currentColor;
+    box-shadow: none;
+    background: none;
+  }
+}
 .product-page__bullets {
   position: absolute;
   left: 50%;
