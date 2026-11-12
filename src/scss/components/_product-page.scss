@@ -87,46 +87,59 @@
 
 		// отражаем всю кнопку: иконке на ховере анимация (button-nudge) задаёт свой transform
 		&--prev {
-			left: 4px;
+			left: 20px;
 			transform: translateY(-50%) scaleX(-1);
 		}
 
 		&--next {
-			right: 4px;
+			right: 20px;
 		}
 
 		&.swiper-button-disabled {
 			display: none;
 		}
 
-		// без кружка, у края; белая стрелка с difference — на светлом фоне чёрная, на тёмном белая (по просьбе заказчика)
+		// моб.: без кружка, у края; белая стрелка с difference — на светлом фоне чёрная, на тёмном белая
+		// (по просьбе заказчика; ≥ 768 — кружки, как было)
+		@media (max-width: #{$tablet - 1}px) {
+			&--prev {
+				left: 4px;
+			}
+
+			&--next {
+				right: 4px;
+			}
+		}
+
 		&.button--arrow {
-			width: 40px;
-			height: 40px;
-			box-shadow: none;
-			color: var(--color-white);
-			background: none;
-			mix-blend-mode: difference;
-			transition: opacity $duration-normal;
-
-			.button__icon {
-				width: 24px;
-				height: 24px;
-			}
-
-			@include state-hover {
-				background: none;
-				opacity: 0.6;
-			}
-
-			@include state-pressed {
-				background: none;
-			}
-
-			@include state-focus {
-				outline: 2px solid currentColor;
+			@media (max-width: #{$tablet - 1}px) {
+				width: 40px;
+				height: 40px;
 				box-shadow: none;
+				color: var(--color-white);
 				background: none;
+				mix-blend-mode: difference;
+				transition: opacity $duration-normal;
+
+				.button__icon {
+					width: 24px;
+					height: 24px;
+				}
+
+				@include state-hover {
+					background: none;
+					opacity: 0.6;
+				}
+
+				@include state-pressed {
+					background: none;
+				}
+
+				@include state-focus {
+					outline: 2px solid currentColor;
+					box-shadow: none;
+					background: none;
+				}
 			}
 		}
 	}
@@ -370,11 +383,11 @@
 		}
 
 		&__arrow--prev {
-			left: 10px;
+			left: 30px;
 		}
 
 		&__arrow--next {
-			right: 10px;
+			right: 30px;
 		}
 
 		&__bullets {
